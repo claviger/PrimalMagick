@@ -23,8 +23,10 @@ import com.verdantartifice.primalmagick.common.blocks.misc.StainedSkyglassBlock;
 import com.verdantartifice.primalmagick.common.blocks.misc.StainedSkyglassPaneBlock;
 import com.verdantartifice.primalmagick.common.blocks.rituals.BloodletterBlock;
 import com.verdantartifice.primalmagick.common.blocks.rituals.RitualCandleBlock;
+import com.verdantartifice.primalmagick.common.blocks.rituals.SaltTrailBlock;
 import com.verdantartifice.primalmagick.common.blocks.rituals.SoulAnvilBlock;
 import com.verdantartifice.primalmagick.common.blocks.trees.IPhasingBlock;
+import com.verdantartifice.primalmagick.common.blockstates.properties.SaltSide;
 import com.verdantartifice.primalmagick.common.blockstates.properties.TimePhase;
 import com.verdantartifice.primalmagick.common.items.EquipmentAssetsPM;
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
@@ -285,7 +287,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         this.createEmptyBlock(BlocksPM.CONSECRATION_FIELD.get(), blockModels);
         this.createEmptyBlock(BlocksPM.GLOW_FIELD.get(), blockModels);
         this.createEmptyBlock(BlocksPM.SOUL_GLOW_FIELD.get(), blockModels);
-        // TODO Generate salt trail block
+        this.createSaltTrailBlock(BlocksPM.SALT_TRAIL.get(), blockModels);
         blockModels.createTrivialCube(BlocksPM.ROCK_SALT_ORE.get());
         blockModels.createTrivialCube(BlocksPM.QUARTZ_ORE.get());
         blockModels.createTrivialCube(BlocksPM.PRIMALITE_BLOCK.get());
@@ -882,6 +884,43 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
                 .create(block, TextureMappingsPM::empty, blockModels.modelOutput);
         MultiVariant variant = BlockModelGenerators.plainVariant(modelLoc);
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block, variant).with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING));
+    }
+
+    private void createSaltTrailBlock(Block block, BlockModelGenerators blockModels) {
+        // Mirrors the vanilla redstone wire block state definition, using the hand-written salt trail models
+        blockModels.registerSimpleFlatItemModel(block.asItem());
+        Identifier modelLoc = ModelLocationUtils.getModelLocation(block);
+        MultiVariant dotVariant = BlockModelGenerators.plainVariant(modelLoc.withSuffix("_dot"));
+        MultiVariant upVariant = BlockModelGenerators.plainVariant(modelLoc.withSuffix("_up"));
+        blockModels.blockStateOutput.accept(MultiPartGenerator.multiPart(block)
+                .with(BlockModelGenerators.or(
+                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.NONE).term(SaltTrailBlock.EAST, SaltSide.NONE).term(SaltTrailBlock.SOUTH, SaltSide.NONE).term(SaltTrailBlock.WEST, SaltSide.NONE),
+                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP),
+                        BlockModelGenerators.condition().term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP),
+                        BlockModelGenerators.condition().term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP),
+                        BlockModelGenerators.condition().term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP)
+                ), dotVariant)
+                .with(BlockModelGenerators.or(
+                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP),
+                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.NONE).term(SaltTrailBlock.EAST, SaltSide.NONE).term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.WEST, SaltSide.NONE)
+                ), BlockModelGenerators.plainVariant(modelLoc.withSuffix("_side0")))
+                .with(BlockModelGenerators.or(
+                        BlockModelGenerators.condition().term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP),
+                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.EAST, SaltSide.NONE).term(SaltTrailBlock.SOUTH, SaltSide.NONE).term(SaltTrailBlock.WEST, SaltSide.NONE)
+                ), BlockModelGenerators.plainVariant(modelLoc.withSuffix("_side_alt0")))
+                .with(BlockModelGenerators.or(
+                        BlockModelGenerators.condition().term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP),
+                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.NONE).term(SaltTrailBlock.EAST, SaltSide.NONE).term(SaltTrailBlock.SOUTH, SaltSide.NONE).term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP)
+                ), BlockModelGenerators.plainVariant(modelLoc.withSuffix("_side_alt1")).with(BlockModelGenerators.Y_ROT_270))
+                .with(BlockModelGenerators.or(
+                        BlockModelGenerators.condition().term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP),
+                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.NONE).term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.SOUTH, SaltSide.NONE).term(SaltTrailBlock.WEST, SaltSide.NONE)
+                ), BlockModelGenerators.plainVariant(modelLoc.withSuffix("_side1")).with(BlockModelGenerators.Y_ROT_270))
+                .with(BlockModelGenerators.condition(SaltTrailBlock.NORTH, SaltSide.UP), upVariant)
+                .with(BlockModelGenerators.condition(SaltTrailBlock.EAST, SaltSide.UP), upVariant.with(BlockModelGenerators.Y_ROT_90))
+                .with(BlockModelGenerators.condition(SaltTrailBlock.SOUTH, SaltSide.UP), upVariant.with(BlockModelGenerators.Y_ROT_180))
+                .with(BlockModelGenerators.condition(SaltTrailBlock.WEST, SaltSide.UP), upVariant.with(BlockModelGenerators.Y_ROT_270))
+        );
     }
 
     private void createLanternBlock(Block block, BlockModelGenerators blockModels) {
