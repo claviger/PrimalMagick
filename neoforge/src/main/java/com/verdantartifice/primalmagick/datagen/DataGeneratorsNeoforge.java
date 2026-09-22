@@ -48,10 +48,27 @@ import java.util.concurrent.CompletableFuture;
 public class DataGeneratorsNeoforge {
     @SubscribeEvent
     public static void onGatherClientData(GatherDataEvent.Client event) {
-        // Add all the mod's client data providers to the generator for processing
+        // A client data run generates both client and server data, so add all the mod's data providers to the generator for processing
         DataGenerator generator = event.getGenerator();
-        CompletableFuture<HolderLookup.Provider> intermediate = DualRegistryDataGeneratorNeoforge.addProviders(false, generator, generator.getPackOutput(), event.getLookupProvider());
-        CompletableFuture<HolderLookup.Provider> registryLookupFuture = RegistryDataGeneratorNeoforge.addProviders(false, generator, generator.getPackOutput(), intermediate);
+        CompletableFuture<HolderLookup.Provider> registryLookupFuture = addRegistryProviders(event, generator);
+        addClientProviders(event, generator, registryLookupFuture);
+        addServerProviders(event, generator, registryLookupFuture);
+    }
+    
+    @SubscribeEvent
+    public static void onGatherServerData(GatherDataEvent.Server event) {
+        // A server data run has no client, so add only the mod's server data providers to the generator for processing
+        DataGenerator generator = event.getGenerator();
+        CompletableFuture<HolderLookup.Provider> registryLookupFuture = addRegistryProviders(event, generator);
+        addServerProviders(event, generator, registryLookupFuture);
+    }
+    
+    private static CompletableFuture<HolderLookup.Provider> addRegistryProviders(GatherDataEvent event, DataGenerator generator) {
+        CompletableFuture<HolderLookup.Provider> intermediate = DualRegistryDataGeneratorNeoforge.addProviders(true, generator, generator.getPackOutput(), event.getLookupProvider());
+        return RegistryDataGeneratorNeoforge.addProviders(true, generator, generator.getPackOutput(), intermediate);
+    }
+    
+    private static void addClientProviders(GatherDataEvent event, DataGenerator generator, CompletableFuture<HolderLookup.Provider> registryLookupFuture) {
         event.addProvider(new SpriteSourceProviderPMNeoforge(generator.getPackOutput(), registryLookupFuture));
         event.addProvider(new SoundDefinitionsProviderPMNeoforge(generator.getPackOutput()));
         event.addProvider(new StyleGuideProvider(generator.getPackOutput()));
@@ -60,12 +77,7 @@ public class DataGeneratorsNeoforge {
         event.addProvider(new LanguageProviderEnUs(generator.getPackOutput(), registryLookupFuture));
     }
     
-    @SubscribeEvent
-    public static void onGatherServerData(GatherDataEvent.Server event) {
-        // Add all the mod's server data providers to the generator for processing
-        DataGenerator generator = event.getGenerator();
-        CompletableFuture<HolderLookup.Provider> intermediate = DualRegistryDataGeneratorNeoforge.addProviders(true, generator, generator.getPackOutput(), event.getLookupProvider());
-        CompletableFuture<HolderLookup.Provider> registryLookupFuture = RegistryDataGeneratorNeoforge.addProviders(true, generator, generator.getPackOutput(), intermediate);
+    private static void addServerProviders(GatherDataEvent event, DataGenerator generator, CompletableFuture<HolderLookup.Provider> registryLookupFuture) {
         event.addProvider(new RecipesNeoforge.Runner(generator.getPackOutput(), registryLookupFuture));
         event.addProvider(new BlockTagsProviderPMNeoforge(generator.getPackOutput(), registryLookupFuture));
         event.addProvider(new ItemTagsProviderPMNeoforge(generator.getPackOutput(), registryLookupFuture));
