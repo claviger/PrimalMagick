@@ -3,11 +3,14 @@ package com.verdantartifice.primalmagick.platform.registries;
 import com.mojang.serialization.Codec;
 import com.verdantartifice.primalmagick.PrimalMagick;
 import com.verdantartifice.primalmagick.common.registries.IRegistryItem;
+import com.verdantartifice.primalmagick.common.registries.RegistryIdContext;
 import com.verdantartifice.primalmagick.common.registries.RegistryItemNeoforge;
 import com.verdantartifice.primalmagick.common.tags.ITagValue;
 import com.verdantartifice.primalmagick.common.tags.TagValueNeoforge;
 import com.verdantartifice.primalmagick.platform.services.registries.IRegistryService;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.Utf8String;
@@ -43,7 +46,22 @@ abstract class AbstractRegistryServiceNeoforge<R> implements IRegistryService<R>
 
     @Override
     public <T extends R> IRegistryItem<R, T> register(String name, Supplier<T> supplier) {
-        return new RegistryItemNeoforge<>(this.getDeferredRegisterSupplier().get().register(name, supplier));
+        return new RegistryItemNeoforge<>(this.getDeferredRegisterSupplier().get().register(name, id -> this.construct(id, supplier)));
+    }
+
+    /**
+     * Construct the value being registered under the given ID. Blocks and items need their registry key available
+     * while their properties are built, so the key is exposed to them for the duration of the supplier call.
+     */
+    protected <T extends R> T construct(Identifier id, Supplier<T> supplier) {
+        Registry<R> registry = this.getRegistry();
+        if (registry == BuiltInRegistries.BLOCK) {
+            return RegistryIdContext.withBlockKey(ResourceKey.create(Registries.BLOCK, id), supplier);
+        } else if (registry == BuiltInRegistries.ITEM) {
+            return RegistryIdContext.withItemKey(ResourceKey.create(Registries.ITEM, id), supplier);
+        } else {
+            return supplier.get();
+        }
     }
 
     @Override
