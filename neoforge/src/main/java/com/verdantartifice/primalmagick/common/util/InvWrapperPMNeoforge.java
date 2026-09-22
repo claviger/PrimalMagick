@@ -1,16 +1,10 @@
 package com.verdantartifice.primalmagick.common.util;
 
-import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
 import net.minecraft.world.Container;
-import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
 
-public class InvWrapperPMNeoforge extends InvWrapper implements IItemHandlerPM {
+public class InvWrapperPMNeoforge extends AbstractContainerWrapperPMNeoforge {
     public InvWrapperPMNeoforge(Container container) {
-        super(container);
-    }
-
-    @Override
-    public Container asContainer() {
-        return this.getInv();
+        super(container, VanillaContainerWrapper.of(container));
     }
 }
