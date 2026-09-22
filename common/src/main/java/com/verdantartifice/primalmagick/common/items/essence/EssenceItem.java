@@ -41,6 +41,11 @@ public class EssenceItem extends Item {
         ESSENCES.put(type, source, item);
     }
     
+    @Nullable
+    public static Item getEssenceItem(@Nullable EssenceType type, @Nullable Source source) {
+        return ESSENCES.get(type, source);
+    }
+    
     @Nonnull
     public static ItemStack getEssence(@Nullable EssenceType type, @Nullable Source source) {
         return getEssence(type, source, 1);
@@ -48,7 +53,7 @@ public class EssenceItem extends Item {
     
     @Nonnull
     public static ItemStack getEssence(@Nullable EssenceType type, @Nullable Source source, int count) {
-        Item item = ESSENCES.get(type, source);
+        Item item = getEssenceItem(type, source);
         return (item == null) ? ItemStack.EMPTY : new ItemStack(item, count);
     }
     

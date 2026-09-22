@@ -3,13 +3,18 @@ package com.verdantartifice.primalmagick.common.concoctions;
 import com.verdantartifice.primalmagick.common.components.DataComponentsPM;
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 /**
  * Helper methods for handling concoctions.
@@ -17,21 +22,35 @@ import javax.annotation.Nullable;
  * @author Daedalus4096
  */
 public class ConcoctionUtils {
-    public static ItemStack newConcoction(Holder<Potion> potion, ConcoctionType type) {
-        return setConcoctionType(PotionContents.createItemStack(ItemsPM.CONCOCTION.get(), potion), type);
+    public static ItemStackTemplate newConcoction(Holder<Potion> potion, ConcoctionType type) {
+        return new ItemStackTemplate(ItemsPM.CONCOCTION.get(), DataComponentPatch.builder()
+                .set(DataComponents.POTION_CONTENTS, new PotionContents(potion))
+                .set(DataComponentsPM.CONCOCTION_TYPE.get(), type)
+                .set(DataComponentsPM.CONCOCTION_DOSES.get(), type.getMaxDoses())
+                .build());
     }
     
-    public static ItemStack newBomb(Holder<Potion> potion) {
+    public static ItemStackTemplate newBomb(Holder<Potion> potion) {
         return newBomb(potion, FuseType.MEDIUM);
     }
     
-    public static ItemStack newBomb(Holder<Potion> potion, FuseType fuse) {
-        return setFuseType(setConcoctionType(PotionContents.createItemStack(ItemsPM.ALCHEMICAL_BOMB.get(), potion), ConcoctionType.BOMB), fuse);
+    public static ItemStackTemplate newBomb(Holder<Potion> potion, FuseType fuse) {
+        return new ItemStackTemplate(ItemsPM.ALCHEMICAL_BOMB.get(), DataComponentPatch.builder()
+                .set(DataComponents.POTION_CONTENTS, new PotionContents(potion))
+                .set(DataComponentsPM.CONCOCTION_TYPE.get(), ConcoctionType.BOMB)
+                .set(DataComponentsPM.CONCOCTION_DOSES.get(), ConcoctionType.BOMB.getMaxDoses())
+                .set(DataComponentsPM.FUSE_TYPE.get(), fuse)
+                .build());
     }
     
     @Nonnull
     public static ConcoctionType getConcoctionType(@Nonnull ItemStack stack) {
         return stack.getOrDefault(DataComponentsPM.CONCOCTION_TYPE.get(), ConcoctionType.WATER);
+    }
+    
+    @Nonnull
+    public static ConcoctionType getConcoctionType(@Nonnull ItemStackTemplate template) {
+        return Objects.requireNonNullElse(template.components().get(DataComponentMap.EMPTY, DataComponentsPM.CONCOCTION_TYPE.get()), ConcoctionType.WATER);
     }
     
     @Nonnull

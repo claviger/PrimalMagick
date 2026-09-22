@@ -5,12 +5,22 @@ import com.verdantartifice.primalmagick.common.components.DataComponentsPM;
 import com.verdantartifice.primalmagick.common.wands.WandCap;
 import com.verdantartifice.primalmagick.common.wands.WandCore;
 import com.verdantartifice.primalmagick.common.wands.WandGem;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public interface IHasWandComponents {
+    static DataComponentPatch getWandComponents(@Nonnull WandCore core, @Nonnull WandCap cap, @Nonnull WandGem gem) {
+        return DataComponentPatch.builder()
+                .set(DataComponentsPM.WAND_CORE.get(), core)
+                .set(DataComponentsPM.WAND_CAP.get(), cap)
+                .set(DataComponentsPM.WAND_GEM.get(), gem)
+                .set(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.emptyWand(gem.getCapacity()))
+                .build();
+    }
+    
     static ItemStack setWandComponents(@Nonnull ItemStack stack, @Nonnull WandCore core, @Nonnull WandCap cap, @Nonnull WandGem gem) {
         if (stack.getItem() instanceof IHasWandComponents wand) {
             wand.setWandCore(stack, core);

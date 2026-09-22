@@ -19,12 +19,15 @@ import com.verdantartifice.primalmagick.common.theorycrafting.weights.ConstantWe
 import com.verdantartifice.primalmagick.common.theorycrafting.weights.ProgressiveWeight;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.raid.Raid;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
@@ -265,7 +268,7 @@ public class ProjectTemplates {
                 .material(ItemProjectMaterial.builder(Items.CARTOGRAPHY_TABLE).weight(1).build())
                 .material(ItemProjectMaterial.builder(Items.TORCH, 32).consumed().weight(1).build())
                 .material(ItemProjectMaterial.builder(Items.BREAD, 8).consumed().weight(1).build())
-                .material(ItemProjectMaterial.builder(PotionContents.createItemStack(Items.POTION, Potions.SLOW_FALLING)).consumed().bonusReward(0.5D).weight(1).matchNbt().build())
+                .material(ItemProjectMaterial.builder(new ItemStackTemplate(Items.POTION, DataComponentPatch.builder().set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.SLOW_FALLING)).build())).consumed().bonusReward(0.5D).weight(1).matchNbt().build())
                 .material(ItemTagProjectMaterial.builder(CommonTags.Items.ENDER_PEARLS).quantity(4).consumed().bonusReward(0.5D).weight(3).build())
                 .material(ItemProjectMaterial.builder(Items.ENDER_EYE).consumed().weight(1).build())
                 .build());
@@ -443,7 +446,7 @@ public class ProjectTemplates {
                 .material(ItemProjectMaterial.builder(Items.CARTOGRAPHY_TABLE).weight(1).build())
                 .material(ItemProjectMaterial.builder(Items.TORCH, 16).consumed().weight(1).build())
                 .material(ItemProjectMaterial.builder(Items.BREAD, 4).consumed().weight(1).build())
-                .material(ItemProjectMaterial.builder(PotionContents.createItemStack(Items.POTION, Potions.FIRE_RESISTANCE)).consumed().bonusReward(0.25D).weight(4).matchNbt().build())
+                .material(ItemProjectMaterial.builder(new ItemStackTemplate(Items.POTION, DataComponentPatch.builder().set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.FIRE_RESISTANCE)).build())).consumed().bonusReward(0.25D).weight(4).matchNbt().build())
                 .material(ItemTagProjectMaterial.builder(ItemExtensionTags.MILK).consumed().weight(1).build())
                 .material(ItemTagProjectMaterial.builder(CommonTags.Items.OBSIDIANS).quantity(10).weight(1).build())
                 .material(ItemProjectMaterial.builder(Items.FLINT_AND_STEEL).weight(1).build())
@@ -510,7 +513,7 @@ public class ProjectTemplates {
                 .build());
         context.register(RAIDING_THE_RAIDERS, ProjectTemplate.builder().rewardMultiplier(0.5D)
                 .weightFunction(new ConstantWeight(5))
-                .material(ItemProjectMaterial.builder(Raid.getOminousBannerInstance(bannerPatternGetter)).consumed().matchNbt().bonusReward(0.25D).weight(1).build())
+                .material(ItemProjectMaterial.builder(Raid.getOminousBannerTemplate(bannerPatternGetter)).consumed().matchNbt().bonusReward(0.25D).weight(1).build())
                 .material(ItemProjectMaterial.builder(ItemsPM.BLOODY_FLESH.get()).consumed().weight(1).build())
                 .material(ItemProjectMaterial.builder(Items.CROSSBOW).consumed().weight(3).build())
                 .material(ItemProjectMaterial.builder(Items.IRON_SWORD).consumed().weight(3).build())

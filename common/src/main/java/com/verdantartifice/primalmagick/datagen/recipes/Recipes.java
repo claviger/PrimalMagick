@@ -47,7 +47,6 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
@@ -91,7 +90,7 @@ public abstract class Recipes extends RecipeProvider {
         return ArcaneShapelessRecipeBuilder.arcaneShapelessRecipe(this.items, result, count);
     }
 
-    protected ConcoctingRecipeBuilder concocting(ItemStack result) {
+    protected ConcoctingRecipeBuilder concocting(ItemStackTemplate result) {
         return ConcoctingRecipeBuilder.concoctingRecipe(this.items, result);
     }
     
@@ -115,7 +114,7 @@ public abstract class Recipes extends RecipeProvider {
         return RitualRecipeBuilder.ritualRecipe(this.items, this.blocks, result, count);
     }
     
-    protected RitualRecipeBuilder ritual(ItemStack result) {
+    protected RitualRecipeBuilder ritual(ItemStackTemplate result) {
         return RitualRecipeBuilder.ritualRecipe(this.items, this.blocks, result);
     }
 
@@ -1519,16 +1518,16 @@ public abstract class Recipes extends RecipeProvider {
         for (Source source : Sources.getAllSorted()) {
             for (EssenceType baseType : EssenceType.values()) {
                 baseType.getUpgrade().ifPresent(upgradeType -> {
-                    ItemStack baseStack = EssenceItem.getEssence(baseType, source);
-                    ItemStack upgradeStack = EssenceItem.getEssence(upgradeType, source);
+                    Item baseItem = EssenceItem.getEssenceItem(baseType, source);
+                    Item upgradeItem = EssenceItem.getEssenceItem(upgradeType, source);
                     Optional<Item> quartzItemOpt = upgradeType.getUpgradeMedium();
-                    if (!baseStack.isEmpty() && !upgradeStack.isEmpty() && quartzItemOpt.isPresent()) {
+                    if (baseItem != null && upgradeItem != null && quartzItemOpt.isPresent()) {
                         String name = "essence_" + upgradeType.getSerializedName() + "_" + source.getId().getPath() + "_from_" + baseType.getSerializedName();
-                        ArcaneShapedRecipeBuilder builder = this.arcaneShaped(upgradeStack.getItem())
+                        ArcaneShapedRecipeBuilder builder = this.arcaneShaped(upgradeItem)
                                 .patternLine("###")
                                 .patternLine("#Q#")
                                 .patternLine("###")
-                                .key('#', baseStack.getItem())
+                                .key('#', baseItem)
                                 .key('Q', quartzItemOpt.get())
                                 .expertiseGroup("essence_" + upgradeType.getSerializedName())
                                 .setGroup("essence_" + upgradeType.getSerializedName());
@@ -1545,12 +1544,12 @@ public abstract class Recipes extends RecipeProvider {
         for (Source source : Sources.getAllSorted()) {
             for (EssenceType baseType : EssenceType.values()) {
                 baseType.getDowngrade().ifPresent(downgradeType -> {
-                    ItemStack baseStack = EssenceItem.getEssence(baseType, source);
-                    ItemStack downgradeStack = EssenceItem.getEssence(downgradeType, source);
-                    if (!baseStack.isEmpty() && !downgradeStack.isEmpty()) {
+                    Item baseItem = EssenceItem.getEssenceItem(baseType, source);
+                    Item downgradeItem = EssenceItem.getEssenceItem(downgradeType, source);
+                    if (baseItem != null && downgradeItem != null) {
                         String name = "essence_" + downgradeType.getSerializedName() + "_" + source.getId().getPath() + "_from_" + baseType.getSerializedName();
-                        ArcaneShapelessRecipeBuilder builder = this.arcaneShapeless(downgradeStack.getItem(), 4)
-                            .addIngredient(baseStack.getItem())
+                        ArcaneShapelessRecipeBuilder builder = this.arcaneShapeless(downgradeItem, 4)
+                            .addIngredient(baseItem)
                             .expertiseGroup("essence_" + downgradeType.getSerializedName())
                             .setGroup("essence_" + downgradeType.getSerializedName());
                         baseType.getDowngradeResearchEntry().ifPresent(builder::requiredResearch);
@@ -6490,7 +6489,7 @@ public abstract class Recipes extends RecipeProvider {
     }
     
     protected void registerPrimalToolRecipes() {
-        this.ritual(ItemsPM.PRIMAL_SHOVEL.get().getDefaultEnchantedInstance(this.registries))
+        this.ritual(ItemsPM.PRIMAL_SHOVEL.get().getDefaultEnchantedTemplate(this.registries))
             .addIngredient(ItemsPM.PRIMALITE_SHOVEL.get())
             .addIngredient(ItemsPM.ESSENCE_SHARD_EARTH.get(), 2)
             .addIngredient(ItemsPM.RUNE_EARTH.get())
@@ -6502,7 +6501,7 @@ public abstract class Recipes extends RecipeProvider {
             .manaCost(SourceList.EMPTY.add(Sources.EARTH, 40))
             .instability(3)
             .build(this.output);
-        this.ritual(ItemsPM.PRIMAL_FISHING_ROD.get().getDefaultEnchantedInstance(this.registries))
+        this.ritual(ItemsPM.PRIMAL_FISHING_ROD.get().getDefaultEnchantedTemplate(this.registries))
             .addIngredient(ItemsPM.PRIMALITE_FISHING_ROD.get())
             .addIngredient(ItemsPM.ESSENCE_SHARD_SEA.get(), 2)
             .addIngredient(ItemsPM.RUNE_SEA.get())
@@ -6514,7 +6513,7 @@ public abstract class Recipes extends RecipeProvider {
             .manaCost(SourceList.EMPTY.add(Sources.SEA, 40))
             .instability(3)
             .build(this.output);
-        this.ritual(ItemsPM.PRIMAL_AXE.get().getDefaultEnchantedInstance(this.registries))
+        this.ritual(ItemsPM.PRIMAL_AXE.get().getDefaultEnchantedTemplate(this.registries))
             .addIngredient(ItemsPM.PRIMALITE_AXE.get())
             .addIngredient(ItemsPM.ESSENCE_SHARD_SKY.get(), 2)
             .addIngredient(ItemsPM.RUNE_SKY.get())
@@ -6526,7 +6525,7 @@ public abstract class Recipes extends RecipeProvider {
             .manaCost(SourceList.EMPTY.add(Sources.SKY, 40))
             .instability(3)
             .build(this.output);
-        this.ritual(ItemsPM.PRIMAL_HOE.get().getDefaultEnchantedInstance(this.registries))
+        this.ritual(ItemsPM.PRIMAL_HOE.get().getDefaultEnchantedTemplate(this.registries))
             .addIngredient(ItemsPM.PRIMALITE_HOE.get())
             .addIngredient(ItemsPM.ESSENCE_SHARD_SUN.get(), 2)
             .addIngredient(ItemsPM.RUNE_SUN.get())
@@ -6538,7 +6537,7 @@ public abstract class Recipes extends RecipeProvider {
             .manaCost(SourceList.EMPTY.add(Sources.SUN, 40))
             .instability(3)
             .build(this.output);
-        this.ritual(ItemsPM.PRIMAL_PICKAXE.get().getDefaultEnchantedInstance(this.registries))
+        this.ritual(ItemsPM.PRIMAL_PICKAXE.get().getDefaultEnchantedTemplate(this.registries))
             .addIngredient(ItemsPM.PRIMALITE_PICKAXE.get())
             .addIngredient(ItemsPM.ESSENCE_SHARD_MOON.get(), 2)
             .addIngredient(ItemsPM.RUNE_MOON.get())
@@ -6550,7 +6549,7 @@ public abstract class Recipes extends RecipeProvider {
             .manaCost(SourceList.EMPTY.add(Sources.MOON, 40))
             .instability(3)
             .build(this.output);
-        this.ritual(ItemsPM.FORBIDDEN_TRIDENT.get().getDefaultEnchantedInstance(this.registries))
+        this.ritual(ItemsPM.FORBIDDEN_TRIDENT.get().getDefaultEnchantedTemplate(this.registries))
             .addIngredient(ItemsPM.HEXIUM_TRIDENT.get())
             .addIngredient(ItemsPM.ESSENCE_SHARD_BLOOD.get(), 2)
             .addIngredient(ItemsPM.RUNE_BLOOD.get())
@@ -6561,7 +6560,7 @@ public abstract class Recipes extends RecipeProvider {
             .manaCost(SourceList.EMPTY.add(Sources.BLOOD, 40))
             .instability(3)
             .build(this.output);
-        this.ritual(ItemsPM.FORBIDDEN_BOW.get().getDefaultEnchantedInstance(this.registries))
+        this.ritual(ItemsPM.FORBIDDEN_BOW.get().getDefaultEnchantedTemplate(this.registries))
             .addIngredient(ItemsPM.HEXIUM_BOW.get())
             .addIngredient(ItemsPM.ESSENCE_SHARD_INFERNAL.get(), 2)
             .addIngredient(ItemsPM.RUNE_INFERNAL.get())
@@ -6572,7 +6571,7 @@ public abstract class Recipes extends RecipeProvider {
             .manaCost(SourceList.EMPTY.add(Sources.INFERNAL, 40))
             .instability(3)
             .build(this.output);
-        this.ritual(ItemsPM.FORBIDDEN_SWORD.get().getDefaultEnchantedInstance(this.registries))
+        this.ritual(ItemsPM.FORBIDDEN_SWORD.get().getDefaultEnchantedTemplate(this.registries))
             .addIngredient(ItemsPM.HEXIUM_SWORD.get())
             .addIngredient(ItemsPM.ESSENCE_SHARD_VOID.get(), 2)
             .addIngredient(ItemsPM.RUNE_VOID.get())
@@ -6584,7 +6583,7 @@ public abstract class Recipes extends RecipeProvider {
             .manaCost(SourceList.EMPTY.add(Sources.VOID, 40))
             .instability(3)
             .build(this.output);
-        this.ritual(ItemsPM.SACRED_SHIELD.get().getDefaultEnchantedInstance(this.registries))
+        this.ritual(ItemsPM.SACRED_SHIELD.get().getDefaultEnchantedTemplate(this.registries))
             .addIngredient(ItemsPM.HALLOWSTEEL_SHIELD.get())
             .addIngredient(ItemsPM.ESSENCE_SHARD_HALLOWED.get(), 2)
             .addIngredient(ItemsPM.RUNE_HALLOWED.get())
