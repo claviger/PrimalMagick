@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/trident_in_hand",
+  "textures": {
+    "particle": "primalmagick:item/primalite_trident"
+  }
+}

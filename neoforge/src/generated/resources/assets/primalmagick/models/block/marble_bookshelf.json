@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/chiseled_bookshelf",
+  "textures": {
+    "side": "primalmagick:block/marble",
+    "top": "primalmagick:block/marble"
+  }
+}

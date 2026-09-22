@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/trident_throwing",
+  "textures": {
+    "particle": "primalmagick:item/hallowsteel_trident"
+  }
+}
