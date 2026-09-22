@@ -301,7 +301,6 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
 
     protected void executeItemModelGenerators(ItemModelGenerators itemModels) {
         // Generate crop items
-        itemModels.generateFlatItem(ItemsPM.HYDROMELON_SEEDS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ItemsPM.HYDROMELON_SLICE.get(), ModelTemplates.FLAT_ITEM);
 
         // Generate salted food items
@@ -745,7 +744,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         String suffix = hasBook ? "_occupied" : "_empty";
         TextureMapping texturemapping = new TextureMapping().put(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(block, suffix));
         BlockModelGenerators.BookSlotModelCacheKey blockmodelgenerators$bookslotmodelcachekey = new BlockModelGenerators.BookSlotModelCacheKey(template, suffix);
-        MultiVariant multivariant = BlockModelGenerators.plainVariant(BlockModelGenerators.CHISELED_BOOKSHELF_SLOT_MODEL_CACHE.computeIfAbsent(blockmodelgenerators$bookslotmodelcachekey, _ -> template.createWithSuffix(Blocks.CHISELED_BOOKSHELF, suffix, texturemapping, blockModels.modelOutput)));
+        MultiVariant multivariant = BlockModelGenerators.plainVariant(BlockModelGenerators.CHISELED_BOOKSHELF_SLOT_MODEL_CACHE.computeIfAbsent(blockmodelgenerators$bookslotmodelcachekey, _ -> template.createWithSuffix(block, suffix, texturemapping, blockModels.modelOutput)));
         generator.with(new CombinedCondition(CombinedCondition.Operation.AND, List.of(condition, BlockModelGenerators.condition().term(hasBookProperty, hasBook).build())), multivariant.with(rotation));
     }
 
