@@ -105,7 +105,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
     protected void executeBlockModelGenerators(BlockModelGenerators blockModels) {
         // Generate models for defined block families
         BlockFamiliesPM.getStandardFamilies().filter(BlockFamily::shouldGenerateModel).forEach(family -> blockModels.family(family.getBaseBlock()).generateFor(family));
-        BlockFamiliesPM.getPhasingFamilies().filter(BlockFamily::shouldGenerateModel).forEach(family -> this.phasingFamily(family.getBaseBlock(), PhasingTextureMapping::cube, blockModels));
+        BlockFamiliesPM.getPhasingFamilies().filter(BlockFamily::shouldGenerateModel).forEach(family -> this.phasingFamily(family.getBaseBlock(), PhasingTextureMapping::cube, blockModels).generateFor(family));
 
         // Generate non-family marble blocks
         this.generatePillarBlock(BlocksPM.MARBLE_PILLAR.get(), blockModels);
@@ -753,19 +753,21 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
     }
 
     private PhasingBlockFamilyProvider phasingFamily(Block block, Function<Block, PhasingTextureMapping> textureMapping, BlockModelGenerators blockModels) {
-        return new PhasingBlockFamilyProvider(textureMapping.apply(block), blockModels).fullBlock(block, ModelTemplates.CUBE);
+        return new PhasingBlockFamilyProvider(textureMapping.apply(block), blockModels).fullBlock(block, ModelTemplates.CUBE_ALL);
     }
 
     private void createPhasingLeaves(Block block, BlockModelGenerators blockModels) {
         PhasingTextureMapping leavesMapping = PhasingTextureMapping.leaves(block);
+        Map<TimePhase, MultiVariant> variants = new HashMap<>();
         Arrays.stream(TimePhase.values()).forEach(phase -> {
             Identifier modelId = Services.MODEL_TEMPLATES.extend(ModelTemplates.LEAVES)
                     .createWithSuffix(block, "_" + phase, leavesMapping.resolve(phase), blockModels.modelOutput);
-            blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, BlockModelGenerators.plainVariant(modelId)));
+            variants.put(phase, BlockModelGenerators.plainVariant(modelId));
             if (phase == TimePhase.FULL) {
                 blockModels.registerSimpleItemModel(block, modelId);
             }
         });
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(PropertyDispatch.initial(IPhasingBlock.PHASE).generate(variants::get)));
     }
 
     private void createPhasingPillarBlock(Block block, BlockModelGenerators blockModels) {
@@ -776,6 +778,9 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
                 Identifier modelId = Services.MODEL_TEMPLATES.extend(this.getPillarModelTemplate(type))
                         .createWithSuffix(block, "_" + phase, pillarMapping.resolve(phase), blockModels.modelOutput);
                 dispatch.select(phase, type, BlockModelGenerators.plainVariant(modelId));
+                if (phase == TimePhase.FULL && type == PillarBlock.Type.BASE) {
+                    blockModels.registerSimpleItemModel(block, modelId);
+                }
             });
         });
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(dispatch));
