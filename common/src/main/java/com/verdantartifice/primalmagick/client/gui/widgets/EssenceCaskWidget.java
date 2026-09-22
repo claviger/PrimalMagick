@@ -91,8 +91,8 @@ public class EssenceCaskWidget extends AbstractWidget {
 
     @Override
     public boolean mouseClicked(@NotNull MouseButtonEvent event, boolean doubleClick) {
-        if (this.active && this.visible && this.clicked(mouseX, mouseY)) {
-            this.onClick.accept(this, clickButton);
+        if (this.isMouseOver(event.x(), event.y())) {
+            this.onClick.accept(this, event.button());
             return true;
         } else {
             return false;

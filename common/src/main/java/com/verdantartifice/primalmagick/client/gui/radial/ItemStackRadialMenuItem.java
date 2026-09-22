@@ -1,9 +1,7 @@
 package com.verdantartifice.primalmagick.client.gui.radial;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import org.joml.Matrix4fStack;
 
 public class ItemStackRadialMenuItem extends TextRadialMenuItem {
     private final int slot;
@@ -31,15 +29,10 @@ public class ItemStackRadialMenuItem extends TextRadialMenuItem {
     {
         if (stack.getCount() > 0)
         {
-            Matrix4fStack viewModelPose = RenderSystem.getModelViewStack();
-            viewModelPose.pushMatrix();
-            viewModelPose.mul(context.guiGraphics.pose().last().pose());
-            viewModelPose.translate(-8, -8, context.z);
-            RenderSystem.applyModelViewMatrix();
-            context.guiGraphics.renderItem(stack, (int) context.x, (int) context.y);
-            context.guiGraphics.renderItemDecorations(context.fontRenderer, stack, (int) context.x, (int) context.y, "");
-            viewModelPose.popMatrix();
-            RenderSystem.applyModelViewMatrix();
+            int x = (int) context.x - 8;
+            int y = (int) context.y - 8;
+            context.guiGraphics.item(stack, x, y);
+            context.guiGraphics.itemDecorations(context.fontRenderer, stack, x, y, "");
         }
         else
         {

@@ -1,7 +1,9 @@
 package com.verdantartifice.primalmagick.client.gui.widgets;
 
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * An unclickable version of a button.
@@ -17,5 +19,11 @@ public class InactiveWidget extends Button {
             }
         }, Button.DEFAULT_NARRATION);
         this.active = false;
+    }
+
+    @Override
+    public void extractContents(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        this.extractDefaultSprite(guiGraphics);
+        this.extractDefaultLabel(guiGraphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE));
     }
 }

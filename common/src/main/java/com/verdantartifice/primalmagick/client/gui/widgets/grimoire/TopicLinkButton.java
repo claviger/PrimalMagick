@@ -9,7 +9,9 @@ import com.verdantartifice.primalmagick.common.research.topics.EntryResearchTopi
 import com.verdantartifice.primalmagick.common.research.topics.TopicLink;
 import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * GUI button to navigate the Grimoire to the given topic link target.
@@ -35,6 +37,12 @@ public class TopicLinkButton extends Button {
 
     public GrimoireScreen getScreen() {
         return this.screen;
+    }
+
+    @Override
+    public void extractContents(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        this.extractDefaultSprite(guiGraphics);
+        this.extractDefaultLabel(guiGraphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE));
     }
 
     private static class Handler implements OnPress {
