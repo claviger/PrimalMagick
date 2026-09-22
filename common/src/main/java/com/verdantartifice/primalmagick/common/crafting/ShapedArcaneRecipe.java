@@ -10,7 +10,7 @@ import com.verdantartifice.primalmagick.common.research.keys.ResearchDisciplineK
 import com.verdantartifice.primalmagick.common.research.requirements.AbstractRequirement;
 import com.verdantartifice.primalmagick.common.sources.SourceList;
 import com.verdantartifice.primalmagick.common.util.StreamCodecUtils;
-import net.minecraft.client.Minecraft;
+import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -121,7 +121,7 @@ public class ShapedArcaneRecipe extends NormalArcaneCraftingRecipe {
                         new SlotDisplay.ItemStackSlotDisplay(this.result),
                         this.manaCosts,
                         this.requirement,
-                        new ExpertiseRecipeDisplay(this, Minecraft.getInstance().player.registryAccess()),
+                        new ExpertiseRecipeDisplay(this, Services.PLATFORM.getRegistryAccess()),
                         new SlotDisplay.ItemSlotDisplay(ItemsPM.ARCANE_WORKBENCH.get())
                 )
         );

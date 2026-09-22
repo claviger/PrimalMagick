@@ -1,5 +1,8 @@
 package com.verdantartifice.primalmagick.platform.services;
 
+import net.minecraft.core.RegistryAccess;
+import org.jetbrains.annotations.Nullable;
+
 public interface IPlatformService {
     /**
      * Gets the name of the current platform
@@ -39,4 +42,11 @@ public interface IPlatformService {
      * @return true if executing on the client, false otherwise
      */
     boolean isClientDist();
+
+    /**
+     * Gets the registry access of the running game, be it a server or a client connected to one.
+     *
+     * @return the registry access of the running game, or null if none is available
+     */
+    @Nullable RegistryAccess getRegistryAccess();
 }

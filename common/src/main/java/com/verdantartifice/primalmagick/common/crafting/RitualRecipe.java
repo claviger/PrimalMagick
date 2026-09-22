@@ -11,8 +11,8 @@ import com.verdantartifice.primalmagick.common.research.keys.ResearchDisciplineK
 import com.verdantartifice.primalmagick.common.research.requirements.AbstractRequirement;
 import com.verdantartifice.primalmagick.common.sources.SourceList;
 import com.verdantartifice.primalmagick.common.util.StreamCodecUtils;
+import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.advancements.criterion.MinMaxBounds;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -160,7 +160,7 @@ public class RitualRecipe implements IRitualRecipe {
                         this.manaCosts,
                         this.instability,
                         this.requirement,
-                        new ExpertiseRecipeDisplay(this, Minecraft.getInstance().player.registryAccess()),
+                        new ExpertiseRecipeDisplay(this, Services.PLATFORM.getRegistryAccess()),
                         new SlotDisplay.ItemSlotDisplay(ItemsPM.RITUAL_ALTAR.get())
                 )
         );

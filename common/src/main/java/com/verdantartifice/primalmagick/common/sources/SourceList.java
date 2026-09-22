@@ -408,13 +408,15 @@ public class SourceList {
     
     @Nonnull
     public JsonObject serializeJson() {
-        JsonObject json = new JsonObject();
+        JsonObject sources = new JsonObject();
         for (Source source : Sources.getAllSorted()) {
             int value = this.getAmount(source);
             if (value > 0) {
-                json.addProperty(source.getId().toString(), value);
+                sources.addProperty(source.getId().toString(), value);
             }
         }
+        JsonObject json = new JsonObject();
+        json.add("sources", sources);
         return json;
     }
     

@@ -12,6 +12,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.crafting.Recipe;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -28,8 +29,10 @@ public record ExpertiseRecipeDisplay(int baseValue, int bonusValue, Optional<Ide
             ByteBufCodecs.optional(Identifier.STREAM_CODEC), ExpertiseRecipeDisplay::groupOpt,
             ExpertiseRecipeDisplay::new);
 
-    public ExpertiseRecipeDisplay(IHasExpertise recipe, RegistryAccess registryAccess) {
-        this(recipe.getExpertiseReward(registryAccess), recipe.getBonusExpertiseReward(registryAccess), recipe.getExpertiseGroup());
+    public ExpertiseRecipeDisplay(IHasExpertise recipe, @Nullable RegistryAccess registryAccess) {
+        // No registry access is available while a server first loads its data packs, so leave the reward values unset
+        // in that case; clients build their own displays once connected
+        this(registryAccess == null ? 0 : recipe.getExpertiseReward(registryAccess), registryAccess == null ? 0 : recipe.getBonusExpertiseReward(registryAccess), recipe.getExpertiseGroup());
     }
 
     public boolean isBonusEligible(Player player, ResourceKey<Recipe<?>> recipeKey) {
