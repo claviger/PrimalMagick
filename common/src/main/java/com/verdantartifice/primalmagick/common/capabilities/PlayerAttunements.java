@@ -36,11 +36,11 @@ public class PlayerAttunements extends AbstractCapability<PlayerAttunements> imp
     ).apply(instance, PlayerAttunements::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, PlayerAttunements> STREAM_CODEC = StreamCodec.composite(
-            Entry.STREAM_CODEC.apply(ByteBufCodecs.list()).map(
+            Entry.STREAM_CODEC.apply(ByteBufCodecs.list()).<Map<Source, Map<AttunementType, Integer>>>map(
                     entryList -> entryList.stream().collect(ImmutableMap.toImmutableMap(Entry::source, Entry::typeVals)),
                     entryMap -> entryMap.entrySet().stream().map(e -> new Entry(e.getKey(), e.getValue())).toList()
             ), a -> a.attunements,
-            Source.STREAM_CODEC.apply(ByteBufCodecs.list()).map(ImmutableSet::copyOf, ImmutableList::copyOf), a -> a.suppressions,
+            Source.STREAM_CODEC.apply(ByteBufCodecs.list()).<Set<Source>>map(ImmutableSet::copyOf, ImmutableList::copyOf), a -> a.suppressions,
             ByteBufCodecs.VAR_LONG, AbstractCapability::getSyncTimestamp,
             PlayerAttunements::new);
 

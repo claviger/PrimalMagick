@@ -77,7 +77,7 @@ public class ScribeGainComprehensionMenu extends AbstractScribeTableMenu {
     
     public Holder.Reference<BookLanguage> getBookLanguage() {
         int hashCode = this.languageClue.get();
-        return this.level.registryAccess().registryOrThrow(RegistryKeysPM.BOOK_LANGUAGES).holders().filter(h -> h.key().identifier().hashCode() == hashCode).findFirst()
+        return this.level.registryAccess().lookupOrThrow(RegistryKeysPM.BOOK_LANGUAGES).listElements().filter(h -> h.key().identifier().hashCode() == hashCode).findFirst()
                 .orElse(BookLanguagesPM.getLanguageOrThrow(BookLanguagesPM.DEFAULT, this.level.registryAccess()));
     }
     

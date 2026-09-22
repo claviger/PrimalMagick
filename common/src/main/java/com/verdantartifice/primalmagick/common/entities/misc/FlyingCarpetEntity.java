@@ -193,7 +193,7 @@ public class FlyingCarpetEntity extends Entity {
 
     @Override
     @NotNull
-    public InteractionResult interact(@NotNull Player player, @NotNull InteractionHand hand) {
+    public InteractionResult interact(@NotNull Player player, @NotNull InteractionHand hand, @NotNull Vec3 location) {
         if (this.level() instanceof ServerLevel serverLevel && this.isAlive()) {
             if (player.isSecondaryUseActive()) {
                 this.spawnAtLocation(serverLevel, this.getDropItem(), 0.0F);

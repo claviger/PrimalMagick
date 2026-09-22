@@ -1,7 +1,6 @@
 package com.verdantartifice.primalmagick.common.entities.treefolk;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.serialization.Dynamic;
 import com.verdantartifice.primalmagick.common.entities.EntityTypesPM;
 import com.verdantartifice.primalmagick.common.entities.ai.memory.MemoryModuleTypesPM;
 import com.verdantartifice.primalmagick.common.entities.ai.sensing.SensorTypesPM;
@@ -31,7 +30,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.Brain;
-import net.minecraft.world.entity.ai.Brain.Provider;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
@@ -69,6 +67,7 @@ public class TreefolkEntity extends AgeableMob implements RangedAttackMob {
             MemoryModuleTypesPM.DANCED_RECENTLY.get(), MemoryModuleTypesPM.NEAREST_VALID_FERTILIZABLE_BLOCKS.get(), MemoryModuleTypesPM.FERTILIZE_LOCATION.get(), MemoryModuleTypesPM.FERTILIZED_RECENTLY.get(),
             MemoryModuleTypesPM.TIME_TRYING_TO_REACH_FERTILIZE_BLOCK.get(), MemoryModuleTypesPM.DISABLE_WALK_TO_FERTILIZE_BLOCK.get(), MemoryModuleTypesPM.NEARBY_TREEFOLK.get(),
             MemoryModuleType.AVOID_TARGET);
+    private static final Brain.Provider<TreefolkEntity> BRAIN_PROVIDER = Brain.provider(MEMORY_TYPES, SENSOR_TYPES, TreefolkAi::getActivities);
     private static final EntityDataAccessor<Boolean> DATA_IS_DANCING = SynchedEntityData.defineId(TreefolkEntity.class, EntityDataSerializers.BOOLEAN);
 
     public TreefolkEntity(EntityType<? extends TreefolkEntity> entityType, Level world) {
@@ -101,14 +100,8 @@ public class TreefolkEntity extends AgeableMob implements RangedAttackMob {
 
     @Override
     @NotNull
-    protected Provider<TreefolkEntity> brainProvider() {
-        return Brain.provider(MEMORY_TYPES, SENSOR_TYPES);
-    }
-
-    @Override
-    @NotNull
-    protected Brain<?> makeBrain(@NotNull Dynamic<?> pDynamic) {
-        return TreefolkAi.makeBrain(this, this.brainProvider().makeBrain(pDynamic));
+    protected Brain<TreefolkEntity> makeBrain(@NotNull Brain.Packed pPacked) {
+        return BRAIN_PROVIDER.makeBrain(this, pPacked);
     }
 
     @SuppressWarnings("unchecked")

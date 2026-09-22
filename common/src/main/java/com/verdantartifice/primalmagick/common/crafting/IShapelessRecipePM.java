@@ -1,9 +1,9 @@
 package com.verdantartifice.primalmagick.common.crafting;
 
 import com.verdantartifice.primalmagick.platform.Services;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
@@ -16,7 +16,7 @@ public interface IShapelessRecipePM<T extends RecipeInput> extends Recipe<T> {
     
     @Override
     default boolean matches(T input, Level worldIn) {
-        StackedContents helper = new StackedContents();
+        StackedItemContents helper = new StackedItemContents();
         List<ItemStack> inputs = new ArrayList<>();
         int count = 0;
         
@@ -31,17 +31,8 @@ public interface IShapelessRecipePM<T extends RecipeInput> extends Recipe<T> {
                 }
             }
         }
-        
-        return (count == this.getIngredients().size()) && (this.isSimple() ? helper.canCraft(this, null) : Services.RECIPES.findMatches(inputs, this.getIngredients()) != null);
-    }
 
-    @Override
-    default ItemStack assemble(T pInput, HolderLookup.Provider pRegistries) {
-        return this.getResultItem(pRegistries).copy();
-    }
-
-    @Override
-    default boolean canCraftInDimensions(int pWidth, int pHeight) {
-        return (pWidth * pHeight) >= this.getIngredients().size();
+        List<Ingredient> ingredients = this.placementInfo().ingredients();
+        return (count == ingredients.size()) && (this.isSimple() ? helper.canCraft(this, null) : Services.RECIPES.findMatches(inputs, ingredients) != null);
     }
 }

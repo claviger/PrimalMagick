@@ -196,8 +196,11 @@ public abstract class ConcocterTileEntity extends AbstractTileSidedInventoryPM i
     
     protected static Set<AbstractResearchKey<?>> assembleRelevantResearch(RecipeManager recipeManager) {
         // Get a set of all the research keys used in any concocting recipe
-        return recipeManager.getAllRecipesFor(RecipeTypesPM.CONCOCTING.get()).stream().flatMap(holder -> {
-            return holder.value().getRequirement().map(req -> {
+        return recipeManager.getRecipes().stream()
+                .filter(holder -> holder.value().getType().equals(RecipeTypesPM.CONCOCTING.get()))
+                .map(holder -> (IConcoctingRecipe)holder.value())
+                .flatMap(recipe -> {
+            return recipe.getRequirement().map(req -> {
                 return req.streamKeys();
             }).orElse(Stream.empty());
         }).distinct().collect(Collectors.toUnmodifiableSet());
@@ -259,7 +262,7 @@ public abstract class ConcocterTileEntity extends AbstractTileSidedInventoryPM i
     
     protected boolean canConcoct(CraftingInput inputInv, RegistryAccess registryAccess, @Nullable IConcoctingRecipe recipe) {
         if (!inputInv.isEmpty() && recipe != null) {
-            ItemStack output = recipe.getResultItem(registryAccess);
+            ItemStack output = recipe.assemble(inputInv);
             if (output.isEmpty()) {
                 return false;
             } else if (this.getMana(Sources.INFERNAL) < recipe.getManaCosts().getAmount(Sources.INFERNAL)) {

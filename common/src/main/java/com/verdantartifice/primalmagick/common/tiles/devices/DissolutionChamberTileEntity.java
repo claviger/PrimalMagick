@@ -171,7 +171,7 @@ public abstract class DissolutionChamberTileEntity extends AbstractTileSidedInve
     
     protected boolean canDissolve(SingleRecipeInput inputInv, RegistryAccess registryAccess, RecipeHolder<IDissolutionRecipe> recipe) {
         if (!inputInv.isEmpty() && recipe != null) {
-            ItemStack output = recipe.value().getResultItem(registryAccess);
+            ItemStack output = recipe.value().assemble(inputInv);
             if (output.isEmpty()) {
                 return false;
             } else if (this.getMana(Sources.EARTH) < recipe.value().getManaCosts().getAmount(Sources.EARTH)) {
