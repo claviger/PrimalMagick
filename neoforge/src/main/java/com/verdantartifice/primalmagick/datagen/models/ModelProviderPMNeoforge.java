@@ -19,7 +19,7 @@ public class ModelProviderPMNeoforge extends AbstractModelProviderPM {
     // it and save our own instead, overriding all the methods that would look for it to use this field
     // instead.
     private final String modIdentifier;
-    private static final java.util.Set<String> LOCAL_SKIP = java.util.Set.of("skyglass_pane", "salt_trail", "stained_skyglass_pane_black", "stained_skyglass_pane_blue", "stained_skyglass_pane_brown", "stained_skyglass_pane_cyan", "stained_skyglass_pane_gray", "stained_skyglass_pane_green", "stained_skyglass_pane_light_blue", "stained_skyglass_pane_light_gray", "stained_skyglass_pane_lime", "stained_skyglass_pane_magenta", "stained_skyglass_pane_orange", "stained_skyglass_pane_pink", "stained_skyglass_pane_purple", "stained_skyglass_pane_red", "stained_skyglass_pane_white", "stained_skyglass_pane_yellow");
+    private static final java.util.Set<String> LOCAL_SKIP = java.util.Set.of("skyglass_pane", "stained_skyglass_pane_black", "stained_skyglass_pane_blue", "stained_skyglass_pane_brown", "stained_skyglass_pane_cyan", "stained_skyglass_pane_gray", "stained_skyglass_pane_green", "stained_skyglass_pane_light_blue", "stained_skyglass_pane_light_gray", "stained_skyglass_pane_lime", "stained_skyglass_pane_magenta", "stained_skyglass_pane_orange", "stained_skyglass_pane_pink", "stained_skyglass_pane_purple", "stained_skyglass_pane_red", "stained_skyglass_pane_white", "stained_skyglass_pane_yellow");
 
     public ModelProviderPMNeoforge(PackOutput output, String modId) {
         super(output);

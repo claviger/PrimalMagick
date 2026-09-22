@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "primalmagick:block/salt_trail"
+    "model": "primalmagick:item/refined_salt"
   }
 }
