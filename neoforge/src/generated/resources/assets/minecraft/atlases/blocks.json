@@ -51,6 +51,31 @@
     {
       "type": "minecraft:single",
       "resource": "primalmagick:entity/mana_injector/frame_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/mundane_wand_core",
+      "sprite": "primalmagick:block/wand_assembly_table_core"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/iron_wand_cap",
+      "sprite": "primalmagick:block/wand_assembly_table_cap"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/wand_gem",
+      "sprite": "primalmagick:block/wand_assembly_table_gem"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/arcanometer_antenna",
+      "sprite": "primalmagick:block/arcanometer_antenna"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "minecraft:item/feather",
+      "sprite": "primalmagick:block/scribe_table_quill"
     }
   ]
 }
