@@ -4,6 +4,11 @@ import com.mojang.datafixers.util.Pair;
 import com.verdantartifice.primalmagick.client.color.item.SourceTint;
 import com.verdantartifice.primalmagick.client.item.properties.StackDyeColor;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.ArcanometerSpecialRenderer;
+import com.verdantartifice.primalmagick.client.renderers.itemstack.ForbiddenTridentSpecialRenderer;
+import com.verdantartifice.primalmagick.client.renderers.itemstack.HallowsteelShieldSpecialRenderer;
+import com.verdantartifice.primalmagick.client.renderers.itemstack.HallowsteelTridentSpecialRenderer;
+import com.verdantartifice.primalmagick.client.renderers.itemstack.HexiumShieldSpecialRenderer;
+import com.verdantartifice.primalmagick.client.renderers.itemstack.HexiumTridentSpecialRenderer;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.ManaFontSpecialRenderer;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.ManaInjectorSpecialRenderer;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.ManaOrbSpecialRenderer;
@@ -11,6 +16,8 @@ import com.verdantartifice.primalmagick.client.renderers.itemstack.ManaRelaySpec
 import com.verdantartifice.primalmagick.client.renderers.itemstack.ModularWandSpecialRenderer;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.MundaneWandSpecialRenderer;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.PixieHouseSpecialRenderer;
+import com.verdantartifice.primalmagick.client.renderers.itemstack.PrimaliteShieldSpecialRenderer;
+import com.verdantartifice.primalmagick.client.renderers.itemstack.PrimaliteTridentSpecialRenderer;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.ScanStateItemProperty;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.SpellcraftingAltarSpecialRenderer;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.SpelltomeSpecialRenderer;
@@ -73,7 +80,9 @@ import net.minecraft.client.renderer.item.RangeSelectItemModel;
 import net.minecraft.client.renderer.item.SelectItemModel;
 import net.minecraft.client.renderer.item.properties.conditional.IsUsingItem;
 import net.minecraft.client.renderer.item.properties.select.DisplayContext;
+import net.minecraft.client.renderer.special.ShieldSpecialRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
+import net.minecraft.client.renderer.special.TridentSpecialRenderer;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.data.BlockFamily;
@@ -113,22 +122,22 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         this.generatePillarBlock(BlocksPM.MARBLE_PILLAR.get(), blockModels);
         blockModels.createTrivialBlock(BlocksPM.MARBLE_RUNED.get(), TexturedModel.COLUMN);
         blockModels.createTrivialCube(BlocksPM.MARBLE_TILES.get());
-        this.createCarvedBookshelf(BlocksPM.MARBLE_BOOKSHELF.get(), blockModels);
+        this.createCarvedBookshelf(BlocksPM.MARBLE_BOOKSHELF.get(), BlocksPM.MARBLE.get(), blockModels);
 
         // Generate enchanted marble blocks
         this.generatePillarBlock(BlocksPM.MARBLE_ENCHANTED_PILLAR.get(), blockModels);
         blockModels.createTrivialBlock(BlocksPM.MARBLE_ENCHANTED_RUNED.get(), TexturedModel.COLUMN);
-        this.createCarvedBookshelf(BlocksPM.MARBLE_ENCHANTED_BOOKSHELF.get(), blockModels);
+        this.createCarvedBookshelf(BlocksPM.MARBLE_ENCHANTED_BOOKSHELF.get(), BlocksPM.MARBLE_ENCHANTED.get(), blockModels);
 
         // Generate smoked marble blocks
         this.generatePillarBlock(BlocksPM.MARBLE_SMOKED_PILLAR.get(), blockModels);
         blockModels.createTrivialBlock(BlocksPM.MARBLE_SMOKED_RUNED.get(), TexturedModel.COLUMN);
-        this.createCarvedBookshelf(BlocksPM.MARBLE_SMOKED_BOOKSHELF.get(), blockModels);
+        this.createCarvedBookshelf(BlocksPM.MARBLE_SMOKED_BOOKSHELF.get(), BlocksPM.MARBLE_SMOKED.get(), blockModels);
 
         // Generate hallowed marble blocks
         this.generatePillarBlock(BlocksPM.MARBLE_HALLOWED_PILLAR.get(), blockModels);
         blockModels.createTrivialBlock(BlocksPM.MARBLE_HALLOWED_RUNED.get(), TexturedModel.COLUMN);
-        this.createCarvedBookshelf(BlocksPM.MARBLE_HALLOWED_BOOKSHELF.get(), blockModels);
+        this.createCarvedBookshelf(BlocksPM.MARBLE_HALLOWED_BOOKSHELF.get(), BlocksPM.MARBLE_HALLOWED.get(), blockModels);
 
         // Generate sunwood blocks
         this.phasingWoodProvider(BlocksPM.SUNWOOD_LOG.get(), blockModels).logWithHorizontal(BlocksPM.SUNWOOD_LOG.get()).wood(BlocksPM.SUNWOOD_WOOD.get());
@@ -337,35 +346,35 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
 
         // Generate tool items
         itemModels.generateFlatItem(ItemsPM.PRIMALITE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        itemModels.generateTrident(ItemsPM.PRIMALITE_TRIDENT.get());
-        itemModels.generateBow(ItemsPM.PRIMALITE_BOW.get());
+        this.generateTieredTrident(itemModels, ItemsPM.PRIMALITE_TRIDENT.get(), PrimaliteTridentSpecialRenderer.Unbaked.INSTANCE);
+        this.generateTieredBow(itemModels, ItemsPM.PRIMALITE_BOW.get());
         itemModels.generateFlatItem(ItemsPM.PRIMALITE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.PRIMALITE_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.PRIMALITE_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.PRIMALITE_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFishingRod(ItemsPM.PRIMALITE_FISHING_ROD.get());
-        itemModels.generateShield(ItemsPM.PRIMALITE_SHIELD.get());
+        this.generateTieredShield(itemModels, ItemsPM.PRIMALITE_SHIELD.get(), PrimaliteShieldSpecialRenderer.Unbaked.INSTANCE);
         itemModels.generateFlatItem(ItemsPM.HEXIUM_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        itemModels.generateTrident(ItemsPM.HEXIUM_TRIDENT.get());
-        itemModels.generateBow(ItemsPM.HEXIUM_BOW.get());
+        this.generateTieredTrident(itemModels, ItemsPM.HEXIUM_TRIDENT.get(), HexiumTridentSpecialRenderer.Unbaked.INSTANCE);
+        this.generateTieredBow(itemModels, ItemsPM.HEXIUM_BOW.get());
         itemModels.generateFlatItem(ItemsPM.HEXIUM_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.HEXIUM_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.HEXIUM_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.HEXIUM_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFishingRod(ItemsPM.HEXIUM_FISHING_ROD.get());
-        itemModels.generateShield(ItemsPM.HEXIUM_SHIELD.get());
+        this.generateTieredShield(itemModels, ItemsPM.HEXIUM_SHIELD.get(), HexiumShieldSpecialRenderer.Unbaked.INSTANCE);
         itemModels.generateFlatItem(ItemsPM.HALLOWSTEEL_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        itemModels.generateTrident(ItemsPM.HALLOWSTEEL_TRIDENT.get());
-        itemModels.generateBow(ItemsPM.HALLOWSTEEL_BOW.get());
+        this.generateTieredTrident(itemModels, ItemsPM.HALLOWSTEEL_TRIDENT.get(), HallowsteelTridentSpecialRenderer.Unbaked.INSTANCE);
+        this.generateTieredBow(itemModels, ItemsPM.HALLOWSTEEL_BOW.get());
         itemModels.generateFlatItem(ItemsPM.HALLOWSTEEL_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.HALLOWSTEEL_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.HALLOWSTEEL_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.HALLOWSTEEL_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFishingRod(ItemsPM.HALLOWSTEEL_FISHING_ROD.get());
-        itemModels.generateShield(ItemsPM.HALLOWSTEEL_SHIELD.get());
+        this.generateTieredShield(itemModels, ItemsPM.HALLOWSTEEL_SHIELD.get(), HallowsteelShieldSpecialRenderer.Unbaked.INSTANCE);
         itemModels.generateFlatItem(ItemsPM.FORBIDDEN_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        itemModels.generateTrident(ItemsPM.FORBIDDEN_TRIDENT.get());
-        itemModels.generateBow(ItemsPM.FORBIDDEN_BOW.get());
+        this.generateTieredTrident(itemModels, ItemsPM.FORBIDDEN_TRIDENT.get(), ForbiddenTridentSpecialRenderer.Unbaked.INSTANCE);
+        this.generateTieredBow(itemModels, ItemsPM.FORBIDDEN_BOW.get());
         itemModels.generateFlatItem(ItemsPM.PRIMAL_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.PRIMAL_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ItemsPM.PRIMAL_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -596,11 +605,34 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         itemModels.itemModelOutput.accept(item, ItemModelUtils.plainModel(modelLoc));
     }
 
+    private void generateTieredBow(ItemModelGenerators itemModels, Item item) {
+        // The vanilla bow generator expects the base bow model to already exist
+        itemModels.createFlatItemModel(item, ModelTemplates.BOW);
+        itemModels.generateBow(item);
+    }
+
+    private void generateTieredTrident(ItemModelGenerators itemModels, Item item, SpecialModelRenderer.Unbaked<?> renderer) {
+        // Mirrors the vanilla trident generator, using the tiered trident's own special renderer and particle texture
+        TextureMapping particleMapping = TextureMapping.particle(TextureMapping.getItemTexture(item));
+        ItemModel.Unbaked flatModel = ItemModelUtils.plainModel(itemModels.createFlatItemModel(item, ModelTemplates.FLAT_ITEM));
+        ItemModel.Unbaked inHandNormalModel = ItemModelUtils.specialModel(Services.MODEL_TEMPLATES.extend(ModelTemplatesPM.TRIDENT_IN_HAND).create(item, particleMapping, itemModels.modelOutput), renderer);
+        ItemModel.Unbaked inHandThrowingModel = ItemModelUtils.specialModel(Services.MODEL_TEMPLATES.extend(ModelTemplatesPM.TRIDENT_THROWING).create(item, particleMapping, itemModels.modelOutput), renderer);
+        ItemModel.Unbaked inHandModel = ItemModelUtils.conditional(TridentSpecialRenderer.DEFAULT_TRANSFORMATION, ItemModelUtils.isUsingItem(), inHandThrowingModel, inHandNormalModel);
+        itemModels.itemModelOutput.accept(item, ItemModelGenerators.createFlatModelDispatch(flatModel, inHandModel));
+    }
+
+    private void generateTieredShield(ItemModelGenerators itemModels, Item item, SpecialModelRenderer.Unbaked<?> renderer) {
+        // Mirrors the vanilla shield generator, using the tiered shield's own special renderer
+        ItemModel.Unbaked normalModel = ItemModelUtils.specialModel(Services.MODEL_TEMPLATES.extend(ModelTemplatesPM.SHIELD).create(item, new TextureMapping(), itemModels.modelOutput), renderer);
+        ItemModel.Unbaked blockingModel = ItemModelUtils.specialModel(Services.MODEL_TEMPLATES.extend(ModelTemplatesPM.SHIELD_BLOCKING).create(item, new TextureMapping(), itemModels.modelOutput), renderer);
+        itemModels.itemModelOutput.accept(item, ItemModelUtils.conditional(ShieldSpecialRenderer.DEFAULT_TRANSFORMATION, ItemModelUtils.isUsingItem(), blockingModel, normalModel));
+    }
+
     private void generateColorSelectItem(ItemModelGenerators itemModels, Item item, DyeColor defaultColor) {
         CuboidItemModelWrapper.Unbaked defaultModel = null;
         Map<DyeColor, SelectItemModel.SwitchCase<DyeColor>> cases = new HashMap<>();
         for (DyeColor color : DyeColor.values()) {
-            var wrapper = new CuboidItemModelWrapper.Unbaked(ModelLocationUtils.getModelLocation(item, "_" + color.getName()), Optional.empty(), List.of());
+            var wrapper = new CuboidItemModelWrapper.Unbaked(itemModels.createFlatItemModel(item, "_" + color.getName(), ModelTemplates.FLAT_ITEM), Optional.empty(), List.of());
             cases.put(color, new SelectItemModel.SwitchCase<>(List.of(color), wrapper));
             if (color.equals(defaultColor)) {
                 defaultModel = wrapper;
@@ -718,8 +750,9 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
                         .select(PillarBlock.Type.TOP, topMultiVariant)));
     }
 
-    private void createCarvedBookshelf(Block block, BlockModelGenerators blockModels) {
-        MultiVariant multivariant = BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(block));
+    private void createCarvedBookshelf(Block block, Block marbleBlock, BlockModelGenerators blockModels) {
+        TextureMapping baseMapping = new TextureMapping().put(TextureSlot.TOP, TextureMapping.getBlockTexture(marbleBlock)).put(TextureSlot.SIDE, TextureMapping.getBlockTexture(marbleBlock));
+        MultiVariant multivariant = BlockModelGenerators.plainVariant(Services.MODEL_TEMPLATES.extend(ModelTemplatesPM.CARVED_BOOKSHELF).create(block, baseMapping, blockModels.modelOutput));
         MultiPartGenerator multipartgenerator = MultiPartGenerator.multiPart(block);
         List.of(Pair.of(Direction.NORTH, BlockModelGenerators.NOP), Pair.of(Direction.EAST, BlockModelGenerators.Y_ROT_90), Pair.of(Direction.SOUTH, BlockModelGenerators.Y_ROT_180), Pair.of(Direction.WEST, BlockModelGenerators.Y_ROT_270)).forEach((pair) -> {
             Direction direction = pair.getFirst();
@@ -729,7 +762,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
             this.addSlotStateAndRotationVariants(block, blockModels, multipartgenerator, condition, variantmutator);
         });
         blockModels.blockStateOutput.accept(multipartgenerator);
-        blockModels.registerSimpleItemModel(block, ModelLocationUtils.getModelLocation(block, "_inventory"));
+        blockModels.registerSimpleItemModel(block, Services.MODEL_TEMPLATES.extend(ModelTemplatesPM.CARVED_BOOKSHELF_INVENTORY).create(block, baseMapping.copyAndUpdate(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_empty")), blockModels.modelOutput));
         BlockModelGenerators.CHISELED_BOOKSHELF_SLOT_MODEL_CACHE.clear();
     }
 
@@ -849,9 +882,8 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
     }
 
     private void createRitualCandleBlock(RitualCandleBlock block, BlockModelGenerators blockModels) {
-        Identifier blockModel = ModelLocationUtils.getModelLocation(block);
-        MultiVariant variant = BlockModelGenerators.plainVariant(ResourceUtils.loc("block/ritual_candle"));
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, variant));
+        Identifier blockModel = ResourceUtils.loc("block/ritual_candle");
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, BlockModelGenerators.plainVariant(blockModel)));
         blockModels.registerSimpleTintedItemModel(block, blockModel, ItemModelUtils.constantTint(block.getColor().getFireworkColor()));
     }
 
@@ -924,6 +956,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
     }
 
     private void createLanternBlock(Block block, BlockModelGenerators blockModels) {
+        blockModels.registerSimpleFlatItemModel(block.asItem());
         Identifier modelLoc = ModelLocationUtils.getModelLocation(block);
         EnumProperty<Direction> prop = SunlampBlock.ATTACHMENT;
         blockModels.blockStateOutput.accept(MultiPartGenerator.multiPart(block)
