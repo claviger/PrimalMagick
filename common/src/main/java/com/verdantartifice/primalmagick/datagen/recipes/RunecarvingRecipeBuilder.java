@@ -223,7 +223,7 @@ public class RunecarvingRecipeBuilder {
      */
     public void build(RecipeOutput output, String save) {
         Identifier id = Services.ITEMS_REGISTRY.getKey(this.result.item().value());
-        Identifier saveLoc = Identifier.parse(save);
+        Identifier saveLoc = ResourceUtils.loc(save);
         if (saveLoc.equals(id)) {
             throw new IllegalStateException("Runecarving Recipe " + save + " should remove its 'save' argument");
         } else {

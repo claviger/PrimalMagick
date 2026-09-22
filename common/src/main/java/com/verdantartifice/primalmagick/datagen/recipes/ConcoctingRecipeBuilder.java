@@ -13,6 +13,7 @@ import com.verdantartifice.primalmagick.common.research.requirements.AndRequirem
 import com.verdantartifice.primalmagick.common.research.requirements.ResearchRequirement;
 import com.verdantartifice.primalmagick.common.sources.SourceList;
 import com.verdantartifice.primalmagick.common.sources.Sources;
+import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.NonNullList;
@@ -173,7 +174,7 @@ public class ConcoctingRecipeBuilder {
     
     public void build(RecipeOutput output) {
         ConcoctionType type = ConcoctionUtils.getConcoctionType(this.result);
-        Identifier recipeId = this.getResultPotionKey().map(id -> id.withSuffix("_" + type.getSerializedName())).orElseThrow(() -> new IllegalStateException("Cannot determine concoction ID in recipe builder!"));
+        Identifier recipeId = this.getResultPotionKey().map(id -> ResourceUtils.loc(id.getPath() + "_" + type.getSerializedName())).orElseThrow(() -> new IllegalStateException("Cannot determine concoction ID in recipe builder!"));
         this.build(output, ResourceKey.create(Registries.RECIPE, recipeId));
     }
 
