@@ -1,6 +1,5 @@
 package com.verdantartifice.primalmagick.client.util;
 
-import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Either;
@@ -9,33 +8,28 @@ import com.verdantartifice.primalmagick.common.misc.IconDefinition;
 import com.verdantartifice.primalmagick.common.sources.Source;
 import com.verdantartifice.primalmagick.common.sources.SourceList;
 import com.verdantartifice.primalmagick.platform.Services;
-import net.minecraft.CrashReport;
-import net.minecraft.CrashReportCategory;
-import net.minecraft.ReportedException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix4f;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -58,9 +52,9 @@ public class GuiUtils {
             guiGraphics.pose().pushMatrix();
 
             // Render the item stack into the GUI and, if applicable, its stack size and/or damage bar
-            guiGraphics.renderItem(stack, x, y);
+            guiGraphics.item(stack, x, y);
             if (!hideStackOverlay) {
-                guiGraphics.renderItemDecorations(mc.font, stack, x, y, text);
+                guiGraphics.itemDecorations(mc.font, stack, x, y, text);
             }
             
             guiGraphics.pose().popMatrix();
@@ -74,53 +68,25 @@ public class GuiUtils {
         boolean retVal = false;
         if (stack != null && !stack.isEmpty()) {
             Minecraft mc = Minecraft.getInstance();
-            ItemRenderer itemRenderer = mc.getItemRenderer();
-            BakedModel bakedModel = itemRenderer.getModel(stack, mc.level, mc.player, 0);
             
             guiGraphics.pose().pushMatrix();
 
             guiGraphics.pose().pushMatrix();
+
+            // Apply the requested scale around the center point of the item stack
             guiGraphics.pose().translate(x + 8, y + 8);
-            
-            try {
-                guiGraphics.pose().mulPose((new Matrix4f()).scaling(1.0F, -1.0F, 1.0F));
-                guiGraphics.pose().scale(16.0F, 16.0F);
-                scaleOpt.ifPresent(scale -> {
-                    guiGraphics.pose().scale((float)scale.x, (float)scale.y);
-                });
-                
-                boolean flag = !bakedModel.usesBlockLight();
-                if (flag) {
-                    Lighting.setupForFlatItems();
-                }
-                itemRenderer.render(stack, ItemDisplayContext.GUI, false, guiGraphics.pose(), guiGraphics.bufferSource(), 15728880, OverlayTexture.NO_OVERLAY, bakedModel);
-                guiGraphics.flush();
-                if (flag) {
-                    Lighting.setupFor3DItems();
-                }
-            } catch (Throwable throwable) {
-                CrashReport crashreport = CrashReport.forThrowable(throwable, "Rendering item");
-                CrashReportCategory crashreportcategory = crashreport.addCategory("Item being rendered");
-                crashreportcategory.setDetail("Item Type", () -> {
-                    return String.valueOf((Object)stack.getItem());
-                });
-                crashreportcategory.setDetail("Registry Name", () -> String.valueOf(Services.ITEMS_REGISTRY.getKey(stack.getItem())));
-                crashreportcategory.setDetail("Item Damage", () -> {
-                    return String.valueOf(stack.getDamageValue());
-                });
-                crashreportcategory.setDetail("Item Components", () -> {
-                    return String.valueOf(stack.getComponents());
-                });
-                crashreportcategory.setDetail("Item Foil", () -> {
-                    return String.valueOf(stack.hasFoil());
-                });
-                throw new ReportedException(crashreport);
-            }
-            
+            scaleOpt.ifPresent(scale -> {
+                guiGraphics.pose().scale((float)scale.x, (float)scale.y);
+            });
+            guiGraphics.pose().translate(-x - 8, -y - 8);
+
+            // Render the item stack into the GUI
+            guiGraphics.item(stack, x, y);
+
             guiGraphics.pose().popMatrix();
 
             if (!hideStackOverlay) {
-                guiGraphics.renderItemDecorations(mc.font, stack, x, y, text);
+                guiGraphics.itemDecorations(mc.font, stack, x, y, text);
             }
             
             guiGraphics.pose().popMatrix();
@@ -161,9 +127,9 @@ public class GuiUtils {
                 
                 // If the source hasn't been discovered by the player, render an unknown icon instead
                 if (source.isDiscovered(player)) {
-                    GuiUtils.renderSourceIcon(guiGraphics, x, startY, source, sources.getAmount(source), 998);
+                    GuiUtils.renderSourceIcon(guiGraphics, x, startY, source, sources.getAmount(source));
                 } else {
-                    GuiUtils.renderUnknownSourceIcon(guiGraphics, x, startY, sources.getAmount(source), 998);
+                    GuiUtils.renderUnknownSourceIcon(guiGraphics, x, startY, sources.getAmount(source));
                 }
                 index++;
             }
@@ -171,36 +137,24 @@ public class GuiUtils {
         guiGraphics.pose().popMatrix();
     }
     
-    public static void renderSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, @Nullable Source source, int amount, double z) {
+    public static void renderSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, @Nullable Source source, int amount) {
         if (source != null) {
-            renderSourceIcon(guiGraphics, x, y, source.getImage(), amount, z);
+            renderSourceIcon(guiGraphics, x, y, source.getImage(), amount);
         }
     }
     
-    public static void renderUnknownSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, int amount, double z) {
-        renderSourceIcon(guiGraphics, x, y, Source.getUnknownImage(), amount, z);
+    public static void renderUnknownSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, int amount) {
+        renderSourceIcon(guiGraphics, x, y, Source.getUnknownImage(), amount);
     }
     
-    protected static void renderSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, @Nonnull Identifier imageLoc, int amount, double z) {
+    protected static void renderSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, @Nonnull Identifier imageLoc, int amount) {
         Minecraft mc = Minecraft.getInstance();
         
         guiGraphics.pose().pushMatrix();
 
-        guiGraphics.pose().pushMatrix();
-        
         // Render the source's icon
-        @SuppressWarnings("deprecation")
-        TextureAtlasSprite sprite = mc.getModelManager().getAtlas(TextureAtlas.LOCATION_BLOCKS).getSprite(imageLoc);
-        MultiBufferSource.BufferSource buffer = mc.renderBuffers().bufferSource();
-        VertexConsumer builder = buffer.getBuffer(RenderType.cutout());
-        builder.addVertex(x + 0.0F, y + 16.0F, (float)z).setColor(1.0F, 1.0F, 1.0F, 1.0F).setUv(sprite.getU0(), sprite.getV1()).setUv2(240, 240).setNormal(1, 0, 0);
-        builder.addVertex(x + 16.0F, y + 16.0F, (float)z).setColor(1.0F, 1.0F, 1.0F, 1.0F).setUv(sprite.getU1(), sprite.getV1()).setUv2(240, 240).setNormal(1, 0, 0);
-        builder.addVertex(x + 16.0F, y + 0.0F, (float)z).setColor(1.0F, 1.0F, 1.0F, 1.0F).setUv(sprite.getU1(), sprite.getV0()).setUv2(240, 240).setNormal(1, 0, 0);
-        builder.addVertex(x + 0.0F, y + 0.0F, (float)z).setColor(1.0F, 1.0F, 1.0F, 1.0F).setUv(sprite.getU0(), sprite.getV0()).setUv2(240, 240).setNormal(1, 0, 0);
-        buffer.endBatch();
+        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, guiGraphics.getSprite(getSourceSpriteId(imageLoc)), x, y, 16, 16);
 
-        guiGraphics.pose().popMatrix();
-        
         // Render an amount string for the source, if an amount has been given
         if (amount > 0) {
             guiGraphics.pose().pushMatrix();
@@ -214,7 +168,21 @@ public class GuiUtils {
         guiGraphics.pose().popMatrix();
     }
     
-    public static void renderSourcesBillboard(PoseStack poseStack, MultiBufferSource buffers, double x, double y, double z, SourceList sources, float partialTicks) {
+    protected static SpriteId getSourceSpriteId(@Nonnull Identifier imageLoc) {
+        // Source icons are stitched directly onto the block atlas, without a sheet prefix
+        return new SpriteId(TextureAtlas.LOCATION_BLOCKS, imageLoc);
+    }
+
+    private static void addBillboardVertex(VertexConsumer consumer, PoseStack.Pose pose, float x, float y, float u, float v) {
+        consumer.addVertex(pose.pose(), x, y, 0.0F)
+                .setColor(1.0F, 1.0F, 1.0F, 1.0F)
+                .setUv(u, v)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(LightCoordsUtil.FULL_BRIGHT)  // Source icons always glow, regardless of ambient light
+                .setNormal(pose, 1, 0, 0);
+    }
+
+    public static void renderSourcesBillboard(PoseStack poseStack, SubmitNodeCollector collector, double x, double y, double z, SourceList sources, float partialTicks) {
         Minecraft mc = Minecraft.getInstance();
         
         double interpolatedPlayerX = mc.player.xo + (partialTicks * (mc.player.getX() - mc.player.xo));
@@ -238,21 +206,20 @@ public class GuiUtils {
                 poseStack.scale(scale, scale, scale);
 
                 Identifier texLoc = source.isDiscovered(mc.player) ? source.getImage() : Source.getUnknownImage();
-                @SuppressWarnings("deprecation")
-                TextureAtlasSprite sprite = mc.getModelManager().getAtlas(TextureAtlas.LOCATION_BLOCKS).getSprite(texLoc);
-                VertexConsumer builder = buffers.getBuffer(RenderType.cutout());
-                Matrix4f matrix = poseStack.last().pose();
-                builder.addVertex(matrix, 0.0F, 16.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setUv(sprite.getU0(), sprite.getV1()).setUv2(240, 240).setNormal(1, 0, 0);
-                builder.addVertex(matrix, 16.0F, 16.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setUv(sprite.getU1(), sprite.getV1()).setUv2(240, 240).setNormal(1, 0, 0);
-                builder.addVertex(matrix, 16.0F, 0.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setUv(sprite.getU1(), sprite.getV0()).setUv2(240, 240).setNormal(1, 0, 0);
-                builder.addVertex(matrix, 0.0F, 0.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setUv(sprite.getU0(), sprite.getV0()).setUv2(240, 240).setNormal(1, 0, 0);
+                TextureAtlasSprite sprite = mc.getAtlasManager().get(getSourceSpriteId(texLoc));
+                collector.submitCustomGeometry(poseStack, Sheets.cutoutBlockSheet(), (pose, consumer) -> {
+                    addBillboardVertex(consumer, pose, 0.0F, 16.0F, sprite.getU0(), sprite.getV1());
+                    addBillboardVertex(consumer, pose, 16.0F, 16.0F, sprite.getU1(), sprite.getV1());
+                    addBillboardVertex(consumer, pose, 16.0F, 0.0F, sprite.getU1(), sprite.getV0());
+                    addBillboardVertex(consumer, pose, 0.0F, 0.0F, sprite.getU0(), sprite.getV0());
+                });
 
                 String amountStr = Integer.toString(amount);
                 int amountWidth = mc.font.width(amountStr);
                 poseStack.pushPose();
                 poseStack.scale(0.5F, 0.5F, -0.5F);
                 poseStack.translate(32.0D - amountWidth, 32.0D - mc.font.lineHeight, 0.0D);
-                mc.font.drawInBatch(amountStr, 0F, 0F, Color.WHITE.getRGB(), true, poseStack.last().pose(), buffers, Font.DisplayMode.NORMAL, 0, 15728880, mc.font.isBidirectional());
+                collector.submitText(poseStack, 0F, 0F, Component.literal(amountStr).getVisualOrderText(), true, Font.DisplayMode.NORMAL, LightCoordsUtil.FULL_BRIGHT, Color.WHITE.getRGB(), 0, 0);
                 poseStack.popPose();
 
                 poseStack.popPose();

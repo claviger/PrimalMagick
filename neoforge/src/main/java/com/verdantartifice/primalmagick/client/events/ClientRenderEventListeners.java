@@ -1,11 +1,13 @@
 package com.verdantartifice.primalmagick.client.events;
 
 import com.verdantartifice.primalmagick.Constants;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.phys.EntityHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RenderHighlightEvent;
 import net.neoforged.neoforge.client.event.RenderTooltipEvent;
+import net.neoforged.neoforge.client.event.SubmitCustomGeometryEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 /**
@@ -26,7 +28,10 @@ public class ClientRenderEventListeners {
     }
     
     @SubscribeEvent
-    public static void onHighlightEntity(RenderHighlightEvent.Entity event) {
-        ClientRenderEvents.onHighlightEntity(event.getTarget(), event.getPoseStack(), event.getMultiBufferSource(), event.getDeltaTracker().getGameTimeDeltaPartialTick(true));
+    public static void onSubmitCustomGeometry(SubmitCustomGeometryEvent event) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.hitResult instanceof EntityHitResult entityHitResult) {
+            ClientRenderEvents.onHighlightEntity(entityHitResult, event.getPoseStack(), event.getSubmitNodeCollector(), mc.getDeltaTracker().getGameTimeDeltaPartialTick(true));
+        }
     }
 }

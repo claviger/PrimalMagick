@@ -22,7 +22,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -105,7 +105,7 @@ public class ClientRenderEvents {
         }
     }
     
-    public static void onHighlightEntity(EntityHitResult target, PoseStack poseStack, MultiBufferSource multiBufferSource, float partialTicks) {
+    public static void onHighlightEntity(EntityHitResult target, PoseStack poseStack, SubmitNodeCollector collector, float partialTicks) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player != null && (mc.player.getMainHandItem().getItem() == ItemsPM.ARCANOMETER.get() || mc.player.getOffhandItem().getItem() == ItemsPM.ARCANOMETER.get())) {
             Entity entity = target.getEntity();
@@ -115,7 +115,7 @@ public class ClientRenderEvents {
                     double interpolatedEntityX = entity.xo + (partialTicks * (entity.getX() - entity.xo));
                     double interpolatedEntityY = entity.yo + (partialTicks * (entity.getY() - entity.yo));
                     double interpolatedEntityZ = entity.zo + (partialTicks * (entity.getZ() - entity.zo));
-                    GuiUtils.renderSourcesBillboard(poseStack, multiBufferSource, interpolatedEntityX, interpolatedEntityY + entity.getBbHeight(), interpolatedEntityZ, affinities, partialTicks);
+                    GuiUtils.renderSourcesBillboard(poseStack, collector, interpolatedEntityX, interpolatedEntityY + entity.getBbHeight(), interpolatedEntityZ, affinities, partialTicks);
                 }
             });
         }

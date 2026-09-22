@@ -251,6 +251,12 @@ public class ResearchTableScreen extends AbstractContainerScreenPM<ResearchTable
             return this.screen;
         }
         
+        @Override
+        public void extractContents(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+            this.extractDefaultSprite(guiGraphics);
+            this.extractDefaultLabel(guiGraphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE));
+        }
+        
         private static class Handler implements OnPress {
             @Override
             public void onPress(Button button) {
@@ -278,6 +284,12 @@ public class ResearchTableScreen extends AbstractContainerScreenPM<ResearchTable
         
         public ResearchTableScreen getScreen() {
             return this.screen;
+        }
+        
+        @Override
+        public void extractContents(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+            this.extractDefaultSprite(guiGraphics);
+            this.extractDefaultLabel(guiGraphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE));
         }
         
         private static class Handler implements OnPress {
