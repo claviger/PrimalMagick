@@ -51,5 +51,7 @@ public class PixieHouseRenderer extends LivingEntityRenderer<PixieHouseEntity, P
     public void extractRenderState(PixieHouseEntity pEntity, PixieHouseRenderState pRenderState, float pPartialTicks) {
         super.extractRenderState(pEntity, pRenderState, pPartialTicks);
         pRenderState.wiggle = (float)(pEntity.level().getGameTime() - pEntity.lastHit) + pPartialTicks;
+        pRenderState.housedPixie = pEntity.getHousedPixie().copy();
+        pRenderState.pixieDeployed = pEntity.getDeployedPixieReference().isPresent();
     }
 }

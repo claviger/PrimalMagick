@@ -1,7 +1,7 @@
 package com.verdantartifice.primalmagick.client.renderers.entity.model;
 
-import com.verdantartifice.primalmagick.common.entities.projectiles.SpellProjectileEntity;
-import net.minecraft.client.model.HierarchicalModel;
+import com.verdantartifice.primalmagick.client.renderers.entity.state.SpellProjectileRenderState;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -15,11 +15,9 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
  * @author Daedalus4096
  * @see {@link com.verdantartifice.primalmagick.client.renderers.entity.SpellProjectileRenderer}
  */
-public class SpellProjectileModel extends HierarchicalModel<SpellProjectileEntity> {
-    protected final ModelPart root;
-    
+public class SpellProjectileModel extends EntityModel<SpellProjectileRenderState> {
     public SpellProjectileModel(ModelPart modelPart) {
-        this.root = modelPart;
+        super(modelPart);
     }
     
     public static LayerDefinition createBodyLayer() {
@@ -28,15 +26,11 @@ public class SpellProjectileModel extends HierarchicalModel<SpellProjectileEntit
         rootPart.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -8.0F, -8.0F, 16, 16, 16), PartPose.ZERO);
         return LayerDefinition.create(mesh, 64, 32);
     }
-    
-    @Override
-    public ModelPart root() {
-        return this.root;
-    }
 
     @Override
-    public void setupAnim(SpellProjectileEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root.yRot = netHeadYaw * ((float)Math.PI / 180F);
-        this.root.xRot = headPitch * ((float)Math.PI / 180F);
+    public void setupAnim(SpellProjectileRenderState renderState) {
+        super.setupAnim(renderState);
+        this.root().yRot = renderState.yRot * ((float)Math.PI / 180F);
+        this.root().xRot = renderState.xRot * ((float)Math.PI / 180F);
     }
 }
