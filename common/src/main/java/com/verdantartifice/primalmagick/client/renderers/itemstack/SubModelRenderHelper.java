@@ -42,7 +42,12 @@ public final class SubModelRenderHelper {
             renderStack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
         }
         model.update(state, renderStack, mc.getItemModelResolver(), ItemDisplayContext.NONE, mc.level, null, 0);
+        // Every item layer transform ends by centering the model on the origin, and the enclosing item layer has already
+        // done so for this pose, so shift back by half a block to keep the sub-model in block space
+        poseStack.pushPose();
+        poseStack.translate(0.5F, 0.5F, 0.5F);
         state.submit(poseStack, collector, lightCoords, overlayCoords, outlineColor);
+        poseStack.popPose();
     }
 
     /**

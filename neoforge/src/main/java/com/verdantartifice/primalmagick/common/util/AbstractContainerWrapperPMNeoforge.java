@@ -1,8 +1,9 @@
 package com.verdantartifice.primalmagick.common.util;
 
-import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
+import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerNeoforge;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.transfer.IndexModifier;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemUtil;
@@ -15,13 +16,23 @@ import java.util.List;
  * Base implementation of the mod's item handler capability interface which delegates to a Neoforge
  * resource handler over a vanilla container.
  */
-public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandlerPM {
+public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandlerNeoforge {
     protected final Container container;
     protected final ResourceHandler<ItemResource> handler;
 
     protected AbstractContainerWrapperPMNeoforge(Container container, ResourceHandler<ItemResource> handler) {
         this.container = container;
         this.handler = handler;
+    }
+
+    @Override
+    public ResourceHandler<ItemResource> getResourceHandler() {
+        return this.handler;
+    }
+
+    @Override
+    public IndexModifier<ItemResource> getIndexModifier() {
+        return (index, resource, amount) -> this.container.setItem(index, resource.toStack(amount));
     }
 
     @Override

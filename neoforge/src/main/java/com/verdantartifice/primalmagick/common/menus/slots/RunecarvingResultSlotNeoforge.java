@@ -1,5 +1,6 @@
 package com.verdantartifice.primalmagick.common.menus.slots;
 
+import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerNeoforge;
 import com.verdantartifice.primalmagick.common.menus.RunecarvingTableMenu;
 import com.verdantartifice.primalmagick.common.stats.ExpertiseManager;
 import com.verdantartifice.primalmagick.common.stats.StatsManager;
@@ -11,12 +12,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.items.IItemHandler;
 
 public class RunecarvingResultSlotNeoforge extends GenericResultSlotNeoforge {
     private final RunecarvingTableMenu menu;
 
-    public RunecarvingResultSlotNeoforge(RunecarvingTableMenu menu, Player player, IItemHandler inventoryIn, int index, int xPosition, int yPosition) {
+    public RunecarvingResultSlotNeoforge(RunecarvingTableMenu menu, Player player, IItemHandlerNeoforge inventoryIn, int index, int xPosition, int yPosition) {
         super(player, inventoryIn, index, xPosition, yPosition);
         this.menu = menu;
     }

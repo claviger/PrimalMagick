@@ -6,6 +6,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.util.Util;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.transfer.IndexModifier;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
@@ -27,7 +28,7 @@ import java.util.function.Function;
  * 
  * @author Daedalus4096
  */
-public class ItemStackHandlerPMNeoforge extends ItemStacksResourceHandler implements IItemHandlerPM {
+public class ItemStackHandlerPMNeoforge extends ItemStacksResourceHandler implements IItemHandlerNeoforge {
     protected final AbstractTilePM tile;
     protected final Optional<Function<Integer, Integer>> limitFuncOverride;
     protected final Optional<BiPredicate<Integer, ItemStack>> validityFuncOverride;
@@ -68,6 +69,16 @@ public class ItemStackHandlerPMNeoforge extends ItemStacksResourceHandler implem
         this.limitFuncOverride = limit;
         this.validityFuncOverride = validity;
         this.contentsChangedFuncOverride = contentsChanged;
+    }
+
+    @Override
+    public ResourceHandler<ItemResource> getResourceHandler() {
+        return this;
+    }
+
+    @Override
+    public IndexModifier<ItemResource> getIndexModifier() {
+        return this::set;
     }
 
     @Override
