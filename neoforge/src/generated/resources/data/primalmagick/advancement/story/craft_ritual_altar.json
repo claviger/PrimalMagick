@@ -17,7 +17,6 @@
       "translate": "advancements.primalmagick.craft_ritual_altar.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:ritual_altar"
     },
     "title": {

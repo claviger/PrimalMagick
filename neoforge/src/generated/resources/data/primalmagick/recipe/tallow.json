@@ -1,12 +1,9 @@
 {
-  "type": "primalmagick:arcane_crafting_shapeless",
+  "type": "primalmagick:shapeless_arcane",
+  "category": "arcane",
   "ingredients": [
-    {
-      "item": "minecraft:rotten_flesh"
-    },
-    {
-      "item": "primalmagick:essence_dust_sun"
-    }
+    "minecraft:rotten_flesh",
+    "primalmagick:essence_dust_sun"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -16,7 +13,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:tallow"
   }
 }

@@ -3,15 +3,10 @@
   "category": "building",
   "group": "waxed_chiseled_copper",
   "ingredients": [
-    {
-      "item": "minecraft:chiseled_copper"
-    },
-    {
-      "item": "primalmagick:beeswax"
-    }
+    "minecraft:chiseled_copper",
+    "primalmagick:beeswax"
   ],
   "result": {
-    "count": 1,
     "id": "minecraft:waxed_chiseled_copper"
   }
 }

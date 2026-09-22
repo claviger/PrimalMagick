@@ -144,14 +144,12 @@
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:rune_summon"
             }
           },
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:rune_creature"
             }
           },

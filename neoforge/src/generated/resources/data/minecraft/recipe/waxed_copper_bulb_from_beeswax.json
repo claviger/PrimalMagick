@@ -3,15 +3,10 @@
   "category": "building",
   "group": "waxed_copper_bulb",
   "ingredients": [
-    {
-      "item": "minecraft:copper_bulb"
-    },
-    {
-      "item": "primalmagick:beeswax"
-    }
+    "minecraft:copper_bulb",
+    "primalmagick:beeswax"
   ],
   "result": {
-    "count": 1,
     "id": "minecraft:waxed_copper_bulb"
   }
 }

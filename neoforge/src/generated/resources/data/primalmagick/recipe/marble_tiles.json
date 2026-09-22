@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "primalmagick:marble_bricks"
-    }
+    "M": "primalmagick:marble_bricks"
   },
   "pattern": [
     "MM",

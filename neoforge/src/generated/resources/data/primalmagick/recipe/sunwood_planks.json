@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "primalmagick:sunwood_logs"
-    }
+    "#primalmagick:sunwood_logs"
   ],
   "result": {
     "count": 4,

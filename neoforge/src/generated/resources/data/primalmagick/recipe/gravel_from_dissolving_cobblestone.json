@@ -1,8 +1,7 @@
 {
   "type": "primalmagick:dissolution",
-  "ingredient": {
-    "tag": "c:cobblestones"
-  },
+  "category": "misc",
+  "ingredient": "#c:cobblestones",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000

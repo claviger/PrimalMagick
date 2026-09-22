@@ -1,8 +1,10 @@
 {
-  "type": "entity_type",
+  "type": "primalmagick:entity_type",
   "target": "minecraft:elder_guardian",
   "values": {
-    "primalmagick:blood": 20,
-    "primalmagick:sea": 20
+    "sources": {
+      "primalmagick:blood": 20,
+      "primalmagick:sea": 20
+    }
   }
 }

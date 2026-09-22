@@ -1,9 +1,7 @@
 {
-  "asset_name": "rune_hallowed",
+  "asset_name": "quartz",
   "description": {
     "color": "#EEEBD9",
     "translate": "trim_material.primalmagick.rune_hallowed"
-  },
-  "ingredient": "primalmagick:rune_hallowed",
-  "item_model_index": 0.1
+  }
 }

@@ -3,9 +3,7 @@
   "category": "building",
   "group": "stripped_bark",
   "key": {
-    "W": {
-      "item": "primalmagick:stripped_hallowood_log"
-    }
+    "W": "primalmagick:stripped_hallowood_log"
   },
   "pattern": [
     "WW",

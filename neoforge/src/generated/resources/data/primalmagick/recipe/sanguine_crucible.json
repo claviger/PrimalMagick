@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "C": {
-      "item": "primalmagick:essence_crystal_blood"
-    },
-    "I": {
-      "tag": "primalmagick:ingots/hexium"
-    },
-    "W": {
-      "item": "minecraft:water_bucket"
-    }
+    "C": "primalmagick:essence_crystal_blood",
+    "I": "#primalmagick:ingots/hexium",
+    "W": "minecraft:water_bucket"
   },
   "mana": {
     "sources": {
@@ -30,7 +25,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:sanguine_crucible"
   }
 }

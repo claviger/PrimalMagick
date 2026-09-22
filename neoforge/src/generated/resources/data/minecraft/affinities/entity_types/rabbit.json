@@ -1,7 +1,9 @@
 {
-  "type": "entity_type",
+  "type": "primalmagick:entity_type",
   "target": "minecraft:rabbit",
   "values": {
-    "primalmagick:blood": 5
+    "sources": {
+      "primalmagick:blood": 5
+    }
   }
 }

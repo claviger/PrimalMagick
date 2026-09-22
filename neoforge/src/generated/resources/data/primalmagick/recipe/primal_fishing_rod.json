@@ -1,24 +1,12 @@
 {
   "type": "primalmagick:ritual",
   "ingredients": [
-    {
-      "item": "primalmagick:primalite_fishing_rod"
-    },
-    {
-      "item": "primalmagick:essence_shard_sea"
-    },
-    {
-      "item": "primalmagick:essence_shard_sea"
-    },
-    {
-      "item": "primalmagick:rune_sea"
-    },
-    {
-      "item": "primalmagick:mana_prism"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    }
+    "primalmagick:primalite_fishing_rod",
+    "primalmagick:essence_shard_sea",
+    "primalmagick:essence_shard_sea",
+    "primalmagick:rune_sea",
+    "primalmagick:mana_prism",
+    "primalmagick:mana_salts"
   ],
   "instability": 3,
   "mana": {
@@ -27,12 +15,8 @@
     }
   },
   "props": [
-    {
-      "block": "primalmagick:ritual_bell"
-    },
-    {
-      "block": "primalmagick:ritual_lectern"
-    }
+    "primalmagick:ritual_bell",
+    "primalmagick:ritual_lectern"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -44,12 +28,9 @@
   "result": {
     "components": {
       "minecraft:enchantments": {
-        "levels": {
-          "primalmagick:bounty": 2
-        }
+        "primalmagick:bounty": 2
       }
     },
-    "count": 1,
     "id": "primalmagick:primal_fishing_rod"
   }
 }

@@ -25,7 +25,6 @@
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "minecraft:water_bucket"
             }
           },

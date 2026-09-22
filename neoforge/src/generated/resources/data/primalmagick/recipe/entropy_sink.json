@@ -1,21 +1,12 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "M": {
-      "item": "primalmagick:marble_enchanted"
-    },
-    "P": {
-      "item": "primalmagick:magitech_parts_enchanted"
-    },
-    "R": {
-      "tag": "c:storage_blocks/redstone"
-    },
-    "S": {
-      "item": "primalmagick:marble_enchanted_slab"
-    },
-    "T": {
-      "item": "primalmagick:refined_salt"
-    }
+    "M": "primalmagick:marble_enchanted",
+    "P": "primalmagick:magitech_parts_enchanted",
+    "R": "#c:storage_blocks/redstone",
+    "S": "primalmagick:marble_enchanted_slab",
+    "T": "primalmagick:refined_salt"
   },
   "mana": {
     "sources": {
@@ -39,7 +30,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:entropy_sink"
   }
 }

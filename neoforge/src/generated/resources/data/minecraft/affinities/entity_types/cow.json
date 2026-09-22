@@ -1,7 +1,9 @@
 {
-  "type": "entity_type",
+  "type": "primalmagick:entity_type",
   "target": "minecraft:cow",
   "values": {
-    "primalmagick:blood": 10
+    "sources": {
+      "primalmagick:blood": 10
+    }
   }
 }

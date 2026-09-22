@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shapeless",
+  "type": "primalmagick:shapeless_arcane",
+  "category": "arcane",
   "ingredients": [
-    {
-      "item": "minecraft:glass_bottle"
-    },
-    {
-      "tag": "c:dyes/black"
-    },
-    {
-      "tag": "primalmagick:essences/terrestrial_dusts"
-    }
+    "minecraft:glass_bottle",
+    "#c:dyes/black",
+    "#primalmagick:essences/terrestrial_dusts"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -20,7 +15,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:enchanted_ink"
   }
 }

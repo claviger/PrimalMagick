@@ -1,8 +1,7 @@
 {
   "type": "primalmagick:dissolution",
-  "ingredient": {
-    "item": "minecraft:glowstone"
-  },
+  "category": "misc",
+  "ingredient": "minecraft:glowstone",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000

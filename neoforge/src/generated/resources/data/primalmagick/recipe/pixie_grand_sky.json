@@ -2,24 +2,12 @@
   "type": "primalmagick:ritual",
   "expertiseGroup": "primalmagick:pixie_grand",
   "ingredients": [
-    {
-      "item": "primalmagick:mana_salts"
-    },
-    {
-      "item": "primalmagick:essence_crystal_sky"
-    },
-    {
-      "tag": "c:ingots/iron"
-    },
-    {
-      "item": "primalmagick:rune_summon"
-    },
-    {
-      "item": "primalmagick:rune_creature"
-    },
-    {
-      "item": "primalmagick:rune_insight"
-    }
+    "primalmagick:mana_salts",
+    "primalmagick:essence_crystal_sky",
+    "#c:ingots/iron",
+    "primalmagick:rune_summon",
+    "primalmagick:rune_creature",
+    "primalmagick:rune_insight"
   ],
   "instability": 5,
   "mana": {
@@ -28,15 +16,9 @@
     }
   },
   "props": [
-    {
-      "block": "primalmagick:incense_brazier"
-    },
-    {
-      "block": "primalmagick:ritual_bell"
-    },
-    {
-      "block": "primalmagick:soul_anvil"
-    }
+    "primalmagick:incense_brazier",
+    "primalmagick:ritual_bell",
+    "primalmagick:soul_anvil"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -46,7 +28,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:pixie_grand_sky"
   }
 }

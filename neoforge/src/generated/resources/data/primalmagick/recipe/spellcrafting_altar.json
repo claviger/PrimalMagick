@@ -1,12 +1,9 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "M": {
-      "item": "primalmagick:marble_raw"
-    },
-    "S": {
-      "item": "primalmagick:spell_scroll_blank"
-    }
+    "M": "primalmagick:marble",
+    "S": "primalmagick:spell_scroll_blank"
   },
   "pattern": [
     "MMM",
@@ -21,7 +18,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:spellcrafting_altar"
   }
 }

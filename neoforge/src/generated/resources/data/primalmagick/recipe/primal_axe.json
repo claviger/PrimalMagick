@@ -1,24 +1,12 @@
 {
   "type": "primalmagick:ritual",
   "ingredients": [
-    {
-      "item": "primalmagick:primalite_axe"
-    },
-    {
-      "item": "primalmagick:essence_shard_sky"
-    },
-    {
-      "item": "primalmagick:essence_shard_sky"
-    },
-    {
-      "item": "primalmagick:rune_sky"
-    },
-    {
-      "item": "primalmagick:mana_prism"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    }
+    "primalmagick:primalite_axe",
+    "primalmagick:essence_shard_sky",
+    "primalmagick:essence_shard_sky",
+    "primalmagick:rune_sky",
+    "primalmagick:mana_prism",
+    "primalmagick:mana_salts"
   ],
   "instability": 3,
   "mana": {
@@ -27,12 +15,8 @@
     }
   },
   "props": [
-    {
-      "block": "primalmagick:ritual_bell"
-    },
-    {
-      "block": "primalmagick:incense_brazier"
-    }
+    "primalmagick:ritual_bell",
+    "primalmagick:incense_brazier"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -44,12 +28,9 @@
   "result": {
     "components": {
       "minecraft:enchantments": {
-        "levels": {
-          "primalmagick:disintegration": 2
-        }
+        "primalmagick:disintegration": 2
       }
     },
-    "count": 1,
     "id": "primalmagick:primal_axe"
   }
 }

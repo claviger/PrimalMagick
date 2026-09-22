@@ -40,7 +40,6 @@
             "rootKey": {
               "key_type": "primalmagick:stack_crafted",
               "stack": {
-                "count": 1,
                 "id": "primalmagick:research_table"
               }
             }
@@ -50,7 +49,6 @@
             "rootKey": {
               "key_type": "primalmagick:stack_crafted",
               "stack": {
-                "count": 1,
                 "id": "primalmagick:enchanted_ink_and_quill"
               }
             }

@@ -37,7 +37,6 @@
       "translate": "advancements.primalmagick.craft_power_rune.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:rune_power"
     },
     "title": {

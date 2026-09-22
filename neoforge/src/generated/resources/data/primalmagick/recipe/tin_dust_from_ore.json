@@ -20,17 +20,13 @@
       ]
     }
   ],
-  "type": "primalmagick:crafting_shapeless_tag",
+  "type": "primalmagick:shapeless_tag",
   "category": "misc",
   "group": "earthshatter_hammer_grit",
   "ingredients": [
-    {
-      "item": "primalmagick:earthshatter_hammer"
-    },
-    {
-      "tag": "c:ores/tin"
-    }
+    "primalmagick:earthshatter_hammer",
+    "#c:ores/tin"
   ],
-  "outputAmount": 2,
-  "outputTag": "c:dusts/tin"
+  "resultAmount": 2,
+  "resultTag": "c:dusts/tin"
 }

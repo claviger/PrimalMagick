@@ -3,15 +3,10 @@
   "category": "building",
   "group": "waxed_weathered_copper_door",
   "ingredients": [
-    {
-      "item": "minecraft:weathered_copper_door"
-    },
-    {
-      "item": "primalmagick:beeswax"
-    }
+    "minecraft:weathered_copper_door",
+    "primalmagick:beeswax"
   ],
   "result": {
-    "count": 1,
     "id": "minecraft:waxed_weathered_copper_door"
   }
 }

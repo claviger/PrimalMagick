@@ -3,15 +3,10 @@
   "category": "building",
   "group": "waxed_exposed_copper_trapdoor",
   "ingredients": [
-    {
-      "item": "minecraft:exposed_copper_trapdoor"
-    },
-    {
-      "item": "primalmagick:beeswax"
-    }
+    "minecraft:exposed_copper_trapdoor",
+    "primalmagick:beeswax"
   ],
   "result": {
-    "count": 1,
     "id": "minecraft:waxed_exposed_copper_trapdoor"
   }
 }

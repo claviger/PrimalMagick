@@ -1,16 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "group": "magitech_parts",
   "key": {
-    "I": {
-      "tag": "primalmagick:ingots/hallowsteel"
-    },
-    "P": {
-      "item": "primalmagick:magitech_parts_forbidden"
-    },
-    "S": {
-      "item": "primalmagick:mana_salts"
-    }
+    "I": "#primalmagick:ingots/hallowsteel",
+    "P": "primalmagick:magitech_parts_forbidden",
+    "S": "primalmagick:mana_salts"
   },
   "mana": {
     "sources": {
@@ -30,7 +25,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:magitech_parts_heavenly"
   }
 }

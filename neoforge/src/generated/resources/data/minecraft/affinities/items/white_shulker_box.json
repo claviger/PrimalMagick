@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:shulker_box",
   "target": "minecraft:white_shulker_box"
 }

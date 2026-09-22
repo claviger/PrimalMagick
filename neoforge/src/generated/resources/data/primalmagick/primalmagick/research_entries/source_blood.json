@@ -6,7 +6,7 @@
   "finales": [],
   "flags": {},
   "icon": {
-    "location": "primalmagick:textures/sources/blood.png"
+    "location": "primalmagick:sources/blood"
   },
   "key": {
     "rootKey": "primalmagick:source_blood"
@@ -32,7 +32,6 @@
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:bloody_flesh"
             }
           },

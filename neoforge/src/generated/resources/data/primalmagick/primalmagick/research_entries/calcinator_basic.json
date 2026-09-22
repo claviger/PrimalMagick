@@ -32,7 +32,6 @@
             "rootKey": {
               "key_type": "primalmagick:stack_crafted",
               "stack": {
-                "count": 1,
                 "id": "primalmagick:essence_dust_earth"
               }
             }
@@ -42,7 +41,6 @@
             "rootKey": {
               "key_type": "primalmagick:stack_crafted",
               "stack": {
-                "count": 1,
                 "id": "primalmagick:essence_dust_sea"
               }
             }
@@ -52,7 +50,6 @@
             "rootKey": {
               "key_type": "primalmagick:stack_crafted",
               "stack": {
-                "count": 1,
                 "id": "primalmagick:essence_dust_sky"
               }
             }
@@ -62,7 +59,6 @@
             "rootKey": {
               "key_type": "primalmagick:stack_crafted",
               "stack": {
-                "count": 1,
                 "id": "primalmagick:essence_dust_sun"
               }
             }
@@ -72,7 +68,6 @@
             "rootKey": {
               "key_type": "primalmagick:stack_crafted",
               "stack": {
-                "count": 1,
                 "id": "primalmagick:essence_dust_moon"
               }
             }

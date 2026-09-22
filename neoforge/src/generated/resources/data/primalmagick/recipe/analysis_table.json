@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shapeless",
+  "type": "primalmagick:shapeless_arcane",
+  "category": "arcane",
   "ingredients": [
-    {
-      "item": "primalmagick:wood_table"
-    },
-    {
-      "item": "primalmagick:magnifying_glass"
-    },
-    {
-      "item": "minecraft:paper"
-    }
+    "primalmagick:wood_table",
+    "primalmagick:magnifying_glass",
+    "minecraft:paper"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -20,7 +15,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:analysis_table"
   }
 }

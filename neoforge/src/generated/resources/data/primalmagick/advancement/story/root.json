@@ -82,12 +82,11 @@
     }
   },
   "display": {
-    "background": "primalmagick:textures/block/marble_raw.png",
+    "background": "primalmagick:textures/block/marble.png",
     "description": {
       "translate": "advancements.primalmagick.root.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:grimoire"
     },
     "title": {

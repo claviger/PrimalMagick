@@ -21,15 +21,14 @@
     }
   ],
   "type": "primalmagick:dissolution_tag",
+  "category": "ore",
   "group": "copper_grit_dissolution",
-  "ingredient": {
-    "tag": "c:raw_materials/copper"
-  },
+  "ingredient": "#c:raw_materials/copper",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000
     }
   },
-  "outputAmount": 3,
-  "outputTag": "c:dusts/copper"
+  "resultAmount": 3,
+  "resultTag": "c:dusts/copper"
 }

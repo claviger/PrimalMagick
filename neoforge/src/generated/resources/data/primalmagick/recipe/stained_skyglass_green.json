@@ -1,14 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "expertiseGroup": "primalmagick:skyglass_block",
   "group": "stained_skyglass",
   "key": {
-    "D": {
-      "tag": "c:dyes/green"
-    },
-    "G": {
-      "tag": "primalmagick:skyglass"
-    }
+    "D": "#c:dyes/green",
+    "G": "#primalmagick:skyglass"
   },
   "pattern": [
     "GGG",

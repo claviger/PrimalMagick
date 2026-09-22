@@ -20,7 +20,6 @@
         "rootKey": {
           "key_type": "primalmagick:stack_crafted",
           "stack": {
-            "count": 1,
             "id": "primalmagick:arcane_workbench"
           }
         }

@@ -10,7 +10,7 @@
       "west": "false"
     }
   },
-  "hiddenLootTable": "minecraft:empty",
+  "hiddenLootTable": "primalmagick:gameplay/empty",
   "languageId": "primalmagick:forbidden",
   "shelfLootTable": "primalmagick:gameplay/library/forbidden",
   "welcomeLootTable": "primalmagick:gameplay/library/warning"

@@ -37,7 +37,6 @@
       "translate": "advancements.primalmagick.craft_warding_module.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:warding_module_basic"
     },
     "title": {

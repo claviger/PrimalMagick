@@ -1,9 +1,10 @@
 {
-  "asset_name": "rune_sky",
+  "asset_name": "diamond",
   "description": {
     "color": "#87CEEB",
     "translate": "trim_material.primalmagick.rune_sky"
   },
-  "ingredient": "primalmagick:rune_sky",
-  "item_model_index": 0.8
+  "override_armor_assets": {
+    "minecraft:diamond": "diamond_darker"
+  }
 }

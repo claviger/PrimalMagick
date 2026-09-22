@@ -1,9 +1,10 @@
 {
-  "asset_name": "rune_sun",
+  "asset_name": "gold",
   "description": {
     "color": "#F9C81C",
     "translate": "trim_material.primalmagick.rune_sun"
   },
-  "ingredient": "primalmagick:rune_sun",
-  "item_model_index": 0.6
+  "override_armor_assets": {
+    "minecraft:gold": "gold_darker"
+  }
 }

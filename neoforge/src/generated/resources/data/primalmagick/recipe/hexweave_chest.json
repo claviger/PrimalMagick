@@ -1,10 +1,9 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "expertiseGroup": "primalmagick:hexweave_robes",
   "key": {
-    "#": {
-      "item": "primalmagick:hexweave"
-    }
+    "#": "primalmagick:hexweave"
   },
   "pattern": [
     "# #",
@@ -19,7 +18,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:hexweave_chest"
   }
 }

@@ -1,20 +1,13 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "expertiseGroup": "primalmagick:mana_font_forbidden",
   "group": "forbidden_mana_fonts",
   "key": {
-    "E": {
-      "item": "primalmagick:essence_crystal_infernal"
-    },
-    "F": {
-      "item": "primalmagick:artificial_font_infernal"
-    },
-    "I": {
-      "tag": "primalmagick:ingots/hexium"
-    },
-    "M": {
-      "item": "primalmagick:marble_smoked_slab"
-    }
+    "E": "primalmagick:essence_crystal_infernal",
+    "F": "primalmagick:artificial_font_infernal",
+    "I": "#primalmagick:ingots/hexium",
+    "M": "primalmagick:marble_smoked_slab"
   },
   "mana": {
     "sources": {
@@ -46,7 +39,6 @@
     ]
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:forbidden_font_infernal"
   }
 }

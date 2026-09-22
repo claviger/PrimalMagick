@@ -16,7 +16,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:shield"
       },
       "weight": 1.0
@@ -28,7 +27,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:diamond_chestplate"
       },
       "weight": 1.0
@@ -64,7 +62,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:item_frame"
       },
       "weight": 1.0
@@ -104,7 +101,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:golden_carrot"
       },
       "weight": 1.0
@@ -116,7 +112,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:glistering_melon_slice"
       },
       "weight": 1.0
@@ -128,7 +123,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:pufferfish"
       },
       "weight": 1.0
@@ -160,7 +154,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:crossbow"
       },
       "weight": 1.0
@@ -172,7 +165,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:leather_horse_armor"
       },
       "weight": 1.0
@@ -184,7 +176,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:saddle"
       },
       "weight": 1.0
@@ -196,7 +187,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:clock"
       },
       "weight": 1.0
@@ -208,7 +198,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:name_tag"
       },
       "weight": 1.0
@@ -236,7 +225,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:painting"
       },
       "weight": 1.0
@@ -248,7 +236,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:diamond_axe"
       },
       "weight": 1.0
@@ -260,7 +247,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:diamond_pickaxe"
       },
       "weight": 1.0
@@ -272,7 +258,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:diamond_sword"
       },
       "weight": 1.0

@@ -15,7 +15,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_earth"
       },
       "weight": 3.0
@@ -27,7 +26,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_sea"
       },
       "weight": 3.0
@@ -39,7 +37,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_sky"
       },
       "weight": 3.0
@@ -51,7 +48,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_sun"
       },
       "weight": 3.0
@@ -63,7 +59,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_moon"
       },
       "weight": 3.0
@@ -82,7 +77,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_blood"
       },
       "weight": 3.0
@@ -101,7 +95,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_infernal"
       },
       "weight": 3.0
@@ -120,7 +113,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_void"
       },
       "weight": 3.0
@@ -139,7 +131,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_hallowed"
       },
       "weight": 3.0
@@ -151,7 +142,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_crystal_earth"
       },
       "weight": 1.0
@@ -163,7 +153,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_crystal_sea"
       },
       "weight": 1.0
@@ -175,7 +164,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_crystal_sky"
       },
       "weight": 1.0
@@ -187,7 +175,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_crystal_sun"
       },
       "weight": 1.0
@@ -199,7 +186,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_crystal_moon"
       },
       "weight": 1.0
@@ -218,7 +204,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_crystal_blood"
       },
       "weight": 1.0
@@ -237,7 +222,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_crystal_infernal"
       },
       "weight": 1.0
@@ -256,7 +240,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_crystal_void"
       },
       "weight": 1.0
@@ -275,7 +258,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_crystal_hallowed"
       },
       "weight": 1.0

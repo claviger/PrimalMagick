@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:chorus_plant",
   "target": "minecraft:chorus_flower"
 }

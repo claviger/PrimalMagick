@@ -8,7 +8,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:diamond_sword"
       },
       "weight": 1.0
@@ -20,7 +19,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:crossbow"
       },
       "weight": 1.0
@@ -44,7 +42,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:diamond_chestplate"
       },
       "weight": 1.0
@@ -56,7 +53,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:map"
       },
       "weight": 1.0
@@ -68,7 +64,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:cartography_table"
       },
       "weight": 1.0
@@ -109,7 +104,6 @@
             "potion": "minecraft:fire_resistance"
           }
         },
-        "count": 1,
         "id": "minecraft:potion"
       },
       "weight": 4.0
@@ -137,7 +131,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:flint_and_steel"
       },
       "weight": 1.0

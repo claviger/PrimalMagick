@@ -105,7 +105,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
     protected void executeBlockModelGenerators(BlockModelGenerators blockModels) {
         // Generate models for defined block families
         BlockFamiliesPM.getStandardFamilies().filter(BlockFamily::shouldGenerateModel).forEach(family -> blockModels.family(family.getBaseBlock()).generateFor(family));
-        BlockFamiliesPM.getPhasingFamilies().filter(BlockFamily::shouldGenerateModel).forEach(family -> this.phasingFamily(family.getBaseBlock(), PhasingTextureMapping::cube, blockModels));
+        //BlockFamiliesPM.getPhasingFamilies().filter(BlockFamily::shouldGenerateModel).forEach(family -> this.phasingFamily(family.getBaseBlock(), PhasingTextureMapping::cube, blockModels));
 
         // Generate non-family marble blocks
         this.generatePillarBlock(BlocksPM.MARBLE_PILLAR.get(), blockModels);
@@ -129,16 +129,16 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         this.createCarvedBookshelf(BlocksPM.MARBLE_HALLOWED_BOOKSHELF.get(), blockModels);
 
         // Generate sunwood blocks
-        this.phasingWoodProvider(BlocksPM.SUNWOOD_LOG.get(), blockModels).logWithHorizontal(BlocksPM.SUNWOOD_LOG.get()).wood(BlocksPM.SUNWOOD_WOOD.get());
-        this.phasingWoodProvider(BlocksPM.STRIPPED_SUNWOOD_LOG.get(), blockModels).logWithHorizontal(BlocksPM.STRIPPED_SUNWOOD_LOG.get()).wood(BlocksPM.STRIPPED_SUNWOOD_WOOD.get());
-        this.createPhasingLeaves(BlocksPM.SUNWOOD_LEAVES.get(), blockModels);
+        //this.phasingWoodProvider(BlocksPM.SUNWOOD_LOG.get(), blockModels).logWithHorizontal(BlocksPM.SUNWOOD_LOG.get()).wood(BlocksPM.SUNWOOD_WOOD.get());
+        //this.phasingWoodProvider(BlocksPM.STRIPPED_SUNWOOD_LOG.get(), blockModels).logWithHorizontal(BlocksPM.STRIPPED_SUNWOOD_LOG.get()).wood(BlocksPM.STRIPPED_SUNWOOD_WOOD.get());
+        //this.createPhasingLeaves(BlocksPM.SUNWOOD_LEAVES.get(), blockModels);
         blockModels.createPlantWithDefaultItem(BlocksPM.SUNWOOD_SAPLING.get(), BlocksPM.POTTED_SUNWOOD_SAPLING.get(), BlockModelGenerators.PlantType.NOT_TINTED);
         this.createPhasingPillarBlock(BlocksPM.SUNWOOD_PILLAR.get(), blockModels);
 
         // Generate moonwood blocks
-        this.phasingWoodProvider(BlocksPM.MOONWOOD_LOG.get(), blockModels).logWithHorizontal(BlocksPM.MOONWOOD_LOG.get()).wood(BlocksPM.MOONWOOD_WOOD.get());
-        this.phasingWoodProvider(BlocksPM.STRIPPED_MOONWOOD_LOG.get(), blockModels).logWithHorizontal(BlocksPM.STRIPPED_MOONWOOD_LOG.get()).wood(BlocksPM.STRIPPED_MOONWOOD_WOOD.get());
-        this.createPhasingLeaves(BlocksPM.MOONWOOD_LEAVES.get(), blockModels);
+        //this.phasingWoodProvider(BlocksPM.MOONWOOD_LOG.get(), blockModels).logWithHorizontal(BlocksPM.MOONWOOD_LOG.get()).wood(BlocksPM.MOONWOOD_WOOD.get());
+        //this.phasingWoodProvider(BlocksPM.STRIPPED_MOONWOOD_LOG.get(), blockModels).logWithHorizontal(BlocksPM.STRIPPED_MOONWOOD_LOG.get()).wood(BlocksPM.STRIPPED_MOONWOOD_WOOD.get());
+        //this.createPhasingLeaves(BlocksPM.MOONWOOD_LEAVES.get(), blockModels);
         blockModels.createPlantWithDefaultItem(BlocksPM.MOONWOOD_SAPLING.get(), BlocksPM.POTTED_MOONWOOD_SAPLING.get(), BlockModelGenerators.PlantType.NOT_TINTED);
         this.createPhasingPillarBlock(BlocksPM.MOONWOOD_PILLAR.get(), blockModels);
 
@@ -807,14 +807,14 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
                             .createWithSuffix(glassBlock, modelConnection.suffix(), TextureMappingsPM.connected(glassBlock, modelConnection).forceAllTranslucent(), blockModels.modelOutput))));
         blockModels.blockStateOutput.accept(ModelConnectionSets.CUBE.generatorFactory().apply(glassBlock, glassVariants));
 
-        // Define block states and models for pane
-        Map<ModelConnection, MultiVariant> paneVariants = ModelConnectionSets.PANE.modelConnections().stream().collect(Collectors.toMap(
-                modelConnection -> modelConnection,
-                modelConnection -> BlockModelGenerators.plainVariant(
-                        modelConnection.extendModel(ModelTemplates.STAINED_GLASS_PANE_NOSIDE, ResourceUtils.loc("block/skyglass_pane"))
-                            .createWithSuffix(paneBlock, modelConnection.suffix(), TextureMappingsPM.connected(paneBlock, modelConnection).forceAllTranslucent(), blockModels.modelOutput))));
-        blockModels.blockStateOutput.accept(ModelConnectionSets.PANE.generatorFactory().apply(paneBlock, paneVariants));
-        blockModels.registerSimpleItemModel(paneBlock.asItem(), blockModels.createFlatItemModelWithBlockTexture(paneBlock.asItem(), glassBlock));
+        //// Define block states and models for pane
+        //Map<ModelConnection, MultiVariant> paneVariants = ModelConnectionSets.PANE.modelConnections().stream().collect(Collectors.toMap(
+                //modelConnection -> modelConnection,
+                //modelConnection -> BlockModelGenerators.plainVariant(
+                        //modelConnection.extendModel(ModelTemplates.STAINED_GLASS_PANE_NOSIDE, ResourceUtils.loc("block/skyglass_pane"))
+                            //.createWithSuffix(paneBlock, modelConnection.suffix(), TextureMappingsPM.connected(paneBlock, modelConnection).forceAllTranslucent(), blockModels.modelOutput))));
+        //blockModels.blockStateOutput.accept(ModelConnectionSets.PANE.generatorFactory().apply(paneBlock, paneVariants));
+        //blockModels.registerSimpleItemModel(paneBlock.asItem(), blockModels.createFlatItemModelWithBlockTexture(paneBlock.asItem(), glassBlock));
     }
 
     private void createStainedSkyglassBlocks(StainedSkyglassBlock glassBlock, StainedSkyglassPaneBlock paneBlock, BlockModelGenerators blockModels) {
@@ -831,14 +831,14 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         blockModels.blockStateOutput.accept(ModelConnectionSets.CUBE.generatorFactory().apply(glassBlock, glassVariants));
         blockModels.registerSimpleTintedItemModel(glassBlock, variantZeroLoc, ItemModelUtils.constantTint(glassBlock.getColor().getFireworkColor()));
 
-        // Define block states and models for pane
-        Map<ModelConnection, MultiVariant> paneVariants = ModelConnectionSets.PANE.modelConnections().stream().collect(Collectors.toMap(
-                modelConnection -> modelConnection,
-                modelConnection -> BlockModelGenerators.plainVariant(
-                        modelConnection.extendModel(ModelTemplates.STAINED_GLASS_PANE_NOSIDE, ResourceUtils.loc("block/stained_skyglass_pane"))
-                            .createWithSuffix(paneBlock, modelConnection.suffix(), TextureMappingsPM.connected(paneBlock, modelConnection).forceAllTranslucent(), blockModels.modelOutput))));
-        blockModels.blockStateOutput.accept(ModelConnectionSets.PANE.generatorFactory().apply(paneBlock, paneVariants));
-        blockModels.registerSimpleTintedItemModel(paneBlock, blockModels.createFlatItemModelWithBlockTexture(paneBlock.asItem(), glassBlock), ItemModelUtils.constantTint(paneBlock.getColor().getFireworkColor()));
+        //// Define block states and models for pane
+        //Map<ModelConnection, MultiVariant> paneVariants = ModelConnectionSets.PANE.modelConnections().stream().collect(Collectors.toMap(
+                //modelConnection -> modelConnection,
+                //modelConnection -> BlockModelGenerators.plainVariant(
+                        //modelConnection.extendModel(ModelTemplates.STAINED_GLASS_PANE_NOSIDE, ResourceUtils.loc("block/stained_skyglass_pane"))
+                            //.createWithSuffix(paneBlock, modelConnection.suffix(), TextureMappingsPM.connected(paneBlock, modelConnection).forceAllTranslucent(), blockModels.modelOutput))));
+        //blockModels.blockStateOutput.accept(ModelConnectionSets.PANE.generatorFactory().apply(paneBlock, paneVariants));
+        //blockModels.registerSimpleTintedItemModel(paneBlock, blockModels.createFlatItemModelWithBlockTexture(paneBlock.asItem(), glassBlock), ItemModelUtils.constantTint(paneBlock.getColor().getFireworkColor()));
     }
 
     private void createRitualCandleBlock(RitualCandleBlock block, BlockModelGenerators blockModels) {

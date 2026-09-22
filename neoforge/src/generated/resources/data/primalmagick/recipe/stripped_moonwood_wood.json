@@ -3,9 +3,7 @@
   "category": "building",
   "group": "stripped_bark",
   "key": {
-    "W": {
-      "item": "primalmagick:stripped_moonwood_log"
-    }
+    "W": "primalmagick:stripped_moonwood_log"
   },
   "pattern": [
     "WW",

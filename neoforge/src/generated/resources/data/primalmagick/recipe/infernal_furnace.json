@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "C": {
-      "item": "primalmagick:essence_crystal_infernal"
-    },
-    "M": {
-      "item": "primalmagick:marble_smoked"
-    },
-    "P": {
-      "item": "primalmagick:magitech_parts_forbidden"
-    }
+    "C": "primalmagick:essence_crystal_infernal",
+    "M": "primalmagick:marble_smoked",
+    "P": "primalmagick:magitech_parts_forbidden"
   },
   "mana": {
     "sources": {
@@ -29,7 +24,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:infernal_furnace"
   }
 }

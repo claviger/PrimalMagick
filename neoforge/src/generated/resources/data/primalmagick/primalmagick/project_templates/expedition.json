@@ -8,7 +8,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:iron_sword"
       },
       "weight": 1.0
@@ -20,7 +19,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:bow"
       },
       "weight": 1.0
@@ -44,7 +42,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:iron_chestplate"
       },
       "weight": 1.0
@@ -56,7 +53,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:map"
       },
       "weight": 1.0
@@ -68,7 +64,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:compass"
       },
       "weight": 1.0
@@ -80,7 +75,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:clock"
       },
       "weight": 1.0
@@ -92,7 +86,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:cartography_table"
       },
       "weight": 1.0
@@ -104,7 +97,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:campfire"
       },
       "weight": 1.0
@@ -128,7 +120,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:bread"
       },
       "weight": 1.0

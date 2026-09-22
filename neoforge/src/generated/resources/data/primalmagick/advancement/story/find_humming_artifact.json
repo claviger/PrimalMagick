@@ -17,7 +17,6 @@
       "translate": "advancements.primalmagick.find_humming_artifact.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:humming_artifact_unattuned"
     },
     "title": {

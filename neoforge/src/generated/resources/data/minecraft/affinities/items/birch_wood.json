@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:birch_log",
   "target": "minecraft:birch_wood"
 }

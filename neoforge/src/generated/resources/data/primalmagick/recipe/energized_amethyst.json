@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shapeless",
+  "type": "primalmagick:shapeless_arcane",
+  "category": "arcane",
   "ingredients": [
-    {
-      "tag": "c:gems/amethyst"
-    },
-    {
-      "item": "primalmagick:essence_shard_earth"
-    },
-    {
-      "item": "primalmagick:essence_shard_sun"
-    }
+    "#c:gems/amethyst",
+    "primalmagick:essence_shard_earth",
+    "primalmagick:essence_shard_sun"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -19,7 +14,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:energized_amethyst"
   }
 }

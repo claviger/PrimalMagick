@@ -1,11 +1,15 @@
 {
   "values": [
     {
-      "id": "primalmagick:arcane_crafting_shaped",
+      "id": "primalmagick:shaped_arcane",
       "required": false
     },
     {
-      "id": "primalmagick:arcane_crafting_shapeless",
+      "id": "primalmagick:shapeless_arcane",
+      "required": false
+    },
+    {
+      "id": "primalmagick:shapeless_arcane_tag",
       "required": false
     },
     {
@@ -22,6 +26,10 @@
     },
     {
       "id": "primalmagick:dissolution",
+      "required": false
+    },
+    {
+      "id": "primalmagick:dissolution_tag",
       "required": false
     }
   ]

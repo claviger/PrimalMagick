@@ -1,8 +1,7 @@
 {
   "type": "primalmagick:dissolution",
-  "ingredient": {
-    "tag": "c:gravels"
-  },
+  "category": "misc",
+  "ingredient": "#c:gravels",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000

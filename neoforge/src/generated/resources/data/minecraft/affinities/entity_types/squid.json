@@ -1,8 +1,10 @@
 {
-  "type": "entity_type",
+  "type": "primalmagick:entity_type",
   "target": "minecraft:squid",
   "values": {
-    "primalmagick:blood": 10,
-    "primalmagick:sea": 10
+    "sources": {
+      "primalmagick:blood": 10,
+      "primalmagick:sea": 10
+    }
   }
 }

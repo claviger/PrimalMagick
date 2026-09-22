@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:waxed_copper_door",
   "target": "minecraft:waxed_exposed_copper_door"
 }

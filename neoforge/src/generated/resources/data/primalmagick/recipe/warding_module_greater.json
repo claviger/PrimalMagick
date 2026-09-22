@@ -1,21 +1,12 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "E": {
-      "tag": "c:gems/emerald"
-    },
-    "M": {
-      "item": "primalmagick:magitech_parts_forbidden"
-    },
-    "P": {
-      "item": "primalmagick:rune_protect"
-    },
-    "R": {
-      "item": "primalmagick:rune_power"
-    },
-    "S": {
-      "item": "primalmagick:rune_self"
-    }
+    "E": "#c:gems/emerald",
+    "M": "primalmagick:magitech_parts_forbidden",
+    "P": "primalmagick:rune_protect",
+    "R": "primalmagick:rune_power",
+    "S": "primalmagick:rune_self"
   },
   "mana": {
     "sources": {
@@ -35,7 +26,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:warding_module_greater"
   }
 }

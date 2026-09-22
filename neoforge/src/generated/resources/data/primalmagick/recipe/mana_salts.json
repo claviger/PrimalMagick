@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shapeless",
+  "type": "primalmagick:shapeless_arcane",
+  "category": "arcane",
   "ingredients": [
-    {
-      "tag": "c:dusts/redstone"
-    },
-    {
-      "item": "primalmagick:refined_salt"
-    },
-    {
-      "tag": "primalmagick:essences/terrestrial_dusts"
-    }
+    "#c:dusts/redstone",
+    "primalmagick:refined_salt",
+    "#primalmagick:essences/terrestrial_dusts"
   ],
   "mana": {
     "sources": {
@@ -28,7 +23,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:mana_salts"
   }
 }

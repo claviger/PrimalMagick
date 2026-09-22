@@ -17,7 +17,6 @@
       "translate": "advancements.primalmagick.find_lore_tablet.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:static_tablet"
     },
     "title": {

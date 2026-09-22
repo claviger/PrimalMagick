@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:diamond_block",
   "target": "primalmagick:damaged_budding_diamond_block"
 }

@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:dandelion",
   "target": "minecraft:azure_bluet"
 }

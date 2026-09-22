@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "I": {
-      "tag": "primalmagick:ingots/primalite"
-    }
+    "I": "#primalmagick:ingots/primalite"
   },
   "pattern": [
     "III",
@@ -12,7 +10,6 @@
     "III"
   ],
   "result": {
-    "count": 1,
     "id": "primalmagick:primalite_block"
   }
 }

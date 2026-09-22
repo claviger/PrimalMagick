@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "primalmagick:marble_raw"
-    },
-    "S": {
-      "item": "primalmagick:marble_slab"
-    }
+    "M": "primalmagick:marble",
+    "S": "primalmagick:marble_slab"
   },
   "pattern": [
     "MMM",
@@ -15,7 +11,6 @@
     "MMM"
   ],
   "result": {
-    "count": 1,
     "id": "primalmagick:marble_bookshelf"
   }
 }

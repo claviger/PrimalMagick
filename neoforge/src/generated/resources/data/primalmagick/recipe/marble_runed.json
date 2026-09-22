@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "C": {
-      "item": "primalmagick:marble_chiseled"
-    },
-    "M": {
-      "item": "primalmagick:marble_raw"
-    }
+    "C": "primalmagick:marble_chiseled",
+    "M": "primalmagick:marble"
   },
   "pattern": [
     " M ",

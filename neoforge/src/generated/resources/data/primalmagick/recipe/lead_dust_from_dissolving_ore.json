@@ -21,15 +21,14 @@
     }
   ],
   "type": "primalmagick:dissolution_tag",
+  "category": "ore",
   "group": "lead_dust_dissolution",
-  "ingredient": {
-    "tag": "c:ores/lead"
-  },
+  "ingredient": "#c:ores/lead",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000
     }
   },
-  "outputAmount": 3,
-  "outputTag": "c:dusts/lead"
+  "resultAmount": 3,
+  "resultTag": "c:dusts/lead"
 }

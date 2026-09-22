@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shapeless",
+  "type": "primalmagick:shapeless_arcane",
+  "category": "arcane",
   "ingredients": [
-    {
-      "tag": "c:gems/diamond"
-    },
-    {
-      "item": "primalmagick:essence_shard_earth"
-    },
-    {
-      "item": "primalmagick:essence_shard_hallowed"
-    }
+    "#c:gems/diamond",
+    "primalmagick:essence_shard_earth",
+    "primalmagick:essence_shard_hallowed"
   ],
   "requirement": {
     "requirement_type": "primalmagick:and",
@@ -31,7 +26,6 @@
     ]
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:energized_diamond"
   }
 }

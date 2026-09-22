@@ -21,15 +21,14 @@
     }
   ],
   "type": "primalmagick:dissolution_tag",
+  "category": "ore",
   "group": "tin_dust_dissolution",
-  "ingredient": {
-    "tag": "c:ores/tin"
-  },
+  "ingredient": "#c:ores/tin",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000
     }
   },
-  "outputAmount": 3,
-  "outputTag": "c:dusts/tin"
+  "resultAmount": 3,
+  "resultTag": "c:dusts/tin"
 }

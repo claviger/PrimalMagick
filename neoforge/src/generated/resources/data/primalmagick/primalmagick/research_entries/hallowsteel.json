@@ -34,7 +34,6 @@
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:essence_crystal_hallowed"
             }
           },
@@ -43,7 +42,6 @@
             "rootKey": {
               "key_type": "primalmagick:stack_crafted",
               "stack": {
-                "count": 1,
                 "id": "primalmagick:hexium_ingot"
               }
             }

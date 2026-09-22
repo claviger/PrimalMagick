@@ -1,12 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
   "baseExpertiseOverride": 1,
   "bonusExpertiseOverride": 4,
+  "category": "arcane",
   "expertiseGroup": "primalmagick:heartwood_core",
   "key": {
-    "H": {
-      "item": "primalmagick:heartwood"
-    }
+    "H": "primalmagick:heartwood"
   },
   "mana": {
     "sources": {
@@ -42,7 +41,6 @@
     ]
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:heartwood_staff_core_item"
   }
 }

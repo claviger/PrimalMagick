@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "primalmagick:humming_artifact_unattuned",
   "target": "primalmagick:humming_artifact_moon"
 }

@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:oak_log",
   "target": "minecraft:acacia_log"
 }

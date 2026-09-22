@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "W": {
-      "item": "primalmagick:sunwood_log"
-    }
+    "W": "primalmagick:sunwood_log"
   },
   "pattern": [
     "WW",

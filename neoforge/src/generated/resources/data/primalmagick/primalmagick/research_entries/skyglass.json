@@ -25,7 +25,6 @@
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:essence_dust_sky"
             }
           },
@@ -34,7 +33,6 @@
             "rootKey": {
               "key_type": "primalmagick:stack_crafted",
               "stack": {
-                "count": 1,
                 "id": "minecraft:glass"
               }
             }

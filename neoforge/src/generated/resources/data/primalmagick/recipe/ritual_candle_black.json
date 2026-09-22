@@ -3,15 +3,10 @@
   "category": "misc",
   "group": "ritual_candles",
   "ingredients": [
-    {
-      "tag": "primalmagick:ritual_candles"
-    },
-    {
-      "tag": "c:dyes/black"
-    }
+    "#primalmagick:ritual_candles",
+    "#c:dyes/black"
   ],
   "result": {
-    "count": 1,
     "id": "primalmagick:ritual_candle_black"
   }
 }

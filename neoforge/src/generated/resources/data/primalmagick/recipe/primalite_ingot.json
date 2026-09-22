@@ -1,25 +1,14 @@
 {
-  "type": "primalmagick:arcane_crafting_shapeless",
+  "type": "primalmagick:shapeless_arcane",
+  "category": "arcane",
   "group": "primalite_ingot",
   "ingredients": [
-    {
-      "tag": "c:ingots/iron"
-    },
-    {
-      "item": "primalmagick:essence_dust_earth"
-    },
-    {
-      "item": "primalmagick:essence_dust_sea"
-    },
-    {
-      "item": "primalmagick:essence_dust_sky"
-    },
-    {
-      "item": "primalmagick:essence_dust_sun"
-    },
-    {
-      "item": "primalmagick:essence_dust_moon"
-    }
+    "#c:ingots/iron",
+    "primalmagick:essence_dust_earth",
+    "primalmagick:essence_dust_sea",
+    "primalmagick:essence_dust_sky",
+    "primalmagick:essence_dust_sun",
+    "primalmagick:essence_dust_moon"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -29,7 +18,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:primalite_ingot"
   }
 }

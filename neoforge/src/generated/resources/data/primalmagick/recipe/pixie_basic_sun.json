@@ -2,18 +2,10 @@
   "type": "primalmagick:ritual",
   "expertiseGroup": "primalmagick:pixie_basic",
   "ingredients": [
-    {
-      "item": "primalmagick:mana_salts"
-    },
-    {
-      "item": "primalmagick:essence_shard_sun"
-    },
-    {
-      "item": "primalmagick:rune_summon"
-    },
-    {
-      "item": "primalmagick:rune_creature"
-    }
+    "primalmagick:mana_salts",
+    "primalmagick:essence_shard_sun",
+    "primalmagick:rune_summon",
+    "primalmagick:rune_creature"
   ],
   "instability": 3,
   "mana": {
@@ -22,12 +14,8 @@
     }
   },
   "props": [
-    {
-      "block": "primalmagick:incense_brazier"
-    },
-    {
-      "block": "primalmagick:ritual_bell"
-    }
+    "primalmagick:incense_brazier",
+    "primalmagick:ritual_bell"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -37,7 +25,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:pixie_basic_sun"
   }
 }

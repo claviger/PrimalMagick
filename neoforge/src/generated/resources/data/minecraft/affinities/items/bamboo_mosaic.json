@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:bamboo_planks",
   "target": "minecraft:bamboo_mosaic"
 }

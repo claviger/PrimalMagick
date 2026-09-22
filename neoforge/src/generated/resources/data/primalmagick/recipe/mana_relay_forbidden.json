@@ -1,18 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "C": {
-      "tag": "c:storage_blocks/copper"
-    },
-    "E": {
-      "tag": "primalmagick:essences/terrestrial_crystals"
-    },
-    "M": {
-      "tag": "primalmagick:ingots/hexium"
-    },
-    "P": {
-      "item": "primalmagick:magitech_parts_forbidden"
-    }
+    "C": "#c:storage_blocks/copper",
+    "E": "#primalmagick:essences/terrestrial_crystals",
+    "M": "#primalmagick:ingots/hexium",
+    "P": "primalmagick:magitech_parts_forbidden"
   },
   "mana": {
     "sources": {
@@ -34,7 +27,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:mana_relay_forbidden"
   }
 }

@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "C": {
-      "tag": "minecraft:wool"
-    },
-    "E": {
-      "tag": "primalmagick:essences/terrestrial_dusts"
-    },
-    "S": {
-      "tag": "c:strings"
-    }
+    "C": "#minecraft:wool",
+    "E": "#primalmagick:essences/terrestrial_dusts",
+    "S": "#c:strings"
   },
   "mana": {
     "sources": {
@@ -33,7 +28,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:spellcloth"
   }
 }

@@ -5,27 +5,13 @@
   },
   "expertiseGroup": "primalmagick:primal_core",
   "ingredients": [
-    {
-      "item": "primalmagick:obsidian_staff_core_item"
-    },
-    {
-      "item": "primalmagick:coral_staff_core_item"
-    },
-    {
-      "item": "primalmagick:bamboo_staff_core_item"
-    },
-    {
-      "item": "primalmagick:sunwood_staff_core_item"
-    },
-    {
-      "item": "primalmagick:moonwood_staff_core_item"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    }
+    "primalmagick:obsidian_staff_core_item",
+    "primalmagick:coral_staff_core_item",
+    "primalmagick:bamboo_staff_core_item",
+    "primalmagick:sunwood_staff_core_item",
+    "primalmagick:moonwood_staff_core_item",
+    "primalmagick:mana_salts",
+    "primalmagick:mana_salts"
   ],
   "instability": 4,
   "mana": {
@@ -38,15 +24,9 @@
     }
   },
   "props": [
-    {
-      "block": "primalmagick:ritual_bell"
-    },
-    {
-      "block": "primalmagick:ritual_lectern"
-    },
-    {
-      "tag": "primalmagick:ritual_candles"
-    }
+    "primalmagick:ritual_bell",
+    "primalmagick:ritual_lectern",
+    "#primalmagick:ritual_candles"
   ],
   "requirement": {
     "requirement_type": "primalmagick:and",
@@ -68,7 +48,6 @@
     ]
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:primal_staff_core_item"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:crimson_hyphae",
   "target": "minecraft:stripped_crimson_hyphae"
 }

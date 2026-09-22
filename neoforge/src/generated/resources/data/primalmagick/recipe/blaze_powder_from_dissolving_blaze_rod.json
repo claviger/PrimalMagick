@@ -1,8 +1,7 @@
 {
   "type": "primalmagick:dissolution",
-  "ingredient": {
-    "tag": "c:rods/blaze"
-  },
+  "category": "misc",
+  "ingredient": "#c:rods/blaze",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000

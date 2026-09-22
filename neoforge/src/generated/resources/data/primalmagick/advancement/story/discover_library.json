@@ -103,7 +103,6 @@
       "translate": "advancements.primalmagick.discover_library.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:static_book"
     },
     "title": {

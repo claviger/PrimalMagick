@@ -28,21 +28,18 @@
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "minecraft:raw_iron"
             }
           },
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "minecraft:raw_gold"
             }
           },
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "minecraft:raw_copper"
             }
           },

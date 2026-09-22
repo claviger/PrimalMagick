@@ -1,4 +1,8 @@
 {
   "type": "primalmagick:writable_book_crafting",
-  "category": "misc"
+  "book": "minecraft:book",
+  "pen": "#primalmagick:writing_implements",
+  "result": {
+    "id": "minecraft:writable_book"
+  }
 }

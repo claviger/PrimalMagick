@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:short_grass",
   "target": "minecraft:dead_bush"
 }

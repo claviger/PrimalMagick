@@ -1,8 +1,7 @@
 {
   "type": "primalmagick:dissolution",
-  "ingredient": {
-    "tag": "primalmagick:surface_stone"
-  },
+  "category": "misc",
+  "ingredient": "#primalmagick:surface_stone",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000

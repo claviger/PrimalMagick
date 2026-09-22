@@ -8,7 +8,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:runecarving_table"
       },
       "weight": 5.0
@@ -40,7 +39,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:diamond_sword"
       },
       "weight": 1.0
@@ -59,7 +57,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:rune_blood"
       },
       "weight": 1.0
@@ -78,7 +75,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:rune_infernal"
       },
       "weight": 1.0
@@ -97,7 +93,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:rune_void"
       },
       "weight": 1.0
@@ -116,7 +111,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:rune_insight"
       },
       "weight": 1.0
@@ -135,7 +129,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:rune_absorb"
       },
       "weight": 1.0
@@ -154,7 +147,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:rune_dispel"
       },
       "weight": 1.0
@@ -173,7 +165,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:rune_summon"
       },
       "weight": 1.0
@@ -192,7 +183,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:rune_area"
       },
       "weight": 1.0
@@ -211,7 +201,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:rune_creature"
       },
       "weight": 1.0

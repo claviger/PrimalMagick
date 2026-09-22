@@ -28,7 +28,6 @@
       "translate": "advancements.primalmagick.scan_chest.description"
     },
     "icon": {
-      "count": 1,
       "id": "minecraft:chest"
     },
     "title": {

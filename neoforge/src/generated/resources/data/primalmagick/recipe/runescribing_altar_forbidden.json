@@ -1,19 +1,12 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "group": "runescribing_altar",
   "key": {
-    "A": {
-      "item": "primalmagick:runescribing_altar_enchanted"
-    },
-    "D": {
-      "tag": "c:gems/diamond"
-    },
-    "M": {
-      "item": "primalmagick:marble_smoked"
-    },
-    "R": {
-      "item": "primalmagick:rune_unattuned"
-    }
+    "A": "primalmagick:runescribing_altar_enchanted",
+    "D": "#c:gems/diamond",
+    "M": "primalmagick:marble_smoked",
+    "R": "primalmagick:rune_unattuned"
   },
   "mana": {
     "sources": {
@@ -35,7 +28,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:runescribing_altar_forbidden"
   }
 }

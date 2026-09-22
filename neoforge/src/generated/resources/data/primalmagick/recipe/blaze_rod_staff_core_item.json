@@ -1,13 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "expertiseGroup": "primalmagick:blaze_rod_core",
   "key": {
-    "#": {
-      "tag": "c:rods/blaze"
-    },
-    "D": {
-      "item": "primalmagick:essence_shard_infernal"
-    }
+    "#": "#c:rods/blaze",
+    "D": "primalmagick:essence_shard_infernal"
   },
   "mana": {
     "sources": {
@@ -44,7 +41,6 @@
     ]
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:blaze_rod_staff_core_item"
   }
 }

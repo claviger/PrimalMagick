@@ -48,35 +48,30 @@
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:rune_earth"
             }
           },
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:rune_sea"
             }
           },
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:rune_sky"
             }
           },
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:rune_sun"
             }
           },
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "primalmagick:rune_moon"
             }
           }

@@ -1,0 +1,9 @@
+{
+  "type": "primalmagick:item",
+  "set": {
+    "sources": {
+      "primalmagick:earth": 5
+    }
+  },
+  "target": "primalmagick:marble"
+}

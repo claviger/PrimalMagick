@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:stone_bricks",
   "target": "minecraft:chiseled_stone_bricks"
 }

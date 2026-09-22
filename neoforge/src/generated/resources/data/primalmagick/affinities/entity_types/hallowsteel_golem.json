@@ -1,8 +1,10 @@
 {
-  "type": "entity_type",
+  "type": "primalmagick:entity_type",
   "target": "primalmagick:hallowsteel_golem",
   "values": {
-    "primalmagick:earth": 20,
-    "primalmagick:hallowed": 10
+    "sources": {
+      "primalmagick:earth": 20,
+      "primalmagick:hallowed": 10
+    }
   }
 }

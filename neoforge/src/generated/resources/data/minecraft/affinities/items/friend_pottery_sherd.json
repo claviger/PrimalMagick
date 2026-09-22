@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:angler_pottery_sherd",
   "target": "minecraft:friend_pottery_sherd"
 }

@@ -6,7 +6,7 @@
   "finales": [],
   "flags": {},
   "icon": {
-    "location": "primalmagick:textures/sources/infernal.png"
+    "location": "primalmagick:sources/infernal"
   },
   "key": {
     "rootKey": "primalmagick:spell_payload_conjure_lava"

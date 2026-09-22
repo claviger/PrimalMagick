@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "I": {
-      "tag": "c:nuggets/iron"
-    },
-    "P": {
-      "tag": "primalmagick:ingots/primalite"
-    },
-    "S": {
-      "tag": "c:rods/wooden"
-    }
+    "I": "#c:nuggets/iron",
+    "P": "#primalmagick:ingots/primalite",
+    "S": "#c:rods/wooden"
   },
   "mana": {
     "sources": {
@@ -29,7 +24,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:ritual_bell"
   }
 }

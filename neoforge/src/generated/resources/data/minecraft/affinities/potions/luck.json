@@ -1,7 +1,9 @@
 {
-  "type": "potion_bonus",
+  "type": "primalmagick:potion_bonus",
   "bonus": {
-    "primalmagick:moon": 5
+    "sources": {
+      "primalmagick:moon": 5
+    }
   },
   "target": "minecraft:luck"
 }

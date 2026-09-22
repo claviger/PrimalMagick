@@ -20,17 +20,13 @@
       ]
     }
   ],
-  "type": "primalmagick:crafting_shapeless_tag",
+  "type": "primalmagick:shapeless_tag",
   "category": "misc",
   "group": "earthshatter_hammer_grit",
   "ingredients": [
-    {
-      "item": "primalmagick:earthshatter_hammer"
-    },
-    {
-      "tag": "c:raw_materials/lead"
-    }
+    "primalmagick:earthshatter_hammer",
+    "#c:raw_materials/lead"
   ],
-  "outputAmount": 2,
-  "outputTag": "c:dusts/lead"
+  "resultAmount": 2,
+  "resultTag": "c:dusts/lead"
 }

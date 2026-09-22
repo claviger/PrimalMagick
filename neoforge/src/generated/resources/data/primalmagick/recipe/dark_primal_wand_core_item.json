@@ -2,24 +2,12 @@
   "type": "primalmagick:ritual",
   "expertiseGroup": "primalmagick:dark_primal_core",
   "ingredients": [
-    {
-      "item": "primalmagick:primal_wand_core_item"
-    },
-    {
-      "item": "primalmagick:bone_wand_core_item"
-    },
-    {
-      "item": "primalmagick:blaze_rod_wand_core_item"
-    },
-    {
-      "item": "primalmagick:purpur_wand_core_item"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    }
+    "primalmagick:primal_wand_core_item",
+    "primalmagick:bone_wand_core_item",
+    "primalmagick:blaze_rod_wand_core_item",
+    "primalmagick:purpur_wand_core_item",
+    "primalmagick:mana_salts",
+    "primalmagick:mana_salts"
   ],
   "instability": 5,
   "mana": {
@@ -35,21 +23,11 @@
     }
   },
   "props": [
-    {
-      "block": "primalmagick:ritual_bell"
-    },
-    {
-      "block": "primalmagick:ritual_lectern"
-    },
-    {
-      "tag": "primalmagick:ritual_candles"
-    },
-    {
-      "block": "primalmagick:bloodletter"
-    },
-    {
-      "block": "primalmagick:soul_anvil"
-    }
+    "primalmagick:ritual_bell",
+    "primalmagick:ritual_lectern",
+    "#primalmagick:ritual_candles",
+    "primalmagick:bloodletter",
+    "primalmagick:soul_anvil"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -59,7 +37,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:dark_primal_wand_core_item"
   }
 }

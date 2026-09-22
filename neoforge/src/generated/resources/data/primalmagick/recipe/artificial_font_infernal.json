@@ -1,17 +1,12 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "expertiseGroup": "primalmagick:mana_font_artificial",
   "group": "artificial_mana_fonts",
   "key": {
-    "E": {
-      "item": "primalmagick:essence_shard_infernal"
-    },
-    "I": {
-      "tag": "primalmagick:ingots/primalite"
-    },
-    "M": {
-      "item": "primalmagick:marble_enchanted_slab"
-    }
+    "E": "primalmagick:essence_shard_infernal",
+    "I": "#primalmagick:ingots/primalite",
+    "M": "primalmagick:marble_enchanted_slab"
   },
   "mana": {
     "sources": {
@@ -43,7 +38,6 @@
     ]
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:artificial_font_infernal"
   }
 }

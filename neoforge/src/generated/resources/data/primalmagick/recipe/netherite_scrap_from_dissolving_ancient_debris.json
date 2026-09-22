@@ -1,8 +1,7 @@
 {
   "type": "primalmagick:dissolution",
-  "ingredient": {
-    "item": "minecraft:ancient_debris"
-  },
+  "category": "ore",
+  "ingredient": "minecraft:ancient_debris",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000

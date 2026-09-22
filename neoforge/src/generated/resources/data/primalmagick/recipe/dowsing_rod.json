@@ -1,12 +1,9 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "D": {
-      "tag": "primalmagick:essences/terrestrial_dusts"
-    },
-    "S": {
-      "tag": "c:rods/wooden"
-    }
+    "D": "#primalmagick:essences/terrestrial_dusts",
+    "S": "#c:rods/wooden"
   },
   "mana": {
     "sources": {
@@ -30,7 +27,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:dowsing_rod"
   }
 }

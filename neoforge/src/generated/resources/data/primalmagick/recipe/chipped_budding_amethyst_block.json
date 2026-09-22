@@ -1,14 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shapeless",
+  "type": "primalmagick:shapeless_arcane",
   "baseExpertiseOverride": 0,
   "bonusExpertiseOverride": 0,
+  "category": "arcane",
   "ingredients": [
-    {
-      "item": "primalmagick:damaged_budding_amethyst_block"
-    },
-    {
-      "item": "primalmagick:energized_amethyst"
-    }
+    "primalmagick:damaged_budding_amethyst_block",
+    "primalmagick:energized_amethyst"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -18,7 +15,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:chipped_budding_amethyst_block"
   }
 }

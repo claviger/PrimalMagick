@@ -43,10 +43,16 @@
               "pattern": "minecraft:border"
             }
           ],
-          "minecraft:hide_additional_tooltip": {},
-          "minecraft:item_name": "{\"color\":\"gold\",\"translate\":\"block.minecraft.ominous_banner\"}"
+          "minecraft:item_name": {
+            "translate": "block.minecraft.ominous_banner"
+          },
+          "minecraft:rarity": "uncommon",
+          "minecraft:tooltip_display": {
+            "hidden_components": [
+              "minecraft:banner_patterns"
+            ]
+          }
         },
-        "count": 1,
         "id": "minecraft:white_banner"
       },
       "weight": 1.0
@@ -58,7 +64,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:bloody_flesh"
       },
       "weight": 1.0
@@ -70,7 +75,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:crossbow"
       },
       "weight": 3.0
@@ -82,7 +86,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:iron_sword"
       },
       "weight": 3.0
@@ -94,7 +97,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:iron_axe"
       },
       "weight": 3.0
@@ -142,7 +144,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:carved_pumpkin"
       },
       "weight": 1.0

@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_stairs",
   "key": {
-    "#": {
-      "item": "primalmagick:sunwood_planks"
-    }
+    "#": "primalmagick:sunwood_planks"
   },
   "pattern": [
     "#  ",

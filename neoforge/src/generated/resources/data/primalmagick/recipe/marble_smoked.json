@@ -1,12 +1,9 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "C": {
-      "tag": "minecraft:coals"
-    },
-    "M": {
-      "item": "primalmagick:marble_raw"
-    }
+    "C": "#minecraft:coals",
+    "M": "primalmagick:marble"
   },
   "mana": {
     "sources": {

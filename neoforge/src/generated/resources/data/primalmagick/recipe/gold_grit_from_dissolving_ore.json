@@ -21,15 +21,14 @@
     }
   ],
   "type": "primalmagick:dissolution_tag",
+  "category": "ore",
   "group": "gold_grit_dissolution",
-  "ingredient": {
-    "tag": "c:ores/gold"
-  },
+  "ingredient": "#c:ores/gold",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000
     }
   },
-  "outputAmount": 3,
-  "outputTag": "c:dusts/gold"
+  "resultAmount": 3,
+  "resultTag": "c:dusts/gold"
 }

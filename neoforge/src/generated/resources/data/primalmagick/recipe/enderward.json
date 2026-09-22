@@ -1,18 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "K": {
-      "tag": "c:rods/wooden"
-    },
-    "P": {
-      "tag": "c:ender_pearls"
-    },
-    "R": {
-      "item": "primalmagick:rune_dispel"
-    },
-    "S": {
-      "tag": "c:strings"
-    }
+    "K": "#c:rods/wooden",
+    "P": "#c:ender_pearls",
+    "R": "primalmagick:rune_dispel",
+    "S": "#c:strings"
   },
   "mana": {
     "sources": {
@@ -32,7 +25,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:enderward"
   }
 }

@@ -6,7 +6,6 @@
         "researchKey": {
           "key_type": "primalmagick:stack_crafted",
           "stack": {
-            "count": 1,
             "id": "primalmagick:essence_furnace"
           }
         }
@@ -19,7 +18,6 @@
       "translate": "advancements.primalmagick.craft_essence_furnace.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:essence_furnace"
     },
     "title": {

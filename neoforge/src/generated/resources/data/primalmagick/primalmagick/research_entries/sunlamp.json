@@ -53,7 +53,6 @@
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "minecraft:lantern"
             }
           },

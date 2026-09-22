@@ -1,9 +1,8 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "N": {
-      "tag": "c:nuggets/gold"
-    }
+    "N": "#c:nuggets/gold"
   },
   "mana": {
     "sources": {
@@ -26,7 +25,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:gold_wand_cap_item"
   }
 }

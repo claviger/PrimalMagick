@@ -3,15 +3,10 @@
   "category": "building",
   "group": "waxed_cut_copper",
   "ingredients": [
-    {
-      "item": "minecraft:cut_copper"
-    },
-    {
-      "item": "primalmagick:beeswax"
-    }
+    "minecraft:cut_copper",
+    "primalmagick:beeswax"
   ],
   "result": {
-    "count": 1,
     "id": "minecraft:waxed_cut_copper"
   }
 }

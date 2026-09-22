@@ -1,18 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "C": {
-      "tag": "c:storage_blocks/copper"
-    },
-    "E": {
-      "tag": "primalmagick:essences/terrestrial_dusts"
-    },
-    "M": {
-      "tag": "c:ingots/gold"
-    },
-    "P": {
-      "item": "primalmagick:magitech_parts_basic"
-    }
+    "C": "#c:storage_blocks/copper",
+    "E": "#primalmagick:essences/terrestrial_dusts",
+    "M": "#c:ingots/gold",
+    "P": "primalmagick:magitech_parts_basic"
   },
   "mana": {
     "sources": {
@@ -36,7 +29,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:mana_relay_basic"
   }
 }

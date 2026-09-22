@@ -8,7 +8,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:spellcrafting_altar"
       },
       "weight": 5.0
@@ -27,7 +26,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:wand_inscription_table"
       },
       "weight": 2.0
@@ -46,7 +44,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:auto_charger"
       },
       "weight": 2.0
@@ -58,7 +55,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:mundane_wand"
       },
       "weight": 1.0
@@ -82,7 +78,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_earth"
       },
       "weight": 1.0
@@ -94,7 +89,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_sea"
       },
       "weight": 1.0
@@ -106,7 +100,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_sky"
       },
       "weight": 1.0
@@ -118,7 +111,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_sun"
       },
       "weight": 1.0
@@ -130,7 +122,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_moon"
       },
       "weight": 1.0
@@ -149,7 +140,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_blood"
       },
       "weight": 1.0
@@ -168,7 +158,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_infernal"
       },
       "weight": 1.0
@@ -187,7 +176,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:essence_shard_void"
       },
       "weight": 1.0

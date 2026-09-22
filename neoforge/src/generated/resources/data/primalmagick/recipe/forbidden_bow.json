@@ -1,24 +1,12 @@
 {
   "type": "primalmagick:ritual",
   "ingredients": [
-    {
-      "item": "primalmagick:hexium_bow"
-    },
-    {
-      "item": "primalmagick:essence_shard_infernal"
-    },
-    {
-      "item": "primalmagick:essence_shard_infernal"
-    },
-    {
-      "item": "primalmagick:rune_infernal"
-    },
-    {
-      "item": "primalmagick:mana_prism"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    }
+    "primalmagick:hexium_bow",
+    "primalmagick:essence_shard_infernal",
+    "primalmagick:essence_shard_infernal",
+    "primalmagick:rune_infernal",
+    "primalmagick:mana_prism",
+    "primalmagick:mana_salts"
   ],
   "instability": 3,
   "mana": {
@@ -27,12 +15,8 @@
     }
   },
   "props": [
-    {
-      "block": "primalmagick:soul_anvil"
-    },
-    {
-      "block": "primalmagick:soul_anvil"
-    }
+    "primalmagick:soul_anvil",
+    "primalmagick:soul_anvil"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -44,12 +28,9 @@
   "result": {
     "components": {
       "minecraft:enchantments": {
-        "levels": {
-          "primalmagick:soulpiercing": 2
-        }
+        "primalmagick:soulpiercing": 2
       }
     },
-    "count": 1,
     "id": "primalmagick:forbidden_bow"
   }
 }

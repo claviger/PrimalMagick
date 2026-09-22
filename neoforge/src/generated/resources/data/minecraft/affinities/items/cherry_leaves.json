@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:oak_leaves",
   "target": "minecraft:cherry_leaves"
 }

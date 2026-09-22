@@ -1,18 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "G": {
-      "tag": "c:ingots/gold"
-    },
-    "I": {
-      "item": "primalmagick:enchanted_ink"
-    },
-    "N": {
-      "tag": "c:nuggets/iron"
-    },
-    "P": {
-      "item": "primalmagick:magitech_parts_basic"
-    }
+    "G": "#c:ingots/gold",
+    "I": "primalmagick:enchanted_ink",
+    "N": "#c:nuggets/iron",
+    "P": "primalmagick:magitech_parts_basic"
   },
   "mana": {
     "sources": {
@@ -32,7 +25,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:seascribe_pen"
   }
 }

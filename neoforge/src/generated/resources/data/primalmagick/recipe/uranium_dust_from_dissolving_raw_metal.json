@@ -21,15 +21,14 @@
     }
   ],
   "type": "primalmagick:dissolution_tag",
+  "category": "ore",
   "group": "uranium_dust_dissolution",
-  "ingredient": {
-    "tag": "c:raw_materials/uranium"
-  },
+  "ingredient": "#c:raw_materials/uranium",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000
     }
   },
-  "outputAmount": 3,
-  "outputTag": "c:dusts/uranium"
+  "resultAmount": 3,
+  "resultTag": "c:dusts/uranium"
 }

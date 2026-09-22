@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:nether_wart_block",
   "target": "minecraft:warped_wart_block"
 }

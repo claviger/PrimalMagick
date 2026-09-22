@@ -1,8 +1,10 @@
 {
-  "type": "entity_type",
+  "type": "primalmagick:entity_type",
   "target": "minecraft:armadillo",
   "values": {
-    "primalmagick:blood": 5,
-    "primalmagick:sun": 5
+    "sources": {
+      "primalmagick:blood": 5,
+      "primalmagick:sun": 5
+    }
   }
 }

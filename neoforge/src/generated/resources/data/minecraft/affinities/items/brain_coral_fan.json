@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:brain_coral",
   "target": "minecraft:brain_coral_fan"
 }

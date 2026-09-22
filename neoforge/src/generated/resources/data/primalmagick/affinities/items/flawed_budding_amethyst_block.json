@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:amethyst_block",
   "target": "primalmagick:flawed_budding_amethyst_block"
 }

@@ -1,24 +1,12 @@
 {
   "type": "primalmagick:ritual",
   "ingredients": [
-    {
-      "item": "primalmagick:primalite_hoe"
-    },
-    {
-      "item": "primalmagick:essence_shard_sun"
-    },
-    {
-      "item": "primalmagick:essence_shard_sun"
-    },
-    {
-      "item": "primalmagick:rune_sun"
-    },
-    {
-      "item": "primalmagick:mana_prism"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    }
+    "primalmagick:primalite_hoe",
+    "primalmagick:essence_shard_sun",
+    "primalmagick:essence_shard_sun",
+    "primalmagick:rune_sun",
+    "primalmagick:mana_prism",
+    "primalmagick:mana_salts"
   ],
   "instability": 3,
   "mana": {
@@ -27,12 +15,8 @@
     }
   },
   "props": [
-    {
-      "tag": "primalmagick:ritual_candles"
-    },
-    {
-      "block": "primalmagick:incense_brazier"
-    }
+    "#primalmagick:ritual_candles",
+    "primalmagick:incense_brazier"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -44,12 +28,9 @@
   "result": {
     "components": {
       "minecraft:enchantments": {
-        "levels": {
-          "primalmagick:verdant": 2
-        }
+        "primalmagick:verdant": 2
       }
     },
-    "count": 1,
     "id": "primalmagick:primal_hoe"
   }
 }

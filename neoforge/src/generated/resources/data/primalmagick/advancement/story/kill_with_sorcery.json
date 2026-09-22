@@ -20,7 +20,6 @@
       "translate": "advancements.primalmagick.kill_with_sorcery.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:spell_scroll_filled"
     },
     "title": {

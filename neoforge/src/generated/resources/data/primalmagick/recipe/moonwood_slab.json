@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_slab",
   "key": {
-    "#": {
-      "item": "primalmagick:moonwood_planks"
-    }
+    "#": "primalmagick:moonwood_planks"
   },
   "pattern": [
     "###"

@@ -16,7 +16,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:lava_bucket"
       },
       "weight": 1.0
@@ -72,7 +71,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:compass"
       },
       "weight": 1.0
@@ -92,7 +90,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:glowstone"
       },
       "weight": 1.0
@@ -104,7 +101,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:melon"
       },
       "weight": 1.0
@@ -116,7 +112,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:cake"
       },
       "weight": 1.0
@@ -140,7 +135,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:tropical_fish"
       },
       "weight": 1.0
@@ -172,7 +166,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:rabbit_hide"
       },
       "weight": 1.0
@@ -184,7 +177,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:ink_sac"
       },
       "weight": 1.0
@@ -196,7 +188,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:writable_book"
       },
       "weight": 1.0
@@ -208,7 +199,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:granite"
       },
       "weight": 1.0
@@ -220,7 +210,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:andesite"
       },
       "weight": 1.0
@@ -232,7 +221,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:diorite"
       },
       "weight": 1.0
@@ -244,7 +232,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "minecraft:shears"
       },
       "weight": 1.0

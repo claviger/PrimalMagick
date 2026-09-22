@@ -1,10 +1,9 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "expertiseGroup": "primalmagick:imbued_wool_robes",
   "key": {
-    "#": {
-      "tag": "minecraft:wool"
-    }
+    "#": "#minecraft:wool"
   },
   "mana": {
     "sources": {
@@ -28,7 +27,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:imbued_wool_legs"
   }
 }

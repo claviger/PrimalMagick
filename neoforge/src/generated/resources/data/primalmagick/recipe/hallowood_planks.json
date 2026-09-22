@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "primalmagick:hallowood_logs"
-    }
+    "#primalmagick:hallowood_logs"
   ],
   "result": {
     "count": 4,

@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:acacia_wood",
   "target": "minecraft:stripped_acacia_wood"
 }

@@ -1,24 +1,12 @@
 {
   "type": "primalmagick:ritual",
   "ingredients": [
-    {
-      "item": "primalmagick:hexium_trident"
-    },
-    {
-      "item": "primalmagick:essence_shard_blood"
-    },
-    {
-      "item": "primalmagick:essence_shard_blood"
-    },
-    {
-      "item": "primalmagick:rune_blood"
-    },
-    {
-      "item": "primalmagick:mana_prism"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    }
+    "primalmagick:hexium_trident",
+    "primalmagick:essence_shard_blood",
+    "primalmagick:essence_shard_blood",
+    "primalmagick:rune_blood",
+    "primalmagick:mana_prism",
+    "primalmagick:mana_salts"
   ],
   "instability": 3,
   "mana": {
@@ -27,12 +15,8 @@
     }
   },
   "props": [
-    {
-      "block": "primalmagick:bloodletter"
-    },
-    {
-      "block": "primalmagick:bloodletter"
-    }
+    "primalmagick:bloodletter",
+    "primalmagick:bloodletter"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -44,12 +28,9 @@
   "result": {
     "components": {
       "minecraft:enchantments": {
-        "levels": {
-          "primalmagick:rending": 2
-        }
+        "primalmagick:rending": 2
       }
     },
-    "count": 1,
     "id": "primalmagick:forbidden_trident"
   }
 }

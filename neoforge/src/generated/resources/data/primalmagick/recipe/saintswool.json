@@ -1,15 +1,10 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "C": {
-      "item": "primalmagick:hexweave"
-    },
-    "E": {
-      "item": "primalmagick:essence_crystal_hallowed"
-    },
-    "S": {
-      "tag": "c:strings"
-    }
+    "C": "primalmagick:hexweave",
+    "E": "primalmagick:essence_crystal_hallowed",
+    "S": "#c:strings"
   },
   "mana": {
     "sources": {
@@ -29,7 +24,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:saintswool"
   }
 }

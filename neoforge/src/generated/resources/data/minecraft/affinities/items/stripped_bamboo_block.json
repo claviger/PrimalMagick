@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:bamboo_block",
   "target": "minecraft:stripped_bamboo_block"
 }

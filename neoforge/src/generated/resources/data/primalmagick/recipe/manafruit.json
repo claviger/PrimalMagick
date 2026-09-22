@@ -1,15 +1,9 @@
 {
   "type": "primalmagick:ritual",
   "ingredients": [
-    {
-      "item": "minecraft:apple"
-    },
-    {
-      "item": "minecraft:honey_bottle"
-    },
-    {
-      "item": "primalmagick:mana_salts"
-    }
+    "minecraft:apple",
+    "minecraft:honey_bottle",
+    "primalmagick:mana_salts"
   ],
   "instability": 1,
   "mana": {
@@ -22,9 +16,7 @@
     }
   },
   "props": [
-    {
-      "tag": "primalmagick:ritual_candles"
-    }
+    "#primalmagick:ritual_candles"
   ],
   "requirement": {
     "requirement_type": "primalmagick:research",
@@ -34,7 +26,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:manafruit"
   }
 }

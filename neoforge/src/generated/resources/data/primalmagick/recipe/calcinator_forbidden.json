@@ -1,22 +1,13 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "group": "calcinators",
   "key": {
-    "B": {
-      "item": "primalmagick:essence_crystal_blood"
-    },
-    "C": {
-      "item": "primalmagick:calcinator_enchanted"
-    },
-    "I": {
-      "item": "primalmagick:essence_crystal_infernal"
-    },
-    "M": {
-      "item": "primalmagick:marble_smoked"
-    },
-    "V": {
-      "item": "primalmagick:essence_crystal_void"
-    }
+    "B": "primalmagick:essence_crystal_blood",
+    "C": "primalmagick:calcinator_enchanted",
+    "I": "primalmagick:essence_crystal_infernal",
+    "M": "primalmagick:marble_smoked",
+    "V": "primalmagick:essence_crystal_void"
   },
   "mana": {
     "sources": {
@@ -38,7 +29,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:calcinator_forbidden"
   }
 }

@@ -9,7 +9,7 @@
     "hidden": true
   },
   "icon": {
-    "location": "primalmagick:textures/sources/moon.png"
+    "location": "primalmagick:sources/moon"
   },
   "key": {
     "rootKey": "primalmagick:spell_payload_polymorph_sheep"

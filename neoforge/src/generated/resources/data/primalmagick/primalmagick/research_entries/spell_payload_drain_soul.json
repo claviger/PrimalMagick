@@ -6,7 +6,7 @@
   "finales": [],
   "flags": {},
   "icon": {
-    "location": "primalmagick:textures/sources/infernal.png"
+    "location": "primalmagick:sources/infernal"
   },
   "key": {
     "rootKey": "primalmagick:spell_payload_drain_soul"
@@ -27,14 +27,12 @@
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "minecraft:soul_sand"
             }
           },
           {
             "requirement_type": "primalmagick:item_stack",
             "stack": {
-              "count": 1,
               "id": "minecraft:soul_soil"
             }
           },

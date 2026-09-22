@@ -1,14 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
   "baseExpertiseOverride": 0,
   "bonusExpertiseOverride": 0,
+  "category": "arcane",
   "key": {
-    "M": {
-      "item": "primalmagick:marble_hallowed"
-    },
-    "S": {
-      "item": "primalmagick:marble_hallowed_slab"
-    }
+    "M": "primalmagick:marble_hallowed",
+    "S": "primalmagick:marble_hallowed_slab"
   },
   "pattern": [
     "MMM",
@@ -23,7 +20,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:marble_hallowed_bookshelf"
   }
 }

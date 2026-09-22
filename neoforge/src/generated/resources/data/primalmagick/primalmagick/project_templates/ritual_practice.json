@@ -8,7 +8,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:ritual_altar"
       },
       "weight": 10.0
@@ -20,7 +19,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:offering_pedestal"
       },
       "weight": 5.0
@@ -32,7 +30,6 @@
       "matchNBT": false,
       "material_type": "primalmagick:item",
       "stack": {
-        "count": 1,
         "id": "primalmagick:refined_salt"
       },
       "weight": 3.0
@@ -51,7 +48,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "minecraft:apple"
       },
       "weight": 1.0
@@ -70,7 +66,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "minecraft:honey_bottle"
       },
       "weight": 1.0
@@ -89,7 +84,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:mana_salts"
       },
       "weight": 1.0
@@ -123,7 +117,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "minecraft:flint_and_steel"
       },
       "weight": 1.0
@@ -142,7 +135,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:incense_brazier"
       },
       "weight": 1.0
@@ -161,7 +153,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:incense_stick"
       },
       "weight": 1.0
@@ -180,7 +171,6 @@
         }
       },
       "stack": {
-        "count": 1,
         "id": "primalmagick:dowsing_rod"
       },
       "weight": 1.0

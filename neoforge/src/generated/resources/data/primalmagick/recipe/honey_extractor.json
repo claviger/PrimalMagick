@@ -1,18 +1,11 @@
 {
-  "type": "primalmagick:arcane_crafting_shaped",
+  "type": "primalmagick:shaped_arcane",
+  "category": "arcane",
   "key": {
-    "B": {
-      "item": "minecraft:glass_bottle"
-    },
-    "H": {
-      "item": "minecraft:honeycomb"
-    },
-    "P": {
-      "item": "primalmagick:magitech_parts_basic"
-    },
-    "W": {
-      "tag": "minecraft:planks"
-    }
+    "B": "minecraft:glass_bottle",
+    "H": "minecraft:honeycomb",
+    "P": "primalmagick:magitech_parts_basic",
+    "W": "#minecraft:planks"
   },
   "mana": {
     "sources": {
@@ -32,7 +25,6 @@
     }
   },
   "result": {
-    "count": 1,
     "id": "primalmagick:honey_extractor"
   }
 }

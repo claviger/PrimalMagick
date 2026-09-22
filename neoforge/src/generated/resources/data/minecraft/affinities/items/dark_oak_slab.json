@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:oak_slab",
   "target": "minecraft:dark_oak_slab"
 }

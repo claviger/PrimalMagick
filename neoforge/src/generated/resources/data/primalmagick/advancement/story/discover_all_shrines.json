@@ -87,7 +87,6 @@
       "translate": "advancements.primalmagick.discover_all_shrines.description"
     },
     "icon": {
-      "count": 1,
       "id": "minecraft:filled_map"
     },
     "title": {

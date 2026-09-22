@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:white_dye",
   "target": "minecraft:magenta_dye"
 }

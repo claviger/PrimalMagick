@@ -47,7 +47,6 @@
       "translate": "advancements.primalmagick.craft_mana_relay.description"
     },
     "icon": {
-      "count": 1,
       "id": "primalmagick:mana_relay_basic"
     },
     "title": {

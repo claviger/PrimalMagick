@@ -21,15 +21,14 @@
     }
   ],
   "type": "primalmagick:dissolution_tag",
+  "category": "ore",
   "group": "iron_grit_dissolution",
-  "ingredient": {
-    "tag": "c:raw_materials/iron"
-  },
+  "ingredient": "#c:raw_materials/iron",
   "mana": {
     "sources": {
       "primalmagick:earth": 1000
     }
   },
-  "outputAmount": 3,
-  "outputTag": "c:dusts/iron"
+  "resultAmount": 3,
+  "resultTag": "c:dusts/iron"
 }

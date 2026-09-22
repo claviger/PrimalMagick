@@ -1,0 +1,8 @@
+{
+  "parent": "primalmagick:block/pillar_bottom",
+  "textures": {
+    "bottom": "primalmagick:block/sunwood_pillar_base_waxing",
+    "inner": "primalmagick:block/sunwood_pillar_inner_waxing",
+    "side": "primalmagick:block/sunwood_pillar_bottom_waxing"
+  }
+}

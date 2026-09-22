@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "primalmagick:item",
   "base": "minecraft:sunflower",
   "target": "minecraft:lilac"
 }

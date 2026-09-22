@@ -1,5 +1,7 @@
 {
-  "type": "item",
-  "set": {},
+  "type": "primalmagick:item",
+  "set": {
+    "sources": {}
+  },
   "target": "primalmagick:drained_pixie_grand_sky"
 }

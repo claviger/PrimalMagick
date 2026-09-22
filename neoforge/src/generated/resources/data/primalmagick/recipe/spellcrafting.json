@@ -1,4 +1,7 @@
 {
   "type": "primalmagick:spellcrafting_special",
-  "category": "misc"
+  "ingredient": "primalmagick:spell_scroll_blank",
+  "result": {
+    "id": "primalmagick:spell_scroll_filled"
+  }
 }
