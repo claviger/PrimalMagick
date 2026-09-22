@@ -73,52 +73,65 @@ public class EntityTypesPM {
     }
 
     public static final IRegistryItem<EntityType<?>, EntityType<SpellProjectileEntity>> SPELL_PROJECTILE = register("spell_projectile", EntityType.Builder.<SpellProjectileEntity>of(SpellProjectileEntity::new, MobCategory.MISC)
-            .sized(0.25F, 0.25F));
+            .sized(0.25F, 0.25F)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<SpellMineEntity>> SPELL_MINE = register("spell_mine", EntityType.Builder.<SpellMineEntity>of(SpellMineEntity::new, MobCategory.MISC)
-            .sized(0.25F, 0.25F));
+            .sized(0.25F, 0.25F)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<SinCrashEntity>> SIN_CRASH = register("sin_crash", EntityType.Builder.<SinCrashEntity>of(SinCrashEntity::new, MobCategory.MISC)
             .sized(0.25F, 0.25F)
             .clientTrackingRange(4)
-            .updateInterval(10));
+            .updateInterval(10)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<SinCrystalEntity>> SIN_CRYSTAL = register("sin_crystal", EntityType.Builder.<SinCrystalEntity>of(SinCrystalEntity::new, MobCategory.MISC)
             .sized(2.0F, 2.0F)
             .clientTrackingRange(16)
-            .updateInterval(Integer.MAX_VALUE));
+            .updateInterval(Integer.MAX_VALUE)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<FlyingCarpetEntity>> FLYING_CARPET = register("flying_carpet", EntityType.Builder.<FlyingCarpetEntity>of(FlyingCarpetEntity::new, MobCategory.MISC)
             .sized(1.0F, 0.0625F)
-            .clientTrackingRange(10));
+            .clientTrackingRange(10)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<AppleEntity>> APPLE = register("apple", EntityType.Builder.<AppleEntity>of(AppleEntity::new, MobCategory.MISC)
             .sized(0.25F, 0.25F)
             .clientTrackingRange(4)
-            .updateInterval(10));
+            .updateInterval(10)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<IgnyxEntity>> IGNYX = register("ignyx", EntityType.Builder.<IgnyxEntity>of(IgnyxEntity::new, MobCategory.MISC)
             .sized(0.25F, 0.25F)
             .clientTrackingRange(4)
-            .updateInterval(10));
+            .updateInterval(10)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<AlchemicalBombEntity>> ALCHEMICAL_BOMB = register("alchemical_bomb", EntityType.Builder.<AlchemicalBombEntity>of(AlchemicalBombEntity::new, MobCategory.MISC)
             .sized(0.25F, 0.25F)
             .clientTrackingRange(4)
-            .updateInterval(10));
+            .updateInterval(10)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<ManaArrowEntity>> MANA_ARROW = register("mana_arrow", EntityType.Builder.<ManaArrowEntity>of(ManaArrowEntity::new, MobCategory.MISC)
             .sized(0.5F, 0.5F)
             .clientTrackingRange(4)
-            .updateInterval(20));
+            .updateInterval(20)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<AbstractTridentEntity>> PRIMALITE_TRIDENT = register("primalite_trident", EntityType.Builder.<AbstractTridentEntity>of(PrimaliteTridentEntity::new, MobCategory.MISC)
             .sized(0.5F, 0.5F)
             .clientTrackingRange(4)
-            .updateInterval(20));
+            .updateInterval(20)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<AbstractTridentEntity>> HEXIUM_TRIDENT = register("hexium_trident", EntityType.Builder.<AbstractTridentEntity>of(HexiumTridentEntity::new, MobCategory.MISC)
             .sized(0.5F, 0.5F)
             .clientTrackingRange(4)
-            .updateInterval(20));
+            .updateInterval(20)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<AbstractTridentEntity>> HALLOWSTEEL_TRIDENT = register("hallowsteel_trident", EntityType.Builder.<AbstractTridentEntity>of(HallowsteelTridentEntity::new, MobCategory.MISC)
             .sized(0.5F, 0.5F)
             .clientTrackingRange(4)
-            .updateInterval(20));
+            .updateInterval(20)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<AbstractTridentEntity>> FORBIDDEN_TRIDENT = register("forbidden_trident", EntityType.Builder.<AbstractTridentEntity>of(ForbiddenTridentEntity::new, MobCategory.MISC)
             .sized(0.5F, 0.5F)
             .clientTrackingRange(4)
-            .updateInterval(20));
+            .updateInterval(20)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<TreefolkEntity>> TREEFOLK = register("treefolk", EntityType.Builder.of(TreefolkEntity::new, MobCategory.CREATURE)
             .sized(0.6F, 1.95F)
             .clientTrackingRange(8));
@@ -227,7 +240,8 @@ public class EntityTypesPM {
     public static final IRegistryItem<EntityType<?>, EntityType<PixieHouseEntity>> PIXIE_HOUSE = register("pixie_house", EntityType.Builder.of(PixieHouseEntity::new, MobCategory.MISC)
             .sized(0.875F, 2.0F)
             .eyeHeight(1.7775F)
-            .clientTrackingRange(10));
+            .clientTrackingRange(10)
+            .noLootTable());
     public static final IRegistryItem<EntityType<?>, EntityType<BasicGuardianPixieEntity>> BASIC_GUARDIAN_PIXIE = register("guardian_pixie_basic", EntityType.Builder.of(BasicGuardianPixieEntity::new, MobCategory.CREATURE)
             .sized(0.5F, 0.5F)
             .clientTrackingRange(10)
