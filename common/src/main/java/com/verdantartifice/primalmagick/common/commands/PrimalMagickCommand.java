@@ -773,6 +773,7 @@ public class PrimalMagickCommand {
     private static long getRecipeCountForItem(net.minecraft.world.item.crafting.RecipeManager recipeManager, ServerLevel level, Item item) {
         ContextMap context = SlotDisplayContext.fromLevel(level);
         return recipeManager.getRecipes().stream()
+            .filter(rh -> !rh.value().display().isEmpty())
             .filter(rh -> rh.value().display().getFirst().result().resolveForFirstStack(context) instanceof ItemStack stack && stack.is(item))
             .count();
     }
