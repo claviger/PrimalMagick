@@ -56,7 +56,7 @@ public class PlayerAttunements extends AbstractCapability<PlayerAttunements> imp
 
     protected PlayerAttunements(Map<Source, Map<AttunementType, Integer>> attunements, Set<Source> suppressions, long syncTimestamp) {
         super(syncTimestamp);
-        this.attunements.putAll(attunements);
+        attunements.forEach((source, typeMap) -> this.attunements.put(source, new ConcurrentHashMap<>(typeMap)));
         this.suppressions.addAll(suppressions);
     }
 
@@ -73,7 +73,7 @@ public class PlayerAttunements extends AbstractCapability<PlayerAttunements> imp
     @Override
     protected void copyFromInner(@NotNull PlayerAttunements other) {
         this.clear();
-        this.attunements.putAll(other.attunements);
+        other.attunements.forEach((source, typeMap) -> this.attunements.put(source, new ConcurrentHashMap<>(typeMap)));
         this.suppressions.addAll(other.suppressions);
     }
 

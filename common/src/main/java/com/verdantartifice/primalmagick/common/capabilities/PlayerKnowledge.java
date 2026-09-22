@@ -105,7 +105,7 @@ public class PlayerKnowledge extends AbstractCapability<PlayerKnowledge> impleme
         super(syncTimestamp);
         this.research.addAll(research);
         this.stages.putAll(stages);
-        this.flags.putAll(flags);
+        flags.forEach((key, flagSet) -> this.flags.put(key, copyFlags(flagSet)));
         this.knowledge.putAll(knowledge);
         this.topicHistory.addAll(topicHistory);
         this.project = project;
@@ -132,13 +132,20 @@ public class PlayerKnowledge extends AbstractCapability<PlayerKnowledge> impleme
         return "knowledge";
     }
 
+    private static Set<ResearchFlag> copyFlags(Set<ResearchFlag> flagSet) {
+        // Flag sets arrive immutable from the codecs, so give each research key a mutable copy
+        Set<ResearchFlag> retVal = EnumSet.noneOf(ResearchFlag.class);
+        retVal.addAll(flagSet);
+        return retVal;
+    }
+
     @Override
     protected void copyFromInner(@NotNull PlayerKnowledge other) {
         this.clearResearch();
         this.clearKnowledge();
         this.research.addAll(other.research);
         this.stages.putAll(other.stages);
-        this.flags.putAll(other.flags);
+        other.flags.forEach((key, flagSet) -> this.flags.put(key, copyFlags(flagSet)));
         this.knowledge.putAll(other.knowledge);
         this.topicHistory.addAll(other.topicHistory);
         this.project = other.project;
