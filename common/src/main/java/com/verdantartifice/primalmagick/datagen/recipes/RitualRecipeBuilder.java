@@ -22,7 +22,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -41,7 +40,7 @@ import java.util.Optional;
 public class RitualRecipeBuilder {
     protected final HolderGetter<Item> itemGetter;
     protected final HolderGetter<Block> blockGetter;
-    protected final ItemStack result;
+    protected final ItemStackTemplate result;
     protected boolean showNotification = true;
     protected final NonNullList<Ingredient> ingredients = NonNullList.create();
     protected final NonNullList<BlockIngredient> props = NonNullList.create();
@@ -53,10 +52,10 @@ public class RitualRecipeBuilder {
     protected Optional<Identifier> expertiseGroup = Optional.empty();
     protected Optional<ResearchDisciplineKey> disciplineOverride = Optional.empty();
 
-    protected RitualRecipeBuilder(HolderGetter<Item> itemGetter, HolderGetter<Block> blockGetter, ItemStack result) {
+    protected RitualRecipeBuilder(HolderGetter<Item> itemGetter, HolderGetter<Block> blockGetter, ItemStackTemplate result) {
         this.itemGetter = itemGetter;
         this.blockGetter = blockGetter;
-        this.result = result.copy();
+        this.result = result;
     }
     
     /**
@@ -67,7 +66,7 @@ public class RitualRecipeBuilder {
      * @return a new builder for a ritual recipe
      */
     public static RitualRecipeBuilder ritualRecipe(HolderGetter<Item> itemGetter, HolderGetter<Block> blockGetter, ItemLike result, int count) {
-        return new RitualRecipeBuilder(itemGetter, blockGetter, new ItemStack(result, count));
+        return new RitualRecipeBuilder(itemGetter, blockGetter, new ItemStackTemplate(result.asItem(), count));
     }
     
     /**
@@ -86,7 +85,7 @@ public class RitualRecipeBuilder {
      * @param result the output item stack
      * @return a new builder for a ritual recipe
      */
-    public static RitualRecipeBuilder ritualRecipe(HolderGetter<Item> itemGetter, HolderGetter<Block> blockGetter, ItemStack result) {
+    public static RitualRecipeBuilder ritualRecipe(HolderGetter<Item> itemGetter, HolderGetter<Block> blockGetter, ItemStackTemplate result) {
         return new RitualRecipeBuilder(itemGetter, blockGetter, result);
     }
     
@@ -314,7 +313,7 @@ public class RitualRecipeBuilder {
         this.validate(id);
         RitualRecipe recipe = new RitualRecipe(
                 new Recipe.CommonInfo(this.showNotification),
-                ItemStackTemplate.fromNonEmptyStack(this.result),
+                this.result,
                 this.ingredients,
                 this.props,
                 this.getFinalRequirement(),
@@ -339,7 +338,7 @@ public class RitualRecipeBuilder {
      * @param save custom ID for the finished recipe
      */
     public void build(RecipeOutput output, String save) {
-        Identifier id = Services.ITEMS_REGISTRY.getKey(this.result.getItem());
+        Identifier id = Services.ITEMS_REGISTRY.getKey(this.result.item().value());
         ResourceKey<Recipe<?>> saveLoc = ResourceKey.create(Registries.RECIPE, ResourceUtils.loc(save));
         if (saveLoc.identifier().equals(id)) {
             throw new IllegalStateException("Ritual Recipe " + save + " should remove its 'save' argument");
@@ -354,7 +353,7 @@ public class RitualRecipeBuilder {
      * @param output a consumer for the finished recipe
      */
     public void build(RecipeOutput output) {
-        this.build(output, Services.ITEMS_REGISTRY.getKey(this.result.getItem()));
+        this.build(output, Services.ITEMS_REGISTRY.getKey(this.result.item().value()));
     }
     
     /**

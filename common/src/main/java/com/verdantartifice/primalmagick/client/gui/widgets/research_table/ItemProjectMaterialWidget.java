@@ -30,8 +30,8 @@ public class ItemProjectMaterialWidget extends AbstractProjectMaterialWidget<Ite
         // Draw stack icon and, if applicable, amount string
         Minecraft mc = Minecraft.getInstance();
         GuiUtils.renderItemStack(pGuiGraphics, this.material.getItemStack(), this.getX(), this.getY(), this.getMessage().getString(), false);
-        if (this.material.getItemStack().getCount() > 1) {
-            Component amountText = Component.literal(Integer.toString(this.material.getItemStack().getCount()));
+        if (this.material.getStackTemplate().count() > 1) {
+            Component amountText = Component.literal(Integer.toString(this.material.getStackTemplate().count()));
             int width = mc.font.width(amountText);
             pGuiGraphics.pose().pushMatrix();
             pGuiGraphics.pose().translate(this.getX() + 16 - width / 2, this.getY() + 12);
