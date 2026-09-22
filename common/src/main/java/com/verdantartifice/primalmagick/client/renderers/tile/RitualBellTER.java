@@ -1,20 +1,23 @@
 package com.verdantartifice.primalmagick.client.renderers.tile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.verdantartifice.primalmagick.client.renderers.tile.state.RitualBellRenderState;
 import com.verdantartifice.primalmagick.common.tiles.rituals.RitualBellTileEntity;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.model.object.bell.BellModel;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.resources.model.Material;
-import net.minecraft.core.Direction;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.sprite.SpriteGetter;
+import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Custom tile entity renderer for ritual bell blocks.
@@ -22,35 +25,35 @@ import net.minecraft.util.Mth;
  * @author Daedalus4096
  * @see {@link com.verdantartifice.primalmagick.common.blocks.rituals.RitualBellBlock}
  */
-@SuppressWarnings("deprecation")
-public class RitualBellTER implements BlockEntityRenderer<RitualBellTileEntity> {
+public class RitualBellTER implements BlockEntityRenderer<RitualBellTileEntity, RitualBellRenderState> {
     public static final Identifier TEXTURE = ResourceUtils.loc("entity/ritual_bell_body");
-    public static final Material BODY_MATERIAL = new Material(TextureAtlas.LOCATION_BLOCKS, TEXTURE);
-    protected final ModelPart modelRenderer;
+    public static final SpriteId BODY_SPRITE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("ritual_bell_body"));
+
+    private final SpriteGetter sprites;
+    protected final BellModel model;
 
     public RitualBellTER(BlockEntityRendererProvider.Context context) {
-        this.modelRenderer = context.bakeLayer(ModelLayers.BELL).getChild("bell_body");
+        this.sprites = context.sprites();
+        this.model = new BellModel(context.bakeLayer(ModelLayers.BELL));
     }
 
     @Override
-    public void render(RitualBellTileEntity tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        float ticks = (float)tileEntityIn.getRingingTicks() + partialTicks;
-        this.modelRenderer.xRot = 0.0F;
-        this.modelRenderer.zRot = 0.0F;
-        
-        if (tileEntityIn.isRinging()) {
-            float delta = Mth.sin(ticks / (float)Math.PI) / (4.0F + ticks / 3.0F);
-            if (tileEntityIn.getRingDirection() == Direction.NORTH) {
-                this.modelRenderer.xRot = -delta;
-            } else if (tileEntityIn.getRingDirection() == Direction.SOUTH) {
-                this.modelRenderer.xRot = delta;
-            } else if (tileEntityIn.getRingDirection() == Direction.EAST) {
-                this.modelRenderer.zRot = -delta;
-            } else if (tileEntityIn.getRingDirection() == Direction.WEST) {
-                this.modelRenderer.zRot = delta;
-            }
-        }
-        VertexConsumer ivertexbuilder = BODY_MATERIAL.buffer(bufferIn, RenderType::entitySolid);
-        this.modelRenderer.render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn);
+    public RitualBellRenderState createRenderState() {
+        return new RitualBellRenderState();
+    }
+
+    @Override
+    public void extractRenderState(RitualBellTileEntity tileEntityIn, RitualBellRenderState state, float partialTicks, Vec3 cameraPosition,
+            ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
+        BlockEntityRenderer.super.extractRenderState(tileEntityIn, state, partialTicks, cameraPosition, breakProgress);
+        state.ticks = (float)tileEntityIn.getRingingTicks() + partialTicks;
+        state.shakeDirection = tileEntityIn.isRinging() ? tileEntityIn.getRingDirection() : null;
+    }
+
+    @Override
+    public void submit(RitualBellRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
+        BellModel.State modelState = new BellModel.State(state.ticks, state.shakeDirection);
+        submitNodeCollector.submitModel(this.model, modelState, poseStack, state.lightCoords, OverlayTexture.NO_OVERLAY, -1, BODY_SPRITE, this.sprites, 0,
+                state.breakProgress);
     }
 }
