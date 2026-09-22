@@ -20,6 +20,9 @@ public class RecipeUtils {
         if (level == null) {
             throw new NullPointerException("Available level must not be null!");
         }
+        if (recipe.display().isEmpty()) {
+            return ItemStack.EMPTY;
+        }
         ContextMap context = SlotDisplayContext.fromLevel(level);
         return recipe.display().getFirst().result().resolveForFirstStack(context);
     }
