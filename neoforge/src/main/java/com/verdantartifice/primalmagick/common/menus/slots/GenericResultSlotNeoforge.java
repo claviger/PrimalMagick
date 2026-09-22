@@ -1,9 +1,9 @@
 package com.verdantartifice.primalmagick.common.menus.slots;
 
+import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerNeoforge;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.SlotItemHandler;
+import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -11,12 +11,12 @@ import org.jetbrains.annotations.NotNull;
  * 
  * @author Daedalus4096
  */
-public class GenericResultSlotNeoforge extends SlotItemHandler {
+public class GenericResultSlotNeoforge extends ResourceHandlerSlot {
     protected final Player player;
     protected int removeCount = 0;
 
-    public GenericResultSlotNeoforge(Player player, IItemHandler inventoryIn, int index, int xPosition, int yPosition) {
-        super(inventoryIn, index, xPosition, yPosition);
+    public GenericResultSlotNeoforge(Player player, IItemHandlerNeoforge inventoryIn, int index, int xPosition, int yPosition) {
+        super(inventoryIn.getResourceHandler(), inventoryIn.getIndexModifier(), index, xPosition, yPosition);
         this.player = player;
     }
     
@@ -27,23 +27,18 @@ public class GenericResultSlotNeoforge extends SlotItemHandler {
     }
     
     @Override
-    @NotNull
-    public ItemStack remove(int amount) {
-        if (this.hasItem()) {
-            this.removeCount += Math.min(amount, this.getItem().getCount());
-        }
-        return super.remove(amount);
-    }
-    
-    @Override
     public void onTake(@NotNull Player thePlayer, @NotNull ItemStack stack) {
+        if (this.removeCount == 0) {
+            // Quick crafting counts the taken items as it goes; a direct pickup counts them here
+            this.removeCount = stack.getCount();
+        }
         this.checkTakeAchievements(stack);
         super.onTake(thePlayer, stack);
     }
     
     @Override
     public void onQuickCraft(ItemStack oldStackIn, ItemStack newStackIn) {
-        // Restore functionality occluded by SlotItemHandler
+        // Restore functionality occluded by ResourceHandlerSlot
         int delta = newStackIn.getCount() - oldStackIn.getCount();
         if (delta > 0) {
             this.onQuickCraft(newStackIn, delta);

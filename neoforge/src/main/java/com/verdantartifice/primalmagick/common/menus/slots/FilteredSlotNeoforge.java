@@ -1,12 +1,12 @@
 package com.verdantartifice.primalmagick.common.menus.slots;
 
 import com.mojang.datafixers.util.Pair;
+import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerNeoforge;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.SlotItemHandler;
+import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ import java.util.function.Predicate;
  * 
  * @author Daedalus4096
  */
-public class FilteredSlotNeoforge extends SlotItemHandler implements IHasTooltip, IHasCyclingBackgrounds {
+public class FilteredSlotNeoforge extends ResourceHandlerSlot implements IHasTooltip, IHasCyclingBackgrounds {
     private static final int BACKGROUND_CHANGE_TICK_RATE = 30;
 
     private final List<Pair<Predicate<Slot>, Identifier>> backgrounds;
@@ -27,8 +27,8 @@ public class FilteredSlotNeoforge extends SlotItemHandler implements IHasTooltip
     private final Optional<Integer> maxStackSize;
     private int ticks = 0;
 
-    public FilteredSlotNeoforge(IItemHandler pItemHandler, int pSlot, int pX, int pY, FilteredSlotProperties properties) {
-        super(pItemHandler, pSlot, pX, pY);
+    public FilteredSlotNeoforge(IItemHandlerNeoforge pItemHandler, int pSlot, int pX, int pY, FilteredSlotProperties properties) {
+        super(pItemHandler.getResourceHandler(), pItemHandler.getIndexModifier(), pSlot, pX, pY);
         this.filter = properties.getFilter();
         this.tooltip = properties.getTooltip();
         this.maxStackSize = properties.getMaxStackSize();

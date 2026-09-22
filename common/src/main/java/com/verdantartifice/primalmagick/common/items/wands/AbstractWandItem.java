@@ -56,11 +56,16 @@ public abstract class AbstractWandItem extends Item implements IWand {
     }
 
     public ManaStorage getManaStorage(ItemStack stack) {
-        return stack.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY);
+        return stack.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), this.getDefaultManaStorage(stack));
+    }
+
+    protected ManaStorage getDefaultManaStorage(ItemStack stack) {
+        // A wand that has never held mana has no storage component yet, so treat it as empty storage of its own capacity
+        return ManaStorage.emptyWand(this.getMaxMana(stack, null));
     }
 
     private void updateManaStorageWith(ItemStack stack, Source source, int amount) {
-        stack.update(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY, mana -> mana.copyWith(source, amount));
+        stack.update(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), this.getDefaultManaStorage(stack), mana -> mana.copyWith(source, amount));
         stack.set(DataComponentsPM.LAST_UPDATED.get(), System.currentTimeMillis());   // FIXME Is there a better way of marking this stack as dirty?
     }
 

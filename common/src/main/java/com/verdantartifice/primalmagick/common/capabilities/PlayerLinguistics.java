@@ -121,9 +121,9 @@ public class PlayerLinguistics extends AbstractCapability<PlayerLinguistics> imp
         super(syncTimestamp);
         this.comprehension.putAll(comprehension);
         this.vocabulary.putAll(vocabulary);
-        this.booksRead.putAll(booksRead);
-        this.studyCounts.putAll(studyCounts);
-        this.unlocks.putAll(unlocks);
+        booksRead.forEach((languageId, bookIds) -> this.booksRead.put(languageId, new HashSet<>(bookIds)));
+        studyCounts.forEach((bookId, counts) -> this.studyCounts.put(bookId, new ConcurrentHashMap<>(counts)));
+        unlocks.forEach((gridId, nodes) -> this.unlocks.put(gridId, new HashSet<>(nodes)));
         this.gridModificationTimes.putAll(gridModificationTimes);
         this.scribeTableMode = scribeTableMode;
     }
@@ -143,9 +143,9 @@ public class PlayerLinguistics extends AbstractCapability<PlayerLinguistics> imp
         this.clear();
         this.comprehension.putAll(other.comprehension);
         this.vocabulary.putAll(other.vocabulary);
-        this.booksRead.putAll(other.booksRead);
-        this.studyCounts.putAll(other.studyCounts);
-        this.unlocks.putAll(other.unlocks);
+        other.booksRead.forEach((languageId, bookIds) -> this.booksRead.put(languageId, new HashSet<>(bookIds)));
+        other.studyCounts.forEach((bookId, counts) -> this.studyCounts.put(bookId, new ConcurrentHashMap<>(counts)));
+        other.unlocks.forEach((gridId, nodes) -> this.unlocks.put(gridId, new HashSet<>(nodes)));
         this.gridModificationTimes.putAll(other.gridModificationTimes);
         this.scribeTableMode = other.scribeTableMode;
     }
