@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class EntityDataSerializersPM {
     @SuppressWarnings("unchecked")
-    public static final EntityDataSerializer<Optional<EntityReference<Entity>>> OPTIONAL_ENTITY_REFERENCE = register(EntityDataSerializer.<Entity>forValueType(EntityReference.streamCodec().apply(ByteBufCodecs::optional)));
+    public static final EntityDataSerializer<Optional<EntityReference<Entity>>> OPTIONAL_ENTITY_REFERENCE = register(EntityDataSerializer.forValueType(EntityReference.<Entity>streamCodec().apply(ByteBufCodecs::optional)));
 
     private static <T> EntityDataSerializer<T> register(EntityDataSerializer<T> serializer) {
         EntityDataSerializers.registerSerializer(serializer);

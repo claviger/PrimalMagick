@@ -2,12 +2,14 @@ package com.verdantartifice.primalmagick.common.events;
 
 import com.verdantartifice.primalmagick.Constants;
 import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
+import com.verdantartifice.primalmagick.common.init.InitCauldron;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.event.RegisterCauldronInteractionEvent;
 
 import java.util.function.Supplier;
 
@@ -22,6 +24,11 @@ public class ModLifecycleEventListeners {
     public static void commonSetup(FMLCommonSetupEvent event) {
         ModLifecycleEvents.commonSetup(event::enqueueWork);
         event.enqueueWork(ModLifecycleEventListeners::registerFlowerPotPlants);
+    }
+
+    @SubscribeEvent
+    public static void registerCauldronInteractions(RegisterCauldronInteractionEvent.Interaction event) {
+        InitCauldron.initCauldronInteractions(event::register);
     }
 
     private static void registerFlowerPotPlants() {

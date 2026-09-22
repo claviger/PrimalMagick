@@ -34,7 +34,7 @@ public class PlayerCompanions extends AbstractCapability<PlayerCompanions> imple
         ).apply(instance, PlayerCompanions::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, PlayerCompanions> STREAM_CODEC = StreamCodec.composite(
-            Entry.STREAM_CODEC.apply(ByteBufCodecs.list()).map(
+            Entry.STREAM_CODEC.apply(ByteBufCodecs.list()).<Map<CompanionType, LinkedList<EntityReference<LivingEntity>>>>map(
                     entryList -> entryList.stream().collect(ImmutableMap.toImmutableMap(Entry::companionType, Entry::idList)),
                     entryMap -> entryMap.entrySet().stream().map(e -> new Entry(e.getKey(), e.getValue())).toList()
             ), c -> c.companions,

@@ -6,6 +6,9 @@ import com.verdantartifice.primalmagick.common.items.concoctions.ConcoctionItem;
 import com.verdantartifice.primalmagick.common.items.concoctions.SkyglassFlaskItem;
 import com.verdantartifice.primalmagick.common.items.entities.FlyingCarpetItem;
 import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
+import org.apache.commons.lang3.function.TriConsumer;
 
 /**
  * Point of registration for cauldron interactions.
@@ -13,11 +16,14 @@ import net.minecraft.core.cauldron.CauldronInteraction;
  * @author Daedalus4096
  */
 public class InitCauldron {
-    public static void initCauldronInteractions() {
-        CauldronInteraction.EMPTY.map().put(ItemsPM.CONCOCTION.get(), ConcoctionItem.FILL_EMPTY_CAULDRON);
-        CauldronInteraction.WATER.map().put(ItemsPM.FLYING_CARPET.get(), FlyingCarpetItem.DYED_CARPET);
-        CauldronInteraction.WATER.map().put(ItemsPM.SKYGLASS_FLASK.get(), SkyglassFlaskItem.FILL_CONCOCTION);
-        CauldronInteraction.WATER.map().put(ItemsPM.BOMB_CASING.get(), BombCasingItem.FILL_BOMB);
-        CauldronInteraction.WATER.map().put(ItemsPM.CONCOCTION.get(), ConcoctionItem.FILL_WATER_CAULDRON);
+    private static final Identifier EMPTY = Identifier.withDefaultNamespace("empty");
+    private static final Identifier WATER = Identifier.withDefaultNamespace("water");
+
+    public static void initCauldronInteractions(TriConsumer<Identifier, Item, CauldronInteraction> registrar) {
+        registrar.accept(EMPTY, ItemsPM.CONCOCTION.get(), ConcoctionItem.FILL_EMPTY_CAULDRON);
+        registrar.accept(WATER, ItemsPM.FLYING_CARPET.get(), FlyingCarpetItem.DYED_CARPET);
+        registrar.accept(WATER, ItemsPM.SKYGLASS_FLASK.get(), SkyglassFlaskItem.FILL_CONCOCTION);
+        registrar.accept(WATER, ItemsPM.BOMB_CASING.get(), BombCasingItem.FILL_BOMB);
+        registrar.accept(WATER, ItemsPM.CONCOCTION.get(), ConcoctionItem.FILL_WATER_CAULDRON);
     }
 }

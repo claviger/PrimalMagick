@@ -42,14 +42,14 @@ public class PlayerStats extends AbstractCapability<PlayerStats> implements IPla
         ).apply(instance, PlayerStats::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, PlayerStats> STREAM_CODEC = StreamCodec.composite(
-            IdentifiedScoreEntry.STREAM_CODEC.apply(ByteBufCodecs.list()).map(
+            IdentifiedScoreEntry.STREAM_CODEC.apply(ByteBufCodecs.list()).<Map<Identifier, Integer>>map(
                     entryList -> entryList.stream().collect(ImmutableMap.toImmutableMap(IdentifiedScoreEntry::id, IdentifiedScoreEntry::score)),
                     entryMap -> entryMap.entrySet().stream().map(e -> new IdentifiedScoreEntry(e.getKey(), e.getValue())).toList()
             ), s -> s.stats,
-            BlockPos.STREAM_CODEC.apply(ByteBufCodecs.list()).map(ImmutableSet::copyOf, ImmutableList::copyOf), s -> s.discoveredShrines,
-            ResourceKey.streamCodec(Registries.RECIPE).apply(ByteBufCodecs.list()).map(ImmutableSet::copyOf, ImmutableList::copyOf), s -> s.craftedRecipes,
-            Identifier.STREAM_CODEC.apply(ByteBufCodecs.list()).map(ImmutableSet::copyOf, ImmutableList::copyOf), s -> s.craftedGroups,
-            Identifier.STREAM_CODEC.apply(ByteBufCodecs.list()).map(ImmutableSet::copyOf, ImmutableList::copyOf), s -> s.craftedEnchants,
+            BlockPos.STREAM_CODEC.apply(ByteBufCodecs.list()).<Set<BlockPos>>map(ImmutableSet::copyOf, ImmutableList::copyOf), s -> s.discoveredShrines,
+            ResourceKey.streamCodec(Registries.RECIPE).apply(ByteBufCodecs.list()).<Set<ResourceKey<Recipe<?>>>>map(ImmutableSet::copyOf, ImmutableList::copyOf), s -> s.craftedRecipes,
+            Identifier.STREAM_CODEC.apply(ByteBufCodecs.list()).<Set<Identifier>>map(ImmutableSet::copyOf, ImmutableList::copyOf), s -> s.craftedGroups,
+            Identifier.STREAM_CODEC.apply(ByteBufCodecs.list()).<Set<Identifier>>map(ImmutableSet::copyOf, ImmutableList::copyOf), s -> s.craftedEnchants,
             ByteBufCodecs.VAR_LONG, AbstractCapability::getSyncTimestamp,
             PlayerStats::new);
 

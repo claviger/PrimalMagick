@@ -28,7 +28,7 @@ public class PlayerCooldowns extends AbstractCapability<PlayerCooldowns> impleme
         ).apply(instance, PlayerCooldowns::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, PlayerCooldowns> STREAM_CODEC = StreamCodec.composite(
-            Entry.STREAM_CODEC.apply(ByteBufCodecs.list()).map(
+            Entry.STREAM_CODEC.apply(ByteBufCodecs.list()).<Map<CooldownType, Long>>map(
                     entryList -> entryList.stream().collect(ImmutableMap.toImmutableMap(Entry::type, Entry::recoveryTime)),
                     entryMap -> entryMap.entrySet().stream().map(e -> new Entry(e.getKey(), e.getValue())).toList()
             ), c -> c.cooldowns,
