@@ -32,6 +32,7 @@ import org.slf4j.Logger;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -59,6 +60,14 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
             atlas.addSource(new SingleFile(loc));
         } else {
             LOGGER.warn("Attempted to register duplicate single texture {} to atlas", loc.toString());
+        }
+    }
+
+    protected void addSingle(SourceList atlas, Identifier loc, Identifier spriteId) {
+        if (this.trackedSingles.add(spriteId)) {
+            atlas.addSource(new SingleFile(loc, Optional.of(spriteId)));
+        } else {
+            LOGGER.warn("Attempted to register duplicate single texture {} to atlas", spriteId.toString());
         }
     }
 
@@ -99,6 +108,13 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
         this.addSingle(blockAtlas, ManaInjectorTER.FORBIDDEN_FRAME_TEXTURE);
         this.addSingle(blockAtlas, ManaInjectorTER.HEAVENLY_FRAME_TEXTURE);
         this.addSingle(blockAtlas, ManaInjectorTER.BOTTOM_FRAME_TEXTURE);
+
+        // Add item textures used by block models to the block atlas, since a block model may only use one atlas
+        this.addSingle(blockAtlas, ResourceUtils.loc("item/mundane_wand_core"), ResourceUtils.loc("block/wand_assembly_table_core"));
+        this.addSingle(blockAtlas, ResourceUtils.loc("item/iron_wand_cap"), ResourceUtils.loc("block/wand_assembly_table_cap"));
+        this.addSingle(blockAtlas, ResourceUtils.loc("item/wand_gem"), ResourceUtils.loc("block/wand_assembly_table_gem"));
+        this.addSingle(blockAtlas, ResourceUtils.loc("item/arcanometer_antenna"), ResourceUtils.loc("block/arcanometer_antenna"));
+        this.addSingle(blockAtlas, Identifier.withDefaultNamespace("item/feather"), ResourceUtils.loc("block/scribe_table_quill"));
 
         // Add custom item stack renderer textures to the item atlas
         this.addSingle(itemAtlas, SacredShieldItem.TEXTURE);
