@@ -1,5 +1,6 @@
 package com.verdantartifice.primalmagick.common.stats;
 
+import com.verdantartifice.primalmagick.client.recipes.ClientRecipeCache;
 import com.verdantartifice.primalmagick.common.crafting.IHasExpertise;
 import com.verdantartifice.primalmagick.common.research.ResearchDiscipline;
 import com.verdantartifice.primalmagick.common.research.ResearchDisciplines;
@@ -16,10 +17,10 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import org.apache.commons.lang3.mutable.MutableInt;
@@ -29,6 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -56,7 +58,7 @@ public class ExpertiseManager {
             return Optional.of(getThresholdBySpellsCast(tier));
         } else {
             // All other disciplines calculate thresholds based solely on traditional and/or ritual crafting
-            return Optional.of(getThresholdByDisciplineRecipes(level.registryAccess(), level.getRecipeManager(), disciplineKey, tier));
+            return Optional.of(getThresholdByDisciplineRecipes(level.registryAccess(), getRecipes(level), disciplineKey, tier));
         }
     }
     
@@ -72,10 +74,22 @@ public class ExpertiseManager {
         }
     }
     
-    protected static int getThresholdByDisciplineRecipes(RegistryAccess registryAccess, RecipeManager recipeManager, ResearchDisciplineKey discKey, ResearchTier tier) {
+    /**
+     * Gets the recipes to be scanned when computing expertise thresholds in the given level. The server has the full
+     * recipe list, while the client only has those recipes which the server sent it.
+     *
+     * @param level the level in which thresholds are being computed
+     * @return the recipes to be scanned
+     */
+    @NotNull
+    protected static Collection<RecipeHolder<?>> getRecipes(@NotNull Level level) {
+        return level instanceof ServerLevel serverLevel ? serverLevel.recipeAccess().getRecipes() : ClientRecipeCache.getInstance().getRecipes();
+    }
+
+    protected static int getThresholdByDisciplineRecipes(RegistryAccess registryAccess, Collection<RecipeHolder<?>> recipes, ResearchDisciplineKey discKey, ResearchTier tier) {
         Set<Identifier> foundGroups = new HashSet<>();
         MutableInt retVal = new MutableInt(0);
-        for (RecipeHolder<?> recipeHolder : recipeManager.getRecipes()) {
+        for (RecipeHolder<?> recipeHolder : recipes) {
             if (recipeHolder.value() instanceof IHasExpertise expRecipe) {
                 // Only consider recipes with a discipline that matches the given one
                 expRecipe.getResearchDiscipline(registryAccess, recipeHolder.id()).filter(recipeDisc -> recipeDisc.equals(discKey)).ifPresent(recipeDisc -> {

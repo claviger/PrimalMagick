@@ -15,10 +15,11 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -62,15 +63,15 @@ public class ItemAffinity extends AbstractAffinity<ItemAffinity> {
     }
     
     @Override
-    protected CompletableFuture<SourceList> calculateTotalAsync(@Nullable RecipeManager recipeManager, @NotNull RegistryAccess registryAccess, @NotNull List<Identifier> history) {
+    protected CompletableFuture<SourceList> calculateTotalAsync(@Nullable Collection<RecipeHolder<?>> recipes, @NotNull RegistryAccess registryAccess, @NotNull List<Identifier> history) {
         return this.valuesEither.map(
             fv -> CompletableFuture.completedFuture(fv.set),
-            dv -> recipeManager == null ?
+            dv -> recipes == null ?
                     CompletableFuture.completedFuture(SourceList.EMPTY) :
-                    AffinityManager.getInstance().getOrGenerateItemAffinityAsync(dv.base, recipeManager, registryAccess, history)
+                    AffinityManager.getInstance().getOrGenerateItemAffinityAsync(dv.base, recipes, registryAccess, history)
                             .thenCompose(baseEntry -> baseEntry == null ?
                                     CompletableFuture.completedFuture(SourceList.EMPTY) :
-                                    baseEntry.getTotalAsync(recipeManager, registryAccess, history))
+                                    baseEntry.getTotalAsync(recipes, registryAccess, history))
                             .thenApply(baseSources -> baseSources.add(dv.add).remove(dv.remove))
         );
     }

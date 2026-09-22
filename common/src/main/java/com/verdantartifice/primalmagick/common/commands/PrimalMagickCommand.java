@@ -757,9 +757,9 @@ public class PrimalMagickCommand {
                     return;
                 }
 
-                IAffinity affinityData = am.getOrGenerateItemAffinityAsync(itemId, recipeManager, registryAccess, new ArrayList<>()).join();
+                IAffinity affinityData = am.getOrGenerateItemAffinityAsync(itemId, recipeManager.getRecipes(), registryAccess, new ArrayList<>()).join();
                 if (getRecipeCountForItem(recipeManager, level, item) ==0) {
-                        SourceList sources = affinityData.getTotalAsync(recipeManager, registryAccess, new ArrayList<>()).join();
+                        SourceList sources = affinityData.getTotalAsync(recipeManager.getRecipes(), registryAccess, new ArrayList<>()).join();
                         if (sources.isEmpty()){
                                 items.add(item);
                         }
@@ -889,7 +889,7 @@ public class PrimalMagickCommand {
     private static int explainItemAffinity(CommandSourceStack source, ItemInput item) {
         // Get the affinity data for the item
         Identifier itemId = Services.ITEMS_REGISTRY.getKey(item.item().value());
-        IAffinity affinityData = AffinityManager.getInstance().getOrGenerateItemAffinityAsync(itemId, source.getLevel().recipeAccess(), source.registryAccess(), new ArrayList<>()).join();
+        IAffinity affinityData = AffinityManager.getInstance().getOrGenerateItemAffinityAsync(itemId, source.getLevel().recipeAccess().getRecipes(), source.registryAccess(), new ArrayList<>()).join();
         if (affinityData instanceof ItemAffinity itemAffinity) {
             itemAffinity.getSourceRecipe().ifPresentOrElse(
                     recipeLoc -> source.sendSuccess(() -> Component.translatable("commands.primalmagick.affinities.explain.from_recipe", itemId.toString(), recipeLoc.toString()), true),
