@@ -153,7 +153,7 @@ public class GuiUtils {
         guiGraphics.pose().pushMatrix();
 
         // Render the source's icon
-        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, guiGraphics.getSprite(getSourceSpriteId(imageLoc)), x, y, 16, 16);
+        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, imageLoc, x, y, 16, 16);
 
         // Render an amount string for the source, if an amount has been given
         if (amount > 0) {
@@ -169,8 +169,8 @@ public class GuiUtils {
     }
     
     protected static SpriteId getSourceSpriteId(@Nonnull Identifier imageLoc) {
-        // Source icons are stitched directly onto the block atlas, without a sheet prefix
-        return new SpriteId(TextureAtlas.LOCATION_BLOCKS, imageLoc);
+        // Source icons are also stitched onto the block atlas for world-space rendering, under a separate name from their GUI sprites
+        return new SpriteId(TextureAtlas.LOCATION_BLOCKS, imageLoc.withPrefix("world/"));
     }
 
     private static void addBillboardVertex(VertexConsumer consumer, PoseStack.Pose pose, float x, float y, float u, float v) {
