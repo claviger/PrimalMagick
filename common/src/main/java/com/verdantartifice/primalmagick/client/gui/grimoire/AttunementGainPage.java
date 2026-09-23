@@ -5,9 +5,9 @@ import com.verdantartifice.primalmagick.common.rewards.AttunementReward;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
-
-import javax.annotation.Nonnull;
+import java.awt.Color;
 import java.util.List;
+import javax.annotation.Nonnull;
 
 /**
  * Grimoire page showing the attunements gained from a research stage.
@@ -36,7 +36,7 @@ public class AttunementGainPage extends AbstractPage {
         Minecraft mc = Minecraft.getInstance();
         for (AttunementReward reward : this.rewards) {
             Component fullText = reward.getDescription(mc.player);
-            guiGraphics.text(mc.font, fullText, x - 3 + (side * 140), y - 6, 0, false);
+            guiGraphics.text(mc.font, fullText, x - 3 + (side * 140), y - 6, Color.BLACK.getRGB(), false);
             y += mc.font.lineHeight;
         }
     }

@@ -28,7 +28,7 @@ public class ObservationProjectMaterialWidget extends AbstractProjectMaterialWid
         pGuiGraphics.pose().pushMatrix();
         pGuiGraphics.pose().translate(this.getX(), this.getY());
         pGuiGraphics.pose().scale(0.0625F, 0.0625F);
-        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, KnowledgeType.OBSERVATION.getIconLocation(), 0, 0, 16, 16);
+        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, KnowledgeType.OBSERVATION.getIconLocation(), 0, 0, 256, 256);
         pGuiGraphics.pose().popMatrix();
         
         // Draw base class stuff

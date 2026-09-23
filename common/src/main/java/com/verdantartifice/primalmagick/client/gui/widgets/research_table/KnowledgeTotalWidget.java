@@ -64,7 +64,7 @@ public class KnowledgeTotalWidget extends AbstractWidget {
         pGuiGraphics.pose().pushMatrix();
         pGuiGraphics.pose().translate(this.getX(), this.getY());
         pGuiGraphics.pose().scale(0.0625F, 0.0625F);
-        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, this.type.getIconLocation(), 0, 0, 16, 16);
+        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, this.type.getIconLocation(), 0, 0, 256, 256);
         pGuiGraphics.pose().popMatrix();
         
         // Draw progress bar background
