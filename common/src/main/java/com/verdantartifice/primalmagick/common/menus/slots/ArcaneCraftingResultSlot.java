@@ -91,11 +91,13 @@ public class ArcaneCraftingResultSlot extends Slot {
     
     @Override
     public void onTake(@NotNull Player thePlayer, @NotNull ItemStack stack) {
+        // Awarding the used recipe in the crafting handlers clears it from the result container, so capture it first
+        RecipeHolder<?> recipeUsed = this.container instanceof RecipeCraftingHolder holder ? holder.getRecipeUsed() : null;
         this.checkTakeAchievements(stack);
         
         // Do additional processing if the crafted recipe was arcane
-        if (this.container instanceof RecipeCraftingHolder holder) {
-            if (holder.getRecipeUsed() != null && holder.getRecipeUsed().value() instanceof IArcaneRecipe arcaneRecipe) {
+        if (recipeUsed != null) {
+            if (recipeUsed.value() instanceof IArcaneRecipe arcaneRecipe) {
                 // Consume the recipe's mana cost from the wand
                 SourceList manaCosts = arcaneRecipe.getManaCosts();
                 if (!manaCosts.isEmpty()) {
