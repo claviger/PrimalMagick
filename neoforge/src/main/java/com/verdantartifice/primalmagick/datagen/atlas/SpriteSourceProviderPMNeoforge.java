@@ -18,7 +18,6 @@ import com.verdantartifice.primalmagick.common.menus.ResearchTableMenu;
 import com.verdantartifice.primalmagick.common.menus.RunecarvingTableMenu;
 import com.verdantartifice.primalmagick.common.menus.WandAssemblyTableMenu;
 import com.verdantartifice.primalmagick.common.menus.slots.IWandSlot;
-import com.verdantartifice.primalmagick.common.sources.Source;
 import com.verdantartifice.primalmagick.common.sources.Sources;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import net.minecraft.client.renderer.texture.atlas.sources.PalettedPermutations;
@@ -121,7 +120,6 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
         this.addSingle(itemAtlas, PixieHouseSpecialRenderer.TEXTURE);
 
         // Add source textures to the block atlas
-        this.addSingle(guiAtlas, Source.getUnknownImage());
         Sources.getAllSorted().forEach(source -> this.addSingle(guiAtlas, source.getImage()));
 
         // Add robe armor trim item overlays to the item atlas
