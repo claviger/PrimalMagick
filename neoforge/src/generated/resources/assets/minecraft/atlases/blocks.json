@@ -76,6 +76,56 @@
       "type": "minecraft:single",
       "resource": "minecraft:item/feather",
       "sprite": "primalmagick:block/scribe_table_quill"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/research/research_unknown",
+      "sprite": "primalmagick:world/research/research_unknown"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/sources/earth",
+      "sprite": "primalmagick:world/sources/earth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/sources/sea",
+      "sprite": "primalmagick:world/sources/sea"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/sources/sky",
+      "sprite": "primalmagick:world/sources/sky"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/sources/sun",
+      "sprite": "primalmagick:world/sources/sun"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/sources/moon",
+      "sprite": "primalmagick:world/sources/moon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/sources/blood",
+      "sprite": "primalmagick:world/sources/blood"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/sources/infernal",
+      "sprite": "primalmagick:world/sources/infernal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/sources/void",
+      "sprite": "primalmagick:world/sources/void"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:gui/sprites/sources/hallowed",
+      "sprite": "primalmagick:world/sources/hallowed"
     }
   ]
 }
