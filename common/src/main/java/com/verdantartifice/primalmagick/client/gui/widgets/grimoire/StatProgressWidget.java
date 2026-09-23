@@ -54,7 +54,7 @@ public class StatProgressWidget extends AbstractWidget {
         pGuiGraphics.pose().pushMatrix();
         pGuiGraphics.pose().translate(this.getX(), this.getY());
         pGuiGraphics.pose().scale(0.0625F, 0.0625F);
-        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, this.iconLoc, 0, 0, 32, 32);
+        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, this.iconLoc, 0, 0, 256, 256);
         pGuiGraphics.pose().popMatrix();
         
         if (this.isComplete) {
@@ -115,7 +115,7 @@ public class StatProgressWidget extends AbstractWidget {
 
     protected int getProgressionScaled() {
         // Determine how much of the progress meter to show
-        int i = this.currentValue;
+        int i = Math.min(this.currentValue, this.maxValue);
         int j = this.maxValue;
         return j != 0 && i != 0 ? (int)(16.0D * ((double)i / (double)j)) : 0;
     }
