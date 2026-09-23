@@ -197,7 +197,7 @@ public record SpellPackage(String name, ConfiguredSpellVehicle<?> vehicle, Confi
     @Nullable
     public Identifier getIcon() {
         if (this.payload != null) {
-            return this.payload.getComponent().getSource().getImage();
+            return this.payload.getComponent().getSource().getImageTexture();
         }
         return null;
     }

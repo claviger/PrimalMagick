@@ -18,7 +18,7 @@ public abstract class ManaFontBlockItem extends BlockItem {
     protected static final List<ManaFontBlockItem> FONTS = new ArrayList<>();
 
     public ManaFontBlockItem(Block block, Item.Properties properties) {
-        super(block, properties);
+        super(block, properties.useBlockDescriptionPrefix());
         FONTS.add(this);
     }
 

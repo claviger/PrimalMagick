@@ -6,6 +6,6 @@ import net.minecraft.world.level.block.Block;
 
 public abstract class ManaInjectorBlockItem extends BlockItem {
     public ManaInjectorBlockItem(Block block, Item.Properties properties) {
-        super(block, properties);
+        super(block, properties.useBlockDescriptionPrefix());
     }
 }

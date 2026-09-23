@@ -16,7 +16,7 @@ public abstract class BurnableBlockItem extends BlockItem {
     protected final int burnTicks;
     
     public BurnableBlockItem(Block blockIn, int burnTicks, Properties builder) {
-        super(blockIn, builder);
+        super(blockIn, builder.useBlockDescriptionPrefix());
         this.burnTicks = burnTicks;
     }
 }

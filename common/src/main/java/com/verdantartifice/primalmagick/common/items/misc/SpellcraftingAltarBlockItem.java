@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.Block;
 public abstract class SpellcraftingAltarBlockItem extends BlockItem {
 
     public SpellcraftingAltarBlockItem(Block block, Item.Properties properties) {
-        super(block, properties);
+        super(block, properties.useBlockDescriptionPrefix());
     }
 
 }

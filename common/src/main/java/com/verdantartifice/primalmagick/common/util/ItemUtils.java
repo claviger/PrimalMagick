@@ -37,8 +37,7 @@ public class ItemUtils {
         if (stack == null || stack.isEmpty()) {
             return 0;
         }
-        ItemStack temp = stack.copyWithCount(1);
-        return Objects.hash(Services.ITEMS_REGISTRY.getKey(temp.getItem()), temp.getComponents());
+        return Objects.hash(Services.ITEMS_REGISTRY.getKey(stack.getItem()), stack.getComponentsPatch());
     }
     
     /**
