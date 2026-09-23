@@ -431,27 +431,27 @@ public class ResearchEntries {
         register(context, TERRESTRIAL_MAGICK, key -> ResearchEntry.builder(key).discipline(discipline).parent(ATTUNEMENTS)
                 .stage().end()
                 .build());
-        register(context, SOURCE_EARTH, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.EARTH.getImage()).parent(TERRESTRIAL_MAGICK)
+        register(context, SOURCE_EARTH, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.EARTH.getImageTexture()).parent(TERRESTRIAL_MAGICK)
                 .stage().requiredItem(CommonTags.Items.OBSIDIANS).requiredItem(CommonTags.Items.GEMS_DIAMOND).requiredObservations(1).requiredStat(StatsPM.SHRINE_FOUND_EARTH, 1)
                         .requiredResearch(ENV_EARTH).requiredStat(StatsPM.MANA_SPENT_EARTH, 100).end()
                 .stage().attunement(Sources.EARTH, 5).end()
                 .build());
-        register(context, SOURCE_SEA, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SEA.getImage()).parent(TERRESTRIAL_MAGICK)
+        register(context, SOURCE_SEA, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SEA.getImageTexture()).parent(TERRESTRIAL_MAGICK)
                 .stage().requiredItem(ItemTagsPM.CORAL_BLOCKS).requiredItem(Items.ICE).requiredObservations(1).requiredStat(StatsPM.SHRINE_FOUND_SEA, 1)
                         .requiredResearch(ENV_SEA).requiredStat(StatsPM.MANA_SPENT_SEA, 100).end()
                 .stage().attunement(Sources.SEA, 5).end()
                 .build());
-        register(context, SOURCE_SKY, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SKY.getImage()).parent(TERRESTRIAL_MAGICK)
+        register(context, SOURCE_SKY, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SKY.getImageTexture()).parent(TERRESTRIAL_MAGICK)
                 .stage().requiredItem(Items.BAMBOO).requiredItem(ItemTags.LEAVES).requiredObservations(1).requiredStat(StatsPM.SHRINE_FOUND_SKY, 1)
                         .requiredResearch(ENV_SKY).requiredStat(StatsPM.MANA_SPENT_SKY, 100).end()
                 .stage().attunement(Sources.SKY, 5).end()
                 .build());
-        register(context, SOURCE_SUN, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SUN.getImage()).parent(TERRESTRIAL_MAGICK)
+        register(context, SOURCE_SUN, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SUN.getImageTexture()).parent(TERRESTRIAL_MAGICK)
                 .stage().requiredItem(ItemTagsPM.SUNWOOD_LOGS).requiredItem(CommonTags.Items.SANDSTONE_BLOCKS).requiredObservations(1).requiredStat(StatsPM.SHRINE_FOUND_SUN, 1)
                         .requiredResearch(ENV_SUN).requiredStat(StatsPM.MANA_SPENT_SUN, 100).end()
                 .stage().attunement(Sources.SUN, 5).end()
                 .build());
-        register(context, SOURCE_MOON, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.MOON.getImage()).parent(TERRESTRIAL_MAGICK)
+        register(context, SOURCE_MOON, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.MOON.getImageTexture()).parent(TERRESTRIAL_MAGICK)
                 .stage().requiredItem(ItemTagsPM.MOONWOOD_LOGS).requiredItem(CommonTags.Items.MUSHROOMS).requiredObservations(1).requiredStat(StatsPM.SHRINE_FOUND_MOON, 1)
                         .requiredResearch(ENV_MOON).requiredStat(StatsPM.MANA_SPENT_MOON, 100).end()
                 .stage().attunement(Sources.MOON, 5).end()
@@ -459,22 +459,22 @@ public class ResearchEntries {
         register(context, FORBIDDEN_MAGICK, key -> ResearchEntry.builder(key).discipline(discipline).parent(TERRESTRIAL_MAGICK).parent(DISCOVER_FORBIDDEN)
                 .stage().end()
                 .build());
-        register(context, SOURCE_BLOOD, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.BLOOD.getImage()).parent(FORBIDDEN_MAGICK).parent(DISCOVER_BLOOD)
+        register(context, SOURCE_BLOOD, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.BLOOD.getImageTexture()).parent(FORBIDDEN_MAGICK).parent(DISCOVER_BLOOD)
                 .stage().requiredItem(CommonTags.Items.BONES).requiredItem(ItemsPM.BLOODY_FLESH.get()).requiredObservations(1).requiredStat(StatsPM.MANA_SPENT_BLOOD, 100).end()
                 .stage().attunement(Sources.BLOOD, 5).end()
                 .build());
-        register(context, SOURCE_INFERNAL, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.INFERNAL.getImage()).parent(FORBIDDEN_MAGICK).parent(DISCOVER_INFERNAL)
+        register(context, SOURCE_INFERNAL, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.INFERNAL.getImageTexture()).parent(FORBIDDEN_MAGICK).parent(DISCOVER_INFERNAL)
                 .stage().requiredItem(CommonTags.Items.RODS_BLAZE).requiredItem(Items.SOUL_SAND).requiredObservations(1).requiredStat(StatsPM.MANA_SPENT_INFERNAL, 100).end()
                 .stage().attunement(Sources.INFERNAL, 5).end()
                 .build());
-        register(context, SOURCE_VOID, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.VOID.getImage()).parent(FORBIDDEN_MAGICK).parent(DISCOVER_VOID)
+        register(context, SOURCE_VOID, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.VOID.getImageTexture()).parent(FORBIDDEN_MAGICK).parent(DISCOVER_VOID)
                 .stage().requiredItem(CommonTags.Items.END_STONES).requiredItem(CommonTags.Items.ENDER_PEARLS).requiredObservations(1).requiredStat(StatsPM.MANA_SPENT_VOID, 100).end()
                 .stage().attunement(Sources.VOID, 5).end()
                 .build());
         register(context, HEAVENLY_MAGICK, key -> ResearchEntry.builder(key).discipline(discipline).parent(FORBIDDEN_MAGICK).parent(DISCOVER_HALLOWED)
                 .stage().end()
                 .build());
-        register(context, SOURCE_HALLOWED, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.HALLOWED.getImage()).parent(HEAVENLY_MAGICK)
+        register(context, SOURCE_HALLOWED, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.HALLOWED.getImageTexture()).parent(HEAVENLY_MAGICK)
                 .stage().requiredItem(CommonTags.Items.NETHER_STARS).requiredObservations(1).requiredStat(StatsPM.MANA_SPENT_HALLOWED, 100).end()
                 .stage().attunement(Sources.HALLOWED, 5).end()
                 .build());
@@ -1085,92 +1085,92 @@ public class ResearchEntries {
                 .stage().requiredTheories(2).end()
                 .stage().end()
                 .build());
-        register(context, SPELL_PAYLOAD_FROST, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SEA.getImage()).parent(BASIC_SORCERY)
+        register(context, SPELL_PAYLOAD_FROST, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SEA.getImageTexture()).parent(BASIC_SORCERY)
                 .stage().requiredObservations(1).end()
                 .stage().attunement(Sources.SEA, 1).end()
                 .build());
-        register(context, SPELL_PAYLOAD_LIGHTNING, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SKY.getImage()).parent(BASIC_SORCERY)
+        register(context, SPELL_PAYLOAD_LIGHTNING, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SKY.getImageTexture()).parent(BASIC_SORCERY)
                 .stage().requiredObservations(1).end()
                 .stage().attunement(Sources.SKY, 1).end()
                 .build());
-        register(context, SPELL_PAYLOAD_SOLAR, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SUN.getImage()).parent(SPELL_PAYLOAD_LIGHTNING)
+        register(context, SPELL_PAYLOAD_SOLAR, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SUN.getImageTexture()).parent(SPELL_PAYLOAD_LIGHTNING)
                 .stage().requiredObservations(1).end()
                 .stage().attunement(Sources.SUN, 1).end()
                 .build());
-        register(context, SPELL_PAYLOAD_LUNAR, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.MOON.getImage()).parent(SPELL_PAYLOAD_FROST)
+        register(context, SPELL_PAYLOAD_LUNAR, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.MOON.getImageTexture()).parent(SPELL_PAYLOAD_FROST)
                 .stage().requiredObservations(1).end()
                 .stage().attunement(Sources.MOON, 1).end()
                 .build());
-        register(context, SPELL_PAYLOAD_BLOOD, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.BLOOD.getImage()).parent(EXPERT_SORCERY).parent(DISCOVER_BLOOD)
+        register(context, SPELL_PAYLOAD_BLOOD, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.BLOOD.getImageTexture()).parent(EXPERT_SORCERY).parent(DISCOVER_BLOOD)
                 .stage().requiredTheories(1).end()
                 .stage().attunement(Sources.BLOOD, 1).end()
                 .build());
-        register(context, SPELL_PAYLOAD_FLAME, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.INFERNAL.getImage()).parent(EXPERT_SORCERY).parent(DISCOVER_INFERNAL)
+        register(context, SPELL_PAYLOAD_FLAME, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.INFERNAL.getImageTexture()).parent(EXPERT_SORCERY).parent(DISCOVER_INFERNAL)
                 .stage().requiredTheories(1).end()
                 .stage().attunement(Sources.INFERNAL, 1).end()
                 .build());
-        register(context, SPELL_PAYLOAD_VOID, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.VOID.getImage()).parent(EXPERT_SORCERY).parent(DISCOVER_VOID)
+        register(context, SPELL_PAYLOAD_VOID, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.VOID.getImageTexture()).parent(EXPERT_SORCERY).parent(DISCOVER_VOID)
                 .stage().requiredTheories(1).end()
                 .stage().attunement(Sources.VOID, 1).end()
                 .build());
-        register(context, SPELL_PAYLOAD_HOLY, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.HALLOWED.getImage()).parent(MASTER_SORCERY).parent(DISCOVER_HALLOWED)
+        register(context, SPELL_PAYLOAD_HOLY, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.HALLOWED.getImageTexture()).parent(MASTER_SORCERY).parent(DISCOVER_HALLOWED)
                 .stage().requiredTheories(2).end()
                 .stage().attunement(Sources.HALLOWED, 1).end()
                 .build());
-        register(context, SPELL_PAYLOAD_BREAK, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.EARTH.getImage()).parent(EXPERT_SORCERY)
+        register(context, SPELL_PAYLOAD_BREAK, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.EARTH.getImageTexture()).parent(EXPERT_SORCERY)
                 .stage().requiredStat(StatsPM.BLOCKS_BROKEN_BAREHANDED, 50).requiredTheories(1).end()
                 .stage().attunement(Sources.EARTH, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_CONJURE_STONE, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.EARTH.getImage()).parent(EXPERT_SORCERY)
+        register(context, SPELL_PAYLOAD_CONJURE_STONE, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.EARTH.getImageTexture()).parent(EXPERT_SORCERY)
                 .stage().requiredVanillaItemUsedStat(Items.COBBLESTONE, 100).requiredTheories(1).end()
                 .stage().attunement(Sources.EARTH, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_CONJURE_WATER, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SEA.getImage()).parent(EXPERT_SORCERY).parent(SPELL_PAYLOAD_FROST)
+        register(context, SPELL_PAYLOAD_CONJURE_WATER, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SEA.getImageTexture()).parent(EXPERT_SORCERY).parent(SPELL_PAYLOAD_FROST)
                 .stage().requiredResearch(DROWN_A_LITTLE).requiredTheories(1).end()
                 .stage().attunement(Sources.SEA, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_SHEAR, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SKY.getImage()).parent(EXPERT_SORCERY)
+        register(context, SPELL_PAYLOAD_SHEAR, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SKY.getImageTexture()).parent(EXPERT_SORCERY)
                 .parent(SPELL_PAYLOAD_LIGHTNING).parent(SPELL_PAYLOAD_BREAK)
                 .stage().requiredTheories(1).end()
                 .stage().attunement(Sources.SKY, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_FLIGHT, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SKY.getImage()).parent(SUPREME_SORCERY).parent(SPELL_PAYLOAD_LIGHTNING)
+        register(context, SPELL_PAYLOAD_FLIGHT, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SKY.getImageTexture()).parent(SUPREME_SORCERY).parent(SPELL_PAYLOAD_LIGHTNING)
                 .stage().requiredVanillaCustomStat(Stats.AVIATE_ONE_CM, 100000, IconDefinition.of(Items.ELYTRA)).requiredTheories(3).end()
                 .stage().attunement(Sources.SKY, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_CONJURE_LIGHT, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SUN.getImage()).parent(EXPERT_SORCERY).parent(SPELL_PAYLOAD_SOLAR)
+        register(context, SPELL_PAYLOAD_CONJURE_LIGHT, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SUN.getImageTexture()).parent(EXPERT_SORCERY).parent(SPELL_PAYLOAD_SOLAR)
                 .stage().requiredVanillaItemUsedStat(Items.TORCH, 100).requiredTheories(1).end()
                 .stage().attunement(Sources.SUN, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_HEALING, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SUN.getImage()).parent(EXPERT_SORCERY).parent(SPELL_PAYLOAD_SOLAR)
+        register(context, SPELL_PAYLOAD_HEALING, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.SUN.getImageTexture()).parent(EXPERT_SORCERY).parent(SPELL_PAYLOAD_SOLAR)
                 .stage().requiredResearch(NEAR_DEATH_EXPERIENCE).requiredTheories(1).end()
                 .stage().attunement(Sources.SUN, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_POLYMORPH, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.MOON.getImage()).parent(EXPERT_SORCERY).parent(SPELL_PAYLOAD_LUNAR)
+        register(context, SPELL_PAYLOAD_POLYMORPH, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.MOON.getImageTexture()).parent(EXPERT_SORCERY).parent(SPELL_PAYLOAD_LUNAR)
                 .stage().requiredResearch(FURRY_FRIEND).requiredTheories(1).end()
                 .stage().attunement(Sources.MOON, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_POLYMORPH_SHEEP, key -> ResearchEntry.builder(key).discipline(discipline).flags(ResearchEntry.Flags.builder().hidden().finaleExempt()).icon(Sources.MOON.getImage())
+        register(context, SPELL_PAYLOAD_POLYMORPH_SHEEP, key -> ResearchEntry.builder(key).discipline(discipline).flags(ResearchEntry.Flags.builder().hidden().finaleExempt()).icon(Sources.MOON.getImageTexture())
                 .stage().end()
                 .build());
-        register(context, SPELL_PAYLOAD_CONJURE_ANIMAL, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.BLOOD.getImage()).parent(MASTER_SORCERY).parent(SPELL_PAYLOAD_BLOOD)
+        register(context, SPELL_PAYLOAD_CONJURE_ANIMAL, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.BLOOD.getImageTexture()).parent(MASTER_SORCERY).parent(SPELL_PAYLOAD_BLOOD)
                 .stage().requiredResearch(BREED_ANIMAL).requiredTheories(2).end()
                 .stage().attunement(Sources.BLOOD, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_CONJURE_LAVA, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.INFERNAL.getImage()).parent(MASTER_SORCERY)
+        register(context, SPELL_PAYLOAD_CONJURE_LAVA, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.INFERNAL.getImageTexture()).parent(MASTER_SORCERY)
                 .parent(SPELL_PAYLOAD_CONJURE_WATER).parent(SPELL_PAYLOAD_FLAME)
                 .stage().requiredResearch(FEEL_THE_BURN).requiredTheories(2).end()
                 .stage().attunement(Sources.INFERNAL, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_DRAIN_SOUL, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.INFERNAL.getImage()).parent(MASTER_SORCERY).parent(SPELL_PAYLOAD_FLAME)
+        register(context, SPELL_PAYLOAD_DRAIN_SOUL, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.INFERNAL.getImageTexture()).parent(MASTER_SORCERY).parent(SPELL_PAYLOAD_FLAME)
                 .stage().requiredItem(Items.SOUL_SAND).requiredItem(Items.SOUL_SOIL).requiredTheories(2).end()
                 .stage().attunement(Sources.INFERNAL, 3).recipe(ItemsPM.SOUL_GEM.get()).end()
                 .build());
-        register(context, SPELL_PAYLOAD_TELEPORT, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.VOID.getImage()).parent(MASTER_SORCERY).parent(SPELL_PAYLOAD_VOID)
+        register(context, SPELL_PAYLOAD_TELEPORT, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.VOID.getImageTexture()).parent(MASTER_SORCERY).parent(SPELL_PAYLOAD_VOID)
                 .stage().requiredStat(StatsPM.DISTANCE_TELEPORTED_CM, 10000).requiredTheories(2).end()
                 .stage().attunement(Sources.VOID, 3).end()
                 .build());
-        register(context, SPELL_PAYLOAD_CONSECRATE, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.HALLOWED.getImage()).parent(SUPREME_SORCERY).parent(SPELL_PAYLOAD_HOLY)
+        register(context, SPELL_PAYLOAD_CONSECRATE, key -> ResearchEntry.builder(key).discipline(discipline).icon(Sources.HALLOWED.getImageTexture()).parent(SUPREME_SORCERY).parent(SPELL_PAYLOAD_HOLY)
                 .stage().requiredResearch(SCAN_NETHER_STAR).requiredTheories(3).end()
                 .stage().attunement(Sources.HALLOWED, 3).end()
                 .build());

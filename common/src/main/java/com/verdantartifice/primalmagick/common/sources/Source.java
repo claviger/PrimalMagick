@@ -117,6 +117,13 @@ public class Source implements StringRepresentable {
     }
     
     @NotNull
+    /**
+     * Get the location of the texture file behind this source's sprite, for drawing outside of the GUI atlas.
+     */
+    public Identifier getImageTexture() {
+        return getSpriteTexture(this.image);
+    }
+
     public Identifier getImage() {
         return this.image;
     }
@@ -134,6 +141,18 @@ public class Source implements StringRepresentable {
     @NotNull
     public static Identifier getUnknownImage() {
         return UNKNOWN_IMAGE;
+    }
+
+    /**
+     * Get the location of the texture file behind the unknown source sprite, for drawing outside of the GUI atlas.
+     */
+    @NotNull
+    public static Identifier getUnknownImageTexture() {
+        return getSpriteTexture(UNKNOWN_IMAGE);
+    }
+
+    private static Identifier getSpriteTexture(Identifier sprite) {
+        return sprite.withPath(path -> "textures/gui/sprites/" + path + ".png");
     }
     
     @NotNull

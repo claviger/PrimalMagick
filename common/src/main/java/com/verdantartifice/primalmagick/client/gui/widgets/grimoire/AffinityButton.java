@@ -10,7 +10,7 @@ public class AffinityButton extends AbstractTopicButton {
     protected Source source;
 
     public AffinityButton(int widthIn, int heightIn, Component text, GrimoireScreen screen, Source source) {
-        super(widthIn, heightIn, 123, 12, text, screen, GenericIndexIcon.of(source.getImage(), false), new AffinityButton.Handler());
+        super(widthIn, heightIn, 123, 12, text, screen, GenericIndexIcon.of(source.getImageTexture(), false), new AffinityButton.Handler());
         this.source = source;
     }
 
