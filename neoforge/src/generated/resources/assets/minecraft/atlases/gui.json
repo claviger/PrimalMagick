@@ -58,10 +58,6 @@
     },
     {
       "type": "minecraft:single",
-      "resource": "primalmagick:research/research_unknown"
-    },
-    {
-      "type": "minecraft:single",
       "resource": "primalmagick:sources/earth"
     },
     {
