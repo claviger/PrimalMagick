@@ -3,6 +3,7 @@ package com.verdantartifice.primalmagick.common.menus;
 import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
 import com.verdantartifice.primalmagick.common.crafting.IArcaneRecipe;
 import com.verdantartifice.primalmagick.common.crafting.RecipeTypesPM;
+import com.verdantartifice.primalmagick.common.crafting.ShapedArcaneRecipe;
 import com.verdantartifice.primalmagick.common.crafting.WandInventory;
 import com.verdantartifice.primalmagick.common.menus.slots.ArcaneCraftingResultSlot;
 import com.verdantartifice.primalmagick.common.network.PacketHandler;
@@ -10,27 +11,31 @@ import com.verdantartifice.primalmagick.common.network.packets.misc.SetActiveRec
 import com.verdantartifice.primalmagick.common.wands.IWand;
 import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
+import net.minecraft.recipebook.ServerPlaceRecipe;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.AbstractCraftingMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.VisibleForTesting;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -178,6 +183,52 @@ public class ArcaneWorkbenchMenu extends AbstractCraftingMenu implements IRecipe
         this.placingRecipe = false;
         if (this.player instanceof ServerPlayer spe) {
             slotChangedCraftingGrid(this, level, spe, this.craftSlots, this.resultSlots);
+        }
+    }
+
+    @Override
+    @NotNull
+    public RecipeBookMenu.PostPlaceAction handlePlacement(boolean useMaxItems, boolean allowDroppingItemsToClear, @NotNull RecipeHolder<?> recipe,
+                                                         @NotNull ServerLevel level, @NotNull Inventory inventory) {
+        // The base crafting menu only places vanilla crafting recipes, so place any recipe that takes a crafting grid input here
+        @SuppressWarnings("unchecked")
+        RecipeHolder<Recipe<CraftingInput>> typedRecipe = (RecipeHolder<Recipe<CraftingInput>>)recipe;
+
+        // Vanilla only lays out vanilla shaped recipes by their pattern, so give shaped arcane recipes a grid the size of their pattern
+        int placeWidth = recipe.value() instanceof ShapedArcaneRecipe shaped ? shaped.getWidth() : this.getGridWidth();
+        int placeHeight = recipe.value() instanceof ShapedArcaneRecipe shaped ? shaped.getHeight() : this.getGridHeight();
+        List<Slot> gridSlots = this.getInputGridSlots();
+        List<Slot> placeSlots = new ArrayList<>();
+        for (int y = 0; y < placeHeight; y++) {
+            for (int x = 0; x < placeWidth; x++) {
+                placeSlots.add(gridSlots.get(x + (y * this.getGridWidth())));
+            }
+        }
+
+        this.beginPlacingRecipe();
+        try {
+            return ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<Recipe<CraftingInput>>() {
+                @Override
+                public void fillCraftSlotsStackedContents(@NotNull StackedItemContents stackedContents) {
+                    ArcaneWorkbenchMenu.this.fillCraftSlotsStackedContents(stackedContents);
+                }
+
+                @Override
+                public void clearCraftingContent() {
+                    ArcaneWorkbenchMenu.this.resultSlots.clearContent();
+                    ArcaneWorkbenchMenu.this.craftSlots.clearContent();
+                }
+
+                @Override
+                public boolean recipeMatches(@NotNull RecipeHolder<Recipe<CraftingInput>> holder) {
+                    return holder.value().matches(ArcaneWorkbenchMenu.this.craftSlots.asCraftInput(), ArcaneWorkbenchMenu.this.owner().level());
+                }
+            }, placeWidth, placeHeight, placeSlots, gridSlots, inventory, typedRecipe, useMaxItems, allowDroppingItemsToClear);
+        } finally {
+            this.placingRecipe = false;
+            if (this.player instanceof ServerPlayer spe) {
+                slotChangedCraftingGrid(this, level, spe, this.craftSlots, this.resultSlots);
+            }
         }
     }
 
