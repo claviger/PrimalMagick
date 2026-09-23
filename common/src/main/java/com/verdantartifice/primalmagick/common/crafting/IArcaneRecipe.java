@@ -35,13 +35,6 @@ public interface IArcaneRecipe extends Recipe<CraftingInput>, IHasManaCost, IHas
         return ArcaneCraftingBookCategory.ARCANE;
     }
 
-    @Override
-    default boolean isSpecial() {
-        // FIXME Is this still needed?
-        // Return true to keep arcane recipes from showing up in the vanilla recipe book
-        return true;
-    }
-
     default NonNullList<ItemStack> getRemainingItems(CraftingInput input) {
         return CraftingUtils.defaultCraftingReminder(input);
     }

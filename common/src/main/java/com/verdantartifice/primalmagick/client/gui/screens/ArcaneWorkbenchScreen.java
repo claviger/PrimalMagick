@@ -19,7 +19,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import org.jetbrains.annotations.NotNull;
-
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -98,7 +98,7 @@ public class ArcaneWorkbenchScreen extends AbstractRecipeBookScreen<ArcaneWorkbe
             int width = this.font.width(text.getString());
             int x = 1 + (this.imageWidth - width) / 2;
             int y = 10 + (16 - this.font.lineHeight) / 2;
-            graphics.text(this.font, text, x, y, 0, false);
+            graphics.text(this.font, text, x, y, Color.BLACK.getRGB(), false);
         }
     }
 

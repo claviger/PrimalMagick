@@ -40,12 +40,6 @@ public interface IDissolutionRecipe extends Recipe<SingleRecipeInput>, IHasManaC
         };
     }
 
-    @Override
-    default boolean isSpecial() {
-        // Return true to keep arcane recipes from showing up in the vanilla recipe book
-        return true;
-    }
-
     record DissolutionCraftingBookInfo(DissolutionBookCategory category, String group) implements Recipe.BookInfo<DissolutionBookCategory> {
         public static final MapCodec<IDissolutionRecipe.DissolutionCraftingBookInfo> MAP_CODEC = BookInfo.mapCodec(DissolutionBookCategory.CODEC, DissolutionBookCategory.MISC, IDissolutionRecipe.DissolutionCraftingBookInfo::new);
         public static final StreamCodec<RegistryFriendlyByteBuf, IDissolutionRecipe.DissolutionCraftingBookInfo> STREAM_CODEC = BookInfo.streamCodec(DissolutionBookCategory.STREAM_CODEC, IDissolutionRecipe.DissolutionCraftingBookInfo::new);

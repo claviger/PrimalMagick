@@ -64,7 +64,7 @@ public class RecipeExpertiseWidget extends AbstractWidget {
         pGuiGraphics.pose().pushMatrix();
         pGuiGraphics.pose().translate(this.getX(), this.getY());
         pGuiGraphics.pose().scale(0.0625F, 0.0625F);
-        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, ICON_LOC, 0, 0, 32, 32);
+        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, ICON_LOC, 0, 0, 256, 256);
         pGuiGraphics.pose().popMatrix();
 
         // Don't allow the widget to become focused, to prevent keyboard navigation from moving the active tooltip

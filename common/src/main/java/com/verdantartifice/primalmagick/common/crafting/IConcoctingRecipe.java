@@ -30,12 +30,6 @@ public interface IConcoctingRecipe extends Recipe<CraftingInput>, IHasManaCost, 
 
     ConcoctingBookCategory category();
 
-    @Override
-    default boolean isSpecial() {
-        // Return true to keep arcane recipes from showing up in the vanilla recipe book
-        return true;
-    }
-
     default NonNullList<ItemStack> getRemainingItems(CraftingInput input) {
         return CraftingUtils.defaultCraftingReminder(input);
     }
