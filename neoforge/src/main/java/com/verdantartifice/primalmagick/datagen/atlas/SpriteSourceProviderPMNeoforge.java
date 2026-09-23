@@ -18,6 +18,7 @@ import com.verdantartifice.primalmagick.common.menus.ResearchTableMenu;
 import com.verdantartifice.primalmagick.common.menus.RunecarvingTableMenu;
 import com.verdantartifice.primalmagick.common.menus.WandAssemblyTableMenu;
 import com.verdantartifice.primalmagick.common.menus.slots.IWandSlot;
+import com.verdantartifice.primalmagick.common.sources.Source;
 import com.verdantartifice.primalmagick.common.sources.Sources;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import net.minecraft.client.renderer.texture.atlas.sources.PalettedPermutations;
@@ -70,6 +71,11 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
         }
     }
 
+    protected static Identifier getGuiSpriteTexture(Identifier sprite) {
+        // Sprites in the GUI atlas come from the gui/sprites texture directory
+        return sprite.withPrefix("gui/sprites/");
+    }
+
     protected void addSources() {
         // TODO Can this be extracted into a common super layer?
         SourceList guiAtlas = this.atlas(AtlasIds.GUI);
@@ -119,8 +125,9 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
         this.addSingle(itemAtlas, SacredShieldItem.TEXTURE);
         this.addSingle(itemAtlas, PixieHouseSpecialRenderer.TEXTURE);
 
-        // Add source textures to the block atlas
-        Sources.getAllSorted().forEach(source -> this.addSingle(guiAtlas, source.getImage()));
+        // Add source textures to the block atlas for rendering in the world
+        this.addSingle(blockAtlas, getGuiSpriteTexture(Source.getUnknownImage()), Source.getUnknownImage().withPrefix("world/"));
+        Sources.getAllSorted().forEach(source -> this.addSingle(blockAtlas, getGuiSpriteTexture(source.getImage()), source.getImage().withPrefix("world/")));
 
         // Add robe armor trim item overlays to the item atlas
         itemAtlas.addSource(new PalettedPermutations(
