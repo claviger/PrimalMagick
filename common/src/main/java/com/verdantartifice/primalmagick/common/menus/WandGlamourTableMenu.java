@@ -12,6 +12,7 @@ import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -25,10 +26,12 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
 
 public class WandGlamourTableMenu extends AbstractContainerMenu {
@@ -196,15 +199,15 @@ public class WandGlamourTableMenu extends AbstractContainerMenu {
         if (!world.isClientSide() && this.player instanceof ServerPlayer spe) {
             ServerLevel level = spe.level();
             ItemStack stack = ItemStack.EMPTY;
-            Optional<RecipeHolder<?>> opt = level.recipeAccess().byKey(WandGlamourRecipe.WAND_KEY);
-            if (opt.isEmpty()) {
-                opt = level.recipeAccess().byKey(WandGlamourRecipe.STAFF_KEY);
-            }
-            if (opt.isPresent() && opt.get().value() instanceof WandGlamourRecipe recipe) {
-                // If the inputs are valid, show the output
-                CraftingInput craftInput = this.componentInv.asCraftInput();
-                if (recipe.matches(craftInput, world)) {
-                    stack = recipe.assemble(craftInput);
+            for (ResourceKey<Recipe<?>> key : List.of(WandGlamourRecipe.WAND_KEY, WandGlamourRecipe.STAFF_KEY)) {
+                Optional<RecipeHolder<?>> opt = level.recipeAccess().byKey(key);
+                if (opt.isPresent() && opt.get().value() instanceof WandGlamourRecipe recipe) {
+                    // If the inputs are valid, show the output
+                    CraftingInput craftInput = this.componentInv.asCraftInput();
+                    if (recipe.matches(craftInput, world)) {
+                        stack = recipe.assemble(craftInput);
+                        break;
+                    }
                 }
             }
             

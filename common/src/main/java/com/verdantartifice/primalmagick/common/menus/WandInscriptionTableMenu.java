@@ -12,6 +12,7 @@ import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -23,10 +24,12 @@ import net.minecraft.world.inventory.ResultSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -171,14 +174,14 @@ public class WandInscriptionTableMenu extends AbstractContainerMenu {
     protected void slotChangedCraftingGrid(Level world) {
         if (!world.isClientSide() && this.player instanceof ServerPlayer spe) {
             ItemStack stack = ItemStack.EMPTY;
-            Optional<RecipeHolder<?>> opt = spe.level().recipeAccess().byKey(WandInscriptionRecipe.WAND_KEY);
-            if (opt.isEmpty()) {
-                opt = spe.level().recipeAccess().byKey(WandInscriptionRecipe.STAFF_KEY);
-            }
-            if (opt.isPresent() && opt.get().value() instanceof WandInscriptionRecipe recipe) {
-                // If the inputs are valid for inscribing a spell onto a wand or staff, show the output
-                if (recipe.matches(this.componentInv.asCraftInput(), world)) {
-                    stack = recipe.assemble(this.componentInv.asCraftInput());
+            for (ResourceKey<Recipe<?>> key : List.of(WandInscriptionRecipe.WAND_KEY, WandInscriptionRecipe.STAFF_KEY)) {
+                Optional<RecipeHolder<?>> opt = spe.level().recipeAccess().byKey(key);
+                if (opt.isPresent() && opt.get().value() instanceof WandInscriptionRecipe recipe) {
+                    // If the inputs are valid for inscribing a spell onto a wand or staff, show the output
+                    if (recipe.matches(this.componentInv.asCraftInput(), world)) {
+                        stack = recipe.assemble(this.componentInv.asCraftInput());
+                        break;
+                    }
                 }
             }
             
