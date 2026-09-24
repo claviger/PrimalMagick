@@ -94,7 +94,7 @@ public class RunecarvingTableScreen extends AbstractContainerScreenPM<Runecarvin
             int l = j / 4;
             int i1 = top + l * 18 + 2;
             SlotDisplay buttonIcon = visibleRecipes.get(i).value().display().getFirst().result();
-            guiGraphics.setTooltipForNextFrame(this.font, buttonIcon.resolveForFirstStack(context), k, i1);
+            guiGraphics.item(buttonIcon.resolveForFirstStack(context), k, i1);
         }
     }
     
