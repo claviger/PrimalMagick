@@ -19,7 +19,6 @@ public class ModelProviderPMNeoforge extends AbstractModelProviderPM {
     // it and save our own instead, overriding all the methods that would look for it to use this field
     // instead.
     private final String modIdentifier;
-    private static final java.util.Set<String> LOCAL_SKIP = java.util.Set.of("skyglass_pane", "stained_skyglass_pane_black", "stained_skyglass_pane_blue", "stained_skyglass_pane_brown", "stained_skyglass_pane_cyan", "stained_skyglass_pane_gray", "stained_skyglass_pane_green", "stained_skyglass_pane_light_blue", "stained_skyglass_pane_light_gray", "stained_skyglass_pane_lime", "stained_skyglass_pane_magenta", "stained_skyglass_pane_orange", "stained_skyglass_pane_pink", "stained_skyglass_pane_purple", "stained_skyglass_pane_red", "stained_skyglass_pane_white", "stained_skyglass_pane_yellow");
 
     public ModelProviderPMNeoforge(PackOutput output, String modId) {
         super(output);
@@ -34,12 +33,12 @@ public class ModelProviderPMNeoforge extends AbstractModelProviderPM {
 
     @Override
     protected Stream<? extends Holder<Block>> getKnownBlocks() {
-        return BuiltInRegistries.BLOCK.listElements().filter(holder -> holder.getKey().identifier().getNamespace().equals(this.modIdentifier) && !LOCAL_SKIP.contains(holder.getKey().identifier().getPath()));
+        return BuiltInRegistries.BLOCK.listElements().filter(holder -> holder.getKey().identifier().getNamespace().equals(this.modIdentifier));
     }
 
     @Override
     protected Stream<? extends Holder<Item>> getKnownItems() {
-        return BuiltInRegistries.ITEM.listElements().filter(holder -> holder.getKey().identifier().getNamespace().equals(this.modIdentifier) && !LOCAL_SKIP.contains(holder.getKey().identifier().getPath()));
+        return BuiltInRegistries.ITEM.listElements().filter(holder -> holder.getKey().identifier().getNamespace().equals(this.modIdentifier));
     }
 
     @Override
