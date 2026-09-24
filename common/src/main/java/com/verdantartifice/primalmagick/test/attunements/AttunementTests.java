@@ -20,6 +20,7 @@ import com.verdantartifice.primalmagick.common.wands.WandGem;
 import com.verdantartifice.primalmagick.platform.Services;
 import com.verdantartifice.primalmagick.test.AbstractBaseTest;
 import com.verdantartifice.primalmagick.test.TestRandomSource;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.damagesource.DamageSource;
@@ -29,6 +30,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.mutable.MutableFloat;
 
 import java.util.Objects;
@@ -201,6 +203,7 @@ public class AttunementTests extends AbstractBaseTest {
 
         // Create a test player
         var player = makeMockServerPlayer(helper);
+        player.setPos(Vec3.atBottomCenterOf(helper.absolutePos(BlockPos.ZERO)));
 
         // Set starting test conditions
         player.getFoodData().setFoodLevel(startFood);
@@ -222,6 +225,7 @@ public class AttunementTests extends AbstractBaseTest {
 
         // Create a test player
         var player = makeMockServerPlayer(helper);
+        player.setPos(Vec3.atBottomCenterOf(helper.absolutePos(BlockPos.ZERO)));
 
         // Set starting test conditions
         player.getFoodData().setFoodLevel(startFood);

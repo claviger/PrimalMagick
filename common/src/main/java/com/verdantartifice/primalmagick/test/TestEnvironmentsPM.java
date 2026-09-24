@@ -9,6 +9,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.clock.WorldClock;
 import net.minecraft.world.clock.WorldClocks;
+import net.minecraft.world.level.gamerules.GameRuleMap;
+import net.minecraft.world.level.gamerules.GameRules;
 
 public class TestEnvironmentsPM {
     public static final ResourceKey<TestEnvironmentDefinition<?>> DEFAULT = ResourceKey.create(Registries.TEST_ENVIRONMENT, Identifier.withDefaultNamespace("default"));
@@ -18,7 +20,8 @@ public class TestEnvironmentsPM {
 
     public static void bootstrap(BootstrapContext<TestEnvironmentDefinition<?>> context) {
         HolderGetter<WorldClock> clocks = context.lookup(Registries.WORLD_CLOCK);
-        context.register(DAYTIME_ENV, new TestEnvironmentDefinition.ClockTime(clocks.getOrThrow(WorldClocks.OVERWORLD), 6000));
-        context.register(NIGHTTIME_ENV, new TestEnvironmentDefinition.ClockTime(clocks.getOrThrow(WorldClocks.OVERWORLD), 18000));
+        GameRuleMap frozenTime = new GameRuleMap.Builder().set(GameRules.ADVANCE_TIME, false).build();
+        context.register(DAYTIME_ENV, new TestEnvironmentDefinition.AllOf(new TestEnvironmentDefinition.ClockTime(clocks.getOrThrow(WorldClocks.OVERWORLD), 6000), new TestEnvironmentDefinition.SetGameRules(frozenTime)));
+        context.register(NIGHTTIME_ENV, new TestEnvironmentDefinition.AllOf(new TestEnvironmentDefinition.ClockTime(clocks.getOrThrow(WorldClocks.OVERWORLD), 18000), new TestEnvironmentDefinition.SetGameRules(frozenTime)));
     }
 }
