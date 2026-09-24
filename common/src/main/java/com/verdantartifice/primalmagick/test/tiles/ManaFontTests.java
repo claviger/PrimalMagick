@@ -76,5 +76,7 @@ public class ManaFontTests extends AbstractBaseTest {
 
         // Confirm that the font recharged one tick's worth of mana
         assertValueEqual(helper, fontTile.getMana(), fontTile.getManaRechargedPerTick(), "Final font mana");
+
+        helper.succeed();
     }
 }
