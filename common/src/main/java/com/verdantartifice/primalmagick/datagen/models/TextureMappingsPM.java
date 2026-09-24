@@ -60,7 +60,7 @@ public class TextureMappingsPM {
         return TextureMapping.getBlockTexture(block, connection.suffix());
     }
 
-    private static Material getConnectedBlockTexture(Identifier baseId, TextureConnection connection) {
+    public static Material getConnectedBlockTexture(Identifier baseId, TextureConnection connection) {
         return new Material(baseId.withPath(path -> "block/" + path + connection.suffix()));
     }
 }
