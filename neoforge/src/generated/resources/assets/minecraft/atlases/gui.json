@@ -55,42 +55,6 @@
     {
       "type": "minecraft:single",
       "resource": "primalmagick:item/empty_flask_slot"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "primalmagick:sources/earth"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "primalmagick:sources/sea"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "primalmagick:sources/sky"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "primalmagick:sources/sun"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "primalmagick:sources/moon"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "primalmagick:sources/blood"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "primalmagick:sources/infernal"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "primalmagick:sources/void"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "primalmagick:sources/hallowed"
     }
   ]
 }
