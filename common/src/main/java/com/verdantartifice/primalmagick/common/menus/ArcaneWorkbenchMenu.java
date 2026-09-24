@@ -241,7 +241,7 @@ public class ArcaneWorkbenchMenu extends AbstractCraftingMenu implements IRecipe
         if (arcaneOptional.isPresent()) {
             // If the inputs match a defined arcane recipe, show the output if the player can use it
             RecipeHolder<IArcaneRecipe> recipe = arcaneOptional.get();
-            display = recipe.value().display().getFirst();
+            display = recipe.value().display().isEmpty() ? null : recipe.value().display().getFirst();
             if (menu.canUseArcaneRecipe(resultSlots, player, recipe)) {
                 ItemStack recipeResult = recipe.value().assemble(input);
                 if (recipeResult.isItemEnabled(level.enabledFeatures())) {
@@ -253,7 +253,7 @@ public class ArcaneWorkbenchMenu extends AbstractCraftingMenu implements IRecipe
             if (vanillaOptional.isPresent()) {
                 // If the inputs match a defined vanilla recipe, show the output if the player can use it
                 RecipeHolder<CraftingRecipe> recipe = vanillaOptional.get();
-                display = recipe.value().display().getFirst();
+                display = recipe.value().display().isEmpty() ? null : recipe.value().display().getFirst();
                 if (resultSlots.setRecipeUsed(player, recipe)) {
                     ItemStack recipeResult = recipe.value().assemble(input);
                     if (recipeResult.isItemEnabled(level.enabledFeatures())) {
