@@ -60,16 +60,16 @@ public class ArcaneWorkbenchTests extends AbstractBaseTest {
         Sources.getAll().forEach(s -> {
             var maxCentimana = wand.getMaxMana(wandStack, s);
             wand.addMana(wandStack, s, maxCentimana);
-            assertValueEqual(helper, wand.getMana(wandStack, s), maxCentimana, "Wand starting mana for " + s.getId());
+            assertValueEqual(helper, maxCentimana, wand.getMana(wandStack, s), "Wand starting mana for " + s.getId());
         });
         assertFalse(helper, wand.getAllMana(wandStack).isEmpty(), "Wand mana is empty after adding mana");
         menu.getSlots().get(10).safeInsert(wandStack);
 
         // Take the result that should be there and confirm it's the right type of item
-        ItemStack slottedWandStack = menu.getSlots().get(10).getItem(); // Inserting into the slot modifies the original item stack
-        assertFalse(helper, wand.getAllMana(slottedWandStack).isEmpty(), "Wand mana is empty before taking recipe output");
+        assertFalse(helper, wand.getAllMana(menu.getWand()).isEmpty(), "Wand mana is empty before taking recipe output");
         var output = menu.quickMoveStack(player, 0);
         assertTrue(helper, output.is(ItemsPM.MANA_SALTS.get()), "Output item not of expected type");
+        ItemStack slottedWandStack = menu.getWand(); // The wand slot only exposes copies of its stack, so read the wand from the menu
         assertFalse(helper, wand.getAllMana(slottedWandStack).isEmpty(), "Wand mana is empty after taking recipe output");
 
         // Confirm that crafting materials were consumed
@@ -79,15 +79,15 @@ public class ArcaneWorkbenchTests extends AbstractBaseTest {
 
         // Confirm that mana was deducted from the wand correctly
         // FIXME Don't use hard-coded mana values for expectations
-        assertValueEqual(helper, wand.getMana(slottedWandStack, Sources.EARTH), 2000, "Wand remaining earth mana");
-        assertValueEqual(helper, wand.getMana(slottedWandStack, Sources.SEA), 2000, "Wand remaining sea mana");
-        assertValueEqual(helper, wand.getMana(slottedWandStack, Sources.SKY), 2000, "Wand remaining sky mana");
-        assertValueEqual(helper, wand.getMana(slottedWandStack, Sources.SUN), 2000, "Wand remaining sun mana");
-        assertValueEqual(helper, wand.getMana(slottedWandStack, Sources.MOON), 2000, "Wand remaining moon mana");
-        assertValueEqual(helper, wand.getMana(slottedWandStack, Sources.BLOOD), 2500, "Wand remaining blood mana");
-        assertValueEqual(helper, wand.getMana(slottedWandStack, Sources.INFERNAL), 2500, "Wand remaining infernal mana");
-        assertValueEqual(helper, wand.getMana(slottedWandStack, Sources.VOID), 2500, "Wand remaining void mana");
-        assertValueEqual(helper, wand.getMana(slottedWandStack, Sources.HALLOWED), 2500, "Wand remaining hallowed mana");
+        assertValueEqual(helper, 2000, wand.getMana(slottedWandStack, Sources.EARTH), "Wand remaining earth mana");
+        assertValueEqual(helper, 2000, wand.getMana(slottedWandStack, Sources.SEA), "Wand remaining sea mana");
+        assertValueEqual(helper, 2000, wand.getMana(slottedWandStack, Sources.SKY), "Wand remaining sky mana");
+        assertValueEqual(helper, 2000, wand.getMana(slottedWandStack, Sources.SUN), "Wand remaining sun mana");
+        assertValueEqual(helper, 2000, wand.getMana(slottedWandStack, Sources.MOON), "Wand remaining moon mana");
+        assertValueEqual(helper, 2500, wand.getMana(slottedWandStack, Sources.BLOOD), "Wand remaining blood mana");
+        assertValueEqual(helper, 2500, wand.getMana(slottedWandStack, Sources.INFERNAL), "Wand remaining infernal mana");
+        assertValueEqual(helper, 2500, wand.getMana(slottedWandStack, Sources.VOID), "Wand remaining void mana");
+        assertValueEqual(helper, 2500, wand.getMana(slottedWandStack, Sources.HALLOWED), "Wand remaining hallowed mana");
 
         // Confirm that expertise was granted to the player
         assertTrue(helper, ExpertiseManager.getValue(player, ResearchDisciplines.MANAWEAVING).orElse(-1) == 5, "Final expertise is not as expected for test player");

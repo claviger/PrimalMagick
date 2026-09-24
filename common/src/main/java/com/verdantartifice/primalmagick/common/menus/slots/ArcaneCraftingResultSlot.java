@@ -35,6 +35,7 @@ public class ArcaneCraftingResultSlot extends Slot {
     protected final WandInventory wandInventory;
     protected final Player player;
     protected int amountCrafted;
+    protected RecipeHolder<?> lastRecipeUsed;
 
     public ArcaneCraftingResultSlot(Player player, CraftingContainer craftingInventory, WandInventory wandInventory, Container inventoryIn, int slotIndex, int xPosition, int yPosition) {
         super(inventoryIn, slotIndex, xPosition, yPosition);
@@ -70,6 +71,11 @@ public class ArcaneCraftingResultSlot extends Slot {
     
     @Override
     protected void checkTakeAchievements(@NotNull ItemStack stack) {
+        // Awarding the used recipe clears it from the result container, so remember it for when the output is taken
+        if (this.container instanceof RecipeCraftingHolder recipeHolder && recipeHolder.getRecipeUsed() != null) {
+            this.lastRecipeUsed = recipeHolder.getRecipeUsed();
+        }
+        
         // Fire crafting handlers
         if (this.amountCrafted > 0) {
             stack.onCraftedBy(this.player, this.amountCrafted);
@@ -91,9 +97,9 @@ public class ArcaneCraftingResultSlot extends Slot {
     
     @Override
     public void onTake(@NotNull Player thePlayer, @NotNull ItemStack stack) {
-        // Awarding the used recipe in the crafting handlers clears it from the result container, so capture it first
-        RecipeHolder<?> recipeUsed = this.container instanceof RecipeCraftingHolder holder ? holder.getRecipeUsed() : null;
         this.checkTakeAchievements(stack);
+        RecipeHolder<?> recipeUsed = this.lastRecipeUsed;
+        this.lastRecipeUsed = null;
         
         // Do additional processing if the crafted recipe was arcane
         if (recipeUsed != null) {
