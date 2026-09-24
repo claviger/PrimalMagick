@@ -62,7 +62,7 @@ public abstract class AbstractToastPM implements Toast {
         if (this.getSubtitleText().isEmpty() && bodyLines.size() == 1) {
             // If only one body line is needed and there's no subtitle, render the title and body together without a fade
             pGuiGraphics.text(font, this.getTitleText(), x, 7, this.getTitleColor() | 0xFF000000, false);
-            pGuiGraphics.text(font, bodyLines.getFirst(), x, 18, this.getBodyColor(), false);
+            pGuiGraphics.text(font, bodyLines.getFirst(), x, 18, this.getBodyColor() | 0xFF000000, false);
         } else {
             // Otherwise, render toast body with a fade
             this.extractToastBodyWithFade(pGuiGraphics, font, pTimeSinceLastVisible, x, bodyLines);

@@ -35,6 +35,6 @@ public class CalcinatorScreen extends AbstractContainerScreenPM<CalcinatorMenu> 
         
         // Animate cook progress indicator
         int cook = this.menu.getCookProgressionScaled();
-        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_SPRITE, 24, 16, 0, 0, this.leftPos + 75, this.topPos + 44, cook, 16);
+        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_SPRITE, 24, 16, 0, 0, this.leftPos + 57, this.topPos + 34, cook, 16);
     }
 }
