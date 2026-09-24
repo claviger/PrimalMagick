@@ -236,7 +236,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         this.createHorizontalExistingBlock(BlocksPM.WAND_ASSEMBLY_TABLE.get(), blockModels);
         this.createSimpleExistingBlock(BlocksPM.WOOD_TABLE.get(), blockModels);
         this.createHorizontalExistingBlockWithRightHandAdjustments(BlocksPM.ANALYSIS_TABLE.get(), blockModels);
-        this.createCalcinatorBlock(BlocksPM.ESSENCE_FURNACE.get(), blockModels, TexturedModel.ORIENTABLE);
+        this.createHorizontalExistingLitBlock(BlocksPM.ESSENCE_FURNACE.get(), blockModels);
         this.createCalcinatorBlock(BlocksPM.CALCINATOR_BASIC.get(), blockModels, TexturedModel.ORIENTABLE);
         this.createCalcinatorBlock(BlocksPM.CALCINATOR_ENCHANTED.get(), blockModels, TexturedModel.ORIENTABLE);
         this.createCalcinatorBlock(BlocksPM.CALCINATOR_FORBIDDEN.get(), blockModels, TexturedModel.ORIENTABLE);
@@ -717,6 +717,14 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block, variant).with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING));
     }
 
+    private void createHorizontalExistingLitBlock(Block block, BlockModelGenerators blockModels) {
+        MultiVariant normalVariant = BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(block));
+        MultiVariant litVariant = BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(block, "_on"));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
+                .with(BlockModelGenerators.createBooleanModelDispatch(BlockStateProperties.LIT, litVariant, normalVariant))
+                .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING));
+    }
+
     private void createHorizontalExistingBlockWithFlatItem(Block block, BlockModelGenerators blockModels) {
         blockModels.registerSimpleFlatItemModel(block.asItem());
         this.createHorizontalExistingBlock(block, blockModels);
@@ -833,7 +841,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         blockModels.registerSimpleFlatItemModel(BlocksPM.EMBERFLOWER.get(), "_front");
         MultiVariant topModel = BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(BlocksPM.EMBERFLOWER.get(), "_top"));
         MultiVariant bottomModel = BlockModelGenerators.plainVariant(
-                blockModels.createSuffixedVariant(BlocksPM.EMBERFLOWER.get(), "_bottom", BlockModelGenerators.PlantType.NOT_TINTED.getCross(), TextureMapping::cross)
+                blockModels.createSuffixedVariant(BlocksPM.EMBERFLOWER.get(), "_bottom", BlockModelGenerators.PlantType.NOT_TINTED.getCross(), texture -> TextureMapping.cross(TextureMapping.getBlockTexture(Blocks.SUNFLOWER, "_bottom")))
         );
         blockModels.createDoubleBlock(BlocksPM.EMBERFLOWER.get(), topModel, bottomModel);
     }
