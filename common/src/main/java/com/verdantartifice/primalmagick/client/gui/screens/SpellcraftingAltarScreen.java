@@ -22,9 +22,9 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -211,7 +211,7 @@ public class SpellcraftingAltarScreen extends AbstractContainerScreenPM<Spellcra
     @Override
     protected void extractLabels(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
         // Render any text entries generated during initWidgets
-        int color = 0x404040;
+        int color = ARGB.opaque(0x404040);
         String str;
         int strWidth;
         for (Map.Entry<Vec3i, Component> entry : this.texts.entrySet()) {
