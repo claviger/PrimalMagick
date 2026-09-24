@@ -854,15 +854,14 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
                         modelConnection.extendModel(ModelTemplates.CUBE_DIRECTIONAL, ResourceUtils.loc("block/skyglass"))
                             .createWithSuffix(glassBlock, modelConnection.suffix(), TextureMappingsPM.connected(glassBlock, modelConnection).forceAllTranslucent(), blockModels.modelOutput))));
         blockModels.blockStateOutput.accept(ModelConnectionSets.CUBE.generatorFactory().apply(glassBlock, glassVariants));
+        blockModels.registerSimpleItemModel(glassBlock, ModelLocationUtils.getModelLocation(glassBlock, ModelConnections.ZERO.suffix()));
 
-        //// Define block states and models for pane
-        //Map<ModelConnection, MultiVariant> paneVariants = ModelConnectionSets.PANE.modelConnections().stream().collect(Collectors.toMap(
-                //modelConnection -> modelConnection,
-                //modelConnection -> BlockModelGenerators.plainVariant(
-                        //modelConnection.extendModel(ModelTemplates.STAINED_GLASS_PANE_NOSIDE, ResourceUtils.loc("block/skyglass_pane"))
-                            //.createWithSuffix(paneBlock, modelConnection.suffix(), TextureMappingsPM.connected(paneBlock, modelConnection).forceAllTranslucent(), blockModels.modelOutput))));
-        //blockModels.blockStateOutput.accept(ModelConnectionSets.PANE.generatorFactory().apply(paneBlock, paneVariants));
-        //blockModels.registerSimpleItemModel(paneBlock.asItem(), blockModels.createFlatItemModelWithBlockTexture(paneBlock.asItem(), glassBlock));
+        // Define block states and models for pane
+        Map<ModelConnection, MultiVariant> paneVariants = ModelConnectionSets.PANE.modelConnections().stream().collect(Collectors.toMap(
+                modelConnection -> modelConnection,
+                modelConnection -> this.createSkyglassPaneVariant(paneBlock, modelConnection, ResourceUtils.loc("block/skyglass_pane"), ResourceUtils.loc("skyglass"), blockModels)));
+        blockModels.blockStateOutput.accept(ModelConnectionSets.PANE.generatorFactory().apply(paneBlock, paneVariants));
+        blockModels.registerSimpleItemModel(paneBlock.asItem(), blockModels.createFlatItemModelWithBlockTexture(paneBlock.asItem(), glassBlock, TextureConnections.UNCONNECTED.suffix()));
     }
 
     private void createStainedSkyglassBlocks(StainedSkyglassBlock glassBlock, StainedSkyglassPaneBlock paneBlock, BlockModelGenerators blockModels) {
@@ -870,7 +869,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         Map<ModelConnection, Identifier> glassModelIds = ModelConnectionSets.CUBE.modelConnections().stream().collect(Collectors.toMap(
                 modelConnection -> modelConnection,
                 modelConnection -> modelConnection.extendModel(ModelTemplates.CUBE_DIRECTIONAL, ResourceUtils.loc("block/stained_skyglass"))
-                        .createWithSuffix(glassBlock, modelConnection.suffix(), TextureMappingsPM.connected(ResourceUtils.loc("block/stained_skyglass"), modelConnection).forceAllTranslucent(), blockModels.modelOutput)));
+                        .createWithSuffix(glassBlock, modelConnection.suffix(), TextureMappingsPM.connected(ResourceUtils.loc("stained_skyglass"), modelConnection).forceAllTranslucent(), blockModels.modelOutput)));
         Identifier variantZeroLoc = glassModelIds.get(ModelConnections.ZERO);
         Map<ModelConnection, MultiVariant> glassVariants = glassModelIds.entrySet().stream().collect(Collectors.toMap(
                 Map.Entry::getKey,
@@ -879,14 +878,25 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         blockModels.blockStateOutput.accept(ModelConnectionSets.CUBE.generatorFactory().apply(glassBlock, glassVariants));
         blockModels.registerSimpleTintedItemModel(glassBlock, variantZeroLoc, ItemModelUtils.constantTint(glassBlock.getColor().getFireworkColor()));
 
-        //// Define block states and models for pane
-        //Map<ModelConnection, MultiVariant> paneVariants = ModelConnectionSets.PANE.modelConnections().stream().collect(Collectors.toMap(
-                //modelConnection -> modelConnection,
-                //modelConnection -> BlockModelGenerators.plainVariant(
-                        //modelConnection.extendModel(ModelTemplates.STAINED_GLASS_PANE_NOSIDE, ResourceUtils.loc("block/stained_skyglass_pane"))
-                            //.createWithSuffix(paneBlock, modelConnection.suffix(), TextureMappingsPM.connected(paneBlock, modelConnection).forceAllTranslucent(), blockModels.modelOutput))));
-        //blockModels.blockStateOutput.accept(ModelConnectionSets.PANE.generatorFactory().apply(paneBlock, paneVariants));
-        //blockModels.registerSimpleTintedItemModel(paneBlock, blockModels.createFlatItemModelWithBlockTexture(paneBlock.asItem(), glassBlock), ItemModelUtils.constantTint(paneBlock.getColor().getFireworkColor()));
+        // Define block states and models for pane
+        Map<ModelConnection, MultiVariant> paneVariants = ModelConnectionSets.PANE.modelConnections().stream().collect(Collectors.toMap(
+                modelConnection -> modelConnection,
+                modelConnection -> this.createSkyglassPaneVariant(paneBlock, modelConnection, ResourceUtils.loc("block/stained_skyglass_pane"), ResourceUtils.loc("stained_skyglass"), blockModels)));
+        blockModels.blockStateOutput.accept(ModelConnectionSets.PANE.generatorFactory().apply(paneBlock, paneVariants));
+        Identifier paneItemModelId = ModelTemplates.FLAT_ITEM.create(paneBlock.asItem(),
+                TextureMapping.layer0(TextureMappingsPM.getConnectedBlockTexture(ResourceUtils.loc("stained_skyglass"), TextureConnections.UNCONNECTED)), blockModels.modelOutput);
+        blockModels.registerSimpleTintedItemModel(paneBlock, paneItemModelId, ItemModelUtils.constantTint(paneBlock.getColor().getFireworkColor()));
+    }
+
+    private MultiVariant createSkyglassPaneVariant(Block paneBlock, ModelConnection modelConnection, Identifier modelPrefix, Identifier textureId, BlockModelGenerators blockModels) {
+        if (modelConnection.parentSuffixOpt().isEmpty()) {
+            // Connections without a base model, such as the pane post, use the existing hand-written model for that connection
+            return BlockModelGenerators.plainVariant(modelPrefix.withSuffix(modelConnection.suffix()));
+        } else {
+            // The suffix of the pane template is not wanted, as the parent model is overridden by the connection
+            return BlockModelGenerators.plainVariant(modelConnection.extendModel(ModelTemplates.STAINED_GLASS_PANE_NOSIDE, modelPrefix)
+                    .createWithOverride(paneBlock, modelConnection.suffix(), TextureMappingsPM.connected(textureId, modelConnection).forceAllTranslucent(), blockModels.modelOutput));
+        }
     }
 
     private void createRitualCandleBlock(RitualCandleBlock block, BlockModelGenerators blockModels) {
