@@ -1,5 +1,6 @@
 package com.verdantartifice.primalmagick.common.menus;
 
+import com.verdantartifice.primalmagick.client.recipes.ClientRecipeCache;
 import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
 import com.verdantartifice.primalmagick.common.crafting.IRunecarvingRecipe;
 import com.verdantartifice.primalmagick.common.crafting.RecipeTypesPM;
@@ -26,7 +27,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -165,6 +165,10 @@ public class RunecarvingTableMenu extends AbstractTileSidedInventoryMenu<Runecar
                     .filter(recipeHolder -> recipeHolder.value().getType().equals(RecipeTypesPM.RUNECARVING.get()))
                     .map(recipeHolder -> (RecipeHolder<IRunecarvingRecipe>)recipeHolder)
                     .filter(r -> r.value().matches(createRecipeInput(inventoryIn), serverLevel) && (r.value().getRequirement().isEmpty() || r.value().getRequirement().get().isMetBy(this.player)))
+                    .collect(Collectors.toList());
+        } else {
+            this.recipes = ClientRecipeCache.getInstance().byType(RecipeTypesPM.RUNECARVING.get()).stream()
+                    .filter(r -> r.value().matches(createRecipeInput(inventoryIn), this.level) && (r.value().getRequirement().isEmpty() || r.value().getRequirement().get().isMetBy(this.player)))
                     .collect(Collectors.toList());
         }
     }
