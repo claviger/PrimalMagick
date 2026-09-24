@@ -44,6 +44,8 @@ public class ItemStackHandlerPMNeoforge extends ItemStacksResourceHandler implem
 
     public ItemStackHandlerPMNeoforge(NonNullList<ItemStack> stacks, AbstractTilePM tile) {
         super(stacks);
+        // Share the given list rather than a copy, so that changes made through the handler are seen by its owner
+        this.stacks = stacks;
         this.tile = tile;
         this.limitFuncOverride = Optional.empty();
         this.validityFuncOverride = Optional.empty();
@@ -65,6 +67,8 @@ public class ItemStackHandlerPMNeoforge extends ItemStacksResourceHandler implem
     protected ItemStackHandlerPMNeoforge(NonNullList<ItemStack> stacks, AbstractTilePM tile, Optional<Function<Integer, Integer>> limit,
                                          Optional<BiPredicate<Integer, ItemStack>> validity, Optional<BiConsumer<Integer, ItemStack>> contentsChanged) {
         super(stacks);
+        // Share the given list rather than a copy, so that changes made through the handler are seen by its owner
+        this.stacks = stacks;
         this.tile = tile;
         this.limitFuncOverride = limit;
         this.validityFuncOverride = validity;
