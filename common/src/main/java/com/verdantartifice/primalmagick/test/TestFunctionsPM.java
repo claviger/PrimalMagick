@@ -635,4 +635,7 @@ public class TestFunctionsPM {
 
     // Ritual altar tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_ACTIVE_RECIPE_ROUND_TRIPS = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_active_recipe_round_trips", () -> RitualAltarTests::ritual_altar_active_recipe_round_trips);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_replace_item_on_empty_slot", () -> RitualAltarTests::ritual_altar_replace_item_on_empty_slot);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_replace_item_with_empty_stack", () -> RitualAltarTests::ritual_altar_replace_item_with_empty_stack);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_finish_craft_with_empty_slot_does_not_throw", () -> RitualAltarTests::ritual_altar_finish_craft_with_empty_slot_does_not_throw);
 }
