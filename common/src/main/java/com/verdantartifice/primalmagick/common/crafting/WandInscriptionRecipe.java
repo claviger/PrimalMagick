@@ -20,6 +20,8 @@ import net.minecraft.world.item.crafting.TransmuteRecipe;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 /**
  * Special definition for a wand inscription recipe.
  * 
@@ -41,6 +43,11 @@ public class WandInscriptionRecipe extends CustomRecipe {
     public static final RecipeSerializer<WandInscriptionRecipe> SERIALIZER = new RecipeSerializer<>(MAP_CODEC, STREAM_CODEC);
     public static final ResourceKey<Recipe<?>> WAND_KEY = ResourceKey.create(Registries.RECIPE, ResourceUtils.loc("caster_inscription_wand"));
     public static final ResourceKey<Recipe<?>> STAFF_KEY = ResourceKey.create(Registries.RECIPE, ResourceUtils.loc("caster_inscription_staff"));
+    public static final ResourceKey<Recipe<?>> SPELLTOME_APPRENTICE_KEY = ResourceKey.create(Registries.RECIPE, ResourceUtils.loc("caster_inscription_spelltome_apprentice"));
+    public static final ResourceKey<Recipe<?>> SPELLTOME_ADEPT_KEY = ResourceKey.create(Registries.RECIPE, ResourceUtils.loc("caster_inscription_spelltome_adept"));
+    public static final ResourceKey<Recipe<?>> SPELLTOME_WIZARD_KEY = ResourceKey.create(Registries.RECIPE, ResourceUtils.loc("caster_inscription_spelltome_wizard"));
+    public static final ResourceKey<Recipe<?>> SPELLTOME_ARCHMAGE_KEY = ResourceKey.create(Registries.RECIPE, ResourceUtils.loc("caster_inscription_spelltome_archmage"));
+    public static final List<ResourceKey<Recipe<?>>> ALL_KEYS = List.of(WAND_KEY, STAFF_KEY, SPELLTOME_APPRENTICE_KEY, SPELLTOME_ADEPT_KEY, SPELLTOME_WIZARD_KEY, SPELLTOME_ARCHMAGE_KEY);
 
     private final Ingredient caster;
     private final Ingredient scroll;
@@ -71,8 +78,8 @@ public class WandInscriptionRecipe extends CustomRecipe {
                 // If a filled spell scroll is also present, check that the scroll's spell will fit into the wand
                 return spellContainer.canAddSpell(wandStack, scrollItem.getSpell(scrollStack));
             } else {
-                // If no item is present in the scroll slot, clear the wand; if it's something other than a filled spell scroll, don't allow combination
-                return scrollStack.isEmpty();
+                // If the scroll slot holds something other than a filled spell scroll, don't allow combination
+                return false;
             }
         } else {
             return false;
@@ -94,11 +101,6 @@ public class WandInscriptionRecipe extends CustomRecipe {
                 } else {
                     return ItemStack.EMPTY;
                 }
-            } else if (scrollStack.isEmpty()) {
-                // If no item is present in the scroll slot, clear the wand of spells
-                ItemStack retVal = TransmuteRecipe.createWithOriginalComponents(this.result, wandStack);
-                spellContainer.clearSpells(retVal);
-                return retVal;
             }
         }
         return ItemStack.EMPTY;

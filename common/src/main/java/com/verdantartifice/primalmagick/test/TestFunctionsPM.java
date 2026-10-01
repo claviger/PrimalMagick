@@ -25,6 +25,7 @@ import com.verdantartifice.primalmagick.test.capabilities.PlayerKnowledgeTests;
 import com.verdantartifice.primalmagick.test.capabilities.ItemHandlerTests;
 import com.verdantartifice.primalmagick.test.crafting.RepairTests;
 import com.verdantartifice.primalmagick.test.crafting.RunecarvingTests;
+import com.verdantartifice.primalmagick.test.crafting.WandInscriptionTests;
 import com.verdantartifice.primalmagick.test.crafting.CraftingRequirementsTests;
 import com.verdantartifice.primalmagick.test.crafting.CalcinatorTests;
 import com.verdantartifice.primalmagick.test.crafting.ArcaneWorkbenchTests;
@@ -145,6 +146,15 @@ public class TestFunctionsPM {
 
     // Runecarving tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNECARVING_CRAFT_WORKS = Services.TEST_FUNCTIONS_REGISTRY.register("runecarving_craft_works", () -> RunecarvingTests::craft_works);
+
+    // Wand inscription tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_WAND = Services.TEST_FUNCTIONS_REGISTRY.register("wand_inscription_inscribes_scroll_into_wand", () -> WandInscriptionTests::wand_inscription_inscribes_scroll_into_wand);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_SPELLTOME = Services.TEST_FUNCTIONS_REGISTRY.register("wand_inscription_inscribes_scroll_into_spelltome", () -> WandInscriptionTests::wand_inscription_inscribes_scroll_into_spelltome);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_INSCRIPTION_REJECTS_FULL_CONTAINER = Services.TEST_FUNCTIONS_REGISTRY.register("wand_inscription_rejects_full_container", () -> WandInscriptionTests::wand_inscription_rejects_full_container);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_INSCRIPTION_CLEARS_SPELLS_WITHOUT_SCROLL = Services.TEST_FUNCTIONS_REGISTRY.register("wand_inscription_clears_spells_without_scroll", () -> WandInscriptionTests::wand_inscription_clears_spells_without_scroll);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_INSCRIPTION_EMPTY_CASTER_WITHOUT_SCROLL_GIVES_NOTHING = Services.TEST_FUNCTIONS_REGISTRY.register("wand_inscription_empty_caster_without_scroll_gives_nothing", () -> WandInscriptionTests::wand_inscription_empty_caster_without_scroll_gives_nothing);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_INSCRIPTION_APPENDS_SPELL_TO_PARTIALLY_FILLED_SPELLTOME = Services.TEST_FUNCTIONS_REGISTRY.register("wand_inscription_appends_spell_to_partially_filled_spelltome", () -> WandInscriptionTests::wand_inscription_appends_spell_to_partially_filled_spelltome);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_INSCRIPTION_ALL_RECIPE_KEYS_RESOLVE = Services.TEST_FUNCTIONS_REGISTRY.register("wand_inscription_all_recipe_keys_resolve", () -> WandInscriptionTests::wand_inscription_all_recipe_keys_resolve);
 
     // Runescribing result tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNESCRIBING_CREDIT_ONLY_APPLIED_ENCHANTMENTS = Services.TEST_FUNCTIONS_REGISTRY.register("runescribing_credit_only_applied_enchantments", () -> RunescribingResultSlotTests::runescribing_credit_only_applied_enchantments);

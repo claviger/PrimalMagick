@@ -29,7 +29,6 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -61,7 +60,18 @@ public class WandInscriptionTableMenu extends AbstractContainerMenu {
         IItemHandlerPM componentInvWrapper = Services.ITEM_HANDLERS.wrap(this.componentInv, null);
         
         // Slot 0: Result
-        this.addSlot(new ResultSlot(this.player, this.componentInv, this.resultInv, 0, 124, 35));
+        this.addSlot(new ResultSlot(this.player, this.componentInv, this.resultInv, 0, 124, 35) {
+            @Override
+            public void onTake(@NotNull Player player, @NotNull ItemStack carried) {
+                if (WandInscriptionTableMenu.this.scrollSlot.getItem().isEmpty()) {
+                    // A cleared caster isn't produced by a crafting recipe, so consume the input caster directly
+                    this.checkTakeAchievements(carried);
+                    WandInscriptionTableMenu.this.componentInv.removeItem(0, 1);
+                } else {
+                    super.onTake(player, carried);
+                }
+            }
+        });
         
         // Slot 1: Input wand
         this.wandSlot = this.addSlot(Services.MENU.makeFilteredSlot(componentInvWrapper, 0, 30, 35,
@@ -174,10 +184,16 @@ public class WandInscriptionTableMenu extends AbstractContainerMenu {
     protected void slotChangedCraftingGrid(Level world) {
         if (!world.isClientSide() && this.player instanceof ServerPlayer spe) {
             ItemStack stack = ItemStack.EMPTY;
-            for (ResourceKey<Recipe<?>> key : List.of(WandInscriptionRecipe.WAND_KEY, WandInscriptionRecipe.STAFF_KEY)) {
+            ItemStack casterStack = this.componentInv.getItem(0);
+            if (this.componentInv.getItem(1).isEmpty() && casterStack.getItem() instanceof ISpellContainer spellContainer && spellContainer.getSpellCount(casterStack) > 0) {
+                // If a caster holding spells is present without a scroll, show a copy of the caster cleared of its spells
+                stack = casterStack.copyWithCount(1);
+                spellContainer.clearSpells(stack);
+            }
+            for (ResourceKey<Recipe<?>> key : WandInscriptionRecipe.ALL_KEYS) {
                 Optional<RecipeHolder<?>> opt = spe.level().recipeAccess().byKey(key);
                 if (opt.isPresent() && opt.get().value() instanceof WandInscriptionRecipe recipe) {
-                    // If the inputs are valid for inscribing a spell onto a wand or staff, show the output
+                    // If the inputs are valid for inscribing a spell onto a wand, staff, or spelltome, show the output
                     if (recipe.matches(this.componentInv.asCraftInput(), world)) {
                         stack = recipe.assemble(this.componentInv.asCraftInput());
                         break;
