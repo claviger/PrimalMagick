@@ -89,6 +89,12 @@ public class TestInstancesPM {
     // Repair tests
     public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CANNOT_BE_REPAIRED = createInstanceKey("earthshatter_hammer_cannot_be_repaired");
 
+    // Earthshatter hammer tests
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_RECIPE_RETURNS_HAMMER = createInstanceKey("earthshatter_hammer_recipe_returns_hammer");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_HAS_NO_DURABILITY = createInstanceKey("earthshatter_hammer_has_no_durability");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_REMAINDER_KEEPS_COMPONENTS = createInstanceKey("earthshatter_hammer_remainder_keeps_components");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_REMAINDER_COUNT_IS_ONE_FOR_STACKED_INPUT = createInstanceKey("earthshatter_hammer_remainder_count_is_one_for_stacked_input");
+
     // Runecarving tests
     public static final ResourceKey<GameTestInstance> RUNECARVING_CRAFT_WORKS = createInstanceKey("runecarving_craft_works");
 
@@ -549,6 +555,7 @@ public class TestInstancesPM {
         registerCalcinatorTests(context);
         registerCraftingRequirementTests(context);
         registerRepairTests(context);
+        registerEarthshatterHammerTests(context);
         registerRunecarvingTests(context);
         registerWandInscriptionTests(context);
         registerRunescribingResultTests(context);
@@ -1050,6 +1057,13 @@ public class TestInstancesPM {
 
     private static void registerRepairTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, EARTHSHATTER_HAMMER_CANNOT_BE_REPAIRED, TestFunctionsPM.EARTHSHATTER_HAMMER_CANNOT_BE_REPAIRED.getKey());
+    }
+
+    private static void registerEarthshatterHammerTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, EARTHSHATTER_HAMMER_RECIPE_RETURNS_HAMMER, TestFunctionsPM.EARTHSHATTER_HAMMER_RECIPE_RETURNS_HAMMER.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_HAS_NO_DURABILITY, TestFunctionsPM.EARTHSHATTER_HAMMER_HAS_NO_DURABILITY.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_REMAINDER_KEEPS_COMPONENTS, TestFunctionsPM.EARTHSHATTER_HAMMER_REMAINDER_KEEPS_COMPONENTS.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_REMAINDER_COUNT_IS_ONE_FOR_STACKED_INPUT, TestFunctionsPM.EARTHSHATTER_HAMMER_REMAINDER_COUNT_IS_ONE_FOR_STACKED_INPUT.getKey());
     }
 
     private static void registerCraftingRequirementTests(BootstrapContext<GameTestInstance> context) {

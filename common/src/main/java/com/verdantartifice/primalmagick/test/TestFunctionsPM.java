@@ -24,6 +24,7 @@ import com.verdantartifice.primalmagick.test.attunements.AttunementTests;
 import com.verdantartifice.primalmagick.test.capabilities.PlayerKnowledgeTests;
 import com.verdantartifice.primalmagick.test.capabilities.ItemHandlerTests;
 import com.verdantartifice.primalmagick.test.crafting.RepairTests;
+import com.verdantartifice.primalmagick.test.crafting.EarthshatterHammerTests;
 import com.verdantartifice.primalmagick.test.crafting.RunecarvingTests;
 import com.verdantartifice.primalmagick.test.crafting.WandInscriptionTests;
 import com.verdantartifice.primalmagick.test.crafting.CraftingRequirementsTests;
@@ -143,6 +144,12 @@ public class TestFunctionsPM {
 
     // Repair tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CANNOT_BE_REPAIRED = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_cannot_be_repaired", () -> RepairTests::earthshatter_hammer_cannot_be_repaired);
+
+    // Earthshatter hammer tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_RECIPE_RETURNS_HAMMER = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_recipe_returns_hammer", () -> EarthshatterHammerTests::earthshatter_hammer_recipe_returns_hammer);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_HAS_NO_DURABILITY = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_has_no_durability", () -> EarthshatterHammerTests::earthshatter_hammer_has_no_durability);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_REMAINDER_KEEPS_COMPONENTS = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_remainder_keeps_components", () -> EarthshatterHammerTests::earthshatter_hammer_remainder_keeps_components);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_REMAINDER_COUNT_IS_ONE_FOR_STACKED_INPUT = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_remainder_count_is_one_for_stacked_input", () -> EarthshatterHammerTests::earthshatter_hammer_remainder_count_is_one_for_stacked_input);
 
     // Runecarving tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNECARVING_CRAFT_WORKS = Services.TEST_FUNCTIONS_REGISTRY.register("runecarving_craft_works", () -> RunecarvingTests::craft_works);
