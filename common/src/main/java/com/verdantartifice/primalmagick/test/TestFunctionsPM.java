@@ -1,10 +1,14 @@
 package com.verdantartifice.primalmagick.test;
 
 import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
+import com.verdantartifice.primalmagick.common.concoctions.ConcoctionType;
+import com.verdantartifice.primalmagick.common.concoctions.FuseType;
 import com.verdantartifice.primalmagick.common.damagesource.DamageSourcesPM;
 import com.verdantartifice.primalmagick.common.enchantments.EnchantmentsPM;
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
+import com.verdantartifice.primalmagick.common.items.essence.EssenceType;
 import com.verdantartifice.primalmagick.common.registries.IRegistryItem;
+import com.verdantartifice.primalmagick.common.research.ResearchEntries;
 import com.verdantartifice.primalmagick.common.runes.Rune;
 import com.verdantartifice.primalmagick.common.runes.RuneType;
 import com.verdantartifice.primalmagick.common.sources.Sources;
@@ -30,6 +34,8 @@ import com.verdantartifice.primalmagick.test.items.WandComponentTests;
 import com.verdantartifice.primalmagick.test.items.WandManaTests;
 import com.verdantartifice.primalmagick.test.items.DispenserTests;
 import com.verdantartifice.primalmagick.test.items.BeeswaxTests;
+import com.verdantartifice.primalmagick.test.items.EssenceTests;
+import com.verdantartifice.primalmagick.test.items.ConcoctionTests;
 import com.verdantartifice.primalmagick.test.research.ResearchTests;
 import com.verdantartifice.primalmagick.test.research.ResearchRequirementsTests;
 import com.verdantartifice.primalmagick.test.research.ResearchKeysTests;
@@ -47,6 +53,8 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -218,6 +226,47 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_ARROWS_FIRED_FROM_DISPENSER_INFERNAL = Services.TEST_FUNCTIONS_REGISTRY.register("mana_arrows_fired_from_dispenser_infernal", () -> (helper) -> DispenserTests.mana_arrows_fired_from_dispenser(helper, ItemsPM.MANA_ARROW_INFERNAL.get()));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_ARROWS_FIRED_FROM_DISPENSER_VOID = Services.TEST_FUNCTIONS_REGISTRY.register("mana_arrows_fired_from_dispenser_void", () -> (helper) -> DispenserTests.mana_arrows_fired_from_dispenser(helper, ItemsPM.MANA_ARROW_VOID.get()));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_ARROWS_FIRED_FROM_DISPENSER_HALLOWED = Services.TEST_FUNCTIONS_REGISTRY.register("mana_arrows_fired_from_dispenser_hallowed", () -> (helper) -> DispenserTests.mana_arrows_fired_from_dispenser(helper, ItemsPM.MANA_ARROW_HALLOWED.get()));
+
+    // Essence tests
+    // Spot checks pin the Earth and Hallowed essences of each type to their registered items
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_ITEM_LOOKUP_DUST = Services.TEST_FUNCTIONS_REGISTRY.register("essence_item_lookup_dust", () -> (helper) -> EssenceTests.essence_item_lookup(helper, EssenceType.DUST, Map.of(Sources.EARTH, ItemsPM.ESSENCE_DUST_EARTH.get(), Sources.HALLOWED, ItemsPM.ESSENCE_DUST_HALLOWED.get())));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_ITEM_LOOKUP_SHARD = Services.TEST_FUNCTIONS_REGISTRY.register("essence_item_lookup_shard", () -> (helper) -> EssenceTests.essence_item_lookup(helper, EssenceType.SHARD, Map.of(Sources.EARTH, ItemsPM.ESSENCE_SHARD_EARTH.get(), Sources.HALLOWED, ItemsPM.ESSENCE_SHARD_HALLOWED.get())));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_ITEM_LOOKUP_CRYSTAL = Services.TEST_FUNCTIONS_REGISTRY.register("essence_item_lookup_crystal", () -> (helper) -> EssenceTests.essence_item_lookup(helper, EssenceType.CRYSTAL, Map.of(Sources.EARTH, ItemsPM.ESSENCE_CRYSTAL_EARTH.get(), Sources.HALLOWED, ItemsPM.ESSENCE_CRYSTAL_HALLOWED.get())));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_ITEM_LOOKUP_CLUSTER = Services.TEST_FUNCTIONS_REGISTRY.register("essence_item_lookup_cluster", () -> (helper) -> EssenceTests.essence_item_lookup(helper, EssenceType.CLUSTER, Map.of(Sources.EARTH, ItemsPM.ESSENCE_CLUSTER_EARTH.get(), Sources.HALLOWED, ItemsPM.ESSENCE_CLUSTER_HALLOWED.get())));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_STACK_LOOKUP = Services.TEST_FUNCTIONS_REGISTRY.register("essence_stack_lookup", () -> EssenceTests::essence_stack_lookup);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_ALL_ESSENCES_COUNT = Services.TEST_FUNCTIONS_REGISTRY.register("essence_all_essences_count", () -> EssenceTests::essence_all_essences_count);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_TYPE_MANA_EQUIVALENT = Services.TEST_FUNCTIONS_REGISTRY.register("essence_type_mana_equivalent", () -> EssenceTests::essence_type_mana_equivalent);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_TYPE_AFFINITY = Services.TEST_FUNCTIONS_REGISTRY.register("essence_type_affinity", () -> EssenceTests::essence_type_affinity);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_TYPE_UPGRADE_CHAIN = Services.TEST_FUNCTIONS_REGISTRY.register("essence_type_upgrade_chain", () -> EssenceTests::essence_type_upgrade_chain);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_TYPE_UPGRADE_MEDIUM = Services.TEST_FUNCTIONS_REGISTRY.register("essence_type_upgrade_medium", () -> EssenceTests::essence_type_upgrade_medium);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_TYPE_UPGRADE_RESEARCH = Services.TEST_FUNCTIONS_REGISTRY.register("essence_type_upgrade_research", () -> EssenceTests::essence_type_upgrade_research);
+    // Dust is discovered from the start; each higher type is gated by the synthesis research that creates it
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_TYPE_DISCOVERY_DUST = Services.TEST_FUNCTIONS_REGISTRY.register("essence_type_discovery_dust", () -> (helper) -> EssenceTests.essence_type_discovery(helper, EssenceType.DUST, Optional.empty()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_TYPE_DISCOVERY_SHARD = Services.TEST_FUNCTIONS_REGISTRY.register("essence_type_discovery_shard", () -> (helper) -> EssenceTests.essence_type_discovery(helper, EssenceType.SHARD, Optional.of(ResearchEntries.SHARD_SYNTHESIS)));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_TYPE_DISCOVERY_CRYSTAL = Services.TEST_FUNCTIONS_REGISTRY.register("essence_type_discovery_crystal", () -> (helper) -> EssenceTests.essence_type_discovery(helper, EssenceType.CRYSTAL, Optional.of(ResearchEntries.CRYSTAL_SYNTHESIS)));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_TYPE_DISCOVERY_CLUSTER = Services.TEST_FUNCTIONS_REGISTRY.register("essence_type_discovery_cluster", () -> (helper) -> EssenceTests.essence_type_discovery(helper, EssenceType.CLUSTER, Optional.of(ResearchEntries.CLUSTER_SYNTHESIS)));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SOURCE_DISCOVERY_BLOOD = Services.TEST_FUNCTIONS_REGISTRY.register("source_discovery_blood", () -> (helper) -> EssenceTests.source_discovery(helper, Sources.BLOOD, ResearchEntries.DISCOVER_BLOOD));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SOURCE_DISCOVERY_INFERNAL = Services.TEST_FUNCTIONS_REGISTRY.register("source_discovery_infernal", () -> (helper) -> EssenceTests.source_discovery(helper, Sources.INFERNAL, ResearchEntries.DISCOVER_INFERNAL));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SOURCE_DISCOVERY_VOID = Services.TEST_FUNCTIONS_REGISTRY.register("source_discovery_void", () -> (helper) -> EssenceTests.source_discovery(helper, Sources.VOID, ResearchEntries.DISCOVER_VOID));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SOURCE_DISCOVERY_HALLOWED = Services.TEST_FUNCTIONS_REGISTRY.register("source_discovery_hallowed", () -> (helper) -> EssenceTests.source_discovery(helper, Sources.HALLOWED, ResearchEntries.DISCOVER_HALLOWED));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SOURCE_DISCOVERY_PRIMAL_SOURCES_ALWAYS_DISCOVERED = Services.TEST_FUNCTIONS_REGISTRY.register("source_discovery_primal_sources_always_discovered", () -> EssenceTests::source_discovery_primal_sources_always_discovered);
+
+    // Concoction tests
+    // Expected doses mirror the max doses declared on each ConcoctionType
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_TYPE_ROUND_TRIP_WATER = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_type_round_trip_water", () -> (helper) -> ConcoctionTests.concoction_type_round_trip(helper, ConcoctionType.WATER, 1));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_TYPE_ROUND_TRIP_TINCTURE = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_type_round_trip_tincture", () -> (helper) -> ConcoctionTests.concoction_type_round_trip(helper, ConcoctionType.TINCTURE, 3));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_TYPE_ROUND_TRIP_PHILTER = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_type_round_trip_philter", () -> (helper) -> ConcoctionTests.concoction_type_round_trip(helper, ConcoctionType.PHILTER, 6));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_TYPE_ROUND_TRIP_ELIXIR = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_type_round_trip_elixir", () -> (helper) -> ConcoctionTests.concoction_type_round_trip(helper, ConcoctionType.ELIXIR, 9));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_TYPE_ROUND_TRIP_BOMB = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_type_round_trip_bomb", () -> (helper) -> ConcoctionTests.concoction_type_round_trip(helper, ConcoctionType.BOMB, 6));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_DOSES_ROUND_TRIP = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_doses_round_trip", () -> ConcoctionTests::concoction_doses_round_trip);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_BOMB_FUSE_ROUND_TRIP_IMPACT = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_bomb_fuse_round_trip_impact", () -> (helper) -> ConcoctionTests.concoction_bomb_fuse_round_trip(helper, FuseType.IMPACT));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_BOMB_FUSE_ROUND_TRIP_SHORT = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_bomb_fuse_round_trip_short", () -> (helper) -> ConcoctionTests.concoction_bomb_fuse_round_trip(helper, FuseType.SHORT));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_BOMB_FUSE_ROUND_TRIP_MEDIUM = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_bomb_fuse_round_trip_medium", () -> (helper) -> ConcoctionTests.concoction_bomb_fuse_round_trip(helper, FuseType.MEDIUM));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_BOMB_FUSE_ROUND_TRIP_LONG = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_bomb_fuse_round_trip_long", () -> (helper) -> ConcoctionTests.concoction_bomb_fuse_round_trip(helper, FuseType.LONG));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_BOMB_DEFAULT_FUSE = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_bomb_default_fuse", () -> ConcoctionTests::concoction_bomb_default_fuse);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_IS_BOMB = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_is_bomb", () -> ConcoctionTests::concoction_is_bomb);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_HAS_BENEFICIAL_EFFECT = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_has_beneficial_effect", () -> ConcoctionTests::concoction_has_beneficial_effect);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CONCOCTION_DEFAULTS_ON_NON_CONCOCTION = Services.TEST_FUNCTIONS_REGISTRY.register("concoction_defaults_on_non_concoction", () -> ConcoctionTests::concoction_defaults_on_non_concoction);
 
     // Wand mana tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CAN_GET_AND_ADD_MANA = Services.TEST_FUNCTIONS_REGISTRY.register("wand_can_get_and_add_mana", () -> (helper) -> WandManaTests.wand_can_get_and_add_mana(helper, Sources.EARTH));

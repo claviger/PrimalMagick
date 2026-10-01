@@ -175,6 +175,44 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> MANA_ARROWS_FIRED_FROM_DISPENSER_VOID = createInstanceKey("mana_arrows_fired_from_dispenser_void");
     public static final ResourceKey<GameTestInstance> MANA_ARROWS_FIRED_FROM_DISPENSER_HALLOWED = createInstanceKey("mana_arrows_fired_from_dispenser_hallowed");
 
+    // Essence tests
+    public static final ResourceKey<GameTestInstance> ESSENCE_ITEM_LOOKUP_DUST = createInstanceKey("essence_item_lookup_dust");
+    public static final ResourceKey<GameTestInstance> ESSENCE_ITEM_LOOKUP_SHARD = createInstanceKey("essence_item_lookup_shard");
+    public static final ResourceKey<GameTestInstance> ESSENCE_ITEM_LOOKUP_CRYSTAL = createInstanceKey("essence_item_lookup_crystal");
+    public static final ResourceKey<GameTestInstance> ESSENCE_ITEM_LOOKUP_CLUSTER = createInstanceKey("essence_item_lookup_cluster");
+    public static final ResourceKey<GameTestInstance> ESSENCE_STACK_LOOKUP = createInstanceKey("essence_stack_lookup");
+    public static final ResourceKey<GameTestInstance> ESSENCE_ALL_ESSENCES_COUNT = createInstanceKey("essence_all_essences_count");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TYPE_MANA_EQUIVALENT = createInstanceKey("essence_type_mana_equivalent");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TYPE_AFFINITY = createInstanceKey("essence_type_affinity");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TYPE_UPGRADE_CHAIN = createInstanceKey("essence_type_upgrade_chain");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TYPE_UPGRADE_MEDIUM = createInstanceKey("essence_type_upgrade_medium");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TYPE_UPGRADE_RESEARCH = createInstanceKey("essence_type_upgrade_research");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TYPE_DISCOVERY_DUST = createInstanceKey("essence_type_discovery_dust");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TYPE_DISCOVERY_SHARD = createInstanceKey("essence_type_discovery_shard");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TYPE_DISCOVERY_CRYSTAL = createInstanceKey("essence_type_discovery_crystal");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TYPE_DISCOVERY_CLUSTER = createInstanceKey("essence_type_discovery_cluster");
+    public static final ResourceKey<GameTestInstance> SOURCE_DISCOVERY_BLOOD = createInstanceKey("source_discovery_blood");
+    public static final ResourceKey<GameTestInstance> SOURCE_DISCOVERY_INFERNAL = createInstanceKey("source_discovery_infernal");
+    public static final ResourceKey<GameTestInstance> SOURCE_DISCOVERY_VOID = createInstanceKey("source_discovery_void");
+    public static final ResourceKey<GameTestInstance> SOURCE_DISCOVERY_HALLOWED = createInstanceKey("source_discovery_hallowed");
+    public static final ResourceKey<GameTestInstance> SOURCE_DISCOVERY_PRIMAL_SOURCES_ALWAYS_DISCOVERED = createInstanceKey("source_discovery_primal_sources_always_discovered");
+
+    // Concoction tests
+    public static final ResourceKey<GameTestInstance> CONCOCTION_TYPE_ROUND_TRIP_WATER = createInstanceKey("concoction_type_round_trip_water");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_TYPE_ROUND_TRIP_TINCTURE = createInstanceKey("concoction_type_round_trip_tincture");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_TYPE_ROUND_TRIP_PHILTER = createInstanceKey("concoction_type_round_trip_philter");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_TYPE_ROUND_TRIP_ELIXIR = createInstanceKey("concoction_type_round_trip_elixir");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_TYPE_ROUND_TRIP_BOMB = createInstanceKey("concoction_type_round_trip_bomb");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_DOSES_ROUND_TRIP = createInstanceKey("concoction_doses_round_trip");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_BOMB_FUSE_ROUND_TRIP_IMPACT = createInstanceKey("concoction_bomb_fuse_round_trip_impact");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_BOMB_FUSE_ROUND_TRIP_SHORT = createInstanceKey("concoction_bomb_fuse_round_trip_short");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_BOMB_FUSE_ROUND_TRIP_MEDIUM = createInstanceKey("concoction_bomb_fuse_round_trip_medium");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_BOMB_FUSE_ROUND_TRIP_LONG = createInstanceKey("concoction_bomb_fuse_round_trip_long");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_BOMB_DEFAULT_FUSE = createInstanceKey("concoction_bomb_default_fuse");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_IS_BOMB = createInstanceKey("concoction_is_bomb");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_HAS_BENEFICIAL_EFFECT = createInstanceKey("concoction_has_beneficial_effect");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_DEFAULTS_ON_NON_CONCOCTION = createInstanceKey("concoction_defaults_on_non_concoction");
+
     // Wand mana tests
     public static final ResourceKey<GameTestInstance> WAND_CAN_GET_AND_ADD_MANA = createInstanceKey("wand_can_get_and_add_mana");
     public static final ResourceKey<GameTestInstance> WAND_CAN_GET_AND_ADD_REAL_MANA = createInstanceKey("wand_can_get_and_add_real_mana");
@@ -397,6 +435,8 @@ public class TestInstancesPM {
         registerFtuxTests(context);
         registerBeeswaxItemTests(context);
         registerDispenserItemTests(context);
+        registerEssenceTests(context);
+        registerConcoctionTests(context);
         registerWandManaTests(context);
         registerWandComponentTests(context);
         registerResearchKeyTests(context);
@@ -623,6 +663,46 @@ public class TestInstancesPM {
         registerFunction(context, STAFF_CAP_SETS_BASE_COST_MODIFIER_HEXIUM, TestFunctionsPM.STAFF_CAP_SETS_BASE_COST_MODIFIER_HEXIUM.getKey());
         registerFunction(context, STAFF_CAP_SETS_SIPHON_AMOUNT_HEXIUM, TestFunctionsPM.STAFF_CAP_SETS_SIPHON_AMOUNT_HEXIUM.getKey());
         registerFunction(context, STAFF_CORE_SPELL_SLOTS_PRIMAL, TestFunctionsPM.STAFF_CORE_SPELL_SLOTS_PRIMAL.getKey());
+    }
+
+    public static void registerConcoctionTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, CONCOCTION_TYPE_ROUND_TRIP_WATER, TestFunctionsPM.CONCOCTION_TYPE_ROUND_TRIP_WATER.getKey());
+        registerFunction(context, CONCOCTION_TYPE_ROUND_TRIP_TINCTURE, TestFunctionsPM.CONCOCTION_TYPE_ROUND_TRIP_TINCTURE.getKey());
+        registerFunction(context, CONCOCTION_TYPE_ROUND_TRIP_PHILTER, TestFunctionsPM.CONCOCTION_TYPE_ROUND_TRIP_PHILTER.getKey());
+        registerFunction(context, CONCOCTION_TYPE_ROUND_TRIP_ELIXIR, TestFunctionsPM.CONCOCTION_TYPE_ROUND_TRIP_ELIXIR.getKey());
+        registerFunction(context, CONCOCTION_TYPE_ROUND_TRIP_BOMB, TestFunctionsPM.CONCOCTION_TYPE_ROUND_TRIP_BOMB.getKey());
+        registerFunction(context, CONCOCTION_DOSES_ROUND_TRIP, TestFunctionsPM.CONCOCTION_DOSES_ROUND_TRIP.getKey());
+        registerFunction(context, CONCOCTION_BOMB_FUSE_ROUND_TRIP_IMPACT, TestFunctionsPM.CONCOCTION_BOMB_FUSE_ROUND_TRIP_IMPACT.getKey());
+        registerFunction(context, CONCOCTION_BOMB_FUSE_ROUND_TRIP_SHORT, TestFunctionsPM.CONCOCTION_BOMB_FUSE_ROUND_TRIP_SHORT.getKey());
+        registerFunction(context, CONCOCTION_BOMB_FUSE_ROUND_TRIP_MEDIUM, TestFunctionsPM.CONCOCTION_BOMB_FUSE_ROUND_TRIP_MEDIUM.getKey());
+        registerFunction(context, CONCOCTION_BOMB_FUSE_ROUND_TRIP_LONG, TestFunctionsPM.CONCOCTION_BOMB_FUSE_ROUND_TRIP_LONG.getKey());
+        registerFunction(context, CONCOCTION_BOMB_DEFAULT_FUSE, TestFunctionsPM.CONCOCTION_BOMB_DEFAULT_FUSE.getKey());
+        registerFunction(context, CONCOCTION_IS_BOMB, TestFunctionsPM.CONCOCTION_IS_BOMB.getKey());
+        registerFunction(context, CONCOCTION_HAS_BENEFICIAL_EFFECT, TestFunctionsPM.CONCOCTION_HAS_BENEFICIAL_EFFECT.getKey());
+        registerFunction(context, CONCOCTION_DEFAULTS_ON_NON_CONCOCTION, TestFunctionsPM.CONCOCTION_DEFAULTS_ON_NON_CONCOCTION.getKey());
+    }
+
+    public static void registerEssenceTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ESSENCE_ITEM_LOOKUP_DUST, TestFunctionsPM.ESSENCE_ITEM_LOOKUP_DUST.getKey());
+        registerFunction(context, ESSENCE_ITEM_LOOKUP_SHARD, TestFunctionsPM.ESSENCE_ITEM_LOOKUP_SHARD.getKey());
+        registerFunction(context, ESSENCE_ITEM_LOOKUP_CRYSTAL, TestFunctionsPM.ESSENCE_ITEM_LOOKUP_CRYSTAL.getKey());
+        registerFunction(context, ESSENCE_ITEM_LOOKUP_CLUSTER, TestFunctionsPM.ESSENCE_ITEM_LOOKUP_CLUSTER.getKey());
+        registerFunction(context, ESSENCE_STACK_LOOKUP, TestFunctionsPM.ESSENCE_STACK_LOOKUP.getKey());
+        registerFunction(context, ESSENCE_ALL_ESSENCES_COUNT, TestFunctionsPM.ESSENCE_ALL_ESSENCES_COUNT.getKey());
+        registerFunction(context, ESSENCE_TYPE_MANA_EQUIVALENT, TestFunctionsPM.ESSENCE_TYPE_MANA_EQUIVALENT.getKey());
+        registerFunction(context, ESSENCE_TYPE_AFFINITY, TestFunctionsPM.ESSENCE_TYPE_AFFINITY.getKey());
+        registerFunction(context, ESSENCE_TYPE_UPGRADE_CHAIN, TestFunctionsPM.ESSENCE_TYPE_UPGRADE_CHAIN.getKey());
+        registerFunction(context, ESSENCE_TYPE_UPGRADE_MEDIUM, TestFunctionsPM.ESSENCE_TYPE_UPGRADE_MEDIUM.getKey());
+        registerFunction(context, ESSENCE_TYPE_UPGRADE_RESEARCH, TestFunctionsPM.ESSENCE_TYPE_UPGRADE_RESEARCH.getKey());
+        registerFunction(context, ESSENCE_TYPE_DISCOVERY_DUST, TestFunctionsPM.ESSENCE_TYPE_DISCOVERY_DUST.getKey());
+        registerFunction(context, ESSENCE_TYPE_DISCOVERY_SHARD, TestFunctionsPM.ESSENCE_TYPE_DISCOVERY_SHARD.getKey());
+        registerFunction(context, ESSENCE_TYPE_DISCOVERY_CRYSTAL, TestFunctionsPM.ESSENCE_TYPE_DISCOVERY_CRYSTAL.getKey());
+        registerFunction(context, ESSENCE_TYPE_DISCOVERY_CLUSTER, TestFunctionsPM.ESSENCE_TYPE_DISCOVERY_CLUSTER.getKey());
+        registerFunction(context, SOURCE_DISCOVERY_BLOOD, TestFunctionsPM.SOURCE_DISCOVERY_BLOOD.getKey());
+        registerFunction(context, SOURCE_DISCOVERY_INFERNAL, TestFunctionsPM.SOURCE_DISCOVERY_INFERNAL.getKey());
+        registerFunction(context, SOURCE_DISCOVERY_VOID, TestFunctionsPM.SOURCE_DISCOVERY_VOID.getKey());
+        registerFunction(context, SOURCE_DISCOVERY_HALLOWED, TestFunctionsPM.SOURCE_DISCOVERY_HALLOWED.getKey());
+        registerFunction(context, SOURCE_DISCOVERY_PRIMAL_SOURCES_ALWAYS_DISCOVERED, TestFunctionsPM.SOURCE_DISCOVERY_PRIMAL_SOURCES_ALWAYS_DISCOVERED.getKey());
     }
 
     public static void registerDispenserItemTests(BootstrapContext<GameTestInstance> context) {
