@@ -5,10 +5,6 @@
       "resource": "primalmagick:entity/shield/sacred_shield"
     },
     {
-      "type": "minecraft:single",
-      "resource": "primalmagick:textures/entity/pixie_house.png"
-    },
-    {
       "type": "minecraft:paletted_permutations",
       "palette_key": "minecraft:trims/color_palettes/trim_palette",
       "permutations": {
