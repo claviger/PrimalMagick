@@ -20,6 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -50,17 +51,25 @@ public class RunescribingResultSlot extends Slot {
         Level level = this.player.level();
         if (!level.isClientSide()) {
             List<Rune> runes = RuneManager.getRunes(stack);
-            Map<Holder<Enchantment>, Integer> enchants = RuneManager.getRuneEnchantments(level.registryAccess(), runes, stack, this.player, false);
+
+            // Only credit the rune enchantments actually applied to the result. The filtered set matches what the menu
+            // computed, since the filter depends only on the runes, the item, and the player's research. Intersecting it
+            // with the result's enchantments drops any that the merge blocked as incompatible with the base item's
+            // existing enchantments.
+            Set<Holder<Enchantment>> applied = stack.getEnchantments().keySet();
+            Set<Holder<Enchantment>> enchants = RuneManager.getRuneEnchantments(level.registryAccess(), runes, stack, this.player, true).keySet().stream()
+                    .filter(applied::contains)
+                    .collect(Collectors.toSet());
 
             if (this.player instanceof ServerPlayer serverPlayer) {
                 // Increment the player's runescribing craft stat
                 StatsManager.incrementValue(serverPlayer, StatsPM.ITEMS_RUNESCRIBED, stack.getCount());
                 
                 // Award appropriate expertise and advancements for each enchant
-                enchants.keySet().forEach(enchant -> CriteriaTriggersPM.RUNESCRIBING.get().trigger(serverPlayer, enchant));
+                enchants.forEach(enchant -> CriteriaTriggersPM.RUNESCRIBING.get().trigger(serverPlayer, enchant));
                 
                 // Assemble a frequency map of runes that go into the found enchants to determine which runes were used more than once
-                Map<Rune, Integer> outputFrequencyMap = enchants.keySet().stream()
+                Map<Rune, Integer> outputFrequencyMap = enchants.stream()
                         .filter(ench -> RuneManager.hasRuneDefinition(level.registryAccess(), ench))
                         .flatMap(ench -> RuneManager.getRuneDefinition(level.registryAccess(), ench).get().getRunes().stream())
                         .collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(element -> 1)));
@@ -75,7 +84,7 @@ public class RunescribingResultSlot extends Slot {
             if (!enchants.isEmpty() && !ResearchManager.isResearchComplete(this.player, ResearchEntries.UNLOCK_RUNE_ENCHANTMENTS)) {
                 ResearchManager.completeResearch(this.player, ResearchEntries.UNLOCK_RUNE_ENCHANTMENTS);
             }
-            enchants.keySet().forEach(enchant -> ResearchManager.completeResearch(this.player, new RuneEnchantmentKey(enchant)));
+            enchants.forEach(enchant -> ResearchManager.completeResearch(this.player, new RuneEnchantmentKey(enchant)));
         }
     }
     

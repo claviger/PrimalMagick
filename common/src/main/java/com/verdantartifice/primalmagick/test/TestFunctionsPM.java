@@ -39,6 +39,7 @@ import com.verdantartifice.primalmagick.test.items.EssenceTests;
 import com.verdantartifice.primalmagick.test.items.ConcoctionTests;
 import com.verdantartifice.primalmagick.test.items.WardingModuleTests;
 import com.verdantartifice.primalmagick.test.loot.LootModifierTests;
+import com.verdantartifice.primalmagick.test.menus.RunescribingResultSlotTests;
 import com.verdantartifice.primalmagick.test.research.ResearchTests;
 import com.verdantartifice.primalmagick.test.research.ResearchRequirementsTests;
 import com.verdantartifice.primalmagick.test.research.ResearchKeysTests;
@@ -144,6 +145,12 @@ public class TestFunctionsPM {
 
     // Runecarving tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNECARVING_CRAFT_WORKS = Services.TEST_FUNCTIONS_REGISTRY.register("runecarving_craft_works", () -> RunecarvingTests::craft_works);
+
+    // Runescribing result tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNESCRIBING_CREDIT_ONLY_APPLIED_ENCHANTMENTS = Services.TEST_FUNCTIONS_REGISTRY.register("runescribing_credit_only_applied_enchantments", () -> RunescribingResultSlotTests::runescribing_credit_only_applied_enchantments);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNESCRIBING_CREDIT_ALL_APPLIED_ENCHANTMENTS = Services.TEST_FUNCTIONS_REGISTRY.register("runescribing_credit_all_applied_enchantments", () -> RunescribingResultSlotTests::runescribing_credit_all_applied_enchantments);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNESCRIBING_CREDIT_SKIPS_ENCHANTMENT_BLOCKED_BY_EXISTING = Services.TEST_FUNCTIONS_REGISTRY.register("runescribing_credit_skips_enchantment_blocked_by_existing", () -> RunescribingResultSlotTests::runescribing_credit_skips_enchantment_blocked_by_existing);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNESCRIBING_CREDIT_SKIPS_PREEXISTING_ENCHANTMENT_MATCHING_RUNES = Services.TEST_FUNCTIONS_REGISTRY.register("runescribing_credit_skips_preexisting_enchantment_matching_runes", () -> RunescribingResultSlotTests::runescribing_credit_skips_preexisting_enchantment_matching_runes);
 
     // Caster enchanting tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CASTER_ENCHANTABLE_MUNDANE_WAND = Services.TEST_FUNCTIONS_REGISTRY.register("caster_enchantable_mundane_wand", () -> (helper) -> CasterEnchantingTests.caster_can_be_enchanted(helper, ItemsPM.MUNDANE_WAND.get()));

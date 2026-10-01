@@ -92,6 +92,12 @@ public class TestInstancesPM {
     // Runecarving tests
     public static final ResourceKey<GameTestInstance> RUNECARVING_CRAFT_WORKS = createInstanceKey("runecarving_craft_works");
 
+    // Runescribing result tests
+    public static final ResourceKey<GameTestInstance> RUNESCRIBING_CREDIT_ONLY_APPLIED_ENCHANTMENTS = createInstanceKey("runescribing_credit_only_applied_enchantments");
+    public static final ResourceKey<GameTestInstance> RUNESCRIBING_CREDIT_ALL_APPLIED_ENCHANTMENTS = createInstanceKey("runescribing_credit_all_applied_enchantments");
+    public static final ResourceKey<GameTestInstance> RUNESCRIBING_CREDIT_SKIPS_ENCHANTMENT_BLOCKED_BY_EXISTING = createInstanceKey("runescribing_credit_skips_enchantment_blocked_by_existing");
+    public static final ResourceKey<GameTestInstance> RUNESCRIBING_CREDIT_SKIPS_PREEXISTING_ENCHANTMENT_MATCHING_RUNES = createInstanceKey("runescribing_credit_skips_preexisting_enchantment_matching_runes");
+
     // Caster enchantability tests
     public static final ResourceKey<GameTestInstance> CASTER_ENCHANTABLE_MUNDANE_WAND = createInstanceKey("caster_enchantable_mundane_wand");
     public static final ResourceKey<GameTestInstance> CASTER_ENCHANTABLE_MODULAR_WAND = createInstanceKey("caster_enchantable_modular_wand");
@@ -535,6 +541,7 @@ public class TestInstancesPM {
         registerCraftingRequirementTests(context);
         registerRepairTests(context);
         registerRunecarvingTests(context);
+        registerRunescribingResultTests(context);
         registerCasterEnchantabilityTests(context);
         registerRitualEnchantmentTests(context);
         registerRuneManagerTests(context);
@@ -1012,6 +1019,13 @@ public class TestInstancesPM {
 
     private static void registerRunecarvingTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, RUNECARVING_CRAFT_WORKS, TestFunctionsPM.RUNECARVING_CRAFT_WORKS.getKey());
+    }
+
+    private static void registerRunescribingResultTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, RUNESCRIBING_CREDIT_ONLY_APPLIED_ENCHANTMENTS, TestFunctionsPM.RUNESCRIBING_CREDIT_ONLY_APPLIED_ENCHANTMENTS.getKey());
+        registerFunction(context, RUNESCRIBING_CREDIT_ALL_APPLIED_ENCHANTMENTS, TestFunctionsPM.RUNESCRIBING_CREDIT_ALL_APPLIED_ENCHANTMENTS.getKey());
+        registerFunction(context, RUNESCRIBING_CREDIT_SKIPS_ENCHANTMENT_BLOCKED_BY_EXISTING, TestFunctionsPM.RUNESCRIBING_CREDIT_SKIPS_ENCHANTMENT_BLOCKED_BY_EXISTING.getKey());
+        registerFunction(context, RUNESCRIBING_CREDIT_SKIPS_PREEXISTING_ENCHANTMENT_MATCHING_RUNES, TestFunctionsPM.RUNESCRIBING_CREDIT_SKIPS_PREEXISTING_ENCHANTMENT_MATCHING_RUNES.getKey());
     }
 
     private static void registerRepairTests(BootstrapContext<GameTestInstance> context) {
