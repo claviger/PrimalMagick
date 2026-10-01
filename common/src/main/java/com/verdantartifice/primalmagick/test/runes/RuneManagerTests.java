@@ -216,9 +216,11 @@ public class RuneManagerTests extends AbstractBaseTest {
 
         List<Rune> runes = List.of(Rune.PROJECT, Rune.ITEM, Rune.EARTH, Rune.POWER);
 
-        // setRunes ignores an empty stack
-        RuneManager.setRunes(ItemStack.EMPTY, runes);
-        assertFalse(helper, RuneManager.hasRunes(ItemStack.EMPTY), "Empty stack has runes after setRunes");
+        // setRunes ignores an empty stack; use a fresh zero-count stack rather than the shared ItemStack.EMPTY so that a
+        // regression can't mutate the global instance
+        var emptyStack = new ItemStack(Items.DIAMOND_SWORD, 0);
+        RuneManager.setRunes(emptyStack, runes);
+        assertFalse(helper, RuneManager.hasRunes(emptyStack), "Empty stack has runes after setRunes");
 
         RuneManager.setRunes(stack, runes);
         assertTrue(helper, RuneManager.hasRunes(stack), "Stack has no runes after setRunes");

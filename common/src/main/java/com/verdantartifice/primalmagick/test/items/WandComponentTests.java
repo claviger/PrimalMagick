@@ -1,21 +1,20 @@
 package com.verdantartifice.primalmagick.test.items;
 
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
-import com.verdantartifice.primalmagick.common.items.wands.IHasWandComponents;
 import com.verdantartifice.primalmagick.common.items.wands.ModularWandItem;
 import com.verdantartifice.primalmagick.common.sources.Source;
 import com.verdantartifice.primalmagick.common.sources.Sources;
 import com.verdantartifice.primalmagick.common.spells.SpellPackage;
-import com.verdantartifice.primalmagick.common.spells.SpellProperty;
 import com.verdantartifice.primalmagick.common.spells.payloads.AbstractSpellPayload;
 import com.verdantartifice.primalmagick.common.spells.payloads.FlameDamageSpellPayload;
 import com.verdantartifice.primalmagick.common.spells.payloads.HolyDamageSpellPayload;
-import com.verdantartifice.primalmagick.common.spells.vehicles.TouchSpellVehicle;
 import com.verdantartifice.primalmagick.common.wands.IWand;
 import com.verdantartifice.primalmagick.common.wands.WandCap;
 import com.verdantartifice.primalmagick.common.wands.WandCore;
 import com.verdantartifice.primalmagick.common.wands.WandGem;
 import com.verdantartifice.primalmagick.test.AbstractBaseTest;
+import com.verdantartifice.primalmagick.test.TestUtils;
+import com.verdantartifice.primalmagick.test.spells.SpellPackageTests;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,29 +28,11 @@ import java.util.Set;
  * caster item as a parameter.
  */
 public class WandComponentTests extends AbstractBaseTest {
-    protected static final String TEST_SPELL_NAME = "Test Spell";
-
     // Upper bound on spells added while probing a wand's capacity, so that a broken canAddSpell can't loop forever
     protected static final int MAX_SPELL_PROBE = 32;
 
-    protected static ItemStack makeStack(Item item, WandCore core, WandCap cap, WandGem gem) {
-        return IHasWandComponents.setWandComponents(item.getDefaultInstance(), core, cap, gem);
-    }
-
     protected static ItemStack makeWand(WandCore core, WandCap cap, WandGem gem) {
-        return makeStack(ItemsPM.MODULAR_WAND.get(), core, cap, gem);
-    }
-
-    /**
-     * Creates a Touch spell carrying the given payload, with every payload property at its minimum value. Spell slot
-     * rules only look at the payload's source, so the vehicle and property values are irrelevant to these tests.
-     */
-    protected static SpellPackage touchSpell(AbstractSpellPayload<?> payload) {
-        var payloadBuilder = SpellPackage.builder().name(TEST_SPELL_NAME).vehicle().type(TouchSpellVehicle.INSTANCE).end().payload().type(payload);
-        for (SpellProperty property : payload.getProperties()) {
-            payloadBuilder.with(property, property.min());
-        }
-        return payloadBuilder.end().build();
+        return TestUtils.makeModularCaster(ItemsPM.MODULAR_WAND.get(), core, cap, gem);
     }
 
     /**
@@ -80,7 +61,7 @@ public class WandComponentTests extends AbstractBaseTest {
     }
 
     public static void gem_sets_max_mana(GameTestHelper helper, Item caster, WandGem gem, int expectedCentimana) {
-        assertGemSetsMaxMana(helper, makeStack(caster, WandCore.HEARTWOOD, WandCap.IRON, gem), expectedCentimana);
+        assertGemSetsMaxMana(helper, TestUtils.makeModularCaster(caster, WandCore.HEARTWOOD, WandCap.IRON, gem), expectedCentimana);
         helper.succeed();
     }
 
@@ -145,7 +126,7 @@ public class WandComponentTests extends AbstractBaseTest {
     }
 
     public static void cap_sets_base_cost_modifier(GameTestHelper helper, Item caster, WandCap cap, int expectedModifier) {
-        assertCapSetsBaseCostModifier(helper, makeStack(caster, WandCore.HEARTWOOD, cap, WandGem.APPRENTICE), expectedModifier);
+        assertCapSetsBaseCostModifier(helper, TestUtils.makeModularCaster(caster, WandCore.HEARTWOOD, cap, WandGem.APPRENTICE), expectedModifier);
         helper.succeed();
     }
 
@@ -155,7 +136,7 @@ public class WandComponentTests extends AbstractBaseTest {
     }
 
     public static void cap_sets_siphon_amount(GameTestHelper helper, Item caster, WandCap cap, int expectedSiphon) {
-        assertCapSetsSiphonAmount(helper, makeStack(caster, WandCore.HEARTWOOD, cap, WandGem.APPRENTICE), expectedSiphon);
+        assertCapSetsSiphonAmount(helper, TestUtils.makeModularCaster(caster, WandCore.HEARTWOOD, cap, WandGem.APPRENTICE), expectedSiphon);
         helper.succeed();
     }
 
@@ -166,7 +147,7 @@ public class WandComponentTests extends AbstractBaseTest {
 
         // Fill with Hallowed spells. No core has a Hallowed bonus slot, so this measures only the base slots; Earth
         // spells, for example, would also fill the obsidian core's bonus slot.
-        int accepted = fillWithSpell(helper, wand, stack, touchSpell(HolyDamageSpellPayload.INSTANCE));
+        int accepted = fillWithSpell(helper, wand, stack, SpellPackageTests.touchSpell(HolyDamageSpellPayload.INSTANCE));
         assertValueEqual(helper, expectedSlots, accepted, "Number of spells accepted");
         assertValueEqual(helper, expectedSlots, wand.getSpellCount(stack), "Number of spells inscribed");
     }
@@ -176,7 +157,7 @@ public class WandComponentTests extends AbstractBaseTest {
      * staff is twice that of a wand with the same core.
      */
     public static void core_spell_slots(GameTestHelper helper, Item caster, WandCore core, int expectedSlots) {
-        assertCoreSpellSlots(helper, makeStack(caster, core, WandCap.IRON, WandGem.APPRENTICE), expectedSlots);
+        assertCoreSpellSlots(helper, TestUtils.makeModularCaster(caster, core, WandCap.IRON, WandGem.APPRENTICE), expectedSlots);
         helper.succeed();
     }
 
@@ -190,9 +171,9 @@ public class WandComponentTests extends AbstractBaseTest {
         assertValueEqual(helper, core.getBonusSlot(), bonusPayload.getSource(), "Bonus payload source");
 
         // Filler (Hallowed) and other (Infernal) spells must not match the bonus source of any core under test
-        var fillerSpell = touchSpell(HolyDamageSpellPayload.INSTANCE);
-        var otherSpell = touchSpell(FlameDamageSpellPayload.INSTANCE);
-        var bonusSpell = touchSpell(bonusPayload);
+        var fillerSpell = SpellPackageTests.touchSpell(HolyDamageSpellPayload.INSTANCE);
+        var otherSpell = SpellPackageTests.touchSpell(FlameDamageSpellPayload.INSTANCE);
+        var bonusSpell = SpellPackageTests.touchSpell(bonusPayload);
         assertFalse(helper, core.getBonusSlot().equals(fillerSpell.payload().getComponent().getSource()), "Filler spell matches bonus slot");
         assertFalse(helper, core.getBonusSlot().equals(otherSpell.payload().getComponent().getSource()), "Other spell matches bonus slot");
 

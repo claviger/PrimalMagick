@@ -585,8 +585,12 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CHARGER_INPUT_ALLOWS_ESSENCE_DUST = Services.TEST_FUNCTIONS_REGISTRY.register("wand_charger_input_allows_essence_dust", () -> (helper) -> WandChargerTests.wand_charger_input_allows_essence(helper, EssenceType.DUST));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CHARGER_INPUT_ALLOWS_ESSENCE_CRYSTAL = Services.TEST_FUNCTIONS_REGISTRY.register("wand_charger_input_allows_essence_crystal", () -> (helper) -> WandChargerTests.wand_charger_input_allows_essence(helper, EssenceType.CRYSTAL));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CHARGER_INPUT_ALLOWS_ESSENCE_CLUSTER = Services.TEST_FUNCTIONS_REGISTRY.register("wand_charger_input_allows_essence_cluster", () -> (helper) -> WandChargerTests.wand_charger_input_allows_essence(helper, EssenceType.CLUSTER));
-    // Essence mana equivalents are 1000 (shard), 10000 (crystal), and 100000 (cluster) centimana, but a single charge
-    // is capped by the mundane wand's 2500 centimana capacity
+    /**
+     * Essence mana equivalents are 1000 (shard), 10000 (crystal), and 100000 (cluster) centimana, but a single charge
+     * is capped by the mundane wand's 2500 centimana capacity. The crystal and cluster cases pin the current
+     * WandChargerTileEntity.doCharge behaviour, where the whole essence is consumed even though the charge is capped
+     * and the excess mana is lost; update them if doCharge changes how capped charges are handled.
+     */
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_SHARD = Services.TEST_FUNCTIONS_REGISTRY.register("wand_charger_do_charge_with_right_items_shard", () -> (helper) -> WandChargerTests.wand_charger_do_charge_with_right_items(helper, EssenceType.SHARD, 1000));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CRYSTAL = Services.TEST_FUNCTIONS_REGISTRY.register("wand_charger_do_charge_with_right_items_crystal", () -> (helper) -> WandChargerTests.wand_charger_do_charge_with_right_items(helper, EssenceType.CRYSTAL, 2500));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CLUSTER = Services.TEST_FUNCTIONS_REGISTRY.register("wand_charger_do_charge_with_right_items_cluster", () -> (helper) -> WandChargerTests.wand_charger_do_charge_with_right_items(helper, EssenceType.CLUSTER, 2500));

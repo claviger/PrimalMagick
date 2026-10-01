@@ -64,28 +64,32 @@ public class ManaFontTests extends AbstractBaseTest {
 
         // Create a test player in the level and put a wand in their hand
         var player = makeMockServerPlayer(helper, true);
-        var wand = assertInstanceOf(helper, wandStack.getItem(), IWand.class, "Wand stack not a wand as expected");
-        player.setItemInHand(InteractionHand.MAIN_HAND, wandStack);
+        try {
+            var wand = assertInstanceOf(helper, wandStack.getItem(), IWand.class, "Wand stack not a wand as expected");
+            player.setItemInHand(InteractionHand.MAIN_HAND, wandStack);
 
-        // Place the font block in the world and fill it
-        var fontTile = placeFont(helper, block);
-        final int fontCapacity = fontTile.getManaCapacity();
-        fontTile.setMana(fontCapacity);
+            // Place the font block in the world and fill it
+            var fontTile = placeFont(helper, block);
+            final int fontCapacity = fontTile.getManaCapacity();
+            fontTile.setMana(fontCapacity);
 
-        // Confirm the initial wand and font state
-        Sources.getAll().forEach(s -> assertValueEqual(helper, 0, wand.getMana(wandStack, s), "Initial wand mana for " + s.getId()));
-        assertValueEqual(helper, fontCapacity, fontTile.getMana(), "Initial mana of " + fontId);
+            // Confirm the initial wand and font state
+            Sources.getAll().forEach(s -> assertValueEqual(helper, 0, wand.getMana(wandStack, s), "Initial wand mana for " + s.getId()));
+            assertValueEqual(helper, fontCapacity, fontTile.getMana(), "Initial mana of " + fontId);
 
-        // Siphon a bit of mana from the font
-        fontTile.doSiphon(wandStack, helper.getLevel(), player, player.getEyePosition());
+            // Siphon a bit of mana from the font
+            fontTile.doSiphon(wandStack, helper.getLevel(), player, player.getEyePosition());
 
-        // Confirm that the correct amount of mana was siphoned from the font to the wand
-        assertValueEqual(helper, expectedSiphon, wand.getSiphonAmount(wandStack), "Wand siphon amount");
-        Sources.getAll().forEach(s -> {
-            var expectedMana = s.equals(block.getSource()) ? expectedSiphon : 0;
-            assertValueEqual(helper, expectedMana, wand.getMana(wandStack, s), "Final wand mana for " + s.getId() + " after siphoning " + fontId);
-        });
-        assertValueEqual(helper, fontCapacity - expectedSiphon, fontTile.getMana(), "Final mana of " + fontId);
+            // Confirm that the correct amount of mana was siphoned from the font to the wand
+            assertValueEqual(helper, expectedSiphon, wand.getSiphonAmount(wandStack), "Wand siphon amount");
+            Sources.getAll().forEach(s -> {
+                var expectedMana = s.equals(block.getSource()) ? expectedSiphon : 0;
+                assertValueEqual(helper, expectedMana, wand.getMana(wandStack, s), "Final wand mana for " + s.getId() + " after siphoning " + fontId);
+            });
+            assertValueEqual(helper, fontCapacity - expectedSiphon, fontTile.getMana(), "Final mana of " + fontId);
+        } finally {
+            helper.getLevel().getServer().getPlayerList().remove(player);
+        }
     }
 
     // Recharge tests

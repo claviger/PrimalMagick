@@ -4,7 +4,8 @@ import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
 import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
 import com.verdantartifice.primalmagick.common.capabilities.ManaStorage;
 import com.verdantartifice.primalmagick.common.components.DataComponentsPM;
-import com.verdantartifice.primalmagick.common.items.ItemsPM;
+import com.verdantartifice.primalmagick.common.items.essence.EssenceItem;
+import com.verdantartifice.primalmagick.common.items.essence.EssenceType;
 import com.verdantartifice.primalmagick.common.sources.Sources;
 import com.verdantartifice.primalmagick.common.tiles.mana.AbstractManaFontTileEntity;
 import com.verdantartifice.primalmagick.common.tiles.mana.AutoChargerTileEntity;
@@ -14,7 +15,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
@@ -23,14 +23,6 @@ import net.minecraft.world.phys.BlockHitResult;
  * item in ChargeableItem.
  */
 public class AutoChargerTests extends AbstractBaseTest {
-    private static ItemStack getChargeableTestStack() {
-        return ChargeableItem.MUNDANE_WAND.makeStack();
-    }
-
-    private static ItemStack getUnchargeableTestStack() {
-        return Items.STICK.getDefaultInstance();
-    }
-
     private static IItemHandlerPM getItemHandlerForNewAutoCharger(GameTestHelper helper, BlockPos pos, Direction face) {
         return TileTestUtils.placeTileAndGetHandler(helper, pos, BlocksPM.AUTO_CHARGER.get(), AutoChargerTileEntity.class, face);
     }
@@ -47,18 +39,18 @@ public class AutoChargerTests extends AbstractBaseTest {
     }
 
     public static void auto_charger_output_does_not_allow_unchargeable_items(GameTestHelper helper) {
-        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewAutoCharger(helper, BlockPos.ZERO, Direction.NORTH), getUnchargeableTestStack());
+        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewAutoCharger(helper, BlockPos.ZERO, Direction.NORTH), TileTestUtils.getUnchargeableTestStack());
         helper.succeed();
     }
 
     public static void auto_charger_output_does_not_allow_essence(GameTestHelper helper) {
         // Essence carries no mana storage, so it can't be charged
-        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewAutoCharger(helper, BlockPos.ZERO, Direction.NORTH), ItemsPM.ESSENCE_SHARD_EARTH.get().getDefaultInstance());
+        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewAutoCharger(helper, BlockPos.ZERO, Direction.NORTH), EssenceItem.getEssence(EssenceType.SHARD, Sources.EARTH));
         helper.succeed();
     }
 
     public static void auto_charger_can_have_chargeable_items_inserted(GameTestHelper helper) {
-        var stack = getChargeableTestStack();
+        var stack = TileTestUtils.getChargeableTestStack();
 
         // Track a copy of the test stack for later
         var before = stack.copy();
@@ -86,7 +78,7 @@ public class AutoChargerTests extends AbstractBaseTest {
     }
 
     public static void auto_charger_cannot_have_unchargeable_items_inserted(GameTestHelper helper) {
-        var stack = getUnchargeableTestStack();
+        var stack = TileTestUtils.getUnchargeableTestStack();
 
         // Create a test player with an unchargeable item in hand
         var player = makeMockServerPlayer(helper);
@@ -110,7 +102,7 @@ public class AutoChargerTests extends AbstractBaseTest {
     }
 
     public static void auto_charger_can_have_chargeable_items_removed(GameTestHelper helper) {
-        var stack = getChargeableTestStack();
+        var stack = TileTestUtils.getChargeableTestStack();
 
         // Track a copy of the test stack for later
         var before = stack.copy();
@@ -139,7 +131,7 @@ public class AutoChargerTests extends AbstractBaseTest {
     }
 
     public static void auto_charger_siphons_into_chargeable_items(GameTestHelper helper) {
-        var stack = getChargeableTestStack();
+        var stack = TileTestUtils.getChargeableTestStack();
 
         // Place an auto charger block
         var chargerPos = BlockPos.ZERO.south();

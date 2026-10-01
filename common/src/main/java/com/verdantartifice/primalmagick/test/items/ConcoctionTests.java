@@ -32,6 +32,9 @@ public class ConcoctionTests extends AbstractBaseTest {
     protected static final ConcoctionType DEFAULT_CONCOCTION_TYPE = ConcoctionType.WATER;
     protected static final FuseType DEFAULT_FUSE_TYPE = FuseType.MEDIUM;
 
+    // Hard-coded from ConcoctionType.BOMB so that a change to the bomb's dose count is caught
+    protected static final int BOMB_MAX_DOSES = 6;
+
     protected static void assertHasPotion(GameTestHelper helper, Holder<Potion> expected, ItemStack stack) {
         PotionContents contents = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
         assertTrue(helper, contents.is(expected), "Stack does not contain potion " + expected.getRegisteredName() + ": " + contents);
@@ -95,12 +98,12 @@ public class ConcoctionTests extends AbstractBaseTest {
     // Bomb tests
 
     public static void concoction_bomb_fuse_round_trip(GameTestHelper helper, FuseType fuse) {
-        // A new bomb carries the given fuse along with the bomb concoction type and its six doses
+        // A new bomb carries the given fuse along with the bomb concoction type and its full set of doses
         ItemStack bomb = ConcoctionUtils.newBomb(Potions.HEALING, fuse).create();
         assertValueEqual(helper, ItemsPM.ALCHEMICAL_BOMB.get(), bomb.getItem(), "Item of created bomb");
         assertValueEqual(helper, fuse, ConcoctionUtils.getFuseType(bomb), "Fuse type of created bomb");
         assertValueEqual(helper, ConcoctionType.BOMB, ConcoctionUtils.getConcoctionType(bomb), "Concoction type of created bomb");
-        assertValueEqual(helper, 6, ConcoctionUtils.getCurrentDoses(bomb), "Doses of created bomb");
+        assertValueEqual(helper, BOMB_MAX_DOSES, ConcoctionUtils.getCurrentDoses(bomb), "Doses of created bomb");
         assertHasPotion(helper, Potions.HEALING, bomb);
 
         // Setting the fuse on a stack that already has a different one replaces it
@@ -122,7 +125,7 @@ public class ConcoctionTests extends AbstractBaseTest {
         ItemStack bomb = ConcoctionUtils.newBomb(Potions.HEALING).create();
         assertValueEqual(helper, ItemsPM.ALCHEMICAL_BOMB.get(), bomb.getItem(), "Item of created bomb");
         assertTrue(helper, bomb.has(DataComponentsPM.FUSE_TYPE.get()), "Created bomb has no fuse type component");
-        assertValueEqual(helper, FuseType.MEDIUM, ConcoctionUtils.getFuseType(bomb), "Default fuse type of created bomb");
+        assertValueEqual(helper, DEFAULT_FUSE_TYPE, ConcoctionUtils.getFuseType(bomb), "Default fuse type of created bomb");
         helper.succeed();
     }
 

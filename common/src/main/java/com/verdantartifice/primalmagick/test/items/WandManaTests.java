@@ -1,7 +1,6 @@
 package com.verdantartifice.primalmagick.test.items;
 
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
-import com.verdantartifice.primalmagick.common.items.wands.IHasWandComponents;
 import com.verdantartifice.primalmagick.common.sources.Source;
 import com.verdantartifice.primalmagick.common.sources.SourceList;
 import com.verdantartifice.primalmagick.common.sources.Sources;
@@ -10,6 +9,7 @@ import com.verdantartifice.primalmagick.common.wands.WandCap;
 import com.verdantartifice.primalmagick.common.wands.WandCore;
 import com.verdantartifice.primalmagick.common.wands.WandGem;
 import com.verdantartifice.primalmagick.test.AbstractBaseTest;
+import com.verdantartifice.primalmagick.test.TestUtils;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.item.ItemStack;
 
@@ -28,10 +28,10 @@ public class WandManaTests extends AbstractBaseTest {
         // Heartwood core, iron cap, apprentice gem. WandGem.APPRENTICE holds 7500 centimana, and the iron cap's 10%
         // cost modifier makes a 100 centimana charge cost floor(100 / 1.10) = 90. Heartwood has no aligned sources,
         // so the cost is the same for every source.
-        MODULAR_WAND(() -> IHasWandComponents.setWandComponents(ItemsPM.MODULAR_WAND.get().getDefaultInstance(), WandCore.HEARTWOOD, WandCap.IRON, WandGem.APPRENTICE), 7500, 90),
+        MODULAR_WAND(() -> TestUtils.makeModularCaster(ItemsPM.MODULAR_WAND.get(), WandCore.HEARTWOOD, WandCap.IRON, WandGem.APPRENTICE), 7500, 90),
 
         // Same components as the modular wand; staves take their capacity and cost modifier from the same gem and cap
-        MODULAR_STAFF(() -> IHasWandComponents.setWandComponents(ItemsPM.MODULAR_STAFF.get().getDefaultInstance(), WandCore.HEARTWOOD, WandCap.IRON, WandGem.APPRENTICE), 7500, 90),
+        MODULAR_STAFF(() -> TestUtils.makeModularCaster(ItemsPM.MODULAR_STAFF.get(), WandCore.HEARTWOOD, WandCap.IRON, WandGem.APPRENTICE), 7500, 90),
 
         // Mundane wands have no gem or cap. MundaneWandItem.MAX_MANA is a fixed 2500 centimana and the base cost
         // modifier is 0, so a 100 centimana charge costs exactly 100.

@@ -11,6 +11,7 @@ import com.verdantartifice.primalmagick.common.spells.mods.EmptySpellMod;
 import com.verdantartifice.primalmagick.common.spells.mods.ForkSpellMod;
 import com.verdantartifice.primalmagick.common.spells.mods.MineSpellMod;
 import com.verdantartifice.primalmagick.common.spells.mods.QuickenSpellMod;
+import com.verdantartifice.primalmagick.common.spells.payloads.AbstractSpellPayload;
 import com.verdantartifice.primalmagick.common.spells.payloads.BreakSpellPayload;
 import com.verdantartifice.primalmagick.common.spells.payloads.EarthDamageSpellPayload;
 import com.verdantartifice.primalmagick.common.spells.payloads.EmptySpellPayload;
@@ -30,7 +31,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class SpellPackageTests extends AbstractBaseTest {
-    protected static final String TEST_SPELL_NAME = "Test Spell";
+    public static final String TEST_SPELL_NAME = "Test Spell";
 
     /**
      * Creates a named spell builder with the given vehicle, leaving the payload and mods to the caller.
@@ -46,6 +47,17 @@ public class SpellPackageTests extends AbstractBaseTest {
         var vehicleBuilder = SpellPackage.builder().name(TEST_SPELL_NAME).vehicle().type(vehicle);
         vehicleConfigurer.accept(vehicleBuilder);
         return vehicleBuilder.end();
+    }
+
+    /**
+     * Creates a Touch spell carrying the given payload, with every payload property at its minimum valid value.
+     */
+    public static SpellPackage touchSpell(AbstractSpellPayload<?> payload) {
+        var payloadBuilder = spellWithVehicle(TouchSpellVehicle.INSTANCE).payload().type(payload);
+        for (SpellProperty property : payload.getProperties()) {
+            payloadBuilder.with(property, property.min());
+        }
+        return payloadBuilder.end().build();
     }
 
     /**
@@ -76,11 +88,7 @@ public class SpellPackageTests extends AbstractBaseTest {
         assertValueEqual(helper, expectedSource, payloadInstance.getSource(), "Payload source");
 
         // Configure every property of the payload at its minimum valid value
-        var payloadBuilder = spellWithVehicle(TouchSpellVehicle.INSTANCE).payload().type(payloadInstance);
-        for (SpellProperty property : payloadInstance.getProperties()) {
-            payloadBuilder.with(property, property.min());
-        }
-        var spell = payloadBuilder.end().build();
+        var spell = touchSpell(payloadInstance);
 
         // Touch is a no-op vehicle, so the cost should be exactly the payload's base cost converted to centimana
         int baseManaCost = spell.payload().getBaseManaCost();

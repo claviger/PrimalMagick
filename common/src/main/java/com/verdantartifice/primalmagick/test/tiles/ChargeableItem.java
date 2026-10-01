@@ -2,10 +2,10 @@ package com.verdantartifice.primalmagick.test.tiles;
 
 import com.verdantartifice.primalmagick.common.components.DataComponentsPM;
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
-import com.verdantartifice.primalmagick.common.items.wands.IHasWandComponents;
 import com.verdantartifice.primalmagick.common.wands.WandCap;
 import com.verdantartifice.primalmagick.common.wands.WandCore;
 import com.verdantartifice.primalmagick.common.wands.WandGem;
+import com.verdantartifice.primalmagick.test.TestUtils;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Supplier;
@@ -20,8 +20,8 @@ public enum ChargeableItem {
 
     // Modular casters only get a mana storage component once their components are set. They use a gold cap (siphon
     // amount 200) so that siphon tests can tell the cap's value apart from the iron fallback and the mundane wand (100).
-    MODULAR_WAND(() -> IHasWandComponents.setWandComponents(ItemsPM.MODULAR_WAND.get().getDefaultInstance(), WandCore.HEARTWOOD, WandCap.GOLD, WandGem.APPRENTICE), true),
-    MODULAR_STAFF(() -> IHasWandComponents.setWandComponents(ItemsPM.MODULAR_STAFF.get().getDefaultInstance(), WandCore.HEARTWOOD, WandCap.GOLD, WandGem.APPRENTICE), true),
+    MODULAR_WAND(() -> TestUtils.makeModularCaster(ItemsPM.MODULAR_WAND.get(), WandCore.HEARTWOOD, WandCap.GOLD, WandGem.APPRENTICE), true),
+    MODULAR_STAFF(() -> TestUtils.makeModularCaster(ItemsPM.MODULAR_STAFF.get(), WandCore.HEARTWOOD, WandCap.GOLD, WandGem.APPRENTICE), true),
 
     // Applying a warding module to wardable armor adds an earth-only mana storage component to the armor stack
     WARDED_PRIMALITE_CHEST(() -> ItemsPM.BASIC_WARDING_MODULE.get().applyWard(ItemsPM.PRIMALITE_CHEST.get().getDefaultInstance()), false);

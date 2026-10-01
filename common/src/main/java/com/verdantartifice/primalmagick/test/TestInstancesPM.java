@@ -736,6 +736,39 @@ public class TestInstancesPM {
         registerFunction(context, RESEARCH_KEY_RUNE_ENCHANTMENT_PARTIAL, TestFunctionsPM.RESEARCH_KEY_RUNE_ENCHANTMENT_PARTIAL.getKey());
     }
 
+    public static void registerWandComponentTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, WAND_GEM_SETS_MAX_MANA_APPRENTICE, TestFunctionsPM.WAND_GEM_SETS_MAX_MANA_APPRENTICE.getKey());
+        registerFunction(context, WAND_GEM_SETS_MAX_MANA_ADEPT, TestFunctionsPM.WAND_GEM_SETS_MAX_MANA_ADEPT.getKey());
+        registerFunction(context, WAND_GEM_SETS_MAX_MANA_WIZARD, TestFunctionsPM.WAND_GEM_SETS_MAX_MANA_WIZARD.getKey());
+        registerFunction(context, WAND_GEM_SETS_MAX_MANA_ARCHMAGE, TestFunctionsPM.WAND_GEM_SETS_MAX_MANA_ARCHMAGE.getKey());
+        registerFunction(context, WAND_GEM_CREATIVE_HAS_INFINITE_MANA, TestFunctionsPM.WAND_GEM_CREATIVE_HAS_INFINITE_MANA.getKey());
+        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_IRON, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_IRON.getKey());
+        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_GOLD, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_GOLD.getKey());
+        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_PRIMALITE, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_PRIMALITE.getKey());
+        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_HEXIUM, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_HEXIUM.getKey());
+        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_HALLOWSTEEL, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_HALLOWSTEEL.getKey());
+        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_IRON, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_IRON.getKey());
+        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_GOLD, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_GOLD.getKey());
+        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_PRIMALITE, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_PRIMALITE.getKey());
+        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_HEXIUM, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_HEXIUM.getKey());
+        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_HALLOWSTEEL, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_HALLOWSTEEL.getKey());
+        registerFunction(context, WAND_CORE_SPELL_SLOTS_HEARTWOOD, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_HEARTWOOD.getKey());
+        registerFunction(context, WAND_CORE_SPELL_SLOTS_OBSIDIAN, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_OBSIDIAN.getKey());
+        registerFunction(context, WAND_CORE_SPELL_SLOTS_BONE, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_BONE.getKey());
+        registerFunction(context, WAND_CORE_SPELL_SLOTS_PRIMAL, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_PRIMAL.getKey());
+        registerFunction(context, WAND_CORE_SPELL_SLOTS_DARK_PRIMAL, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_DARK_PRIMAL.getKey());
+        registerFunction(context, WAND_CORE_SPELL_SLOTS_PURE_PRIMAL, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_PURE_PRIMAL.getKey());
+        registerFunction(context, WAND_CORE_BONUS_SLOT_ACCEPTS_MATCHING_SPELL_OBSIDIAN, TestFunctionsPM.WAND_CORE_BONUS_SLOT_ACCEPTS_MATCHING_SPELL_OBSIDIAN.getKey());
+        registerFunction(context, WAND_CORE_BONUS_SLOT_ACCEPTS_MATCHING_SPELL_BONE, TestFunctionsPM.WAND_CORE_BONUS_SLOT_ACCEPTS_MATCHING_SPELL_BONE.getKey());
+        registerFunction(context, WAND_CORE_ALIGNED_SOURCES_HEARTWOOD, TestFunctionsPM.WAND_CORE_ALIGNED_SOURCES_HEARTWOOD.getKey());
+        registerFunction(context, WAND_CORE_ALIGNED_SOURCES_BONE, TestFunctionsPM.WAND_CORE_ALIGNED_SOURCES_BONE.getKey());
+        registerFunction(context, WAND_CORE_ALIGNED_SOURCES_DARK_PRIMAL, TestFunctionsPM.WAND_CORE_ALIGNED_SOURCES_DARK_PRIMAL.getKey());
+        registerFunction(context, STAFF_GEM_SETS_MAX_MANA_WIZARD, TestFunctionsPM.STAFF_GEM_SETS_MAX_MANA_WIZARD.getKey());
+        registerFunction(context, STAFF_CAP_SETS_BASE_COST_MODIFIER_HEXIUM, TestFunctionsPM.STAFF_CAP_SETS_BASE_COST_MODIFIER_HEXIUM.getKey());
+        registerFunction(context, STAFF_CAP_SETS_SIPHON_AMOUNT_HEXIUM, TestFunctionsPM.STAFF_CAP_SETS_SIPHON_AMOUNT_HEXIUM.getKey());
+        registerFunction(context, STAFF_CORE_SPELL_SLOTS_PRIMAL, TestFunctionsPM.STAFF_CORE_SPELL_SLOTS_PRIMAL.getKey());
+    }
+
     public static void registerWandManaTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, WAND_CAN_GET_AND_ADD_MANA, TestFunctionsPM.WAND_CAN_GET_AND_ADD_MANA.getKey());
         registerFunction(context, WAND_CAN_GET_AND_ADD_REAL_MANA, TestFunctionsPM.WAND_CAN_GET_AND_ADD_REAL_MANA.getKey());
@@ -786,39 +819,6 @@ public class TestInstancesPM {
         registerFunction(context, WAND_CAN_GET_AND_ADD_MANA_MODULAR_STAFF, TestFunctionsPM.WAND_CAN_GET_AND_ADD_MANA_MODULAR_STAFF.getKey());
         registerFunction(context, WAND_CAN_CONSUME_MANA_MUNDANE_WAND, TestFunctionsPM.WAND_CAN_CONSUME_MANA_MUNDANE_WAND.getKey());
         registerFunction(context, WAND_CAN_CONSUME_MANA_MODULAR_STAFF, TestFunctionsPM.WAND_CAN_CONSUME_MANA_MODULAR_STAFF.getKey());
-    }
-
-    public static void registerWandComponentTests(BootstrapContext<GameTestInstance> context) {
-        registerFunction(context, WAND_GEM_SETS_MAX_MANA_APPRENTICE, TestFunctionsPM.WAND_GEM_SETS_MAX_MANA_APPRENTICE.getKey());
-        registerFunction(context, WAND_GEM_SETS_MAX_MANA_ADEPT, TestFunctionsPM.WAND_GEM_SETS_MAX_MANA_ADEPT.getKey());
-        registerFunction(context, WAND_GEM_SETS_MAX_MANA_WIZARD, TestFunctionsPM.WAND_GEM_SETS_MAX_MANA_WIZARD.getKey());
-        registerFunction(context, WAND_GEM_SETS_MAX_MANA_ARCHMAGE, TestFunctionsPM.WAND_GEM_SETS_MAX_MANA_ARCHMAGE.getKey());
-        registerFunction(context, WAND_GEM_CREATIVE_HAS_INFINITE_MANA, TestFunctionsPM.WAND_GEM_CREATIVE_HAS_INFINITE_MANA.getKey());
-        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_IRON, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_IRON.getKey());
-        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_GOLD, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_GOLD.getKey());
-        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_PRIMALITE, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_PRIMALITE.getKey());
-        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_HEXIUM, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_HEXIUM.getKey());
-        registerFunction(context, WAND_CAP_SETS_BASE_COST_MODIFIER_HALLOWSTEEL, TestFunctionsPM.WAND_CAP_SETS_BASE_COST_MODIFIER_HALLOWSTEEL.getKey());
-        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_IRON, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_IRON.getKey());
-        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_GOLD, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_GOLD.getKey());
-        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_PRIMALITE, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_PRIMALITE.getKey());
-        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_HEXIUM, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_HEXIUM.getKey());
-        registerFunction(context, WAND_CAP_SETS_SIPHON_AMOUNT_HALLOWSTEEL, TestFunctionsPM.WAND_CAP_SETS_SIPHON_AMOUNT_HALLOWSTEEL.getKey());
-        registerFunction(context, WAND_CORE_SPELL_SLOTS_HEARTWOOD, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_HEARTWOOD.getKey());
-        registerFunction(context, WAND_CORE_SPELL_SLOTS_OBSIDIAN, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_OBSIDIAN.getKey());
-        registerFunction(context, WAND_CORE_SPELL_SLOTS_BONE, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_BONE.getKey());
-        registerFunction(context, WAND_CORE_SPELL_SLOTS_PRIMAL, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_PRIMAL.getKey());
-        registerFunction(context, WAND_CORE_SPELL_SLOTS_DARK_PRIMAL, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_DARK_PRIMAL.getKey());
-        registerFunction(context, WAND_CORE_SPELL_SLOTS_PURE_PRIMAL, TestFunctionsPM.WAND_CORE_SPELL_SLOTS_PURE_PRIMAL.getKey());
-        registerFunction(context, WAND_CORE_BONUS_SLOT_ACCEPTS_MATCHING_SPELL_OBSIDIAN, TestFunctionsPM.WAND_CORE_BONUS_SLOT_ACCEPTS_MATCHING_SPELL_OBSIDIAN.getKey());
-        registerFunction(context, WAND_CORE_BONUS_SLOT_ACCEPTS_MATCHING_SPELL_BONE, TestFunctionsPM.WAND_CORE_BONUS_SLOT_ACCEPTS_MATCHING_SPELL_BONE.getKey());
-        registerFunction(context, WAND_CORE_ALIGNED_SOURCES_HEARTWOOD, TestFunctionsPM.WAND_CORE_ALIGNED_SOURCES_HEARTWOOD.getKey());
-        registerFunction(context, WAND_CORE_ALIGNED_SOURCES_BONE, TestFunctionsPM.WAND_CORE_ALIGNED_SOURCES_BONE.getKey());
-        registerFunction(context, WAND_CORE_ALIGNED_SOURCES_DARK_PRIMAL, TestFunctionsPM.WAND_CORE_ALIGNED_SOURCES_DARK_PRIMAL.getKey());
-        registerFunction(context, STAFF_GEM_SETS_MAX_MANA_WIZARD, TestFunctionsPM.STAFF_GEM_SETS_MAX_MANA_WIZARD.getKey());
-        registerFunction(context, STAFF_CAP_SETS_BASE_COST_MODIFIER_HEXIUM, TestFunctionsPM.STAFF_CAP_SETS_BASE_COST_MODIFIER_HEXIUM.getKey());
-        registerFunction(context, STAFF_CAP_SETS_SIPHON_AMOUNT_HEXIUM, TestFunctionsPM.STAFF_CAP_SETS_SIPHON_AMOUNT_HEXIUM.getKey());
-        registerFunction(context, STAFF_CORE_SPELL_SLOTS_PRIMAL, TestFunctionsPM.STAFF_CORE_SPELL_SLOTS_PRIMAL.getKey());
     }
 
     public static void registerConcoctionTests(BootstrapContext<GameTestInstance> context) {
@@ -901,11 +901,38 @@ public class TestInstancesPM {
         registerFunction(context, TRANSFORM_GRIMOIRE, TestFunctionsPM.TRANSFORM_GRIMOIRE.getKey());
     }
 
-    public static void registerRitualEnchantmentTests(BootstrapContext<GameTestInstance> context) {
-        registerFunction(context, ENCHANTMENT_ESSENCE_THIEF1, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF1.getKey());
-        registerFunction(context, ENCHANTMENT_ESSENCE_THIEF2, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF2.getKey());
-        registerFunction(context, ENCHANTMENT_ESSENCE_THIEF3, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF3.getKey());
-        registerFunction(context, ENCHANTMENT_ESSENCE_THIEF4, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF4.getKey());
+    public static void registerLootModifierTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, LOOT_ADD_ITEM_ADDS_FIXED_ROLLS, TestFunctionsPM.LOOT_ADD_ITEM_ADDS_FIXED_ROLLS.getKey());
+        registerFunction(context, LOOT_ADD_ITEM_ZERO_ROLLS_ADDS_NOTHING, TestFunctionsPM.LOOT_ADD_ITEM_ZERO_ROLLS_ADDS_NOTHING.getKey());
+        registerFunction(context, LOOT_REPLACE_ITEM_REPLACES_ALL_ENTRIES, TestFunctionsPM.LOOT_REPLACE_ITEM_REPLACES_ALL_ENTRIES.getKey());
+        registerFunction(context, LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_VILLAGER, TestFunctionsPM.LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_VILLAGER.getKey());
+        registerFunction(context, LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_WITCH, TestFunctionsPM.LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_WITCH.getKey());
+        registerFunction(context, LOOT_BLOODY_FLESH_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_BLOODY_FLESH_SKIPS_UNTAGGED_ENTITY.getKey());
+        registerFunction(context, LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_EVOKER, TestFunctionsPM.LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_EVOKER.getKey());
+        registerFunction(context, LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_WITCH, TestFunctionsPM.LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_WITCH.getKey());
+        registerFunction(context, LOOT_BLOOD_NOTES_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_BLOOD_NOTES_SKIPS_UNTAGGED_ENTITY.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_IRON_CHANCE_1, TestFunctionsPM.LOOT_BONUS_NUGGET_IRON_CHANCE_1.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_QUARTZ_CHANCE_1, TestFunctionsPM.LOOT_BONUS_NUGGET_QUARTZ_CHANCE_1.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_IRON_CHANCE_0, TestFunctionsPM.LOOT_BONUS_NUGGET_IRON_CHANCE_0.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_REQUIRES_LUCKY_STRIKE, TestFunctionsPM.LOOT_BONUS_NUGGET_REQUIRES_LUCKY_STRIKE.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_SKIPS_UNTAGGED_BLOCK, TestFunctionsPM.LOOT_BONUS_NUGGET_SKIPS_UNTAGGED_BLOCK.getKey());
+        registerFunction(context, LOOT_BOUNTY_FARMING_CHANCE_1, TestFunctionsPM.LOOT_BOUNTY_FARMING_CHANCE_1.getKey());
+        registerFunction(context, LOOT_BOUNTY_FARMING_CHANCE_0, TestFunctionsPM.LOOT_BOUNTY_FARMING_CHANCE_0.getKey());
+        registerFunction(context, LOOT_BOUNTY_FISHING_CHANCE_1, TestFunctionsPM.LOOT_BOUNTY_FISHING_CHANCE_1.getKey());
+        registerFunction(context, LOOT_BOUNTY_FISHING_CHANCE_0, TestFunctionsPM.LOOT_BOUNTY_FISHING_CHANCE_0.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_ZOMBIE, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_ZOMBIE.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_DROWNED, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_DROWNED.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_SKELETON, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_SKELETON.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_CREEPER, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_CREEPER.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_SCALES_WITH_LEVEL, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_SCALES_WITH_LEVEL.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_GUILLOTINE_SKIPS_UNTAGGED_ENTITY.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_REQUIRES_ENCHANTMENT, TestFunctionsPM.LOOT_GUILLOTINE_REQUIRES_ENCHANTMENT.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_SKIPS_EXISTING_HEAD, TestFunctionsPM.LOOT_GUILLOTINE_SKIPS_EXISTING_HEAD.getKey());
+        registerFunction(context, LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_EVOKER, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_EVOKER.getKey());
+        registerFunction(context, LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_ZOMBIE, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_ZOMBIE.getKey());
+        registerFunction(context, LOOT_RELIC_FRAGMENTS_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_SKIPS_UNTAGGED_ENTITY.getKey());
+        registerFunction(context, LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE.getKey());
+        registerFunction(context, LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT, TestFunctionsPM.LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT.getKey());
     }
 
     public static void registerRuneManagerTests(BootstrapContext<GameTestInstance> context) {
@@ -944,38 +971,11 @@ public class TestInstancesPM {
         registerFunction(context, RUNE_IS_KNOWN_FULL_KEY, TestFunctionsPM.RUNE_IS_KNOWN_FULL_KEY.getKey());
     }
 
-    public static void registerLootModifierTests(BootstrapContext<GameTestInstance> context) {
-        registerFunction(context, LOOT_ADD_ITEM_ADDS_FIXED_ROLLS, TestFunctionsPM.LOOT_ADD_ITEM_ADDS_FIXED_ROLLS.getKey());
-        registerFunction(context, LOOT_ADD_ITEM_ZERO_ROLLS_ADDS_NOTHING, TestFunctionsPM.LOOT_ADD_ITEM_ZERO_ROLLS_ADDS_NOTHING.getKey());
-        registerFunction(context, LOOT_REPLACE_ITEM_REPLACES_ALL_ENTRIES, TestFunctionsPM.LOOT_REPLACE_ITEM_REPLACES_ALL_ENTRIES.getKey());
-        registerFunction(context, LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_VILLAGER, TestFunctionsPM.LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_VILLAGER.getKey());
-        registerFunction(context, LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_WITCH, TestFunctionsPM.LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_WITCH.getKey());
-        registerFunction(context, LOOT_BLOODY_FLESH_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_BLOODY_FLESH_SKIPS_UNTAGGED_ENTITY.getKey());
-        registerFunction(context, LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_EVOKER, TestFunctionsPM.LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_EVOKER.getKey());
-        registerFunction(context, LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_WITCH, TestFunctionsPM.LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_WITCH.getKey());
-        registerFunction(context, LOOT_BLOOD_NOTES_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_BLOOD_NOTES_SKIPS_UNTAGGED_ENTITY.getKey());
-        registerFunction(context, LOOT_BONUS_NUGGET_IRON_CHANCE_1, TestFunctionsPM.LOOT_BONUS_NUGGET_IRON_CHANCE_1.getKey());
-        registerFunction(context, LOOT_BONUS_NUGGET_QUARTZ_CHANCE_1, TestFunctionsPM.LOOT_BONUS_NUGGET_QUARTZ_CHANCE_1.getKey());
-        registerFunction(context, LOOT_BONUS_NUGGET_IRON_CHANCE_0, TestFunctionsPM.LOOT_BONUS_NUGGET_IRON_CHANCE_0.getKey());
-        registerFunction(context, LOOT_BONUS_NUGGET_REQUIRES_LUCKY_STRIKE, TestFunctionsPM.LOOT_BONUS_NUGGET_REQUIRES_LUCKY_STRIKE.getKey());
-        registerFunction(context, LOOT_BONUS_NUGGET_SKIPS_UNTAGGED_BLOCK, TestFunctionsPM.LOOT_BONUS_NUGGET_SKIPS_UNTAGGED_BLOCK.getKey());
-        registerFunction(context, LOOT_BOUNTY_FARMING_CHANCE_1, TestFunctionsPM.LOOT_BOUNTY_FARMING_CHANCE_1.getKey());
-        registerFunction(context, LOOT_BOUNTY_FARMING_CHANCE_0, TestFunctionsPM.LOOT_BOUNTY_FARMING_CHANCE_0.getKey());
-        registerFunction(context, LOOT_BOUNTY_FISHING_CHANCE_1, TestFunctionsPM.LOOT_BOUNTY_FISHING_CHANCE_1.getKey());
-        registerFunction(context, LOOT_BOUNTY_FISHING_CHANCE_0, TestFunctionsPM.LOOT_BOUNTY_FISHING_CHANCE_0.getKey());
-        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_ZOMBIE, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_ZOMBIE.getKey());
-        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_DROWNED, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_DROWNED.getKey());
-        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_SKELETON, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_SKELETON.getKey());
-        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_CREEPER, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_CREEPER.getKey());
-        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_SCALES_WITH_LEVEL, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_SCALES_WITH_LEVEL.getKey());
-        registerFunction(context, LOOT_GUILLOTINE_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_GUILLOTINE_SKIPS_UNTAGGED_ENTITY.getKey());
-        registerFunction(context, LOOT_GUILLOTINE_REQUIRES_ENCHANTMENT, TestFunctionsPM.LOOT_GUILLOTINE_REQUIRES_ENCHANTMENT.getKey());
-        registerFunction(context, LOOT_GUILLOTINE_SKIPS_EXISTING_HEAD, TestFunctionsPM.LOOT_GUILLOTINE_SKIPS_EXISTING_HEAD.getKey());
-        registerFunction(context, LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_EVOKER, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_EVOKER.getKey());
-        registerFunction(context, LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_ZOMBIE, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_ZOMBIE.getKey());
-        registerFunction(context, LOOT_RELIC_FRAGMENTS_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_SKIPS_UNTAGGED_ENTITY.getKey());
-        registerFunction(context, LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE.getKey());
-        registerFunction(context, LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT, TestFunctionsPM.LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT.getKey());
+    public static void registerRitualEnchantmentTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ENCHANTMENT_ESSENCE_THIEF1, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF1.getKey());
+        registerFunction(context, ENCHANTMENT_ESSENCE_THIEF2, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF2.getKey());
+        registerFunction(context, ENCHANTMENT_ESSENCE_THIEF3, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF3.getKey());
+        registerFunction(context, ENCHANTMENT_ESSENCE_THIEF4, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF4.getKey());
     }
 
     public static void registerCasterEnchantabilityTests(BootstrapContext<GameTestInstance> context) {

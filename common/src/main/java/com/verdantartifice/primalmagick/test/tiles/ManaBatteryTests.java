@@ -3,7 +3,6 @@ package com.verdantartifice.primalmagick.test.tiles;
 import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
 import com.verdantartifice.primalmagick.common.blocks.mana.ManaBatteryBlock;
 import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
-import com.verdantartifice.primalmagick.common.items.ItemsPM;
 import com.verdantartifice.primalmagick.common.items.essence.EssenceItem;
 import com.verdantartifice.primalmagick.common.items.essence.EssenceType;
 import com.verdantartifice.primalmagick.common.menus.ManaBatteryMenu;
@@ -16,7 +15,6 @@ import com.verdantartifice.primalmagick.test.AbstractBaseTest;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
-import net.minecraft.world.item.Items;
 
 /**
  * Tests for mana batteries: menu access, which items each face's item handler accepts, and siphoning mana from
@@ -92,13 +90,13 @@ public class ManaBatteryTests extends AbstractBaseTest {
     }
 
     public static void mana_battery_output_does_not_allow_unchargeable_items(GameTestHelper helper) {
-        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewManaBattery(helper, Direction.NORTH), Items.STICK.getDefaultInstance());
+        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewManaBattery(helper, Direction.NORTH), TileTestUtils.getUnchargeableTestStack());
         helper.succeed();
     }
 
     public static void mana_battery_output_does_not_allow_essence(GameTestHelper helper) {
         // Essence can be broken down by the input slot, but carries no mana storage and so can't be charged
-        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewManaBattery(helper, Direction.NORTH), ItemsPM.ESSENCE_SHARD_EARTH.get().getDefaultInstance());
+        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewManaBattery(helper, Direction.NORTH), EssenceItem.getEssence(EssenceType.SHARD, Sources.EARTH));
         helper.succeed();
     }
 

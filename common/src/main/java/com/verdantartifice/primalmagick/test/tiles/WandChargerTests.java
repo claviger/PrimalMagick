@@ -4,7 +4,6 @@ import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
 import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
 import com.verdantartifice.primalmagick.common.capabilities.ManaStorage;
 import com.verdantartifice.primalmagick.common.components.DataComponentsPM;
-import com.verdantartifice.primalmagick.common.items.ItemsPM;
 import com.verdantartifice.primalmagick.common.items.essence.EssenceItem;
 import com.verdantartifice.primalmagick.common.items.essence.EssenceType;
 import com.verdantartifice.primalmagick.common.menus.WandChargerMenu;
@@ -17,7 +16,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 /**
  * Tests for the wand charger: menu access, which items each face's item handler accepts, and charging a mundane wand
@@ -25,14 +23,6 @@ import net.minecraft.world.item.Items;
  * wand's fixed 2500 centimana capacity (MundaneWandItem.MAX_MANA).
  */
 public class WandChargerTests extends AbstractBaseTest {
-    private static ItemStack getChargeableTestStack() {
-        return ChargeableItem.MUNDANE_WAND.makeStack();
-    }
-
-    private static ItemStack getUnchargeableTestStack() {
-        return Items.STICK.getDefaultInstance();
-    }
-
     private static IItemHandlerPM getItemHandlerForNewWandCharger(GameTestHelper helper, Direction direction) {
         return TileTestUtils.placeTileAndGetHandler(helper, BlockPos.ZERO, BlocksPM.WAND_CHARGER.get(), WandChargerTileEntity.class, direction);
     }
@@ -72,13 +62,13 @@ public class WandChargerTests extends AbstractBaseTest {
 
     public static void wand_charger_output_does_not_allow_unchargeable_items(GameTestHelper helper) {
         // Confirm that the output item handler will not accept the test item
-        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewWandCharger(helper, Direction.NORTH), getUnchargeableTestStack());
+        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewWandCharger(helper, Direction.NORTH), TileTestUtils.getUnchargeableTestStack());
         helper.succeed();
     }
 
     public static void wand_charger_output_does_not_allow_essence(GameTestHelper helper) {
         // Essence is accepted by the input slot, but carries no mana storage and so can't be charged
-        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewWandCharger(helper, Direction.NORTH), ItemsPM.ESSENCE_SHARD_EARTH.get().getDefaultInstance());
+        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewWandCharger(helper, Direction.NORTH), EssenceItem.getEssence(EssenceType.SHARD, Sources.EARTH));
         helper.succeed();
     }
 
@@ -95,14 +85,14 @@ public class WandChargerTests extends AbstractBaseTest {
 
     public static void wand_charger_input_does_not_allow_non_essence(GameTestHelper helper) {
         // Confirm that the input item handler will not accept the test item
-        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewWandCharger(helper, Direction.UP), getUnchargeableTestStack());
+        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewWandCharger(helper, Direction.UP), TileTestUtils.getUnchargeableTestStack());
         helper.succeed();
     }
 
     // Charging tests
 
     public static void wand_charger_can_charge_with_right_items(GameTestHelper helper) {
-        var stack = getChargeableTestStack();
+        var stack = TileTestUtils.getChargeableTestStack();
 
         // Place a wand charger block and get its block entity
         var pos = BlockPos.ZERO;
@@ -110,7 +100,7 @@ public class WandChargerTests extends AbstractBaseTest {
         var tile = helper.getBlockEntity(pos, WandChargerTileEntity.class);
 
         // Fill the block entity with essence and a chargeable item
-        tile.addItem(WandChargerTileEntity.INPUT_INV_INDEX, 0, ItemsPM.ESSENCE_DUST_EARTH.get().getDefaultInstance());
+        tile.addItem(WandChargerTileEntity.INPUT_INV_INDEX, 0, EssenceItem.getEssence(EssenceType.DUST, Sources.EARTH));
         tile.addItem(WandChargerTileEntity.CHARGE_INV_INDEX, 0, stack);
 
         // Confirm that the charger can charge with the inputs provided
@@ -122,6 +112,11 @@ public class WandChargerTests extends AbstractBaseTest {
     /**
      * Confirms that charging an empty mundane wand with one earth essence of the given type consumes the essence and
      * adds the expected amount of earth mana, and no mana of any other source.
+     * <p>
+     * These tests pin the current behaviour of WandChargerTileEntity.doCharge, where a whole essence is consumed even
+     * when the mana added is capped by the wand's capacity, so the excess is lost. The crystal and cluster cases in
+     * TestFunctionsPM rely on this by expecting the input to be emptied while the wand only reaches 2500 centimana; if
+     * doCharge is changed to refund or keep essence when the charge is capped, update those cases too.
      */
     public static void wand_charger_do_charge_with_right_items(GameTestHelper helper, EssenceType type, int expectedCharge) {
         var source = Sources.EARTH;
@@ -133,7 +128,7 @@ public class WandChargerTests extends AbstractBaseTest {
 
         // Fill the block entity with essence and a chargeable item
         tile.addItem(WandChargerTileEntity.INPUT_INV_INDEX, 0, EssenceItem.getEssence(type, source));
-        tile.addItem(WandChargerTileEntity.CHARGE_INV_INDEX, 0, getChargeableTestStack());
+        tile.addItem(WandChargerTileEntity.CHARGE_INV_INDEX, 0, TileTestUtils.getChargeableTestStack());
 
         // Confirm that the charged stack starts with empty mana storage
         var startStack = getChargeSlotStack(tile);
