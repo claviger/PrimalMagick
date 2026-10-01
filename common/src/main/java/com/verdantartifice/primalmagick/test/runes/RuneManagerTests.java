@@ -275,10 +275,10 @@ public class RuneManagerTests extends AbstractBaseTest {
     }
 
     /**
-     * RuneManager.mergeEnchantments currently checks each addition's compatibility against the original map rather
-     * than the accumulating result, so two mutually incompatible additions could both be added to a stack that has
-     * neither. This test only covers an addition that conflicts with the original, and deliberately does not lock in
-     * either behaviour for two mutually incompatible additions.
+     * RuneManager.mergeEnchantments checks each addition's compatibility against the original map rather than the
+     * accumulating result, so two mutually incompatible additions could both be added to a stack that has neither.
+     * This test covers an addition that conflicts with the original; rune_merge_enchantments_adds_mutually_incompatible_additions
+     * covers the other case.
      */
     public static void rune_merge_enchantments_skips_incompatible_with_original(GameTestHelper helper) {
         // Sharpness and Smite are mutually exclusive damage enchantments
@@ -288,6 +288,23 @@ public class RuneManagerTests extends AbstractBaseTest {
         assertValueEqual(helper, 2, merged.getLevel(sharpness), "Sharpness level after merging incompatible Smite");
         assertValueEqual(helper, 0, merged.getLevel(smite), "Smite level after merging into Sharpness");
         assertValueEqual(helper, 1, merged.size(), "Enchantment count after merging incompatible Smite");
+        helper.succeed();
+    }
+
+    /**
+     * Pins that RuneManager.mergeEnchantments checks each addition only against the original map, so two additions
+     * that are incompatible with each other are both added when each is compatible with the original.
+     */
+    public static void rune_merge_enchantments_adds_mutually_incompatible_additions(GameTestHelper helper) {
+        // Sharpness and Smite are mutually exclusive damage enchantments, but both are compatible with Unbreaking
+        var unbreaking = enchantment(helper, Enchantments.UNBREAKING);
+        var sharpness = enchantment(helper, Enchantments.SHARPNESS);
+        var smite = enchantment(helper, Enchantments.SMITE);
+        var merged = RuneManager.mergeEnchantments(itemEnchantments(unbreaking, 1), Map.of(sharpness, 1, smite, 1));
+        assertValueEqual(helper, 1, merged.getLevel(unbreaking), "Unbreaking level after merging");
+        assertValueEqual(helper, 1, merged.getLevel(sharpness), "Sharpness level after merging alongside Smite");
+        assertValueEqual(helper, 1, merged.getLevel(smite), "Smite level after merging alongside Sharpness");
+        assertValueEqual(helper, 3, merged.size(), "Enchantment count after merging mutually incompatible additions");
         helper.succeed();
     }
 

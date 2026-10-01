@@ -256,22 +256,43 @@ public class LootModifierTests extends AbstractBaseTest {
         var tool = enchantedStack(helper, Items.DIAMOND_PICKAXE, EnchantmentsPM.LUCKY_STRIKE, LUCKY_STRIKE_LEVEL);
         var actual = LootModifiers.bonusNugget(existingLoot(), blockContext(helper, ore.defaultBlockState(), tool), chance, NUGGET_MAP);
         var expected = expectedNuggets > 0 ? expectedLoot(new ItemStack(nugget, expectedNuggets)) : expectedLoot();
-        // When every chance roll fails, the modifier still appends a zero-count (and therefore empty) nugget stack,
-        // which describe() skips because it is never dropped
         assertLoot(helper, expected, actual, "Loot for " + BuiltInRegistries.BLOCK.getKey(ore) + " at chance " + chance);
+
+        // The modifier always appends exactly one nugget stack for a tagged ore, holding one nugget per successful roll.
+        // When every roll fails that stack has a count of zero and is therefore empty, which describe() skips because
+        // the loot pipeline never drops it.
+        assertValueEqual(helper, existingLoot().size() + 1, actual.size(), "Raw loot entry count for " + BuiltInRegistries.BLOCK.getKey(ore) + " at chance " + chance);
+        var trailing = actual.getLast();
+        assertValueEqual(helper, expectedNuggets, trailing.getCount(), "Trailing nugget stack count");
+        assertValueEqual(helper, expectedNuggets == 0, trailing.isEmpty(), "Trailing nugget stack emptiness");
+
+        // An empty stack reports air as its item, so restore a count of one to read the item it was created with
+        trailing.setCount(1);
+        assertValueEqual(helper, nugget, trailing.getItem(), "Trailing nugget stack item");
         helper.succeed();
+    }
+
+    /**
+     * Asserts that the raw loot list holds exactly the pre-existing loot, so that the modifier appended nothing at all,
+     * not even an empty stack that describe() would skip.
+     */
+    protected static void assertNothingAppended(GameTestHelper helper, List<ItemStack> actual, String failureMessage) {
+        assertLoot(helper, expectedLoot(), actual, failureMessage);
+        assertValueEqual(helper, existingLoot().size(), actual.size(), failureMessage + " (raw entry count)");
     }
 
     public static void loot_bonus_nugget_requires_lucky_strike(GameTestHelper helper) {
         var actual = LootModifiers.bonusNugget(existingLoot(), blockContext(helper, Blocks.IRON_ORE.defaultBlockState(), new ItemStack(Items.DIAMOND_PICKAXE)), GUARANTEED_CHANCE, NUGGET_MAP);
-        assertLoot(helper, expectedLoot(), actual, "Loot for iron ore mined without Lucky Strike");
+        // Without Lucky Strike the modifier returns before it reaches the nugget map, so not even an empty stack is added
+        assertNothingAppended(helper, actual, "Loot for iron ore mined without Lucky Strike");
         helper.succeed();
     }
 
     public static void loot_bonus_nugget_skips_untagged_block(GameTestHelper helper) {
         var tool = enchantedStack(helper, Items.DIAMOND_PICKAXE, EnchantmentsPM.LUCKY_STRIKE, LUCKY_STRIKE_LEVEL);
         var actual = LootModifiers.bonusNugget(existingLoot(), blockContext(helper, Blocks.STONE.defaultBlockState(), tool), GUARANTEED_CHANCE, NUGGET_MAP);
-        assertLoot(helper, expectedLoot(), actual, "Loot for stone");
+        // Stone matches no ore tag in the nugget map, so not even an empty stack is added
+        assertNothingAppended(helper, actual, "Loot for stone");
         helper.succeed();
     }
 

@@ -153,7 +153,9 @@ public class RuneManager {
     
     /**
      * Merge the two enchantment maps, taking the stronger one in case of a collision.  Enchantments in
-     * the addition map will not be added if they are incompatible with those in the original map.
+     * the addition map will not be added if they are incompatible with those in the original map.  Each
+     * addition is checked only against the original map, not against other additions, so two additions
+     * that are incompatible with each other are both added if each is compatible with the original.
      * 
      * @param original the first enchantment map
      * @param addition the second enchantment map
@@ -168,7 +170,7 @@ public class RuneManager {
                 // If the original already contains the enchantment to be added, set its value to the higher of the two levels
                 retVal.upgrade(entry.getKey(), Math.max(original.getLevel(entry.getKey()), entry.getValue()));
             } else if (EnchantmentHelper.isEnchantmentCompatible(original.keySet(), entry.getKey())) {
-                // Only add the addition enchantment if it's compatible with all those in the current output set
+                // Only add the addition enchantment if it's compatible with all those in the original map
                 retVal.upgrade(entry.getKey(), entry.getValue());
                 
             }

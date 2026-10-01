@@ -132,6 +132,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> RUNE_STACK_SET_AND_CLEAR = createInstanceKey("rune_stack_set_and_clear");
     public static final ResourceKey<GameTestInstance> RUNE_MERGE_ENCHANTMENTS_TAKES_STRONGER = createInstanceKey("rune_merge_enchantments_takes_stronger");
     public static final ResourceKey<GameTestInstance> RUNE_MERGE_ENCHANTMENTS_SKIPS_INCOMPATIBLE_WITH_ORIGINAL = createInstanceKey("rune_merge_enchantments_skips_incompatible_with_original");
+    public static final ResourceKey<GameTestInstance> RUNE_MERGE_ENCHANTMENTS_ADDS_MUTUALLY_INCOMPATIBLE_ADDITIONS = createInstanceKey("rune_merge_enchantments_adds_mutually_incompatible_additions");
     public static final ResourceKey<GameTestInstance> RUNE_MERGE_ENCHANTMENTS_ADDS_COMPATIBLE = createInstanceKey("rune_merge_enchantments_adds_compatible");
     public static final ResourceKey<GameTestInstance> RUNE_DEFINITION_LOOKUP = createInstanceKey("rune_definition_lookup");
     public static final ResourceKey<GameTestInstance> RUNE_IS_KNOWN_VERB = createInstanceKey("rune_is_known_verb");
@@ -238,6 +239,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> CONCOCTION_TYPE_ROUND_TRIP_ELIXIR = createInstanceKey("concoction_type_round_trip_elixir");
     public static final ResourceKey<GameTestInstance> CONCOCTION_TYPE_ROUND_TRIP_BOMB = createInstanceKey("concoction_type_round_trip_bomb");
     public static final ResourceKey<GameTestInstance> CONCOCTION_DOSES_ROUND_TRIP = createInstanceKey("concoction_doses_round_trip");
+    public static final ResourceKey<GameTestInstance> CONCOCTION_DOSES_NEGATIVE_STORED_AS_IS = createInstanceKey("concoction_doses_negative_stored_as_is");
     public static final ResourceKey<GameTestInstance> CONCOCTION_BOMB_FUSE_ROUND_TRIP_IMPACT = createInstanceKey("concoction_bomb_fuse_round_trip_impact");
     public static final ResourceKey<GameTestInstance> CONCOCTION_BOMB_FUSE_ROUND_TRIP_SHORT = createInstanceKey("concoction_bomb_fuse_round_trip_short");
     public static final ResourceKey<GameTestInstance> CONCOCTION_BOMB_FUSE_ROUND_TRIP_MEDIUM = createInstanceKey("concoction_bomb_fuse_round_trip_medium");
@@ -837,6 +839,7 @@ public class TestInstancesPM {
         registerFunction(context, CONCOCTION_TYPE_ROUND_TRIP_ELIXIR, TestFunctionsPM.CONCOCTION_TYPE_ROUND_TRIP_ELIXIR.getKey());
         registerFunction(context, CONCOCTION_TYPE_ROUND_TRIP_BOMB, TestFunctionsPM.CONCOCTION_TYPE_ROUND_TRIP_BOMB.getKey());
         registerFunction(context, CONCOCTION_DOSES_ROUND_TRIP, TestFunctionsPM.CONCOCTION_DOSES_ROUND_TRIP.getKey());
+        registerFunction(context, CONCOCTION_DOSES_NEGATIVE_STORED_AS_IS, TestFunctionsPM.CONCOCTION_DOSES_NEGATIVE_STORED_AS_IS.getKey());
         registerFunction(context, CONCOCTION_BOMB_FUSE_ROUND_TRIP_IMPACT, TestFunctionsPM.CONCOCTION_BOMB_FUSE_ROUND_TRIP_IMPACT.getKey());
         registerFunction(context, CONCOCTION_BOMB_FUSE_ROUND_TRIP_SHORT, TestFunctionsPM.CONCOCTION_BOMB_FUSE_ROUND_TRIP_SHORT.getKey());
         registerFunction(context, CONCOCTION_BOMB_FUSE_ROUND_TRIP_MEDIUM, TestFunctionsPM.CONCOCTION_BOMB_FUSE_ROUND_TRIP_MEDIUM.getKey());
@@ -973,6 +976,7 @@ public class TestInstancesPM {
         registerFunction(context, RUNE_STACK_SET_AND_CLEAR, TestFunctionsPM.RUNE_STACK_SET_AND_CLEAR.getKey());
         registerFunction(context, RUNE_MERGE_ENCHANTMENTS_TAKES_STRONGER, TestFunctionsPM.RUNE_MERGE_ENCHANTMENTS_TAKES_STRONGER.getKey());
         registerFunction(context, RUNE_MERGE_ENCHANTMENTS_SKIPS_INCOMPATIBLE_WITH_ORIGINAL, TestFunctionsPM.RUNE_MERGE_ENCHANTMENTS_SKIPS_INCOMPATIBLE_WITH_ORIGINAL.getKey());
+        registerFunction(context, RUNE_MERGE_ENCHANTMENTS_ADDS_MUTUALLY_INCOMPATIBLE_ADDITIONS, TestFunctionsPM.RUNE_MERGE_ENCHANTMENTS_ADDS_MUTUALLY_INCOMPATIBLE_ADDITIONS.getKey());
         registerFunction(context, RUNE_MERGE_ENCHANTMENTS_ADDS_COMPATIBLE, TestFunctionsPM.RUNE_MERGE_ENCHANTMENTS_ADDS_COMPATIBLE.getKey());
         registerFunction(context, RUNE_DEFINITION_LOOKUP, TestFunctionsPM.RUNE_DEFINITION_LOOKUP.getKey());
         registerFunction(context, RUNE_IS_KNOWN_VERB, TestFunctionsPM.RUNE_IS_KNOWN_VERB.getKey());

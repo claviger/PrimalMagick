@@ -95,6 +95,17 @@ public class ConcoctionTests extends AbstractBaseTest {
         helper.succeed();
     }
 
+    /**
+     * setCurrentDoses has no lower bound, so a negative dose count is stored as given. Gameplay never reaches this, since
+     * the concoction and bomb items consume the stack when it has one dose or fewer rather than decrementing it.
+     */
+    public static void concoction_doses_negative_stored_as_is(GameTestHelper helper) {
+        var stack = ConcoctionUtils.newConcoction(Potions.HEALING, DOSE_TEST_TYPE).create();
+        ConcoctionUtils.setCurrentDoses(stack, -1);
+        assertValueEqual(helper, -1, ConcoctionUtils.getCurrentDoses(stack), "Doses after setting -1");
+        helper.succeed();
+    }
+
     // Bomb tests
 
     public static void concoction_bomb_fuse_round_trip(GameTestHelper helper, FuseType fuse) {
