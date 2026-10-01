@@ -138,6 +138,39 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> RUNE_IS_KNOWN_SOURCE = createInstanceKey("rune_is_known_source");
     public static final ResourceKey<GameTestInstance> RUNE_IS_KNOWN_FULL_KEY = createInstanceKey("rune_is_known_full_key");
 
+    // Loot modifier tests
+    public static final ResourceKey<GameTestInstance> LOOT_ADD_ITEM_ADDS_FIXED_ROLLS = createInstanceKey("loot_add_item_adds_fixed_rolls");
+    public static final ResourceKey<GameTestInstance> LOOT_ADD_ITEM_ZERO_ROLLS_ADDS_NOTHING = createInstanceKey("loot_add_item_zero_rolls_adds_nothing");
+    public static final ResourceKey<GameTestInstance> LOOT_REPLACE_ITEM_REPLACES_ALL_ENTRIES = createInstanceKey("loot_replace_item_replaces_all_entries");
+    public static final ResourceKey<GameTestInstance> LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_VILLAGER = createInstanceKey("loot_bloody_flesh_drops_for_tagged_entity_villager");
+    public static final ResourceKey<GameTestInstance> LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_WITCH = createInstanceKey("loot_bloody_flesh_drops_for_tagged_entity_witch");
+    public static final ResourceKey<GameTestInstance> LOOT_BLOODY_FLESH_SKIPS_UNTAGGED_ENTITY = createInstanceKey("loot_bloody_flesh_skips_untagged_entity");
+    public static final ResourceKey<GameTestInstance> LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_EVOKER = createInstanceKey("loot_blood_notes_drops_for_tagged_entity_evoker");
+    public static final ResourceKey<GameTestInstance> LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_WITCH = createInstanceKey("loot_blood_notes_drops_for_tagged_entity_witch");
+    public static final ResourceKey<GameTestInstance> LOOT_BLOOD_NOTES_SKIPS_UNTAGGED_ENTITY = createInstanceKey("loot_blood_notes_skips_untagged_entity");
+    public static final ResourceKey<GameTestInstance> LOOT_BONUS_NUGGET_IRON_CHANCE_1 = createInstanceKey("loot_bonus_nugget_iron_chance_1");
+    public static final ResourceKey<GameTestInstance> LOOT_BONUS_NUGGET_QUARTZ_CHANCE_1 = createInstanceKey("loot_bonus_nugget_quartz_chance_1");
+    public static final ResourceKey<GameTestInstance> LOOT_BONUS_NUGGET_IRON_CHANCE_0 = createInstanceKey("loot_bonus_nugget_iron_chance_0");
+    public static final ResourceKey<GameTestInstance> LOOT_BONUS_NUGGET_REQUIRES_LUCKY_STRIKE = createInstanceKey("loot_bonus_nugget_requires_lucky_strike");
+    public static final ResourceKey<GameTestInstance> LOOT_BONUS_NUGGET_SKIPS_UNTAGGED_BLOCK = createInstanceKey("loot_bonus_nugget_skips_untagged_block");
+    public static final ResourceKey<GameTestInstance> LOOT_BOUNTY_FARMING_CHANCE_1 = createInstanceKey("loot_bounty_farming_chance_1");
+    public static final ResourceKey<GameTestInstance> LOOT_BOUNTY_FARMING_CHANCE_0 = createInstanceKey("loot_bounty_farming_chance_0");
+    public static final ResourceKey<GameTestInstance> LOOT_BOUNTY_FISHING_CHANCE_1 = createInstanceKey("loot_bounty_fishing_chance_1");
+    public static final ResourceKey<GameTestInstance> LOOT_BOUNTY_FISHING_CHANCE_0 = createInstanceKey("loot_bounty_fishing_chance_0");
+    public static final ResourceKey<GameTestInstance> LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_ZOMBIE = createInstanceKey("loot_guillotine_drops_head_for_tagged_entity_zombie");
+    public static final ResourceKey<GameTestInstance> LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_DROWNED = createInstanceKey("loot_guillotine_drops_head_for_tagged_entity_drowned");
+    public static final ResourceKey<GameTestInstance> LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_SKELETON = createInstanceKey("loot_guillotine_drops_head_for_tagged_entity_skeleton");
+    public static final ResourceKey<GameTestInstance> LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_CREEPER = createInstanceKey("loot_guillotine_drops_head_for_tagged_entity_creeper");
+    public static final ResourceKey<GameTestInstance> LOOT_GUILLOTINE_DROPS_HEAD_SCALES_WITH_LEVEL = createInstanceKey("loot_guillotine_drops_head_scales_with_level");
+    public static final ResourceKey<GameTestInstance> LOOT_GUILLOTINE_SKIPS_UNTAGGED_ENTITY = createInstanceKey("loot_guillotine_skips_untagged_entity");
+    public static final ResourceKey<GameTestInstance> LOOT_GUILLOTINE_REQUIRES_ENCHANTMENT = createInstanceKey("loot_guillotine_requires_enchantment");
+    public static final ResourceKey<GameTestInstance> LOOT_GUILLOTINE_SKIPS_EXISTING_HEAD = createInstanceKey("loot_guillotine_skips_existing_head");
+    public static final ResourceKey<GameTestInstance> LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_EVOKER = createInstanceKey("loot_relic_fragments_drops_for_tagged_entity_evoker");
+    public static final ResourceKey<GameTestInstance> LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_ZOMBIE = createInstanceKey("loot_relic_fragments_drops_for_tagged_entity_zombie");
+    public static final ResourceKey<GameTestInstance> LOOT_RELIC_FRAGMENTS_SKIPS_UNTAGGED_ENTITY = createInstanceKey("loot_relic_fragments_skips_untagged_entity");
+    public static final ResourceKey<GameTestInstance> LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE = createInstanceKey("loot_relic_fragments_count_within_range");
+    public static final ResourceKey<GameTestInstance> LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT = createInstanceKey("loot_essence_thief_requires_enchantment");
+
     // FTUX tests
     public static final ResourceKey<GameTestInstance> FONT_DISCOVERY_EARTH = createInstanceKey("font_discovery_earth");
     public static final ResourceKey<GameTestInstance> FONT_DISCOVERY_SEA = createInstanceKey("font_discovery_sea");
@@ -493,6 +526,7 @@ public class TestInstancesPM {
         registerCasterEnchantabilityTests(context);
         registerRitualEnchantmentTests(context);
         registerRuneManagerTests(context);
+        registerLootModifierTests(context);
         registerFtuxTests(context);
         registerBeeswaxItemTests(context);
         registerDispenserItemTests(context);
@@ -908,6 +942,40 @@ public class TestInstancesPM {
         registerFunction(context, RUNE_IS_KNOWN_NOUN, TestFunctionsPM.RUNE_IS_KNOWN_NOUN.getKey());
         registerFunction(context, RUNE_IS_KNOWN_SOURCE, TestFunctionsPM.RUNE_IS_KNOWN_SOURCE.getKey());
         registerFunction(context, RUNE_IS_KNOWN_FULL_KEY, TestFunctionsPM.RUNE_IS_KNOWN_FULL_KEY.getKey());
+    }
+
+    public static void registerLootModifierTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, LOOT_ADD_ITEM_ADDS_FIXED_ROLLS, TestFunctionsPM.LOOT_ADD_ITEM_ADDS_FIXED_ROLLS.getKey());
+        registerFunction(context, LOOT_ADD_ITEM_ZERO_ROLLS_ADDS_NOTHING, TestFunctionsPM.LOOT_ADD_ITEM_ZERO_ROLLS_ADDS_NOTHING.getKey());
+        registerFunction(context, LOOT_REPLACE_ITEM_REPLACES_ALL_ENTRIES, TestFunctionsPM.LOOT_REPLACE_ITEM_REPLACES_ALL_ENTRIES.getKey());
+        registerFunction(context, LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_VILLAGER, TestFunctionsPM.LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_VILLAGER.getKey());
+        registerFunction(context, LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_WITCH, TestFunctionsPM.LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_WITCH.getKey());
+        registerFunction(context, LOOT_BLOODY_FLESH_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_BLOODY_FLESH_SKIPS_UNTAGGED_ENTITY.getKey());
+        registerFunction(context, LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_EVOKER, TestFunctionsPM.LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_EVOKER.getKey());
+        registerFunction(context, LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_WITCH, TestFunctionsPM.LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_WITCH.getKey());
+        registerFunction(context, LOOT_BLOOD_NOTES_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_BLOOD_NOTES_SKIPS_UNTAGGED_ENTITY.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_IRON_CHANCE_1, TestFunctionsPM.LOOT_BONUS_NUGGET_IRON_CHANCE_1.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_QUARTZ_CHANCE_1, TestFunctionsPM.LOOT_BONUS_NUGGET_QUARTZ_CHANCE_1.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_IRON_CHANCE_0, TestFunctionsPM.LOOT_BONUS_NUGGET_IRON_CHANCE_0.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_REQUIRES_LUCKY_STRIKE, TestFunctionsPM.LOOT_BONUS_NUGGET_REQUIRES_LUCKY_STRIKE.getKey());
+        registerFunction(context, LOOT_BONUS_NUGGET_SKIPS_UNTAGGED_BLOCK, TestFunctionsPM.LOOT_BONUS_NUGGET_SKIPS_UNTAGGED_BLOCK.getKey());
+        registerFunction(context, LOOT_BOUNTY_FARMING_CHANCE_1, TestFunctionsPM.LOOT_BOUNTY_FARMING_CHANCE_1.getKey());
+        registerFunction(context, LOOT_BOUNTY_FARMING_CHANCE_0, TestFunctionsPM.LOOT_BOUNTY_FARMING_CHANCE_0.getKey());
+        registerFunction(context, LOOT_BOUNTY_FISHING_CHANCE_1, TestFunctionsPM.LOOT_BOUNTY_FISHING_CHANCE_1.getKey());
+        registerFunction(context, LOOT_BOUNTY_FISHING_CHANCE_0, TestFunctionsPM.LOOT_BOUNTY_FISHING_CHANCE_0.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_ZOMBIE, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_ZOMBIE.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_DROWNED, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_DROWNED.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_SKELETON, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_SKELETON.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_CREEPER, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_CREEPER.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_DROPS_HEAD_SCALES_WITH_LEVEL, TestFunctionsPM.LOOT_GUILLOTINE_DROPS_HEAD_SCALES_WITH_LEVEL.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_GUILLOTINE_SKIPS_UNTAGGED_ENTITY.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_REQUIRES_ENCHANTMENT, TestFunctionsPM.LOOT_GUILLOTINE_REQUIRES_ENCHANTMENT.getKey());
+        registerFunction(context, LOOT_GUILLOTINE_SKIPS_EXISTING_HEAD, TestFunctionsPM.LOOT_GUILLOTINE_SKIPS_EXISTING_HEAD.getKey());
+        registerFunction(context, LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_EVOKER, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_EVOKER.getKey());
+        registerFunction(context, LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_ZOMBIE, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_ZOMBIE.getKey());
+        registerFunction(context, LOOT_RELIC_FRAGMENTS_SKIPS_UNTAGGED_ENTITY, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_SKIPS_UNTAGGED_ENTITY.getKey());
+        registerFunction(context, LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE.getKey());
+        registerFunction(context, LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT, TestFunctionsPM.LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT.getKey());
     }
 
     public static void registerCasterEnchantabilityTests(BootstrapContext<GameTestInstance> context) {

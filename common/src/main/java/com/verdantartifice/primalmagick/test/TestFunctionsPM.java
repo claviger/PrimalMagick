@@ -15,6 +15,7 @@ import com.verdantartifice.primalmagick.common.sources.Sources;
 import com.verdantartifice.primalmagick.common.spells.payloads.BloodDamageSpellPayload;
 import com.verdantartifice.primalmagick.common.spells.payloads.EarthDamageSpellPayload;
 import com.verdantartifice.primalmagick.common.spells.payloads.SpellPayloadsPM;
+import com.verdantartifice.primalmagick.common.tags.EntityTypeTagsPM;
 import com.verdantartifice.primalmagick.common.wands.WandCap;
 import com.verdantartifice.primalmagick.common.wands.WandCore;
 import com.verdantartifice.primalmagick.common.wands.WandGem;
@@ -36,6 +37,7 @@ import com.verdantartifice.primalmagick.test.items.DispenserTests;
 import com.verdantartifice.primalmagick.test.items.BeeswaxTests;
 import com.verdantartifice.primalmagick.test.items.EssenceTests;
 import com.verdantartifice.primalmagick.test.items.ConcoctionTests;
+import com.verdantartifice.primalmagick.test.loot.LootModifierTests;
 import com.verdantartifice.primalmagick.test.research.ResearchTests;
 import com.verdantartifice.primalmagick.test.research.ResearchRequirementsTests;
 import com.verdantartifice.primalmagick.test.research.ResearchKeysTests;
@@ -49,6 +51,7 @@ import com.verdantartifice.primalmagick.test.tiles.AutoChargerTests;
 import com.verdantartifice.primalmagick.test.tiles.ChargeableItem;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
@@ -190,6 +193,44 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_IS_KNOWN_NOUN = Services.TEST_FUNCTIONS_REGISTRY.register("rune_is_known_noun", () -> (helper) -> RuneManagerTests.rune_is_known(helper, RuneType.NOUN));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_IS_KNOWN_SOURCE = Services.TEST_FUNCTIONS_REGISTRY.register("rune_is_known_source", () -> (helper) -> RuneManagerTests.rune_is_known(helper, RuneType.SOURCE));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_IS_KNOWN_FULL_KEY = Services.TEST_FUNCTIONS_REGISTRY.register("rune_is_known_full_key", () -> RuneManagerTests::rune_is_known_full_key);
+
+    // Loot modifier tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_ADD_ITEM_ADDS_FIXED_ROLLS = Services.TEST_FUNCTIONS_REGISTRY.register("loot_add_item_adds_fixed_rolls", () -> LootModifierTests::loot_add_item_adds_fixed_rolls);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_ADD_ITEM_ZERO_ROLLS_ADDS_NOTHING = Services.TEST_FUNCTIONS_REGISTRY.register("loot_add_item_zero_rolls_adds_nothing", () -> LootModifierTests::loot_add_item_zero_rolls_adds_nothing);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_REPLACE_ITEM_REPLACES_ALL_ENTRIES = Services.TEST_FUNCTIONS_REGISTRY.register("loot_replace_item_replaces_all_entries", () -> LootModifierTests::loot_replace_item_replaces_all_entries);
+    // Each tagged-entity case uses a member of the target tag as defined in the entity type tag datagen
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_VILLAGER = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bloody_flesh_drops_for_tagged_entity_villager", () -> (helper) -> LootModifierTests.loot_bloody_flesh_drops_for_tagged_entity(helper, EntityType.VILLAGER));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BLOODY_FLESH_DROPS_FOR_TAGGED_ENTITY_WITCH = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bloody_flesh_drops_for_tagged_entity_witch", () -> (helper) -> LootModifierTests.loot_bloody_flesh_drops_for_tagged_entity(helper, EntityType.WITCH));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BLOODY_FLESH_SKIPS_UNTAGGED_ENTITY = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bloody_flesh_skips_untagged_entity", () -> LootModifierTests::loot_bloody_flesh_skips_untagged_entity);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_EVOKER = Services.TEST_FUNCTIONS_REGISTRY.register("loot_blood_notes_drops_for_tagged_entity_evoker", () -> (helper) -> LootModifierTests.loot_blood_notes_drops_for_tagged_entity(helper, EntityType.EVOKER, EntityTypeTagsPM.DROPS_BLOOD_NOTES_HIGH));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BLOOD_NOTES_DROPS_FOR_TAGGED_ENTITY_WITCH = Services.TEST_FUNCTIONS_REGISTRY.register("loot_blood_notes_drops_for_tagged_entity_witch", () -> (helper) -> LootModifierTests.loot_blood_notes_drops_for_tagged_entity(helper, EntityType.WITCH, EntityTypeTagsPM.DROPS_BLOOD_NOTES_LOW));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BLOOD_NOTES_SKIPS_UNTAGGED_ENTITY = Services.TEST_FUNCTIONS_REGISTRY.register("loot_blood_notes_skips_untagged_entity", () -> LootModifierTests::loot_blood_notes_skips_untagged_entity);
+    // Lucky Strike 3 makes three chance rolls, so a chance of 1 yields 3 nuggets and a chance of 0 yields none
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BONUS_NUGGET_IRON_CHANCE_1 = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bonus_nugget_iron_chance_1", () -> (helper) -> LootModifierTests.loot_bonus_nugget(helper, Blocks.IRON_ORE, Items.IRON_NUGGET, 1.0F, 3));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BONUS_NUGGET_QUARTZ_CHANCE_1 = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bonus_nugget_quartz_chance_1", () -> (helper) -> LootModifierTests.loot_bonus_nugget(helper, BlocksPM.QUARTZ_ORE.get(), ItemsPM.QUARTZ_NUGGET.get(), 1.0F, 3));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BONUS_NUGGET_IRON_CHANCE_0 = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bonus_nugget_iron_chance_0", () -> (helper) -> LootModifierTests.loot_bonus_nugget(helper, Blocks.IRON_ORE, Items.IRON_NUGGET, 0.0F, 0));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BONUS_NUGGET_REQUIRES_LUCKY_STRIKE = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bonus_nugget_requires_lucky_strike", () -> LootModifierTests::loot_bonus_nugget_requires_lucky_strike);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BONUS_NUGGET_SKIPS_UNTAGGED_BLOCK = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bonus_nugget_skips_untagged_block", () -> LootModifierTests::loot_bonus_nugget_skips_untagged_block);
+    // Bounty 2 makes two bonus rolls of immature wheat's one-seed table, so a chance of 1 turns 1 seed into 3
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BOUNTY_FARMING_CHANCE_1 = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bounty_farming_chance_1", () -> (helper) -> LootModifierTests.loot_bounty_farming(helper, 1.0F, 3));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BOUNTY_FARMING_CHANCE_0 = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bounty_farming_chance_0", () -> (helper) -> LootModifierTests.loot_bounty_farming(helper, 0.0F, 1));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BOUNTY_FISHING_CHANCE_1 = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bounty_fishing_chance_1", () -> LootModifierTests::loot_bounty_fishing_chance_1);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_BOUNTY_FISHING_CHANCE_0 = Services.TEST_FUNCTIONS_REGISTRY.register("loot_bounty_fishing_chance_0", () -> LootModifierTests::loot_bounty_fishing_chance_0);
+    // Drowned covers a non-zombie entity type that the zombie head tag also includes
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_ZOMBIE = Services.TEST_FUNCTIONS_REGISTRY.register("loot_guillotine_drops_head_for_tagged_entity_zombie", () -> (helper) -> LootModifierTests.loot_guillotine_drops_head_for_tagged_entity(helper, EntityType.ZOMBIE, EntityTypeTagsPM.GUILLOTINE_ZOMBIE_HEAD, Items.ZOMBIE_HEAD));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_DROWNED = Services.TEST_FUNCTIONS_REGISTRY.register("loot_guillotine_drops_head_for_tagged_entity_drowned", () -> (helper) -> LootModifierTests.loot_guillotine_drops_head_for_tagged_entity(helper, EntityType.DROWNED, EntityTypeTagsPM.GUILLOTINE_ZOMBIE_HEAD, Items.ZOMBIE_HEAD));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_SKELETON = Services.TEST_FUNCTIONS_REGISTRY.register("loot_guillotine_drops_head_for_tagged_entity_skeleton", () -> (helper) -> LootModifierTests.loot_guillotine_drops_head_for_tagged_entity(helper, EntityType.SKELETON, EntityTypeTagsPM.GUILLOTINE_SKELETON_SKULL, Items.SKELETON_SKULL));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_GUILLOTINE_DROPS_HEAD_FOR_TAGGED_ENTITY_CREEPER = Services.TEST_FUNCTIONS_REGISTRY.register("loot_guillotine_drops_head_for_tagged_entity_creeper", () -> (helper) -> LootModifierTests.loot_guillotine_drops_head_for_tagged_entity(helper, EntityType.CREEPER, EntityTypeTagsPM.GUILLOTINE_CREEPER_HEAD, Items.CREEPER_HEAD));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_GUILLOTINE_DROPS_HEAD_SCALES_WITH_LEVEL = Services.TEST_FUNCTIONS_REGISTRY.register("loot_guillotine_drops_head_scales_with_level", () -> LootModifierTests::loot_guillotine_drops_head_scales_with_level);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_GUILLOTINE_SKIPS_UNTAGGED_ENTITY = Services.TEST_FUNCTIONS_REGISTRY.register("loot_guillotine_skips_untagged_entity", () -> LootModifierTests::loot_guillotine_skips_untagged_entity);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_GUILLOTINE_REQUIRES_ENCHANTMENT = Services.TEST_FUNCTIONS_REGISTRY.register("loot_guillotine_requires_enchantment", () -> LootModifierTests::loot_guillotine_requires_enchantment);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_GUILLOTINE_SKIPS_EXISTING_HEAD = Services.TEST_FUNCTIONS_REGISTRY.register("loot_guillotine_skips_existing_head", () -> LootModifierTests::loot_guillotine_skips_existing_head);
+    // Fragment counts are pinned within the real ranges: 3 to 5 for the high tag, exactly 1 for the low tag
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_EVOKER = Services.TEST_FUNCTIONS_REGISTRY.register("loot_relic_fragments_drops_for_tagged_entity_evoker", () -> (helper) -> LootModifierTests.loot_relic_fragments_drops_for_tagged_entity(helper, EntityType.EVOKER, EntityTypeTagsPM.DROPS_RELIC_FRAGMENTS_HIGH, 4));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_RELIC_FRAGMENTS_DROPS_FOR_TAGGED_ENTITY_ZOMBIE = Services.TEST_FUNCTIONS_REGISTRY.register("loot_relic_fragments_drops_for_tagged_entity_zombie", () -> (helper) -> LootModifierTests.loot_relic_fragments_drops_for_tagged_entity(helper, EntityType.ZOMBIE, EntityTypeTagsPM.DROPS_RELIC_FRAGMENTS_LOW, 1));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_RELIC_FRAGMENTS_SKIPS_UNTAGGED_ENTITY = Services.TEST_FUNCTIONS_REGISTRY.register("loot_relic_fragments_skips_untagged_entity", () -> LootModifierTests::loot_relic_fragments_skips_untagged_entity);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE = Services.TEST_FUNCTIONS_REGISTRY.register("loot_relic_fragments_count_within_range", () -> LootModifierTests::loot_relic_fragments_count_within_range);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT = Services.TEST_FUNCTIONS_REGISTRY.register("loot_essence_thief_requires_enchantment", () -> LootModifierTests::loot_essence_thief_requires_enchantment);
 
     // FTUX tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> FONT_DISCOVERY_EARTH = Services.TEST_FUNCTIONS_REGISTRY.register("font_discovery_earth", () -> (helper) -> FtuxTests.font_discovery(helper, BlocksPM.ANCIENT_FONT_EARTH.get()));
