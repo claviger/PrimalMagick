@@ -161,7 +161,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         this.generatePillarBlock(BlocksPM.HALLOWOOD_PILLAR.get(), blockModels);
 
         // Generate crop blocks
-        blockModels.createTrivialBlock(BlocksPM.HYDROMELON.get(), TexturedModel.COLUMN);
+        blockModels.createTrivialBlock(BlocksPM.HYDROMELON.get(), TexturedModelsPM.COLUMN_WITH_END);
         blockModels.createStems(BlocksPM.HYDROMELON_STEM.get(), BlocksPM.ATTACHED_HYDROMELON_STEM.get());
         blockModels.createDoublePlantWithDefaultItem(BlocksPM.BLOOD_ROSE.get(), BlockModelGenerators.PlantType.NOT_TINTED);
         this.createEmberflowerBlock(blockModels);
@@ -199,9 +199,9 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         blockModels.createAmethystCluster(BlocksPM.LARGE_SYNTHETIC_QUARTZ_BUD.get());
         blockModels.createAmethystCluster(BlocksPM.MEDIUM_SYNTHETIC_QUARTZ_BUD.get());
         blockModels.createAmethystCluster(BlocksPM.SMALL_SYNTHETIC_QUARTZ_BUD.get());
-        blockModels.createTrivialCube(BlocksPM.DAMAGED_BUDDING_QUARTZ_BLOCK.get());
-        blockModels.createTrivialCube(BlocksPM.CHIPPED_BUDDING_QUARTZ_BLOCK.get());
-        blockModels.createTrivialCube(BlocksPM.FLAWED_BUDDING_QUARTZ_BLOCK.get());
+        blockModels.createTrivialBlock(BlocksPM.DAMAGED_BUDDING_QUARTZ_BLOCK.get(), TexturedModelsPM.COLUMN_WITH_END);
+        blockModels.createTrivialBlock(BlocksPM.CHIPPED_BUDDING_QUARTZ_BLOCK.get(), TexturedModelsPM.COLUMN_WITH_END);
+        blockModels.createTrivialBlock(BlocksPM.FLAWED_BUDDING_QUARTZ_BLOCK.get(), TexturedModelsPM.COLUMN_WITH_END);
 
         // Generate skyglass full and pane blocks
         this.createSkyglassBlocks(BlocksPM.SKYGLASS.get(), BlocksPM.SKYGLASS_PANE.get(), blockModels);
@@ -237,10 +237,10 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         this.createSimpleExistingBlock(BlocksPM.WOOD_TABLE.get(), blockModels);
         this.createHorizontalExistingBlockWithRightHandAdjustments(BlocksPM.ANALYSIS_TABLE.get(), blockModels);
         this.createHorizontalExistingLitBlock(BlocksPM.ESSENCE_FURNACE.get(), blockModels);
-        this.createCalcinatorBlock(BlocksPM.CALCINATOR_BASIC.get(), blockModels, TexturedModel.ORIENTABLE);
-        this.createCalcinatorBlock(BlocksPM.CALCINATOR_ENCHANTED.get(), blockModels, TexturedModel.ORIENTABLE);
-        this.createCalcinatorBlock(BlocksPM.CALCINATOR_FORBIDDEN.get(), blockModels, TexturedModel.ORIENTABLE);
-        this.createCalcinatorBlock(BlocksPM.CALCINATOR_HEAVENLY.get(), blockModels, TexturedModel.ORIENTABLE);
+        this.createCalcinatorBlock(BlocksPM.CALCINATOR_BASIC.get(), blockModels, TexturedModelsPM.CALCINATOR);
+        this.createCalcinatorBlock(BlocksPM.CALCINATOR_ENCHANTED.get(), blockModels, TexturedModelsPM.CALCINATOR);
+        this.createCalcinatorBlock(BlocksPM.CALCINATOR_FORBIDDEN.get(), blockModels, TexturedModelsPM.CALCINATOR);
+        this.createCalcinatorBlock(BlocksPM.CALCINATOR_HEAVENLY.get(), blockModels, TexturedModelsPM.CALCINATOR);
         this.createHorizontalExistingBlockWithRightHandAdjustments(BlocksPM.WAND_INSCRIPTION_TABLE.get(), blockModels);
         this.createSpellcraftingAltarBlock(BlocksPM.SPELLCRAFTING_ALTAR.get(), blockModels);
         this.createSimpleExistingBlock(BlocksPM.WAND_CHARGER.get(), blockModels);

@@ -6,6 +6,7 @@ import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.Objects;
 
@@ -17,6 +18,16 @@ public class TextureMappingsPM {
     public static TextureMapping manaFont(Block block) {
         return new TextureMapping()
                 .put(TextureSlotsPM.BASE, TextureMapping.getBlockTexture(block));
+    }
+
+    public static TextureMapping columnWithEnd(Block block) {
+        return TextureMapping.column(TextureMapping.getBlockTexture(block, "_side"), TextureMapping.getBlockTexture(block, "_end"));
+    }
+
+    public static TextureMapping calcinator(Block block) {
+        // Calcinators have no bottom texture of their own and borrow the vanilla furnace's
+        return TextureMapping.orientableCubeOnlyTop(block)
+                .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.FURNACE, "_top"));
     }
 
     public static TextureMapping pillar(Block block) {
