@@ -2,7 +2,6 @@ package com.verdantartifice.primalmagick.test.spells;
 
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
 import com.verdantartifice.primalmagick.common.items.wands.AbstractWandItem;
-import com.verdantartifice.primalmagick.common.items.wands.IHasWandComponents;
 import com.verdantartifice.primalmagick.common.research.ResearchDisciplines;
 import com.verdantartifice.primalmagick.common.sources.Sources;
 import com.verdantartifice.primalmagick.common.spells.SpellPackage;
@@ -14,13 +13,14 @@ import com.verdantartifice.primalmagick.common.wands.WandCap;
 import com.verdantartifice.primalmagick.common.wands.WandCore;
 import com.verdantartifice.primalmagick.common.wands.WandGem;
 import com.verdantartifice.primalmagick.test.AbstractBaseTest;
+import com.verdantartifice.primalmagick.test.TestUtils;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 
 public class WandSpellcastTests extends AbstractBaseTest {
     protected static ItemStack getTestWand() {
-        return IHasWandComponents.setWandComponents(ItemsPM.MODULAR_WAND.get().getDefaultInstance(), WandCore.HEARTWOOD, WandCap.IRON, WandGem.APPRENTICE);
+        return TestUtils.makeModularCaster(ItemsPM.MODULAR_WAND.get(), WandCore.HEARTWOOD, WandCap.IRON, WandGem.APPRENTICE);
     }
 
     public static void damage_spells_deduct_mana_from_wand_and_award_expertise(GameTestHelper helper, SpellPayloadType<?> payloadType) {

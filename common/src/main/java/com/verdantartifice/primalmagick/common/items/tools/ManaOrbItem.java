@@ -93,6 +93,7 @@ public abstract class ManaOrbItem extends Item implements ITieredDevice, IManaCo
     @Override
     public void setMana(@NotNull ItemStack stack, @NotNull Source source, int amount) {
         stack.update(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY, mana -> mana.copyWith(source, amount));
+        stack.remove(DataComponentsPM.LAST_UPDATED.get());
     }
 
     @Override

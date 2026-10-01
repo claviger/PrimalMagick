@@ -289,12 +289,13 @@ public abstract class ManaBatteryTileEntity extends AbstractTileSidedInventoryPM
         if (this.canOutputToWand(outputStack, source)) {
             if (outputStack.has(DataComponentsPM.CAPABILITY_MANA_STORAGE.get())) {
                 outputStack.update(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY, stackManaStorage -> {
+                    ManaStorage updated = stackManaStorage.copy();
                     int centimanaToTransfer = Math.min(this.getBatteryTransferCap(), this.manaStorage.getManaStored(source));
-                    int transferredCentimana = stackManaStorage.receiveMana(source, centimanaToTransfer, false);
+                    int transferredCentimana = updated.receiveMana(source, centimanaToTransfer, false);
                     this.manaStorage.extractMana(source, transferredCentimana, false);
-                    return stackManaStorage;
+                    return updated;
                 });
-                outputStack.set(DataComponentsPM.LAST_UPDATED.get(), System.currentTimeMillis());   // FIXME Is there a better way of marking this stack as dirty?
+                outputStack.remove(DataComponentsPM.LAST_UPDATED.get());
             }
         }
     }
@@ -426,7 +427,7 @@ public abstract class ManaBatteryTileEntity extends AbstractTileSidedInventoryPM
     @Override
     protected void collectImplicitComponents(DataComponentMap.@NotNull Builder pComponents) {
         super.collectImplicitComponents(pComponents);
-        pComponents.set(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), this.manaStorage);
+        pComponents.set(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), this.manaStorage.copy());
     }
 
     @SuppressWarnings("deprecation")
