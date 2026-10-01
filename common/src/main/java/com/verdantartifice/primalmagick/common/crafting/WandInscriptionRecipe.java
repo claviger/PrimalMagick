@@ -78,8 +78,8 @@ public class WandInscriptionRecipe extends CustomRecipe {
                 // If a filled spell scroll is also present, check that the scroll's spell will fit into the wand
                 return spellContainer.canAddSpell(wandStack, scrollItem.getSpell(scrollStack));
             } else {
-                // If no item is present in the scroll slot, clear the wand; if it's something other than a filled spell scroll, don't allow combination
-                return scrollStack.isEmpty();
+                // If the scroll slot holds something other than a filled spell scroll, don't allow combination
+                return false;
             }
         } else {
             return false;
@@ -101,11 +101,6 @@ public class WandInscriptionRecipe extends CustomRecipe {
                 } else {
                     return ItemStack.EMPTY;
                 }
-            } else if (scrollStack.isEmpty()) {
-                // If no item is present in the scroll slot, clear the wand of spells
-                ItemStack retVal = TransmuteRecipe.createWithOriginalComponents(this.result, wandStack);
-                spellContainer.clearSpells(retVal);
-                return retVal;
             }
         }
         return ItemStack.EMPTY;

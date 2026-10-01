@@ -96,6 +96,10 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_WAND = createInstanceKey("wand_inscription_inscribes_scroll_into_wand");
     public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_SPELLTOME = createInstanceKey("wand_inscription_inscribes_scroll_into_spelltome");
     public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_REJECTS_FULL_CONTAINER = createInstanceKey("wand_inscription_rejects_full_container");
+    public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_CLEARS_SPELLS_WITHOUT_SCROLL = createInstanceKey("wand_inscription_clears_spells_without_scroll");
+    public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_EMPTY_CASTER_WITHOUT_SCROLL_GIVES_NOTHING = createInstanceKey("wand_inscription_empty_caster_without_scroll_gives_nothing");
+    public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_APPENDS_SPELL_TO_PARTIALLY_FILLED_SPELLTOME = createInstanceKey("wand_inscription_appends_spell_to_partially_filled_spelltome");
+    public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_ALL_RECIPE_KEYS_RESOLVE = createInstanceKey("wand_inscription_all_recipe_keys_resolve");
 
     // Runescribing result tests
     public static final ResourceKey<GameTestInstance> RUNESCRIBING_CREDIT_ONLY_APPLIED_ENCHANTMENTS = createInstanceKey("runescribing_credit_only_applied_enchantments");
@@ -1031,6 +1035,10 @@ public class TestInstancesPM {
         registerFunction(context, WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_WAND, TestFunctionsPM.WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_WAND.getKey());
         registerFunction(context, WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_SPELLTOME, TestFunctionsPM.WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_SPELLTOME.getKey());
         registerFunction(context, WAND_INSCRIPTION_REJECTS_FULL_CONTAINER, TestFunctionsPM.WAND_INSCRIPTION_REJECTS_FULL_CONTAINER.getKey());
+        registerFunction(context, WAND_INSCRIPTION_CLEARS_SPELLS_WITHOUT_SCROLL, TestFunctionsPM.WAND_INSCRIPTION_CLEARS_SPELLS_WITHOUT_SCROLL.getKey());
+        registerFunction(context, WAND_INSCRIPTION_EMPTY_CASTER_WITHOUT_SCROLL_GIVES_NOTHING, TestFunctionsPM.WAND_INSCRIPTION_EMPTY_CASTER_WITHOUT_SCROLL_GIVES_NOTHING.getKey());
+        registerFunction(context, WAND_INSCRIPTION_APPENDS_SPELL_TO_PARTIALLY_FILLED_SPELLTOME, TestFunctionsPM.WAND_INSCRIPTION_APPENDS_SPELL_TO_PARTIALLY_FILLED_SPELLTOME.getKey());
+        registerFunction(context, WAND_INSCRIPTION_ALL_RECIPE_KEYS_RESOLVE, TestFunctionsPM.WAND_INSCRIPTION_ALL_RECIPE_KEYS_RESOLVE.getKey());
     }
 
     private static void registerRunescribingResultTests(BootstrapContext<GameTestInstance> context) {

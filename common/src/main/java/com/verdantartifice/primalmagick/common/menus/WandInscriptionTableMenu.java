@@ -60,7 +60,18 @@ public class WandInscriptionTableMenu extends AbstractContainerMenu {
         IItemHandlerPM componentInvWrapper = Services.ITEM_HANDLERS.wrap(this.componentInv, null);
         
         // Slot 0: Result
-        this.addSlot(new ResultSlot(this.player, this.componentInv, this.resultInv, 0, 124, 35));
+        this.addSlot(new ResultSlot(this.player, this.componentInv, this.resultInv, 0, 124, 35) {
+            @Override
+            public void onTake(@NotNull Player player, @NotNull ItemStack carried) {
+                if (WandInscriptionTableMenu.this.scrollSlot.getItem().isEmpty()) {
+                    // A cleared caster isn't produced by a crafting recipe, so consume the input caster directly
+                    this.checkTakeAchievements(carried);
+                    WandInscriptionTableMenu.this.componentInv.removeItem(0, 1);
+                } else {
+                    super.onTake(player, carried);
+                }
+            }
+        });
         
         // Slot 1: Input wand
         this.wandSlot = this.addSlot(Services.MENU.makeFilteredSlot(componentInvWrapper, 0, 30, 35,
@@ -173,6 +184,12 @@ public class WandInscriptionTableMenu extends AbstractContainerMenu {
     protected void slotChangedCraftingGrid(Level world) {
         if (!world.isClientSide() && this.player instanceof ServerPlayer spe) {
             ItemStack stack = ItemStack.EMPTY;
+            ItemStack casterStack = this.componentInv.getItem(0);
+            if (this.componentInv.getItem(1).isEmpty() && casterStack.getItem() instanceof ISpellContainer spellContainer && spellContainer.getSpellCount(casterStack) > 0) {
+                // If a caster holding spells is present without a scroll, show a copy of the caster cleared of its spells
+                stack = casterStack.copyWithCount(1);
+                spellContainer.clearSpells(stack);
+            }
             for (ResourceKey<Recipe<?>> key : WandInscriptionRecipe.ALL_KEYS) {
                 Optional<RecipeHolder<?>> opt = spe.level().recipeAccess().byKey(key);
                 if (opt.isPresent() && opt.get().value() instanceof WandInscriptionRecipe recipe) {
