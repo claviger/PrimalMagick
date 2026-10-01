@@ -548,6 +548,9 @@ public class TestInstancesPM {
 
     // Ritual altar tests
     public static final ResourceKey<GameTestInstance> RITUAL_ALTAR_ACTIVE_RECIPE_ROUND_TRIPS = createInstanceKey("ritual_altar_active_recipe_round_trips");
+    public static final ResourceKey<GameTestInstance> RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT = createInstanceKey("ritual_altar_replace_item_on_empty_slot");
+    public static final ResourceKey<GameTestInstance> RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK = createInstanceKey("ritual_altar_replace_item_with_empty_stack");
+    public static final ResourceKey<GameTestInstance> RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW = createInstanceKey("ritual_altar_finish_craft_with_empty_slot_does_not_throw");
 
     public static void bootstrap(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, CANARY, TestFunctionsPM.CANARY.getKey());
@@ -608,6 +611,9 @@ public class TestInstancesPM {
 
     public static void registerRitualAltarTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, RITUAL_ALTAR_ACTIVE_RECIPE_ROUND_TRIPS, TestFunctionsPM.RITUAL_ALTAR_ACTIVE_RECIPE_ROUND_TRIPS.getKey());
+        registerFunction(context, RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT, TestFunctionsPM.RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT.getKey());
+        registerFunction(context, RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK, TestFunctionsPM.RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK.getKey());
+        registerFunction(context, RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW, TestFunctionsPM.RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW.getKey());
     }
 
     public static void registerManaFontTests(BootstrapContext<GameTestInstance> context) {

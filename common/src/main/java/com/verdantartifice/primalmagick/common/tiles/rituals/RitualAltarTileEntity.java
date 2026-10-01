@@ -269,6 +269,11 @@ public abstract class RitualAltarTileEntity extends AbstractTileSidedInventoryPM
         this.activeRecipeId = activeRecipeId;
     }
 
+    @VisibleForTesting
+    public void finishCraftForTesting() {
+        this.finishCraft();
+    }
+
     protected void reset() {
         // If there's a prop being waited on, close it out
         if (this.level != null && this.awaitedPropPos != null) {

@@ -60,6 +60,10 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
         ItemStack retVal;
         try (Transaction tx = Transaction.openRoot()) {
             ItemResource resource = this.handler.getResource(slot);
+            if (resource.isEmpty() || amount <= 0) {
+                // The transfer API rejects empty resources; extracting from an empty slot yields nothing
+                return ItemStack.EMPTY;
+            }
             retVal = resource.toStack(this.handler.extract(slot, resource, amount, tx));
             if (!simulate) {
                 tx.commit();
@@ -70,6 +74,10 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
 
     @Override
     public ItemStack extractItem(ItemStack stack, boolean simulate) {
+        if (stack.isEmpty()) {
+            // The transfer API rejects empty resources; extracting nothing yields nothing
+            return ItemStack.EMPTY;
+        }
         ItemStack retVal;
         try (Transaction tx = Transaction.openRoot()) {
             ItemResource resource = ItemResource.of(stack);
@@ -94,6 +102,11 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
     }
 
     protected ItemStack performSlotTransactionOperation(boolean simulate, SlotOperation slotOperation, TransactionContext parent) {
+        if (slotOperation.stack().isEmpty()) {
+            // The transfer API rejects empty resources, so treat moving an empty stack as a successful no-op. This lets
+            // a replacement extract from an empty slot or insert nothing, as setting a slot's contents could before.
+            return ItemStack.EMPTY;
+        }
         try (Transaction childTx = Transaction.open(parent)) {
             ItemResource opResource = ItemResource.of(slotOperation.stack());
             ItemStack retVal = switch (slotOperation.type()) {
@@ -120,6 +133,10 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
     }
 
     protected ItemStack performHandlerTransactionOperations(boolean simulate, HandlerOperation handlerOperation, TransactionContext parent) {
+        if (handlerOperation.stack().isEmpty()) {
+            // The transfer API rejects empty resources, so treat moving an empty stack as a successful no-op
+            return ItemStack.EMPTY;
+        }
         try (Transaction childTx = Transaction.open(parent)) {
             ItemResource opResource = ItemResource.of(handlerOperation.stack());
             ItemStack retVal = switch (handlerOperation.type()) {
