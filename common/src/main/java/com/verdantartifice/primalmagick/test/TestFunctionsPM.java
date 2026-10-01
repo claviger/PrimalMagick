@@ -39,6 +39,7 @@ import com.verdantartifice.primalmagick.test.items.EssenceTests;
 import com.verdantartifice.primalmagick.test.items.ConcoctionTests;
 import com.verdantartifice.primalmagick.test.items.WardingModuleTests;
 import com.verdantartifice.primalmagick.test.loot.LootModifierTests;
+import com.verdantartifice.primalmagick.test.menus.RunescribingResultSlotTests;
 import com.verdantartifice.primalmagick.test.research.ResearchTests;
 import com.verdantartifice.primalmagick.test.research.ResearchRequirementsTests;
 import com.verdantartifice.primalmagick.test.research.ResearchKeysTests;
@@ -144,6 +145,12 @@ public class TestFunctionsPM {
 
     // Runecarving tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNECARVING_CRAFT_WORKS = Services.TEST_FUNCTIONS_REGISTRY.register("runecarving_craft_works", () -> RunecarvingTests::craft_works);
+
+    // Runescribing result tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNESCRIBING_CREDIT_ONLY_APPLIED_ENCHANTMENTS = Services.TEST_FUNCTIONS_REGISTRY.register("runescribing_credit_only_applied_enchantments", () -> RunescribingResultSlotTests::runescribing_credit_only_applied_enchantments);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNESCRIBING_CREDIT_ALL_APPLIED_ENCHANTMENTS = Services.TEST_FUNCTIONS_REGISTRY.register("runescribing_credit_all_applied_enchantments", () -> RunescribingResultSlotTests::runescribing_credit_all_applied_enchantments);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNESCRIBING_CREDIT_SKIPS_ENCHANTMENT_BLOCKED_BY_EXISTING = Services.TEST_FUNCTIONS_REGISTRY.register("runescribing_credit_skips_enchantment_blocked_by_existing", () -> RunescribingResultSlotTests::runescribing_credit_skips_enchantment_blocked_by_existing);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNESCRIBING_CREDIT_SKIPS_PREEXISTING_ENCHANTMENT_MATCHING_RUNES = Services.TEST_FUNCTIONS_REGISTRY.register("runescribing_credit_skips_preexisting_enchantment_matching_runes", () -> RunescribingResultSlotTests::runescribing_credit_skips_preexisting_enchantment_matching_runes);
 
     // Caster enchanting tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CASTER_ENCHANTABLE_MUNDANE_WAND = Services.TEST_FUNCTIONS_REGISTRY.register("caster_enchantable_mundane_wand", () -> (helper) -> CasterEnchantingTests.caster_can_be_enchanted(helper, ItemsPM.MUNDANE_WAND.get()));
@@ -505,6 +512,7 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED = Services.TEST_FUNCTIONS_REGISTRY.register("auto_charger_can_have_chargeable_items_removed", () -> AutoChargerTests::auto_charger_can_have_chargeable_items_removed);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS = Services.TEST_FUNCTIONS_REGISTRY.register("auto_charger_siphons_into_chargeable_items", () -> AutoChargerTests::auto_charger_siphons_into_chargeable_items);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> AUTO_CHARGER_SIPHON_DOES_NOT_MUTATE_STACK_COPIES = Services.TEST_FUNCTIONS_REGISTRY.register("auto_charger_siphon_does_not_mutate_stack_copies", () -> AutoChargerTests::auto_charger_siphon_does_not_mutate_stack_copies);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> AUTO_CHARGER_SIPHON_MARKS_BLOCK_ENTITY_CHANGED = Services.TEST_FUNCTIONS_REGISTRY.register("auto_charger_siphon_marks_block_entity_changed", () -> AutoChargerTests::auto_charger_siphon_marks_block_entity_changed);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND = Services.TEST_FUNCTIONS_REGISTRY.register("auto_charger_output_allows_chargeable_items_modular_wand", () -> (helper) -> AutoChargerTests.auto_charger_output_allows_chargeable_items(helper, ChargeableItem.MODULAR_WAND));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF = Services.TEST_FUNCTIONS_REGISTRY.register("auto_charger_output_allows_chargeable_items_modular_staff", () -> (helper) -> AutoChargerTests.auto_charger_output_allows_chargeable_items(helper, ChargeableItem.MODULAR_STAFF));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST = Services.TEST_FUNCTIONS_REGISTRY.register("auto_charger_output_allows_chargeable_items_warded_primalite_chest", () -> (helper) -> AutoChargerTests.auto_charger_output_allows_chargeable_items(helper, ChargeableItem.WARDED_PRIMALITE_CHEST));
