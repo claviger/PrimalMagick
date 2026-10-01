@@ -2,8 +2,11 @@ package com.verdantartifice.primalmagick.test;
 
 import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
 import com.verdantartifice.primalmagick.common.damagesource.DamageSourcesPM;
+import com.verdantartifice.primalmagick.common.enchantments.EnchantmentsPM;
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
 import com.verdantartifice.primalmagick.common.registries.IRegistryItem;
+import com.verdantartifice.primalmagick.common.runes.Rune;
+import com.verdantartifice.primalmagick.common.runes.RuneType;
 import com.verdantartifice.primalmagick.common.sources.Sources;
 import com.verdantartifice.primalmagick.common.spells.payloads.BloodDamageSpellPayload;
 import com.verdantartifice.primalmagick.common.spells.payloads.EarthDamageSpellPayload;
@@ -30,6 +33,7 @@ import com.verdantartifice.primalmagick.test.items.BeeswaxTests;
 import com.verdantartifice.primalmagick.test.research.ResearchTests;
 import com.verdantartifice.primalmagick.test.research.ResearchRequirementsTests;
 import com.verdantartifice.primalmagick.test.research.ResearchKeysTests;
+import com.verdantartifice.primalmagick.test.runes.RuneManagerTests;
 import com.verdantartifice.primalmagick.test.spells.SpellPackageTests;
 import com.verdantartifice.primalmagick.test.spells.WandSpellcastTests;
 import com.verdantartifice.primalmagick.test.tiles.WandChargerTests;
@@ -38,8 +42,11 @@ import com.verdantartifice.primalmagick.test.tiles.ManaBatteryTests;
 import com.verdantartifice.primalmagick.test.tiles.AutoChargerTests;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
 
+import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -135,6 +142,45 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENCHANTMENT_ESSENCE_THIEF2 = Services.TEST_FUNCTIONS_REGISTRY.register("enchantment_essence_thief2", () -> (helper) -> RitualEnchantmentTests.enchantment_essence_thief(helper, 2));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENCHANTMENT_ESSENCE_THIEF3 = Services.TEST_FUNCTIONS_REGISTRY.register("enchantment_essence_thief3", () -> (helper) -> RitualEnchantmentTests.enchantment_essence_thief(helper, 3));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENCHANTMENT_ESSENCE_THIEF4 = Services.TEST_FUNCTIONS_REGISTRY.register("enchantment_essence_thief4", () -> (helper) -> RitualEnchantmentTests.enchantment_essence_thief(helper, 4));
+
+    // Rune manager tests
+    // Each rune enchantment case pins a verb/noun/source combination from RuneEnchantmentDefinitions, on an item that
+    // supports only one of the enchantments sharing its runes. Of these cases, only Lucky Strike is gated behind research.
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_SHARPNESS = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_sharpness", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.PROJECT, Rune.ITEM, Rune.EARTH, Enchantments.SHARPNESS, Items.DIAMOND_SWORD, List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_PROTECTION = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_protection", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.PROTECT, Rune.SELF, Rune.EARTH, Enchantments.PROTECTION, Items.DIAMOND_CHESTPLATE, List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_FIRE_PROTECTION = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_fire_protection", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.PROTECT, Rune.SELF, Rune.INFERNAL, Enchantments.FIRE_PROTECTION, Items.DIAMOND_CHESTPLATE, List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_SMITE = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_smite", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.PROJECT, Rune.CREATURE, Rune.SUN, Enchantments.SMITE, Items.DIAMOND_SWORD, List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_FROST_WALKER = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_frost_walker", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.PROJECT, Rune.AREA, Rune.SEA, Enchantments.FROST_WALKER, Items.DIAMOND_BOOTS, List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_INFINITY = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_infinity", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.SUMMON, Rune.ITEM, Rune.SKY, Enchantments.INFINITY, Items.BOW, List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_MENDING = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_mending", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.ABSORB, Rune.ITEM, Rune.SUN, Enchantments.MENDING, Items.DIAMOND_PICKAXE, List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_LIFESTEAL = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_lifesteal", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.ABSORB, Rune.SELF, Rune.BLOOD, EnchantmentsPM.LIFESTEAL, Items.DIAMOND_SWORD, List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_MANA_EFFICIENCY = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_mana_efficiency", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.DISPEL, Rune.ITEM, Rune.VOID, EnchantmentsPM.MANA_EFFICIENCY, ItemsPM.MODULAR_WAND.get(), List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_AEGIS = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_aegis", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.PROTECT, Rune.SELF, Rune.HALLOWED, EnchantmentsPM.AEGIS, Items.DIAMOND_CHESTPLATE, List.of()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_RESOLVES_LUCKY_STRIKE = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_resolves_lucky_strike", () -> (helper) -> RuneManagerTests.rune_enchantment_resolves(helper, Rune.SUMMON, Rune.ITEM, Rune.MOON, EnchantmentsPM.LUCKY_STRIKE, Items.DIAMOND_PICKAXE, RuneManagerTests.LUCKY_STRIKE_RESEARCH));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_REQUIRES_RESEARCH = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_requires_research", () -> RuneManagerTests::rune_enchantment_requires_research);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_REQUIRES_ENCHANTABLE_STACK = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_requires_enchantable_stack", () -> RuneManagerTests::rune_enchantment_requires_enchantable_stack);
+    // Every power-type rune (insight, power, grace) adds one level to the base level of 1
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_POWER_RUNE_ONE_RUNE_GIVES_LEVEL_2 = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_power_rune_one_rune_gives_level_2", () -> (helper) -> RuneManagerTests.rune_enchantment_power_rune_gives_level(helper, List.of(Rune.POWER), 2));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_POWER_RUNE_TWO_RUNES_GIVES_LEVEL_3 = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_power_rune_two_runes_gives_level_3", () -> (helper) -> RuneManagerTests.rune_enchantment_power_rune_gives_level(helper, List.of(Rune.GRACE, Rune.GRACE), 3));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_POWER_RUNE_THREE_RUNES_GIVES_LEVEL_4 = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_power_rune_three_runes_gives_level_4", () -> (helper) -> RuneManagerTests.rune_enchantment_power_rune_gives_level(helper, List.of(Rune.INSIGHT, Rune.POWER, Rune.GRACE), 4));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_POWER_RUNE_CAPPED_AT_MAX_LEVEL = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_power_rune_capped_at_max_level", () -> RuneManagerTests::rune_enchantment_power_rune_capped_at_max_level);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_COMPETING_UNFILTERED = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_competing_unfiltered", () -> RuneManagerTests::rune_enchantment_competing_unfiltered);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_COMPETING_FILTERED = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_competing_filtered", () -> RuneManagerTests::rune_enchantment_competing_filtered);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_ENCHANTMENT_EMPTY_INPUTS = Services.TEST_FUNCTIONS_REGISTRY.register("rune_enchantment_empty_inputs", () -> RuneManagerTests::rune_enchantment_empty_inputs);
+    // Limits mirror the constants declared in Rune: insight and power are limited to one each, grace and the combination runes are unlimited
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_LIMITS_INSIGHT = Services.TEST_FUNCTIONS_REGISTRY.register("rune_limits_insight", () -> (helper) -> RuneManagerTests.rune_limits(helper, Rune.INSIGHT, 1));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_LIMITS_POWER = Services.TEST_FUNCTIONS_REGISTRY.register("rune_limits_power", () -> (helper) -> RuneManagerTests.rune_limits(helper, Rune.POWER, 1));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_LIMITS_UNLIMITED_GRACE = Services.TEST_FUNCTIONS_REGISTRY.register("rune_limits_unlimited_grace", () -> (helper) -> RuneManagerTests.rune_limits_unlimited(helper, Rune.GRACE));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_LIMITS_UNLIMITED_PROJECT = Services.TEST_FUNCTIONS_REGISTRY.register("rune_limits_unlimited_project", () -> (helper) -> RuneManagerTests.rune_limits_unlimited(helper, Rune.PROJECT));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_STACK_SET_AND_CLEAR = Services.TEST_FUNCTIONS_REGISTRY.register("rune_stack_set_and_clear", () -> RuneManagerTests::rune_stack_set_and_clear);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_MERGE_ENCHANTMENTS_TAKES_STRONGER = Services.TEST_FUNCTIONS_REGISTRY.register("rune_merge_enchantments_takes_stronger", () -> RuneManagerTests::rune_merge_enchantments_takes_stronger);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_MERGE_ENCHANTMENTS_SKIPS_INCOMPATIBLE_WITH_ORIGINAL = Services.TEST_FUNCTIONS_REGISTRY.register("rune_merge_enchantments_skips_incompatible_with_original", () -> RuneManagerTests::rune_merge_enchantments_skips_incompatible_with_original);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_MERGE_ENCHANTMENTS_ADDS_COMPATIBLE = Services.TEST_FUNCTIONS_REGISTRY.register("rune_merge_enchantments_adds_compatible", () -> RuneManagerTests::rune_merge_enchantments_adds_compatible);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_DEFINITION_LOOKUP = Services.TEST_FUNCTIONS_REGISTRY.register("rune_definition_lookup", () -> RuneManagerTests::rune_definition_lookup);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_IS_KNOWN_VERB = Services.TEST_FUNCTIONS_REGISTRY.register("rune_is_known_verb", () -> (helper) -> RuneManagerTests.rune_is_known(helper, RuneType.VERB));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_IS_KNOWN_NOUN = Services.TEST_FUNCTIONS_REGISTRY.register("rune_is_known_noun", () -> (helper) -> RuneManagerTests.rune_is_known(helper, RuneType.NOUN));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_IS_KNOWN_SOURCE = Services.TEST_FUNCTIONS_REGISTRY.register("rune_is_known_source", () -> (helper) -> RuneManagerTests.rune_is_known(helper, RuneType.SOURCE));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNE_IS_KNOWN_FULL_KEY = Services.TEST_FUNCTIONS_REGISTRY.register("rune_is_known_full_key", () -> RuneManagerTests::rune_is_known_full_key);
 
     // FTUX tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> FONT_DISCOVERY_EARTH = Services.TEST_FUNCTIONS_REGISTRY.register("font_discovery_earth", () -> (helper) -> FtuxTests.font_discovery(helper, BlocksPM.ANCIENT_FONT_EARTH.get()));

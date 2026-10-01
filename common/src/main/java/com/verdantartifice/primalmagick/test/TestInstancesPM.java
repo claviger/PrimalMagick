@@ -103,6 +103,41 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> ENCHANTMENT_ESSENCE_THIEF3 = createInstanceKey("enchantment_essence_thief3");
     public static final ResourceKey<GameTestInstance> ENCHANTMENT_ESSENCE_THIEF4 = createInstanceKey("enchantment_essence_thief4");
 
+    // Rune manager tests
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_SHARPNESS = createInstanceKey("rune_enchantment_resolves_sharpness");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_PROTECTION = createInstanceKey("rune_enchantment_resolves_protection");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_FIRE_PROTECTION = createInstanceKey("rune_enchantment_resolves_fire_protection");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_SMITE = createInstanceKey("rune_enchantment_resolves_smite");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_FROST_WALKER = createInstanceKey("rune_enchantment_resolves_frost_walker");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_INFINITY = createInstanceKey("rune_enchantment_resolves_infinity");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_MENDING = createInstanceKey("rune_enchantment_resolves_mending");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_LIFESTEAL = createInstanceKey("rune_enchantment_resolves_lifesteal");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_MANA_EFFICIENCY = createInstanceKey("rune_enchantment_resolves_mana_efficiency");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_AEGIS = createInstanceKey("rune_enchantment_resolves_aegis");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_RESOLVES_LUCKY_STRIKE = createInstanceKey("rune_enchantment_resolves_lucky_strike");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_REQUIRES_RESEARCH = createInstanceKey("rune_enchantment_requires_research");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_REQUIRES_ENCHANTABLE_STACK = createInstanceKey("rune_enchantment_requires_enchantable_stack");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_POWER_RUNE_ONE_RUNE_GIVES_LEVEL_2 = createInstanceKey("rune_enchantment_power_rune_one_rune_gives_level_2");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_POWER_RUNE_TWO_RUNES_GIVES_LEVEL_3 = createInstanceKey("rune_enchantment_power_rune_two_runes_gives_level_3");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_POWER_RUNE_THREE_RUNES_GIVES_LEVEL_4 = createInstanceKey("rune_enchantment_power_rune_three_runes_gives_level_4");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_POWER_RUNE_CAPPED_AT_MAX_LEVEL = createInstanceKey("rune_enchantment_power_rune_capped_at_max_level");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_COMPETING_UNFILTERED = createInstanceKey("rune_enchantment_competing_unfiltered");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_COMPETING_FILTERED = createInstanceKey("rune_enchantment_competing_filtered");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_EMPTY_INPUTS = createInstanceKey("rune_enchantment_empty_inputs");
+    public static final ResourceKey<GameTestInstance> RUNE_LIMITS_INSIGHT = createInstanceKey("rune_limits_insight");
+    public static final ResourceKey<GameTestInstance> RUNE_LIMITS_POWER = createInstanceKey("rune_limits_power");
+    public static final ResourceKey<GameTestInstance> RUNE_LIMITS_UNLIMITED_GRACE = createInstanceKey("rune_limits_unlimited_grace");
+    public static final ResourceKey<GameTestInstance> RUNE_LIMITS_UNLIMITED_PROJECT = createInstanceKey("rune_limits_unlimited_project");
+    public static final ResourceKey<GameTestInstance> RUNE_STACK_SET_AND_CLEAR = createInstanceKey("rune_stack_set_and_clear");
+    public static final ResourceKey<GameTestInstance> RUNE_MERGE_ENCHANTMENTS_TAKES_STRONGER = createInstanceKey("rune_merge_enchantments_takes_stronger");
+    public static final ResourceKey<GameTestInstance> RUNE_MERGE_ENCHANTMENTS_SKIPS_INCOMPATIBLE_WITH_ORIGINAL = createInstanceKey("rune_merge_enchantments_skips_incompatible_with_original");
+    public static final ResourceKey<GameTestInstance> RUNE_MERGE_ENCHANTMENTS_ADDS_COMPATIBLE = createInstanceKey("rune_merge_enchantments_adds_compatible");
+    public static final ResourceKey<GameTestInstance> RUNE_DEFINITION_LOOKUP = createInstanceKey("rune_definition_lookup");
+    public static final ResourceKey<GameTestInstance> RUNE_IS_KNOWN_VERB = createInstanceKey("rune_is_known_verb");
+    public static final ResourceKey<GameTestInstance> RUNE_IS_KNOWN_NOUN = createInstanceKey("rune_is_known_noun");
+    public static final ResourceKey<GameTestInstance> RUNE_IS_KNOWN_SOURCE = createInstanceKey("rune_is_known_source");
+    public static final ResourceKey<GameTestInstance> RUNE_IS_KNOWN_FULL_KEY = createInstanceKey("rune_is_known_full_key");
+
     // FTUX tests
     public static final ResourceKey<GameTestInstance> FONT_DISCOVERY_EARTH = createInstanceKey("font_discovery_earth");
     public static final ResourceKey<GameTestInstance> FONT_DISCOVERY_SEA = createInstanceKey("font_discovery_sea");
@@ -358,6 +393,7 @@ public class TestInstancesPM {
         registerRunecarvingTests(context);
         registerCasterEnchantabilityTests(context);
         registerRitualEnchantmentTests(context);
+        registerRuneManagerTests(context);
         registerFtuxTests(context);
         registerBeeswaxItemTests(context);
         registerDispenserItemTests(context);
@@ -634,6 +670,42 @@ public class TestInstancesPM {
         registerFunction(context, ENCHANTMENT_ESSENCE_THIEF2, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF2.getKey());
         registerFunction(context, ENCHANTMENT_ESSENCE_THIEF3, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF3.getKey());
         registerFunction(context, ENCHANTMENT_ESSENCE_THIEF4, TestFunctionsPM.ENCHANTMENT_ESSENCE_THIEF4.getKey());
+    }
+
+    public static void registerRuneManagerTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_SHARPNESS, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_SHARPNESS.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_PROTECTION, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_PROTECTION.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_FIRE_PROTECTION, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_FIRE_PROTECTION.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_SMITE, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_SMITE.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_FROST_WALKER, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_FROST_WALKER.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_INFINITY, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_INFINITY.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_MENDING, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_MENDING.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_LIFESTEAL, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_LIFESTEAL.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_MANA_EFFICIENCY, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_MANA_EFFICIENCY.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_AEGIS, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_AEGIS.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_LUCKY_STRIKE, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_LUCKY_STRIKE.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_REQUIRES_RESEARCH, TestFunctionsPM.RUNE_ENCHANTMENT_REQUIRES_RESEARCH.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_REQUIRES_ENCHANTABLE_STACK, TestFunctionsPM.RUNE_ENCHANTMENT_REQUIRES_ENCHANTABLE_STACK.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_POWER_RUNE_ONE_RUNE_GIVES_LEVEL_2, TestFunctionsPM.RUNE_ENCHANTMENT_POWER_RUNE_ONE_RUNE_GIVES_LEVEL_2.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_POWER_RUNE_TWO_RUNES_GIVES_LEVEL_3, TestFunctionsPM.RUNE_ENCHANTMENT_POWER_RUNE_TWO_RUNES_GIVES_LEVEL_3.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_POWER_RUNE_THREE_RUNES_GIVES_LEVEL_4, TestFunctionsPM.RUNE_ENCHANTMENT_POWER_RUNE_THREE_RUNES_GIVES_LEVEL_4.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_POWER_RUNE_CAPPED_AT_MAX_LEVEL, TestFunctionsPM.RUNE_ENCHANTMENT_POWER_RUNE_CAPPED_AT_MAX_LEVEL.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_COMPETING_UNFILTERED, TestFunctionsPM.RUNE_ENCHANTMENT_COMPETING_UNFILTERED.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_COMPETING_FILTERED, TestFunctionsPM.RUNE_ENCHANTMENT_COMPETING_FILTERED.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_EMPTY_INPUTS, TestFunctionsPM.RUNE_ENCHANTMENT_EMPTY_INPUTS.getKey());
+        registerFunction(context, RUNE_LIMITS_INSIGHT, TestFunctionsPM.RUNE_LIMITS_INSIGHT.getKey());
+        registerFunction(context, RUNE_LIMITS_POWER, TestFunctionsPM.RUNE_LIMITS_POWER.getKey());
+        registerFunction(context, RUNE_LIMITS_UNLIMITED_GRACE, TestFunctionsPM.RUNE_LIMITS_UNLIMITED_GRACE.getKey());
+        registerFunction(context, RUNE_LIMITS_UNLIMITED_PROJECT, TestFunctionsPM.RUNE_LIMITS_UNLIMITED_PROJECT.getKey());
+        registerFunction(context, RUNE_STACK_SET_AND_CLEAR, TestFunctionsPM.RUNE_STACK_SET_AND_CLEAR.getKey());
+        registerFunction(context, RUNE_MERGE_ENCHANTMENTS_TAKES_STRONGER, TestFunctionsPM.RUNE_MERGE_ENCHANTMENTS_TAKES_STRONGER.getKey());
+        registerFunction(context, RUNE_MERGE_ENCHANTMENTS_SKIPS_INCOMPATIBLE_WITH_ORIGINAL, TestFunctionsPM.RUNE_MERGE_ENCHANTMENTS_SKIPS_INCOMPATIBLE_WITH_ORIGINAL.getKey());
+        registerFunction(context, RUNE_MERGE_ENCHANTMENTS_ADDS_COMPATIBLE, TestFunctionsPM.RUNE_MERGE_ENCHANTMENTS_ADDS_COMPATIBLE.getKey());
+        registerFunction(context, RUNE_DEFINITION_LOOKUP, TestFunctionsPM.RUNE_DEFINITION_LOOKUP.getKey());
+        registerFunction(context, RUNE_IS_KNOWN_VERB, TestFunctionsPM.RUNE_IS_KNOWN_VERB.getKey());
+        registerFunction(context, RUNE_IS_KNOWN_NOUN, TestFunctionsPM.RUNE_IS_KNOWN_NOUN.getKey());
+        registerFunction(context, RUNE_IS_KNOWN_SOURCE, TestFunctionsPM.RUNE_IS_KNOWN_SOURCE.getKey());
+        registerFunction(context, RUNE_IS_KNOWN_FULL_KEY, TestFunctionsPM.RUNE_IS_KNOWN_FULL_KEY.getKey());
     }
 
     public static void registerCasterEnchantabilityTests(BootstrapContext<GameTestInstance> context) {
