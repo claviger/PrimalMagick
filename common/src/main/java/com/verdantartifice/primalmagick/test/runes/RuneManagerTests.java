@@ -61,6 +61,11 @@ public class RuneManagerTests extends AbstractBaseTest {
     // two mutually exclusive enchantments for a chestplate
     protected static final List<Rune> COMPETING_PROTECTION_RUNES = List.of(Rune.PROTECT, Rune.SELF, Rune.EARTH, Rune.INFERNAL);
 
+    // Smite is Project + Creature + Sun and Bane of Arthropods is Project + Item + Blood, so these runes yield both. The
+    // other combinations don't interfere on a diamond sword: Project + Creature + Blood is Thorns (armor only) and
+    // Rending (gated behind research), and nothing is defined for Project + Item + Sun.
+    protected static final List<Rune> TIED_DAMAGE_RUNES = List.of(Rune.PROJECT, Rune.CREATURE, Rune.ITEM, Rune.SUN, Rune.BLOOD);
+
     // The rune types that make up an enchantment's rune combination
     protected static final List<RuneType> COMBO_RUNE_TYPES = List.of(RuneType.VERB, RuneType.NOUN, RuneType.SOURCE);
 
@@ -155,12 +160,34 @@ public class RuneManagerTests extends AbstractBaseTest {
 
     public static void rune_enchantment_competing_filtered(GameTestHelper helper) {
         // Protection and Fire Protection are mutually exclusive, so filtering keeps only one of them. The winner depends
-        // on the resolution sort order (minimum enchanting cost, then hash code), so it is deliberately not checked.
+        // on the resolution sort order (minimum enchanting cost, then enchantment ID), so it is deliberately not checked.
         var player = makeMockServerPlayer(helper);
         var result = resolve(helper, COMPETING_PROTECTION_RUNES, new ItemStack(Items.DIAMOND_CHESTPLATE), player, true);
         assertValueEqual(helper, 1, result.size(), "Filtered rune enchantment count for competing protection runes, got " + result);
         var protections = Set.of(enchantment(helper, Enchantments.PROTECTION), enchantment(helper, Enchantments.FIRE_PROTECTION));
         assertTrue(helper, protections.containsAll(result.keySet()), "Filtered rune enchantment is not a competing protection enchantment: " + result);
+        helper.succeed();
+    }
+
+    /**
+     * Smite and Bane of Arthropods are mutually exclusive and share a minimum enchanting cost, so when both are
+     * resolved the filter keeps the one whose enchantment ID sorts first.
+     */
+    public static void rune_enchantment_tie_broken_by_id(GameTestHelper helper) {
+        var player = makeMockServerPlayer(helper);
+        var stack = new ItemStack(Items.DIAMOND_SWORD);
+        var smite = enchantment(helper, Enchantments.SMITE);
+        var bane = enchantment(helper, Enchantments.BANE_OF_ARTHROPODS);
+
+        // Control: unfiltered, the runes resolve to exactly the two tied enchantments
+        assertValueEqual(helper, Map.of(smite, 1, bane, 1), resolve(helper, TIED_DAMAGE_RUNES, stack, player, false), "Unfiltered rune enchantments for tied damage runes");
+
+        // Both enchantments cost 5 at level 1 (vanilla base cost 5, plus 8 per level above the first)
+        assertValueEqual(helper, 5, smite.value().getMinCost(1), "Smite minimum cost at level 1");
+        assertValueEqual(helper, 5, bane.value().getMinCost(1), "Bane of Arthropods minimum cost at level 1");
+
+        // minecraft:bane_of_arthropods sorts before minecraft:smite, so Bane of Arthropods wins the tie
+        assertValueEqual(helper, Map.of(bane, 1), resolve(helper, TIED_DAMAGE_RUNES, stack, player, true), "Filtered rune enchantments for tied damage runes");
         helper.succeed();
     }
 

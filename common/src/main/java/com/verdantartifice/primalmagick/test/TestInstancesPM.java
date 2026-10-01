@@ -123,6 +123,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_POWER_RUNE_CAPPED_AT_MAX_LEVEL = createInstanceKey("rune_enchantment_power_rune_capped_at_max_level");
     public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_COMPETING_UNFILTERED = createInstanceKey("rune_enchantment_competing_unfiltered");
     public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_COMPETING_FILTERED = createInstanceKey("rune_enchantment_competing_filtered");
+    public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_TIE_BROKEN_BY_ID = createInstanceKey("rune_enchantment_tie_broken_by_id");
     public static final ResourceKey<GameTestInstance> RUNE_ENCHANTMENT_EMPTY_INPUTS = createInstanceKey("rune_enchantment_empty_inputs");
     public static final ResourceKey<GameTestInstance> RUNE_LIMITS_INSIGHT = createInstanceKey("rune_limits_insight");
     public static final ResourceKey<GameTestInstance> RUNE_LIMITS_POWER = createInstanceKey("rune_limits_power");
@@ -963,6 +964,7 @@ public class TestInstancesPM {
         registerFunction(context, RUNE_ENCHANTMENT_POWER_RUNE_CAPPED_AT_MAX_LEVEL, TestFunctionsPM.RUNE_ENCHANTMENT_POWER_RUNE_CAPPED_AT_MAX_LEVEL.getKey());
         registerFunction(context, RUNE_ENCHANTMENT_COMPETING_UNFILTERED, TestFunctionsPM.RUNE_ENCHANTMENT_COMPETING_UNFILTERED.getKey());
         registerFunction(context, RUNE_ENCHANTMENT_COMPETING_FILTERED, TestFunctionsPM.RUNE_ENCHANTMENT_COMPETING_FILTERED.getKey());
+        registerFunction(context, RUNE_ENCHANTMENT_TIE_BROKEN_BY_ID, TestFunctionsPM.RUNE_ENCHANTMENT_TIE_BROKEN_BY_ID.getKey());
         registerFunction(context, RUNE_ENCHANTMENT_EMPTY_INPUTS, TestFunctionsPM.RUNE_ENCHANTMENT_EMPTY_INPUTS.getKey());
         registerFunction(context, RUNE_LIMITS_INSIGHT, TestFunctionsPM.RUNE_LIMITS_INSIGHT.getKey());
         registerFunction(context, RUNE_LIMITS_POWER, TestFunctionsPM.RUNE_LIMITS_POWER.getKey());
