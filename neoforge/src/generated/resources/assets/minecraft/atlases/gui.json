@@ -55,6 +55,30 @@
     {
       "type": "minecraft:single",
       "resource": "primalmagick:item/empty_flask_slot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/empty_essence_dust_slot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/empty_essence_shard_slot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/empty_essence_crystal_slot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/empty_essence_cluster_slot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/empty_book_slot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:item/empty_writable_book_slot"
     }
   ]
 }
