@@ -540,6 +540,9 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CRYSTAL = createInstanceKey("wand_charger_do_charge_with_right_items_crystal");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CLUSTER = createInstanceKey("wand_charger_do_charge_with_right_items_cluster");
 
+    // Ritual altar tests
+    public static final ResourceKey<GameTestInstance> RITUAL_ALTAR_ACTIVE_RECIPE_ROUND_TRIPS = createInstanceKey("ritual_altar_active_recipe_round_trips");
+
     public static void bootstrap(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, CANARY, TestFunctionsPM.CANARY.getKey());
         registerAttunementBuffTests(context);
@@ -572,6 +575,7 @@ public class TestInstancesPM {
         registerManaBatteryTests(context);
         registerManaFontTests(context);
         registerWandChargerTests(context);
+        registerRitualAltarTests(context);
     }
 
     public static void registerWandChargerTests(BootstrapContext<GameTestInstance> context) {
@@ -593,6 +597,10 @@ public class TestInstancesPM {
         registerFunction(context, WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_SHARD, TestFunctionsPM.WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_SHARD.getKey());
         registerFunction(context, WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CRYSTAL, TestFunctionsPM.WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CRYSTAL.getKey());
         registerFunction(context, WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CLUSTER, TestFunctionsPM.WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CLUSTER.getKey());
+    }
+
+    public static void registerRitualAltarTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, RITUAL_ALTAR_ACTIVE_RECIPE_ROUND_TRIPS, TestFunctionsPM.RITUAL_ALTAR_ACTIVE_RECIPE_ROUND_TRIPS.getKey());
     }
 
     public static void registerManaFontTests(BootstrapContext<GameTestInstance> context) {

@@ -47,6 +47,7 @@ import com.verdantartifice.primalmagick.test.research.ResearchKeysTests;
 import com.verdantartifice.primalmagick.test.runes.RuneManagerTests;
 import com.verdantartifice.primalmagick.test.spells.SpellPackageTests;
 import com.verdantartifice.primalmagick.test.spells.WandSpellcastTests;
+import com.verdantartifice.primalmagick.test.tiles.RitualAltarTests;
 import com.verdantartifice.primalmagick.test.tiles.WandChargerTests;
 import com.verdantartifice.primalmagick.test.tiles.ManaFontTests;
 import com.verdantartifice.primalmagick.test.tiles.ManaBatteryTests;
@@ -624,4 +625,7 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_SHARD = Services.TEST_FUNCTIONS_REGISTRY.register("wand_charger_do_charge_with_right_items_shard", () -> (helper) -> WandChargerTests.wand_charger_do_charge_with_right_items(helper, EssenceType.SHARD, 1000));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CRYSTAL = Services.TEST_FUNCTIONS_REGISTRY.register("wand_charger_do_charge_with_right_items_crystal", () -> (helper) -> WandChargerTests.wand_charger_do_charge_with_right_items(helper, EssenceType.CRYSTAL, 2500));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CLUSTER = Services.TEST_FUNCTIONS_REGISTRY.register("wand_charger_do_charge_with_right_items_cluster", () -> (helper) -> WandChargerTests.wand_charger_do_charge_with_right_items(helper, EssenceType.CLUSTER, 2500));
+
+    // Ritual altar tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_ACTIVE_RECIPE_ROUND_TRIPS = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_active_recipe_round_trips", () -> RitualAltarTests::ritual_altar_active_recipe_round_trips);
 }
