@@ -366,6 +366,7 @@ public class PlayerEvents {
                             ManaStorage updated = manaCap.copy();
                             updated.extractMana(Sources.EARTH, WardingModuleItem.REGEN_COST, false);
                             slotStack.set(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), updated);
+                            slotStack.remove(DataComponentsPM.LAST_UPDATED.get());
                             wardCap.incrementCurrentWard();
                             wardCap.sync(player);
                             player.connection.send(new ClientboundSetEquipmentPacket(player.getId(), List.of(Pair.of(slot, slotStack.copy()))));
