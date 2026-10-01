@@ -2,13 +2,13 @@ package com.verdantartifice.primalmagick.client.fx.particles;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.verdantartifice.primalmagick.common.util.LineSegment;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.state.level.ParticleGroupRenderState;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Vector3f;
 
 import java.util.List;
 
@@ -34,10 +34,7 @@ public record SpellBoltParticleGroupRenderState(List<SpellBoltParticle.RenderSta
             poseStack.translate(state.start().subtract(cameraRenderState.pos));
 
             // Submit the bolt geometry
-            submitNodeCollector.submitCustomGeometry(poseStack, RenderTypes.LINES_TRANSLUCENT, (pose, buffer) -> {
-                // Thicken the lines drawn for the geometry
-                VertexConsumer lineBuilder = buffer.setLineWidth(WIDTH);
-
+            submitNodeCollector.submitCustomGeometry(poseStack, RenderTypes.LINES_TRANSLUCENT, (pose, lineBuilder) -> {
                 // Draw each line segment
                 for (int index = 0; index < state.segmentList().size(); index++) {
                     // Extract the current bolt line segment
@@ -46,9 +43,12 @@ public record SpellBoltParticleGroupRenderState(List<SpellBoltParticle.RenderSta
                     // Move the endpoints of each segment along their computed motion path before rendering to make the bolt move
                     segment.perturb(state.perturbList().get(index), state.perturbList().get(index + 1));
 
-                    // Add the segment vertices
-                    lineBuilder.addVertex(pose, segment.getStart().toVector3f()).setColor(state.color());
-                    lineBuilder.addVertex(pose, segment.getEnd().toVector3f()).setColor(state.color());
+                    // Add the segment vertices. The lines vertex format (POSITION_COLOR_NORMAL_LINE_WIDTH) requires every vertex
+                    // to carry a normal (the line direction, used to extrude the line in screen space) and a line width, as in
+                    // vanilla's ShapeRenderer; omitting either makes the buffer builder throw when the vertex is finished.
+                    Vector3f normal = segment.getDelta().toVector3f().normalize();
+                    lineBuilder.addVertex(pose, segment.getStart().toVector3f()).setColor(state.color()).setNormal(pose, normal).setLineWidth(WIDTH);
+                    lineBuilder.addVertex(pose, segment.getEnd().toVector3f()).setColor(state.color()).setNormal(pose, normal).setLineWidth(WIDTH);
                 }
             });
 
