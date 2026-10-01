@@ -107,6 +107,10 @@ public abstract class AutoChargerTileEntity extends AbstractTileSidedInventoryPM
             });
             if (!simulate) {
                 chargeStack.remove(DataComponentsPM.LAST_UPDATED.get());
+                if (actualReceived.intValue() > 0) {
+                    // The charge lives in the slotted stack, so mark the charger changed to get its chunk saved
+                    this.setChanged();
+                }
             }
             return actualReceived.intValue();
         }

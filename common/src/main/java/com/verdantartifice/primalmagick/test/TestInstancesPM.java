@@ -438,6 +438,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED = createInstanceKey("auto_charger_can_have_chargeable_items_removed");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS = createInstanceKey("auto_charger_siphons_into_chargeable_items");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_SIPHON_DOES_NOT_MUTATE_STACK_COPIES = createInstanceKey("auto_charger_siphon_does_not_mutate_stack_copies");
+    public static final ResourceKey<GameTestInstance> AUTO_CHARGER_SIPHON_MARKS_BLOCK_ENTITY_CHANGED = createInstanceKey("auto_charger_siphon_marks_block_entity_changed");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND = createInstanceKey("auto_charger_output_allows_chargeable_items_modular_wand");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF = createInstanceKey("auto_charger_output_allows_chargeable_items_modular_staff");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST = createInstanceKey("auto_charger_output_allows_chargeable_items_warded_primalite_chest");
@@ -648,6 +649,7 @@ public class TestInstancesPM {
         registerFunction(context, AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED, TestFunctionsPM.AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED.getKey());
         registerFunction(context, AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS, TestFunctionsPM.AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
         registerFunction(context, AUTO_CHARGER_SIPHON_DOES_NOT_MUTATE_STACK_COPIES, TestFunctionsPM.AUTO_CHARGER_SIPHON_DOES_NOT_MUTATE_STACK_COPIES.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, AUTO_CHARGER_SIPHON_MARKS_BLOCK_ENTITY_CHANGED, TestFunctionsPM.AUTO_CHARGER_SIPHON_MARKS_BLOCK_ENTITY_CHANGED.getKey(), ResourceUtils.loc("test/floor5x5x5"));
         registerFunction(context, AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND, TestFunctionsPM.AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND.getKey());
         registerFunction(context, AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF, TestFunctionsPM.AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF.getKey());
         registerFunction(context, AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST, TestFunctionsPM.AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST.getKey());
