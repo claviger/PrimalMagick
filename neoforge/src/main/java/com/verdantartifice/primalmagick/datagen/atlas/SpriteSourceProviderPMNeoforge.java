@@ -16,7 +16,9 @@ import com.verdantartifice.primalmagick.common.menus.HoneyExtractorMenu;
 import com.verdantartifice.primalmagick.common.menus.InfernalFurnaceMenu;
 import com.verdantartifice.primalmagick.common.menus.ResearchTableMenu;
 import com.verdantartifice.primalmagick.common.menus.RunecarvingTableMenu;
+import com.verdantartifice.primalmagick.common.menus.ScribeTranscribeWorksMenu;
 import com.verdantartifice.primalmagick.common.menus.WandAssemblyTableMenu;
+import com.verdantartifice.primalmagick.common.menus.WandChargerMenu;
 import com.verdantartifice.primalmagick.common.menus.slots.IWandSlot;
 import com.verdantartifice.primalmagick.common.sources.Source;
 import com.verdantartifice.primalmagick.common.sources.Sources;
@@ -98,6 +100,12 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
         this.addSingle(guiAtlas, InfernalFurnaceMenu.IGNYX_SLOT_TEXTURE);
         this.addSingle(guiAtlas, DesalinatorMenu.BUCKET_SLOT_TEXTURE);
         this.addSingle(guiAtlas, DesalinatorMenu.FLASK_SLOT_TEXTURE);
+        this.addSingle(guiAtlas, WandChargerMenu.DUST_SLOT_TEXTURE);
+        this.addSingle(guiAtlas, WandChargerMenu.SHARD_SLOT_TEXTURE);
+        this.addSingle(guiAtlas, WandChargerMenu.CRYSTAL_SLOT_TEXTURE);
+        this.addSingle(guiAtlas, WandChargerMenu.CLUSTER_SLOT_TEXTURE);
+        this.addSingle(guiAtlas, ScribeTranscribeWorksMenu.BOOK_SLOT_TEXTURE);
+        this.addSingle(guiAtlas, ScribeTranscribeWorksMenu.WRITABLE_BOOK_SLOT_TEXTURE);
 
         // Add block entity renderer textures to the block atlas
         this.addSingle(blockAtlas, ManaFontTER.TEXTURE);
