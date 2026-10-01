@@ -1,5 +1,6 @@
 package com.verdantartifice.primalmagick.test.items;
 
+import com.verdantartifice.primalmagick.common.components.DataComponentsPM;
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
 import com.verdantartifice.primalmagick.common.sources.Source;
 import com.verdantartifice.primalmagick.common.sources.SourceList;
@@ -99,6 +100,30 @@ public class WandManaTests extends AbstractBaseTest {
 
         // Confirm that the wand has mana in it
         assertValueEqual(helper, 100, wand.getMana(wandStack, DEFAULT_SOURCE), "Wand mana total");
+
+        helper.succeed();
+    }
+
+    /**
+     * Confirms that adding mana to a wand replaces its mana storage rather than mutating it in place, so that a copy of
+     * the wand taken beforehand keeps its original mana and is no longer component-equal to the wand.
+     */
+    public static void wand_mana_change_does_not_mutate_stack_copies(GameTestHelper helper) {
+        var wandStack = WandType.MODULAR_WAND.makeStack();
+
+        // Confirm that the wand was created successfully
+        IWand wand = assertInstanceOf(helper, wandStack.getItem(), IWand.class, "Wand stack is not a wand as expected");
+
+        // Give the wand some mana, then take a copy of it
+        assertValueEqual(helper, 0, wand.addMana(wandStack, DEFAULT_SOURCE, 100), "Overflow when adding first mana to wand");
+        var before = wandStack.copy();
+
+        // Add more mana to the original wand; it goes from 100 to 200 centimana while the copy stays at 100
+        assertValueEqual(helper, 0, wand.addMana(wandStack, DEFAULT_SOURCE, 100), "Overflow when adding second mana to wand");
+        assertValueEqual(helper, 200, wand.getMana(wandStack, DEFAULT_SOURCE), "Wand mana total");
+        assertValueEqual(helper, 100, wand.getMana(before, DEFAULT_SOURCE), "Copy mana total");
+        assertFalse(helper, ItemStack.isSameItemSameComponents(before, wandStack), "Wand still matches earlier copy");
+        assertFalse(helper, wandStack.has(DataComponentsPM.LAST_UPDATED.get()), "Wand has a last updated component");
 
         helper.succeed();
     }

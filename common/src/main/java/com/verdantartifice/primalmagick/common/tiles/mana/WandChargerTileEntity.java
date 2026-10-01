@@ -165,10 +165,10 @@ public abstract class WandChargerTileEntity extends AbstractTileSidedInventoryPM
             EssenceItem essence = (EssenceItem)inputStack.getItem();
             if (chargeStack.has(DataComponentsPM.CAPABILITY_MANA_STORAGE.get())) {
                 chargeStack.update(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY, manaCap -> {
-                    manaCap.receiveMana(essence.getSource(), essence.getEssenceType().getManaEquivalent(), false);
-                    return manaCap;
+                    ManaStorage updated = manaCap.copy();
+                    updated.receiveMana(essence.getSource(), essence.getEssenceType().getManaEquivalent(), false);
+                    return updated;
                 });
-                chargeStack.set(DataComponentsPM.LAST_UPDATED.get(), System.currentTimeMillis());   // FIXME Is there a better way of marking this stack as dirty?
             }
             inputStack.shrink(1);
         }

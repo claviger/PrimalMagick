@@ -3,6 +3,8 @@ package com.verdantartifice.primalmagick.test.tiles;
 import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
 import com.verdantartifice.primalmagick.common.blocks.mana.ManaBatteryBlock;
 import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
+import com.verdantartifice.primalmagick.common.capabilities.ManaStorage;
+import com.verdantartifice.primalmagick.common.components.DataComponentsPM;
 import com.verdantartifice.primalmagick.common.items.essence.EssenceItem;
 import com.verdantartifice.primalmagick.common.items.essence.EssenceType;
 import com.verdantartifice.primalmagick.common.menus.ManaBatteryMenu;
@@ -15,6 +17,7 @@ import com.verdantartifice.primalmagick.test.AbstractBaseTest;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.world.item.ItemStack;
 
 /**
  * Tests for mana batteries: menu access, which items each face's item handler accepts, and siphoning mana from
@@ -169,6 +172,47 @@ public class ManaBatteryTests extends AbstractBaseTest {
         helper.succeedOnTickWhen(1, () -> {
             assertValueEqual(helper, expectedFontMana, fontTile.getMana(), "After font mana");
             assertValueEqual(helper, Integer.MAX_VALUE, batteryTile.getMana(Sources.EARTH), "After battery mana");
+        });
+    }
+
+    // Output tests
+
+    /**
+     * Confirms that outputting mana replaces the charged wand's mana storage rather than mutating it in place, so that
+     * a copy of the wand taken before the battery ticks keeps its original mana and is no longer component-equal to the
+     * charged wand.
+     */
+    public static void mana_battery_output_does_not_mutate_stack_copies(GameTestHelper helper) {
+        var stack = TileTestUtils.getChargeableTestStack();
+
+        // Take a copy of the wand stack before it goes into the battery
+        var before = stack.copy();
+
+        // Place a mana nexus and give it a known amount of earth mana
+        var batteryPos = BlockPos.ZERO;
+        helper.setBlock(batteryPos, BlocksPM.MANA_NEXUS.get());
+        var batteryTile = helper.getBlockEntity(batteryPos, ManaBatteryTileEntity.class);
+        final int startBatteryMana = 1000;
+        batteryTile.setMana(Sources.EARTH, startBatteryMana);
+        assertValueEqual(helper, startBatteryMana, batteryTile.getMana(Sources.EARTH), "Before battery mana");
+
+        // Place the wand into the battery's output slot, which every face other than the top leads to
+        var handler = batteryTile.getRawItemHandler(Direction.NORTH);
+        assertFalse(helper, handler == null, "No item handler found");
+        handler.insertItem(0, stack, false);
+        assertFalse(helper, handler.getStackInSlot(0).isEmpty(), "Wand not inserted into battery");
+
+        // The mana nexus outputs up to its 800 centimana transfer cap (WandCap.HEXIUM) per tick, well under the mundane
+        // wand's 2500 centimana cap, leaving 1000 - 800 = 200 in the battery; the copy stays at 0
+        final int expectedTransfer = 800;
+        final int expectedBatteryMana = 200;
+        helper.succeedOnTickWhen(1, () -> {
+            var charged = handler.getStackInSlot(0);
+            assertValueEqual(helper, expectedTransfer, charged.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), "Charged wand mana");
+            assertValueEqual(helper, expectedBatteryMana, batteryTile.getMana(Sources.EARTH), "After battery mana");
+            assertValueEqual(helper, 0, before.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), "Pre-tick copy mana");
+            assertFalse(helper, ItemStack.isSameItemSameComponents(before, charged), "Charged wand still matches pre-tick copy");
+            assertFalse(helper, charged.has(DataComponentsPM.LAST_UPDATED.get()), "Charged wand has a last updated component");
         });
     }
 }

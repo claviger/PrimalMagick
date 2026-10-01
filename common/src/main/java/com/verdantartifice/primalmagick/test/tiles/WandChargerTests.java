@@ -156,4 +156,36 @@ public class WandChargerTests extends AbstractBaseTest {
         // Dust is worth 100 centimana, well under the mundane wand's 2500 centimana cap
         wand_charger_do_charge_with_right_items(helper, EssenceType.DUST, 100);
     }
+
+    /**
+     * Confirms that charging replaces the charged stack's mana storage rather than mutating it in place, so that a copy
+     * of the stack taken before charging keeps its original mana and is no longer component-equal to the charged stack.
+     */
+    public static void wand_charger_charge_does_not_mutate_stack_copies(GameTestHelper helper) {
+        var source = Sources.EARTH;
+        var stack = TileTestUtils.getChargeableTestStack();
+
+        // Take a copy of the chargeable stack before it goes into the charger
+        var before = stack.copy();
+
+        // Place a wand charger block and fill it with essence and the chargeable item
+        var pos = BlockPos.ZERO;
+        helper.setBlock(pos, BlocksPM.WAND_CHARGER.get());
+        var tile = helper.getBlockEntity(pos, WandChargerTileEntity.class);
+        tile.addItem(WandChargerTileEntity.INPUT_INV_INDEX, 0, EssenceItem.getEssence(EssenceType.DUST, source));
+        tile.addItem(WandChargerTileEntity.CHARGE_INV_INDEX, 0, stack);
+
+        // Attempt the charge
+        tile.doCharge();
+
+        // Dust is worth 100 centimana, well under the mundane wand's 2500 centimana cap, so the charged stack goes from 0
+        // to 100 while the copy stays at 0
+        var charged = getChargeSlotStack(tile);
+        assertValueEqual(helper, 100, charged.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(source), "Charged stack mana");
+        assertValueEqual(helper, 0, before.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(source), "Pre-charge copy mana");
+        assertFalse(helper, ItemStack.isSameItemSameComponents(before, charged), "Charged stack still matches pre-charge copy");
+        assertFalse(helper, charged.has(DataComponentsPM.LAST_UPDATED.get()), "Charged stack has a last updated component");
+
+        helper.succeed();
+    }
 }

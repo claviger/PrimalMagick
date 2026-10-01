@@ -249,6 +249,7 @@ public class TestInstancesPM {
     // Wand mana tests
     public static final ResourceKey<GameTestInstance> WAND_CAN_GET_AND_ADD_MANA = createInstanceKey("wand_can_get_and_add_mana");
     public static final ResourceKey<GameTestInstance> WAND_CAN_GET_AND_ADD_REAL_MANA = createInstanceKey("wand_can_get_and_add_real_mana");
+    public static final ResourceKey<GameTestInstance> WAND_MANA_CHANGE_DOES_NOT_MUTATE_STACK_COPIES = createInstanceKey("wand_mana_change_does_not_mutate_stack_copies");
     public static final ResourceKey<GameTestInstance> WAND_CANNOT_ADD_TOO_MUCH_MANA = createInstanceKey("wand_cannot_add_too_much_mana");
     public static final ResourceKey<GameTestInstance> WAND_CAN_GET_ALL_MANA = createInstanceKey("wand_can_get_all_mana");
     public static final ResourceKey<GameTestInstance> WAND_CAN_CONSUME_MANA = createInstanceKey("wand_can_consume_mana");
@@ -430,6 +431,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_CANNOT_HAVE_UNCHARGEABLE_ITEMS_INSERTED = createInstanceKey("auto_charger_cannot_have_unchargeable_items_inserted");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED = createInstanceKey("auto_charger_can_have_chargeable_items_removed");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS = createInstanceKey("auto_charger_siphons_into_chargeable_items");
+    public static final ResourceKey<GameTestInstance> AUTO_CHARGER_SIPHON_DOES_NOT_MUTATE_STACK_COPIES = createInstanceKey("auto_charger_siphon_does_not_mutate_stack_copies");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND = createInstanceKey("auto_charger_output_allows_chargeable_items_modular_wand");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF = createInstanceKey("auto_charger_output_allows_chargeable_items_modular_staff");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST = createInstanceKey("auto_charger_output_allows_chargeable_items_warded_primalite_chest");
@@ -453,6 +455,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_INPUT_ALLOWS_WANDS_MODULAR_STAFF = createInstanceKey("mana_battery_input_allows_wands_modular_staff");
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS_MANA_SINGULARITY = createInstanceKey("mana_battery_siphons_from_nearby_fonts_mana_singularity");
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE = createInstanceKey("mana_battery_does_not_siphon_from_nearby_fonts_mana_singularity_creative");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_OUTPUT_DOES_NOT_MUTATE_STACK_COPIES = createInstanceKey("mana_battery_output_does_not_mutate_stack_copies");
 
     // Mana font tests
     public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND = createInstanceKey("mana_font_siphoned_by_wand");
@@ -503,6 +506,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_INPUT_DOES_NOT_ALLOW_NON_ESSENCE = createInstanceKey("wand_charger_input_does_not_allow_non_essence");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_CAN_CHARGE_WITH_RIGHT_ITEMS = createInstanceKey("wand_charger_can_charge_with_right_items");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS = createInstanceKey("wand_charger_do_charge_with_right_items");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_CHARGE_DOES_NOT_MUTATE_STACK_COPIES = createInstanceKey("wand_charger_charge_does_not_mutate_stack_copies");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND = createInstanceKey("wand_charger_output_allows_chargeable_items_modular_wand");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF = createInstanceKey("wand_charger_output_allows_chargeable_items_modular_staff");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST = createInstanceKey("wand_charger_output_allows_chargeable_items_warded_primalite_chest");
@@ -553,6 +557,7 @@ public class TestInstancesPM {
         registerFunction(context, WAND_CHARGER_INPUT_DOES_NOT_ALLOW_NON_ESSENCE, TestFunctionsPM.WAND_CHARGER_INPUT_DOES_NOT_ALLOW_NON_ESSENCE.getKey());
         registerFunction(context, WAND_CHARGER_CAN_CHARGE_WITH_RIGHT_ITEMS, TestFunctionsPM.WAND_CHARGER_CAN_CHARGE_WITH_RIGHT_ITEMS.getKey());
         registerFunction(context, WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS, TestFunctionsPM.WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS.getKey());
+        registerFunction(context, WAND_CHARGER_CHARGE_DOES_NOT_MUTATE_STACK_COPIES, TestFunctionsPM.WAND_CHARGER_CHARGE_DOES_NOT_MUTATE_STACK_COPIES.getKey());
         registerFunction(context, WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND, TestFunctionsPM.WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND.getKey());
         registerFunction(context, WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF, TestFunctionsPM.WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF.getKey());
         registerFunction(context, WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST, TestFunctionsPM.WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST.getKey());
@@ -623,6 +628,7 @@ public class TestInstancesPM {
         registerFunction(context, MANA_BATTERY_INPUT_ALLOWS_WANDS_MODULAR_STAFF, TestFunctionsPM.MANA_BATTERY_INPUT_ALLOWS_WANDS_MODULAR_STAFF.getKey());
         registerFunction(context, MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS_MANA_SINGULARITY, TestFunctionsPM.MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS_MANA_SINGULARITY.getKey());
         registerFunction(context, MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE, TestFunctionsPM.MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE.getKey());
+        registerFunction(context, MANA_BATTERY_OUTPUT_DOES_NOT_MUTATE_STACK_COPIES, TestFunctionsPM.MANA_BATTERY_OUTPUT_DOES_NOT_MUTATE_STACK_COPIES.getKey());
     }
 
     public static void registerAutoChargerTests(BootstrapContext<GameTestInstance> context) {
@@ -632,6 +638,7 @@ public class TestInstancesPM {
         registerFunction(context, AUTO_CHARGER_CANNOT_HAVE_UNCHARGEABLE_ITEMS_INSERTED, TestFunctionsPM.AUTO_CHARGER_CANNOT_HAVE_UNCHARGEABLE_ITEMS_INSERTED.getKey());
         registerFunction(context, AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED, TestFunctionsPM.AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED.getKey());
         registerFunction(context, AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS, TestFunctionsPM.AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, AUTO_CHARGER_SIPHON_DOES_NOT_MUTATE_STACK_COPIES, TestFunctionsPM.AUTO_CHARGER_SIPHON_DOES_NOT_MUTATE_STACK_COPIES.getKey(), ResourceUtils.loc("test/floor5x5x5"));
         registerFunction(context, AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND, TestFunctionsPM.AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND.getKey());
         registerFunction(context, AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF, TestFunctionsPM.AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF.getKey());
         registerFunction(context, AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST, TestFunctionsPM.AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST.getKey());
@@ -772,6 +779,7 @@ public class TestInstancesPM {
     public static void registerWandManaTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, WAND_CAN_GET_AND_ADD_MANA, TestFunctionsPM.WAND_CAN_GET_AND_ADD_MANA.getKey());
         registerFunction(context, WAND_CAN_GET_AND_ADD_REAL_MANA, TestFunctionsPM.WAND_CAN_GET_AND_ADD_REAL_MANA.getKey());
+        registerFunction(context, WAND_MANA_CHANGE_DOES_NOT_MUTATE_STACK_COPIES, TestFunctionsPM.WAND_MANA_CHANGE_DOES_NOT_MUTATE_STACK_COPIES.getKey());
         registerFunction(context, WAND_CANNOT_ADD_TOO_MUCH_MANA, TestFunctionsPM.WAND_CANNOT_ADD_TOO_MUCH_MANA.getKey());
         registerFunction(context, WAND_CAN_GET_ALL_MANA, TestFunctionsPM.WAND_CAN_GET_ALL_MANA.getKey());
         registerFunction(context, WAND_CAN_CONSUME_MANA, TestFunctionsPM.WAND_CAN_CONSUME_MANA.getKey());

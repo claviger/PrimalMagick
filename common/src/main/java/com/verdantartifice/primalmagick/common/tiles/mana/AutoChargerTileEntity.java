@@ -101,8 +101,9 @@ public abstract class AutoChargerTileEntity extends AbstractTileSidedInventoryPM
         if (level != null && !level.isClientSide() && chargeStack.has(DataComponentsPM.CAPABILITY_MANA_STORAGE.get())) {
             MutableInt actualReceived = new MutableInt(0);
             chargeStack.update(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY, manaCap -> {
-                actualReceived.setValue(manaCap.receiveMana(source, maxReceive, simulate));
-                return manaCap;
+                ManaStorage updated = manaCap.copy();
+                actualReceived.setValue(updated.receiveMana(source, maxReceive, simulate));
+                return updated;
             });
             return actualReceived.intValue();
         }

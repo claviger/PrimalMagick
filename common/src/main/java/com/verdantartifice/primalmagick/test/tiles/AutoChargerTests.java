@@ -171,4 +171,40 @@ public class AutoChargerTests extends AbstractBaseTest {
             assertValueEqual(helper, expectedFontMana, fontTile.getMana(), "After font mana not as expected");
         });
     }
+
+    /**
+     * Confirms that siphoning replaces the charging stack's mana storage rather than mutating it in place, so that a
+     * copy of the stack taken before siphoning keeps its original mana and is no longer component-equal to the charged
+     * stack.
+     */
+    public static void auto_charger_siphon_does_not_mutate_stack_copies(GameTestHelper helper) {
+        var stack = TileTestUtils.getChargeableTestStack();
+
+        // Take a copy of the chargeable stack before it goes into the charger
+        var before = stack.copy();
+
+        // Place an auto charger block next to a half-full earth font, as in auto_charger_siphons_into_chargeable_items
+        var chargerPos = BlockPos.ZERO.south();
+        helper.setBlock(chargerPos, BlocksPM.AUTO_CHARGER.get());
+        var chargerTile = helper.getBlockEntity(chargerPos, AutoChargerTileEntity.class);
+        var fontPos = BlockPos.ZERO.east();
+        helper.setBlock(fontPos, BlocksPM.ARTIFICIAL_FONT_EARTH.get());
+        var fontTile = helper.getBlockEntity(fontPos, AbstractManaFontTileEntity.class);
+        fontTile.setMana(500);
+
+        // Place the chargeable item stack into the auto charger
+        var handler = chargerTile.getRawItemHandler(Direction.NORTH);
+        assertFalse(helper, handler == null, "No item handler found");
+        handler.insertItem(0, stack, false);
+
+        // The mundane wand siphons 100 centimana on the charger's first tick, while the copy stays at 0
+        final int expectedSiphonAmount = 100;
+        helper.succeedOnTickWhen(1, () -> {
+            var charged = handler.getStackInSlot(0);
+            assertValueEqual(helper, expectedSiphonAmount, charged.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), "Charged stack mana");
+            assertValueEqual(helper, 0, before.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), "Pre-siphon copy mana");
+            assertFalse(helper, ItemStack.isSameItemSameComponents(before, charged), "Charged stack still matches pre-siphon copy");
+            assertFalse(helper, charged.has(DataComponentsPM.LAST_UPDATED.get()), "Charged stack has a last updated component");
+        });
+    }
 }
