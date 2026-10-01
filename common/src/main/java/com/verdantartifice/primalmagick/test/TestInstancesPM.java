@@ -397,6 +397,10 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_CANNOT_HAVE_UNCHARGEABLE_ITEMS_INSERTED = createInstanceKey("auto_charger_cannot_have_unchargeable_items_inserted");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED = createInstanceKey("auto_charger_can_have_chargeable_items_removed");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS = createInstanceKey("auto_charger_siphons_into_chargeable_items");
+    public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND = createInstanceKey("auto_charger_output_allows_chargeable_items_modular_wand");
+    public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF = createInstanceKey("auto_charger_output_allows_chargeable_items_modular_staff");
+    public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST = createInstanceKey("auto_charger_output_allows_chargeable_items_warded_primalite_chest");
+    public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_DOES_NOT_ALLOW_ESSENCE = createInstanceKey("auto_charger_output_does_not_allow_essence");
 
     // Mana battery tests
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("mana_battery_can_have_its_menu_opened");
@@ -405,19 +409,76 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_INPUT_ALLOWS_ESSENCE = createInstanceKey("mana_battery_input_allows_essence");
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_INPUT_ALLOWS_WANDS = createInstanceKey("mana_battery_input_allows_wands");
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS = createInstanceKey("mana_battery_siphons_from_nearby_fonts");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND = createInstanceKey("mana_battery_output_allows_chargeable_items_modular_wand");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF = createInstanceKey("mana_battery_output_allows_chargeable_items_modular_staff");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST = createInstanceKey("mana_battery_output_allows_chargeable_items_warded_primalite_chest");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_OUTPUT_DOES_NOT_ALLOW_ESSENCE = createInstanceKey("mana_battery_output_does_not_allow_essence");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_INPUT_ALLOWS_ESSENCE_DUST = createInstanceKey("mana_battery_input_allows_essence_dust");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_INPUT_ALLOWS_ESSENCE_CRYSTAL = createInstanceKey("mana_battery_input_allows_essence_crystal");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_INPUT_ALLOWS_ESSENCE_CLUSTER = createInstanceKey("mana_battery_input_allows_essence_cluster");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_INPUT_ALLOWS_WANDS_MODULAR_WAND = createInstanceKey("mana_battery_input_allows_wands_modular_wand");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_INPUT_ALLOWS_WANDS_MODULAR_STAFF = createInstanceKey("mana_battery_input_allows_wands_modular_staff");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS_MANA_SINGULARITY = createInstanceKey("mana_battery_siphons_from_nearby_fonts_mana_singularity");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE = createInstanceKey("mana_battery_does_not_siphon_from_nearby_fonts_mana_singularity_creative");
 
     // Mana font tests
     public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND = createInstanceKey("mana_font_siphoned_by_wand");
     public static final ResourceKey<GameTestInstance> MANA_FONT_RECHARGES = createInstanceKey("mana_font_recharges");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ANCIENT_SEA = createInstanceKey("mana_font_siphoned_by_wand_ancient_sea");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ANCIENT_SKY = createInstanceKey("mana_font_siphoned_by_wand_ancient_sky");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ANCIENT_SUN = createInstanceKey("mana_font_siphoned_by_wand_ancient_sun");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ANCIENT_MOON = createInstanceKey("mana_font_siphoned_by_wand_ancient_moon");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_EARTH = createInstanceKey("mana_font_siphoned_by_wand_artificial_earth");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_SEA = createInstanceKey("mana_font_siphoned_by_wand_artificial_sea");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_SKY = createInstanceKey("mana_font_siphoned_by_wand_artificial_sky");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_SUN = createInstanceKey("mana_font_siphoned_by_wand_artificial_sun");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_MOON = createInstanceKey("mana_font_siphoned_by_wand_artificial_moon");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_BLOOD = createInstanceKey("mana_font_siphoned_by_wand_artificial_blood");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_INFERNAL = createInstanceKey("mana_font_siphoned_by_wand_artificial_infernal");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_VOID = createInstanceKey("mana_font_siphoned_by_wand_artificial_void");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_HALLOWED = createInstanceKey("mana_font_siphoned_by_wand_artificial_hallowed");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_EARTH = createInstanceKey("mana_font_siphoned_by_wand_forbidden_earth");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_SEA = createInstanceKey("mana_font_siphoned_by_wand_forbidden_sea");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_SKY = createInstanceKey("mana_font_siphoned_by_wand_forbidden_sky");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_SUN = createInstanceKey("mana_font_siphoned_by_wand_forbidden_sun");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_MOON = createInstanceKey("mana_font_siphoned_by_wand_forbidden_moon");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_BLOOD = createInstanceKey("mana_font_siphoned_by_wand_forbidden_blood");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_INFERNAL = createInstanceKey("mana_font_siphoned_by_wand_forbidden_infernal");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_VOID = createInstanceKey("mana_font_siphoned_by_wand_forbidden_void");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_HALLOWED = createInstanceKey("mana_font_siphoned_by_wand_forbidden_hallowed");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_EARTH = createInstanceKey("mana_font_siphoned_by_wand_heavenly_earth");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_SEA = createInstanceKey("mana_font_siphoned_by_wand_heavenly_sea");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_SKY = createInstanceKey("mana_font_siphoned_by_wand_heavenly_sky");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_SUN = createInstanceKey("mana_font_siphoned_by_wand_heavenly_sun");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_MOON = createInstanceKey("mana_font_siphoned_by_wand_heavenly_moon");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_BLOOD = createInstanceKey("mana_font_siphoned_by_wand_heavenly_blood");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_INFERNAL = createInstanceKey("mana_font_siphoned_by_wand_heavenly_infernal");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_VOID = createInstanceKey("mana_font_siphoned_by_wand_heavenly_void");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_HALLOWED = createInstanceKey("mana_font_siphoned_by_wand_heavenly_hallowed");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_MODULAR_WAND = createInstanceKey("mana_font_siphoned_by_modular_wand");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_MODULAR_STAFF = createInstanceKey("mana_font_siphoned_by_modular_staff");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_RECHARGES_ARTIFICIAL = createInstanceKey("mana_font_recharges_artificial");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_RECHARGES_FORBIDDEN = createInstanceKey("mana_font_recharges_forbidden");
+    public static final ResourceKey<GameTestInstance> MANA_FONT_RECHARGES_HEAVENLY = createInstanceKey("mana_font_recharges_heavenly");
 
     // Wand charger tests
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("wand_charger_can_have_its_menu_opened");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS = createInstanceKey("wand_charger_output_allows_chargeable_items");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_OUTPUT_DOES_NOT_ALLOW_UNCHARGEABLE_ITEMS = createInstanceKey("wand_charger_output_does_not_allow_unchargeable_items");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_OUTPUT_DOES_NOT_ALLOW_ESSENCE = createInstanceKey("wand_charger_output_does_not_allow_essence");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_INPUT_ALLOWS_ESSENCE = createInstanceKey("wand_charger_input_allows_essence");
-    public static final ResourceKey<GameTestInstance> WAND_CHARGER_INPUT_DOES_NOT_ALLOW_NON_ESSENCE = createInstanceKey("wand_charger_input_does_not_allow_essence");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_INPUT_DOES_NOT_ALLOW_NON_ESSENCE = createInstanceKey("wand_charger_input_does_not_allow_non_essence");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_CAN_CHARGE_WITH_RIGHT_ITEMS = createInstanceKey("wand_charger_can_charge_with_right_items");
     public static final ResourceKey<GameTestInstance> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS = createInstanceKey("wand_charger_do_charge_with_right_items");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND = createInstanceKey("wand_charger_output_allows_chargeable_items_modular_wand");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF = createInstanceKey("wand_charger_output_allows_chargeable_items_modular_staff");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST = createInstanceKey("wand_charger_output_allows_chargeable_items_warded_primalite_chest");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_INPUT_ALLOWS_ESSENCE_DUST = createInstanceKey("wand_charger_input_allows_essence_dust");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_INPUT_ALLOWS_ESSENCE_CRYSTAL = createInstanceKey("wand_charger_input_allows_essence_crystal");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_INPUT_ALLOWS_ESSENCE_CLUSTER = createInstanceKey("wand_charger_input_allows_essence_cluster");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_SHARD = createInstanceKey("wand_charger_do_charge_with_right_items_shard");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CRYSTAL = createInstanceKey("wand_charger_do_charge_with_right_items_crystal");
+    public static final ResourceKey<GameTestInstance> WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CLUSTER = createInstanceKey("wand_charger_do_charge_with_right_items_cluster");
 
     public static void bootstrap(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, CANARY, TestFunctionsPM.CANARY.getKey());
@@ -453,15 +514,61 @@ public class TestInstancesPM {
         registerFunction(context, WAND_CHARGER_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.WAND_CHARGER_CAN_HAVE_ITS_MENU_OPENED.getKey());
         registerFunction(context, WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS, TestFunctionsPM.WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS.getKey());
         registerFunction(context, WAND_CHARGER_OUTPUT_DOES_NOT_ALLOW_UNCHARGEABLE_ITEMS, TestFunctionsPM.WAND_CHARGER_OUTPUT_DOES_NOT_ALLOW_UNCHARGEABLE_ITEMS.getKey());
+        registerFunction(context, WAND_CHARGER_OUTPUT_DOES_NOT_ALLOW_ESSENCE, TestFunctionsPM.WAND_CHARGER_OUTPUT_DOES_NOT_ALLOW_ESSENCE.getKey());
         registerFunction(context, WAND_CHARGER_INPUT_ALLOWS_ESSENCE, TestFunctionsPM.WAND_CHARGER_INPUT_ALLOWS_ESSENCE.getKey());
         registerFunction(context, WAND_CHARGER_INPUT_DOES_NOT_ALLOW_NON_ESSENCE, TestFunctionsPM.WAND_CHARGER_INPUT_DOES_NOT_ALLOW_NON_ESSENCE.getKey());
         registerFunction(context, WAND_CHARGER_CAN_CHARGE_WITH_RIGHT_ITEMS, TestFunctionsPM.WAND_CHARGER_CAN_CHARGE_WITH_RIGHT_ITEMS.getKey());
         registerFunction(context, WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS, TestFunctionsPM.WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS.getKey());
+        registerFunction(context, WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND, TestFunctionsPM.WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND.getKey());
+        registerFunction(context, WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF, TestFunctionsPM.WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF.getKey());
+        registerFunction(context, WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST, TestFunctionsPM.WAND_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST.getKey());
+        registerFunction(context, WAND_CHARGER_INPUT_ALLOWS_ESSENCE_DUST, TestFunctionsPM.WAND_CHARGER_INPUT_ALLOWS_ESSENCE_DUST.getKey());
+        registerFunction(context, WAND_CHARGER_INPUT_ALLOWS_ESSENCE_CRYSTAL, TestFunctionsPM.WAND_CHARGER_INPUT_ALLOWS_ESSENCE_CRYSTAL.getKey());
+        registerFunction(context, WAND_CHARGER_INPUT_ALLOWS_ESSENCE_CLUSTER, TestFunctionsPM.WAND_CHARGER_INPUT_ALLOWS_ESSENCE_CLUSTER.getKey());
+        registerFunction(context, WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_SHARD, TestFunctionsPM.WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_SHARD.getKey());
+        registerFunction(context, WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CRYSTAL, TestFunctionsPM.WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CRYSTAL.getKey());
+        registerFunction(context, WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CLUSTER, TestFunctionsPM.WAND_CHARGER_DO_CHARGE_WITH_RIGHT_ITEMS_CLUSTER.getKey());
     }
 
     public static void registerManaFontTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, MANA_FONT_SIPHONED_BY_WAND, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND.getKey());
         registerFunction(context, MANA_FONT_RECHARGES, TestFunctionsPM.MANA_FONT_RECHARGES.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ANCIENT_SEA, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ANCIENT_SEA.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ANCIENT_SKY, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ANCIENT_SKY.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ANCIENT_SUN, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ANCIENT_SUN.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ANCIENT_MOON, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ANCIENT_MOON.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_EARTH, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_EARTH.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_SEA, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_SEA.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_SKY, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_SKY.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_SUN, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_SUN.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_MOON, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_MOON.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_BLOOD, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_BLOOD.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_INFERNAL, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_INFERNAL.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_VOID, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_VOID.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_HALLOWED, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_ARTIFICIAL_HALLOWED.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_EARTH, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_EARTH.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_SEA, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_SEA.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_SKY, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_SKY.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_SUN, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_SUN.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_MOON, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_MOON.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_BLOOD, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_BLOOD.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_INFERNAL, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_INFERNAL.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_VOID, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_VOID.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_HALLOWED, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_FORBIDDEN_HALLOWED.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_EARTH, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_EARTH.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_SEA, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_SEA.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_SKY, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_SKY.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_SUN, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_SUN.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_MOON, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_MOON.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_BLOOD, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_BLOOD.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_INFERNAL, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_INFERNAL.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_VOID, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_VOID.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_HALLOWED, TestFunctionsPM.MANA_FONT_SIPHONED_BY_WAND_HEAVENLY_HALLOWED.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_MODULAR_WAND, TestFunctionsPM.MANA_FONT_SIPHONED_BY_MODULAR_WAND.getKey());
+        registerFunction(context, MANA_FONT_SIPHONED_BY_MODULAR_STAFF, TestFunctionsPM.MANA_FONT_SIPHONED_BY_MODULAR_STAFF.getKey());
+        registerFunction(context, MANA_FONT_RECHARGES_ARTIFICIAL, TestFunctionsPM.MANA_FONT_RECHARGES_ARTIFICIAL.getKey());
+        registerFunction(context, MANA_FONT_RECHARGES_FORBIDDEN, TestFunctionsPM.MANA_FONT_RECHARGES_FORBIDDEN.getKey());
+        registerFunction(context, MANA_FONT_RECHARGES_HEAVENLY, TestFunctionsPM.MANA_FONT_RECHARGES_HEAVENLY.getKey());
     }
 
     public static void registerManaBatteryTests(BootstrapContext<GameTestInstance> context) {
@@ -471,6 +578,17 @@ public class TestInstancesPM {
         registerFunction(context, MANA_BATTERY_INPUT_ALLOWS_ESSENCE, TestFunctionsPM.MANA_BATTERY_INPUT_ALLOWS_ESSENCE.getKey());
         registerFunction(context, MANA_BATTERY_INPUT_ALLOWS_WANDS, TestFunctionsPM.MANA_BATTERY_INPUT_ALLOWS_WANDS.getKey());
         registerFunction(context, MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS, TestFunctionsPM.MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS.getKey());
+        registerFunction(context, MANA_BATTERY_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND, TestFunctionsPM.MANA_BATTERY_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND.getKey());
+        registerFunction(context, MANA_BATTERY_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF, TestFunctionsPM.MANA_BATTERY_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF.getKey());
+        registerFunction(context, MANA_BATTERY_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST, TestFunctionsPM.MANA_BATTERY_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST.getKey());
+        registerFunction(context, MANA_BATTERY_OUTPUT_DOES_NOT_ALLOW_ESSENCE, TestFunctionsPM.MANA_BATTERY_OUTPUT_DOES_NOT_ALLOW_ESSENCE.getKey());
+        registerFunction(context, MANA_BATTERY_INPUT_ALLOWS_ESSENCE_DUST, TestFunctionsPM.MANA_BATTERY_INPUT_ALLOWS_ESSENCE_DUST.getKey());
+        registerFunction(context, MANA_BATTERY_INPUT_ALLOWS_ESSENCE_CRYSTAL, TestFunctionsPM.MANA_BATTERY_INPUT_ALLOWS_ESSENCE_CRYSTAL.getKey());
+        registerFunction(context, MANA_BATTERY_INPUT_ALLOWS_ESSENCE_CLUSTER, TestFunctionsPM.MANA_BATTERY_INPUT_ALLOWS_ESSENCE_CLUSTER.getKey());
+        registerFunction(context, MANA_BATTERY_INPUT_ALLOWS_WANDS_MODULAR_WAND, TestFunctionsPM.MANA_BATTERY_INPUT_ALLOWS_WANDS_MODULAR_WAND.getKey());
+        registerFunction(context, MANA_BATTERY_INPUT_ALLOWS_WANDS_MODULAR_STAFF, TestFunctionsPM.MANA_BATTERY_INPUT_ALLOWS_WANDS_MODULAR_STAFF.getKey());
+        registerFunction(context, MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS_MANA_SINGULARITY, TestFunctionsPM.MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS_MANA_SINGULARITY.getKey());
+        registerFunction(context, MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE, TestFunctionsPM.MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE.getKey());
     }
 
     public static void registerAutoChargerTests(BootstrapContext<GameTestInstance> context) {
@@ -480,6 +598,10 @@ public class TestInstancesPM {
         registerFunction(context, AUTO_CHARGER_CANNOT_HAVE_UNCHARGEABLE_ITEMS_INSERTED, TestFunctionsPM.AUTO_CHARGER_CANNOT_HAVE_UNCHARGEABLE_ITEMS_INSERTED.getKey());
         registerFunction(context, AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED, TestFunctionsPM.AUTO_CHARGER_CAN_HAVE_CHARGEABLE_ITEMS_REMOVED.getKey());
         registerFunction(context, AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS, TestFunctionsPM.AUTO_CHARGER_SIPHONS_INTO_CHARGEABLE_ITEMS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND, TestFunctionsPM.AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_WAND.getKey());
+        registerFunction(context, AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF, TestFunctionsPM.AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_MODULAR_STAFF.getKey());
+        registerFunction(context, AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST, TestFunctionsPM.AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS_WARDED_PRIMALITE_CHEST.getKey());
+        registerFunction(context, AUTO_CHARGER_OUTPUT_DOES_NOT_ALLOW_ESSENCE, TestFunctionsPM.AUTO_CHARGER_OUTPUT_DOES_NOT_ALLOW_ESSENCE.getKey());
     }
 
     public static void registerSpellTests(BootstrapContext<GameTestInstance> context) {

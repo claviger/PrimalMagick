@@ -17,50 +17,43 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.BlockHitResult;
 
+/**
+ * Tests for the auto charger: which items its item handler accepts, inserting and removing items by hand, and
+ * siphoning mana from a nearby font into the charging item. Handler acceptance is checked for every kind of chargeable
+ * item in ChargeableItem.
+ */
 public class AutoChargerTests extends AbstractBaseTest {
     private static ItemStack getChargeableTestStack() {
-        // TODO Add support for other test items, like modular wands, modular staves, and warded armor
-        return ItemsPM.MUNDANE_WAND.get().getDefaultInstance();
+        return ChargeableItem.MUNDANE_WAND.makeStack();
     }
 
-    private static ItemStack getUnchargableTestStack() {
-        // TODO Add support for other test items, such as earth shards and unwarded armor
+    private static ItemStack getUnchargeableTestStack() {
         return Items.STICK.getDefaultInstance();
     }
 
     private static IItemHandlerPM getItemHandlerForNewAutoCharger(GameTestHelper helper, BlockPos pos, Direction face) {
-        // Place an auto charger block and get its block entity
-        helper.setBlock(pos, BlocksPM.AUTO_CHARGER.get());
-        var tile = helper.getBlockEntity(pos, AutoChargerTileEntity.class);
-
-        // Get the item handler for the block entity for the given face
-        var handler = tile.getRawItemHandler(face);
-        assertFalse(helper, handler == null, "No item handler found");
-
-        return handler;
+        return TileTestUtils.placeTileAndGetHandler(helper, pos, BlocksPM.AUTO_CHARGER.get(), AutoChargerTileEntity.class, face);
     }
 
-    public static void auto_charger_output_allows_chargeable_items(GameTestHelper helper) {
-        var stack = getChargeableTestStack();
-
-        // Place an auto charger block and get its output handler
-        var handler = getItemHandlerForNewAutoCharger(helper, BlockPos.ZERO, Direction.NORTH);
-
-        // Confirm that the output item handler will accept the test item
-        assertTrue(helper, handler.isItemValid(0, stack), "Test stack unexpectedly invalid for item handler");
-
+    public static void auto_charger_output_allows_chargeable_items(GameTestHelper helper, ChargeableItem item) {
+        var stack = item.makeStack();
+        assertTrue(helper, ChargeableItem.hasManaStorage(stack), "Test stack " + stack + " has no mana storage");
+        TileTestUtils.assertHandlerAccepts(helper, getItemHandlerForNewAutoCharger(helper, BlockPos.ZERO, Direction.NORTH), stack);
         helper.succeed();
     }
 
+    public static void auto_charger_output_allows_chargeable_items(GameTestHelper helper) {
+        auto_charger_output_allows_chargeable_items(helper, ChargeableItem.MUNDANE_WAND);
+    }
+
     public static void auto_charger_output_does_not_allow_unchargeable_items(GameTestHelper helper) {
-        var stack = getUnchargableTestStack();
+        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewAutoCharger(helper, BlockPos.ZERO, Direction.NORTH), getUnchargeableTestStack());
+        helper.succeed();
+    }
 
-        // Place an auto charger block and get its output handler
-        var handler = getItemHandlerForNewAutoCharger(helper, BlockPos.ZERO, Direction.NORTH);
-
-        // Confirm that the output item handler will accept the test item
-        assertFalse(helper, handler.isItemValid(0, stack), "Test stack unexpectedly valid for item handler");
-
+    public static void auto_charger_output_does_not_allow_essence(GameTestHelper helper) {
+        // Essence carries no mana storage, so it can't be charged
+        TileTestUtils.assertHandlerRejects(helper, getItemHandlerForNewAutoCharger(helper, BlockPos.ZERO, Direction.NORTH), ItemsPM.ESSENCE_SHARD_EARTH.get().getDefaultInstance());
         helper.succeed();
     }
 
@@ -87,29 +80,29 @@ public class AutoChargerTests extends AbstractBaseTest {
         // Confirm success
         assertTrue(helper, useResult.consumesAction(), "Use action failed");
         assertFalse(helper, handler.getStackInSlot(0).isEmpty(), "Charger has no item after use");
-        assertTrue(helper, handler.getStackInSlot(0).is(before.getItem()), "Charge item does not match initial stack");
+        assertValueEqual(helper, before.getItem(), handler.getStackInSlot(0).getItem(), "Charge slot item");
 
         helper.succeed();
     }
 
     public static void auto_charger_cannot_have_unchargeable_items_inserted(GameTestHelper helper) {
-        var stack = getUnchargableTestStack();
+        var stack = getUnchargeableTestStack();
 
-        // Create a test player with a chargeable item in hand
+        // Create a test player with an unchargeable item in hand
         var player = makeMockServerPlayer(helper);
         player.setItemInHand(InteractionHand.MAIN_HAND, stack);
 
         // Place an auto charger and get its item handler
-        var chargerPos = BlockPos.ZERO.north();
+        var chargerPos = BlockPos.ZERO.south();
         var handler = getItemHandlerForNewAutoCharger(helper, chargerPos, Direction.UP);
         assertTrue(helper, handler.getStackInSlot(0).isEmpty(), "Charger has an item before use");
 
         // Use the player's main hand item on the charger
         var chargerState = helper.getBlockState(chargerPos);
-        var hitResult = new BlockHitResult(chargerPos.getCenter(), Direction.UP, chargerPos, true);
+        var hitResult = new BlockHitResult(helper.absolutePos(chargerPos).getCenter(), Direction.UP, helper.absolutePos(chargerPos), true);
         var useResult = chargerState.useItemOn(stack, helper.getLevel(), player, InteractionHand.MAIN_HAND, hitResult);
 
-        // Confirm success
+        // Confirm that the use was rejected and the charger is still empty
         assertFalse(helper, useResult.consumesAction(), "Use action unexpectedly succeeded");
         assertTrue(helper, handler.getStackInSlot(0).isEmpty(), "Charger has item after use");
 
@@ -140,27 +133,25 @@ public class AutoChargerTests extends AbstractBaseTest {
         // Confirm success
         assertTrue(helper, useResult.consumesAction(), "Use action failed");
         assertTrue(helper, handler.getStackInSlot(0).isEmpty(), "Charger has item after use");
-        assertTrue(helper, player.getItemInHand(InteractionHand.MAIN_HAND).is(before.getItem()), "Hand item does not match initial stack");
+        assertValueEqual(helper, before.getItem(), player.getItemInHand(InteractionHand.MAIN_HAND).getItem(), "Hand item");
 
         helper.succeed();
     }
 
     public static void auto_charger_siphons_into_chargeable_items(GameTestHelper helper) {
-        var baseStack = getChargeableTestStack();
-
-        // Get a clean stack free of state from previous tests
-        var stack = baseStack.copy();
+        var stack = getChargeableTestStack();
 
         // Place an auto charger block
-        var chargerPos = BlockPos.ZERO.north();
+        var chargerPos = BlockPos.ZERO.south();
         helper.setBlock(chargerPos, BlocksPM.AUTO_CHARGER.get());
         var chargerTile = helper.getBlockEntity(chargerPos, AutoChargerTileEntity.class);
 
-        // Place an earth font block
+        // Place an earth font block, half full so that its one-tick recharge can't be clipped by its 1000 centimana
+        // capacity regardless of whether it ticks before or after the charger
         var fontPos = BlockPos.ZERO.east();
         helper.setBlock(fontPos, BlocksPM.ARTIFICIAL_FONT_EARTH.get());
         var fontTile = helper.getBlockEntity(fontPos, AbstractManaFontTileEntity.class);
-        final int startFontMana = 1000;
+        final int startFontMana = 500;
         fontTile.setMana(startFontMana);
 
         // Place the chargeable item stack into the auto charger
@@ -172,19 +163,20 @@ public class AutoChargerTests extends AbstractBaseTest {
         var beforeStack = handler.getStackInSlot(0);
         assertFalse(helper, beforeStack.isEmpty(), "Stack not successfully inserted into charger");
         assertTrue(helper, beforeStack.has(DataComponentsPM.CAPABILITY_MANA_STORAGE.get()), "Before stack has no mana storage");
-        assertValueEqual(helper, beforeStack.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), 0, "Before stack not initially empty");
-        assertValueEqual(helper, fontTile.getMana(), startFontMana, "Before font mana not as expected");
+        assertValueEqual(helper, 0, beforeStack.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), "Before stack not initially empty");
+        assertValueEqual(helper, startFontMana, fontTile.getMana(), "Before font mana not as expected");
 
-        // Confirm that mana was successfully siphoned
+        // Confirm that mana was successfully siphoned; the mundane wand siphons 100 centimana, and the artificial font
+        // recharges 1 centimana per tick, leaving 500 - 100 + 1 = 401
         final int expectedSiphonAmount = 100;
+        final int expectedFontMana = 401;
         helper.succeedOnTickWhen(1, () -> {
             var afterStack = handler.getStackInSlot(0);
             assertFalse(helper, afterStack.isEmpty(), "After stack empty");
             assertTrue(helper, afterStack.has(DataComponentsPM.CAPABILITY_MANA_STORAGE.get()), "After stack has no mana storage");
             int afterStackMana = afterStack.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH);
-            int fontMana = fontTile.getMana();
-            assertValueEqual(helper, afterStackMana, expectedSiphonAmount, "After stack mana total not as expected");
-            assertValueEqual(helper, fontMana, startFontMana - expectedSiphonAmount + fontTile.getManaRechargedPerTick(), "After font mana not as expected");
+            assertValueEqual(helper, expectedSiphonAmount, afterStackMana, "After stack mana total not as expected");
+            assertValueEqual(helper, expectedFontMana, fontTile.getMana(), "After font mana not as expected");
         });
     }
 }
