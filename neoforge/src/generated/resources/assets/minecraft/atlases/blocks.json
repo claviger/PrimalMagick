@@ -54,6 +54,22 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "primalmagick:entity/spelltome/apprentice"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:entity/spelltome/adept"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:entity/spelltome/wizard"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "primalmagick:entity/spelltome/archmage"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "primalmagick:item/mundane_wand_core",
       "sprite": "primalmagick:block/wand_assembly_table_core"
     },

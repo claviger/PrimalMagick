@@ -22,10 +22,11 @@ import org.joml.Vector3fc;
 import java.util.function.Consumer;
 
 public class SpelltomeSpecialRenderer implements SpecialModelRenderer<DeviceTier> {
-    protected static final SpriteId TEXTURE_APPRENTICE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("spelltome/apprentice"));
-    protected static final SpriteId TEXTURE_ADEPT = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("spelltome/adept"));
-    protected static final SpriteId TEXTURE_WIZARD = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("spelltome/wizard"));
-    protected static final SpriteId TEXTURE_ARCHMAGE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("spelltome/archmage"));
+    // Stitched into the blocks atlas by the sprite source datagen; a sprite missing there renders as the missing texture
+    public static final SpriteId TEXTURE_APPRENTICE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("spelltome/apprentice"));
+    public static final SpriteId TEXTURE_ADEPT = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("spelltome/adept"));
+    public static final SpriteId TEXTURE_WIZARD = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("spelltome/wizard"));
+    public static final SpriteId TEXTURE_ARCHMAGE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("spelltome/archmage"));
 
     private final SpriteGetter sprites;
     private final BookModel model;

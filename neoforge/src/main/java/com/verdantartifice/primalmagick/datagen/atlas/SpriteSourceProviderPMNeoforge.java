@@ -3,7 +3,7 @@ package com.verdantartifice.primalmagick.datagen.atlas;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.logging.LogUtils;
 import com.verdantartifice.primalmagick.Constants;
-import com.verdantartifice.primalmagick.client.renderers.itemstack.PixieHouseSpecialRenderer;
+import com.verdantartifice.primalmagick.client.renderers.itemstack.SpelltomeSpecialRenderer;
 import com.verdantartifice.primalmagick.client.renderers.tile.ManaFontTER;
 import com.verdantartifice.primalmagick.client.renderers.tile.ManaInjectorTER;
 import com.verdantartifice.primalmagick.client.renderers.tile.ManaRelayTER;
@@ -113,6 +113,10 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
         this.addSingle(blockAtlas, ManaInjectorTER.FORBIDDEN_FRAME_TEXTURE);
         this.addSingle(blockAtlas, ManaInjectorTER.HEAVENLY_FRAME_TEXTURE);
         this.addSingle(blockAtlas, ManaInjectorTER.BOTTOM_FRAME_TEXTURE);
+        this.addSingle(blockAtlas, SpelltomeSpecialRenderer.TEXTURE_APPRENTICE.texture());
+        this.addSingle(blockAtlas, SpelltomeSpecialRenderer.TEXTURE_ADEPT.texture());
+        this.addSingle(blockAtlas, SpelltomeSpecialRenderer.TEXTURE_WIZARD.texture());
+        this.addSingle(blockAtlas, SpelltomeSpecialRenderer.TEXTURE_ARCHMAGE.texture());
 
         // Add item textures used by block models to the block atlas, since a block model may only use one atlas
         this.addSingle(blockAtlas, ResourceUtils.loc("item/mundane_wand_core"), ResourceUtils.loc("block/wand_assembly_table_core"));
@@ -123,7 +127,6 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
 
         // Add custom item stack renderer textures to the item atlas
         this.addSingle(itemAtlas, SacredShieldItem.TEXTURE);
-        this.addSingle(itemAtlas, PixieHouseSpecialRenderer.TEXTURE);
 
         // Add source textures to the block atlas for rendering in the world
         this.addSingle(blockAtlas, getGuiSpriteTexture(Source.getUnknownImage()), Source.getUnknownImage().withPrefix("world/"));
