@@ -3,6 +3,7 @@ package com.verdantartifice.primalmagick.client.color.block;
 import com.verdantartifice.primalmagick.common.blocks.base.IHasTintColor;
 import com.verdantartifice.primalmagick.common.blocks.rituals.SaltTrailBlock;
 import net.minecraft.client.color.block.BlockTintSource;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -27,6 +28,7 @@ public class BlockTintSourcesPM {
     }
 
     public static BlockTintSource tinted() {
-        return state -> state.getBlock() instanceof IHasTintColor tintBlock ? tintBlock.getColor().getFireworkColor() : DyeColor.WHITE.getFireworkColor();
+        // Firework colors are plain RGB with a zero alpha channel, but block tints multiply the full ARGB quad color
+        return state -> ARGB.opaque(state.getBlock() instanceof IHasTintColor tintBlock ? tintBlock.getColor().getFireworkColor() : DyeColor.WHITE.getFireworkColor());
     }
 }
