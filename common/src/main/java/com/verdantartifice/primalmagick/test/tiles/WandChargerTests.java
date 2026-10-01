@@ -175,6 +175,9 @@ public class WandChargerTests extends AbstractBaseTest {
         tile.addItem(WandChargerTileEntity.INPUT_INV_INDEX, 0, EssenceItem.getEssence(EssenceType.DUST, source));
         tile.addItem(WandChargerTileEntity.CHARGE_INV_INDEX, 0, stack);
 
+        // Give the slotted stack a stale timestamp, as left by charging before the timestamp was retired
+        getChargeSlotStack(tile).set(DataComponentsPM.LAST_UPDATED.get(), 1L);
+
         // Attempt the charge
         tile.doCharge();
 

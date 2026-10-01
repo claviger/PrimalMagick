@@ -353,7 +353,8 @@ public class PlayerEvents {
         }
     }
     
-    protected static void handleWardRegeneration(ServerPlayer player) {
+    @VisibleForTesting
+    public static void handleWardRegeneration(ServerPlayer player) {
         Services.CAPABILITIES.ward(player).ifPresent(wardCap -> {
             if (wardCap.isRegenerating()) {
                 for (EquipmentSlot slot : wardCap.getApplicableSlots()) {
@@ -362,8 +363,9 @@ public class PlayerEvents {
                         ManaStorage manaCap = slotStack.get(DataComponentsPM.CAPABILITY_MANA_STORAGE.get());
                         if (manaCap != null && manaCap.getManaStored(Sources.EARTH) >= WardingModuleItem.REGEN_COST) {
                             // Consume mana from warded armor stacks to regenerate a single point of ward
-                            manaCap.extractMana(Sources.EARTH, WardingModuleItem.REGEN_COST, false);
-                            slotStack.set(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), manaCap);
+                            ManaStorage updated = manaCap.copy();
+                            updated.extractMana(Sources.EARTH, WardingModuleItem.REGEN_COST, false);
+                            slotStack.set(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), updated);
                             wardCap.incrementCurrentWard();
                             wardCap.sync(player);
                             player.connection.send(new ClientboundSetEquipmentPacket(player.getId(), List.of(Pair.of(slot, slotStack.copy()))));

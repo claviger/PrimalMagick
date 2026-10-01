@@ -71,7 +71,7 @@ public class DataComponentsPM {
     
     public static final IRegistryItem<DataComponentType<?>, DataComponentType<ManaStorage>> CAPABILITY_MANA_STORAGE = register("capability_mana_storage", builder -> builder.persistent(ManaStorage.CODEC).networkSynchronized(ManaStorage.STREAM_CODEC));
     
-    // Retained for compatibility with existing item data; no longer written
+    // Retained so existing item data still loads; removed on the next mana change
     public static final IRegistryItem<DataComponentType<?>, DataComponentType<Long>> LAST_UPDATED = register("last_updated", builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
 
     public static final IRegistryItem<DataComponentType<?>, DataComponentType<Source>> SOURCE_TINT = register("source_tint", builder -> builder.persistent(Source.CODEC).networkSynchronized(Source.STREAM_CODEC));

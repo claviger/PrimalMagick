@@ -169,6 +169,7 @@ public abstract class WandChargerTileEntity extends AbstractTileSidedInventoryPM
                     updated.receiveMana(essence.getSource(), essence.getEssenceType().getManaEquivalent(), false);
                     return updated;
                 });
+                chargeStack.remove(DataComponentsPM.LAST_UPDATED.get());
             }
             inputStack.shrink(1);
         }

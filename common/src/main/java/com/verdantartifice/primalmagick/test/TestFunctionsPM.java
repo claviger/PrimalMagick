@@ -37,6 +37,7 @@ import com.verdantartifice.primalmagick.test.items.DispenserTests;
 import com.verdantartifice.primalmagick.test.items.BeeswaxTests;
 import com.verdantartifice.primalmagick.test.items.EssenceTests;
 import com.verdantartifice.primalmagick.test.items.ConcoctionTests;
+import com.verdantartifice.primalmagick.test.items.WardingModuleTests;
 import com.verdantartifice.primalmagick.test.loot.LootModifierTests;
 import com.verdantartifice.primalmagick.test.research.ResearchTests;
 import com.verdantartifice.primalmagick.test.research.ResearchRequirementsTests;
@@ -365,6 +366,9 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CAN_CONSUME_MANA_MUNDANE_WAND = Services.TEST_FUNCTIONS_REGISTRY.register("wand_can_consume_mana_mundane_wand", () -> (helper) -> WandManaTests.wand_can_consume_mana(helper, Sources.EARTH, WandManaTests.WandType.MUNDANE_WAND));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_CAN_CONSUME_MANA_MODULAR_STAFF = Services.TEST_FUNCTIONS_REGISTRY.register("wand_can_consume_mana_modular_staff", () -> (helper) -> WandManaTests.wand_can_consume_mana(helper, Sources.EARTH, WandManaTests.WandType.MODULAR_STAFF));
 
+    // Warding module tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WARD_REGENERATION_DOES_NOT_MUTATE_STACK_COPIES = Services.TEST_FUNCTIONS_REGISTRY.register("ward_regeneration_does_not_mutate_stack_copies", () -> WardingModuleTests::ward_regeneration_does_not_mutate_stack_copies);
+
     // Wand component tests
     // Expected values below mirror the constants declared in WandGem, WandCap, and WandCore
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_GEM_SETS_MAX_MANA_APPRENTICE = Services.TEST_FUNCTIONS_REGISTRY.register("wand_gem_sets_max_mana_apprentice", () -> (helper) -> WandComponentTests.gem_sets_max_mana(helper, ItemsPM.MODULAR_WAND.get(), WandGem.APPRENTICE, 7500));
@@ -529,6 +533,7 @@ public class TestFunctionsPM {
     // The creative singularity already holds infinite mana, so it has no room to receive siphoned mana
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE = Services.TEST_FUNCTIONS_REGISTRY.register("mana_battery_does_not_siphon_from_nearby_fonts_mana_singularity_creative", () -> ManaBatteryTests::mana_battery_does_not_siphon_from_nearby_fonts_mana_singularity_creative);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_BATTERY_OUTPUT_DOES_NOT_MUTATE_STACK_COPIES = Services.TEST_FUNCTIONS_REGISTRY.register("mana_battery_output_does_not_mutate_stack_copies", () -> ManaBatteryTests::mana_battery_output_does_not_mutate_stack_copies);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_BATTERY_ITEM_COMPONENTS_DO_NOT_ALIAS_TILE = Services.TEST_FUNCTIONS_REGISTRY.register("mana_battery_item_components_do_not_alias_tile", () -> ManaBatteryTests::mana_battery_item_components_do_not_alias_tile);
 
     // Mana font tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_FONT_SIPHONED_BY_WAND = Services.TEST_FUNCTIONS_REGISTRY.register("mana_font_siphoned_by_wand", () -> ManaFontTests::mana_font_siphoned_by_wand);

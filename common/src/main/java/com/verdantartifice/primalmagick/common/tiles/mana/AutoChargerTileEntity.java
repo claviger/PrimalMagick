@@ -105,6 +105,9 @@ public abstract class AutoChargerTileEntity extends AbstractTileSidedInventoryPM
                 actualReceived.setValue(updated.receiveMana(source, maxReceive, simulate));
                 return updated;
             });
+            if (!simulate) {
+                chargeStack.remove(DataComponentsPM.LAST_UPDATED.get());
+            }
             return actualReceived.intValue();
         }
         return 0;

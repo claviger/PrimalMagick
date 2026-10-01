@@ -204,6 +204,7 @@ public class AutoChargerTests extends AbstractBaseTest {
             assertValueEqual(helper, expectedSiphonAmount, charged.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), "Charged stack mana");
             assertValueEqual(helper, 0, before.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), "Pre-siphon copy mana");
             assertFalse(helper, ItemStack.isSameItemSameComponents(before, charged), "Charged stack still matches pre-siphon copy");
+            // The auto charger never wrote the timestamp; this guards against it being reintroduced
             assertFalse(helper, charged.has(DataComponentsPM.LAST_UPDATED.get()), "Charged stack has a last updated component");
         });
     }

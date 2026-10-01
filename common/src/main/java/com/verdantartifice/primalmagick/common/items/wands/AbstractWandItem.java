@@ -66,6 +66,7 @@ public abstract class AbstractWandItem extends Item implements IWand {
 
     private void updateManaStorageWith(ItemStack stack, Source source, int amount) {
         stack.update(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), this.getDefaultManaStorage(stack), mana -> mana.copyWith(source, amount));
+        stack.remove(DataComponentsPM.LAST_UPDATED.get());
     }
 
     @Override

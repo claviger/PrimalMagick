@@ -171,7 +171,8 @@ public class RuneManagerTests extends AbstractBaseTest {
 
     /**
      * Smite and Bane of Arthropods are mutually exclusive and share a minimum enchanting cost, so when both are
-     * resolved the filter keeps the one whose enchantment ID sorts first.
+     * resolved the filter keeps the one whose enchantment ID sorts first. A revert to hash code ordering would only be
+     * caught about half the time, since identity hashes are stable within one JVM but vary between runs.
      */
     public static void rune_enchantment_tie_broken_by_id(GameTestHelper helper) {
         var player = makeMockServerPlayer(helper);

@@ -118,6 +118,9 @@ public class WandManaTests extends AbstractBaseTest {
         assertValueEqual(helper, 0, wand.addMana(wandStack, DEFAULT_SOURCE, 100), "Overflow when adding first mana to wand");
         var before = wandStack.copy();
 
+        // Give the wand a stale timestamp, as left by mana changes before the timestamp was retired
+        wandStack.set(DataComponentsPM.LAST_UPDATED.get(), 1L);
+
         // Add more mana to the original wand; it goes from 100 to 200 centimana while the copy stays at 100
         assertValueEqual(helper, 0, wand.addMana(wandStack, DEFAULT_SOURCE, 100), "Overflow when adding second mana to wand");
         assertValueEqual(helper, 200, wand.getMana(wandStack, DEFAULT_SOURCE), "Wand mana total");

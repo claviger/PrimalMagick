@@ -301,6 +301,9 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> WAND_CAN_CONSUME_MANA_MUNDANE_WAND = createInstanceKey("wand_can_consume_mana_mundane_wand");
     public static final ResourceKey<GameTestInstance> WAND_CAN_CONSUME_MANA_MODULAR_STAFF = createInstanceKey("wand_can_consume_mana_modular_staff");
 
+    // Warding module tests
+    public static final ResourceKey<GameTestInstance> WARD_REGENERATION_DOES_NOT_MUTATE_STACK_COPIES = createInstanceKey("ward_regeneration_does_not_mutate_stack_copies");
+
     // Wand component tests
     public static final ResourceKey<GameTestInstance> WAND_GEM_SETS_MAX_MANA_APPRENTICE = createInstanceKey("wand_gem_sets_max_mana_apprentice");
     public static final ResourceKey<GameTestInstance> WAND_GEM_SETS_MAX_MANA_ADEPT = createInstanceKey("wand_gem_sets_max_mana_adept");
@@ -459,6 +462,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS_MANA_SINGULARITY = createInstanceKey("mana_battery_siphons_from_nearby_fonts_mana_singularity");
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE = createInstanceKey("mana_battery_does_not_siphon_from_nearby_fonts_mana_singularity_creative");
     public static final ResourceKey<GameTestInstance> MANA_BATTERY_OUTPUT_DOES_NOT_MUTATE_STACK_COPIES = createInstanceKey("mana_battery_output_does_not_mutate_stack_copies");
+    public static final ResourceKey<GameTestInstance> MANA_BATTERY_ITEM_COMPONENTS_DO_NOT_ALIAS_TILE = createInstanceKey("mana_battery_item_components_do_not_alias_tile");
 
     // Mana font tests
     public static final ResourceKey<GameTestInstance> MANA_FONT_SIPHONED_BY_WAND = createInstanceKey("mana_font_siphoned_by_wand");
@@ -541,6 +545,7 @@ public class TestInstancesPM {
         registerConcoctionTests(context);
         registerWandManaTests(context);
         registerWandComponentTests(context);
+        registerWardingModuleTests(context);
         registerResearchKeyTests(context);
         registerResearchRequirementTests(context);
         registerResearchTests(context);
@@ -632,6 +637,7 @@ public class TestInstancesPM {
         registerFunction(context, MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS_MANA_SINGULARITY, TestFunctionsPM.MANA_BATTERY_SIPHONS_FROM_NEARBY_FONTS_MANA_SINGULARITY.getKey());
         registerFunction(context, MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE, TestFunctionsPM.MANA_BATTERY_DOES_NOT_SIPHON_FROM_NEARBY_FONTS_MANA_SINGULARITY_CREATIVE.getKey());
         registerFunction(context, MANA_BATTERY_OUTPUT_DOES_NOT_MUTATE_STACK_COPIES, TestFunctionsPM.MANA_BATTERY_OUTPUT_DOES_NOT_MUTATE_STACK_COPIES.getKey());
+        registerFunction(context, MANA_BATTERY_ITEM_COMPONENTS_DO_NOT_ALIAS_TILE, TestFunctionsPM.MANA_BATTERY_ITEM_COMPONENTS_DO_NOT_ALIAS_TILE.getKey());
     }
 
     public static void registerAutoChargerTests(BootstrapContext<GameTestInstance> context) {
@@ -744,6 +750,10 @@ public class TestInstancesPM {
         registerFunction(context, RESEARCH_KEY_TAG_CRAFTED, TestFunctionsPM.RESEARCH_KEY_TAG_CRAFTED.getKey());
         registerFunction(context, RESEARCH_KEY_RUNE_ENCHANTMENT, TestFunctionsPM.RESEARCH_KEY_RUNE_ENCHANTMENT.getKey());
         registerFunction(context, RESEARCH_KEY_RUNE_ENCHANTMENT_PARTIAL, TestFunctionsPM.RESEARCH_KEY_RUNE_ENCHANTMENT_PARTIAL.getKey());
+    }
+
+    public static void registerWardingModuleTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, WARD_REGENERATION_DOES_NOT_MUTATE_STACK_COPIES, TestFunctionsPM.WARD_REGENERATION_DOES_NOT_MUTATE_STACK_COPIES.getKey());
     }
 
     public static void registerWandComponentTests(BootstrapContext<GameTestInstance> context) {

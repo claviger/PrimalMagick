@@ -215,4 +215,29 @@ public class ManaBatteryTests extends AbstractBaseTest {
             assertFalse(helper, charged.has(DataComponentsPM.LAST_UPDATED.get()), "Charged wand has a last updated component");
         });
     }
+
+    // Item component tests
+
+    /**
+     * Confirms that an item stack built from the battery's components, as the server does for pick-block, holds a copy
+     * of the battery's mana storage rather than the live object, so later changes to the battery don't reach the stack.
+     */
+    public static void mana_battery_item_components_do_not_alias_tile(GameTestHelper helper) {
+        // Place a mana nexus and give it a known amount of earth mana
+        var batteryPos = BlockPos.ZERO;
+        helper.setBlock(batteryPos, BlocksPM.MANA_NEXUS.get());
+        var batteryTile = helper.getBlockEntity(batteryPos, ManaBatteryTileEntity.class);
+        batteryTile.setMana(Sources.EARTH, 1000);
+
+        // Build an item stack the same way ServerGamePacketListenerImpl does when picking a block with its data
+        var stack = new ItemStack(BlocksPM.MANA_NEXUS.get());
+        stack.applyComponents(batteryTile.collectComponents());
+        assertValueEqual(helper, 1000, stack.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), "Stack mana after building");
+
+        // Change the battery's mana; the stack keeps the amount it was built with
+        batteryTile.setMana(Sources.EARTH, 200);
+        assertValueEqual(helper, 200, batteryTile.getMana(Sources.EARTH), "Battery mana after change");
+        assertValueEqual(helper, 1000, stack.getOrDefault(DataComponentsPM.CAPABILITY_MANA_STORAGE.get(), ManaStorage.EMPTY).getManaStored(Sources.EARTH), "Stack mana after battery change");
+        helper.succeed();
+    }
 }
