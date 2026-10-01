@@ -92,6 +92,11 @@ public class TestInstancesPM {
     // Runecarving tests
     public static final ResourceKey<GameTestInstance> RUNECARVING_CRAFT_WORKS = createInstanceKey("runecarving_craft_works");
 
+    // Wand inscription tests
+    public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_WAND = createInstanceKey("wand_inscription_inscribes_scroll_into_wand");
+    public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_SPELLTOME = createInstanceKey("wand_inscription_inscribes_scroll_into_spelltome");
+    public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_REJECTS_FULL_CONTAINER = createInstanceKey("wand_inscription_rejects_full_container");
+
     // Runescribing result tests
     public static final ResourceKey<GameTestInstance> RUNESCRIBING_CREDIT_ONLY_APPLIED_ENCHANTMENTS = createInstanceKey("runescribing_credit_only_applied_enchantments");
     public static final ResourceKey<GameTestInstance> RUNESCRIBING_CREDIT_ALL_APPLIED_ENCHANTMENTS = createInstanceKey("runescribing_credit_all_applied_enchantments");
@@ -541,6 +546,7 @@ public class TestInstancesPM {
         registerCraftingRequirementTests(context);
         registerRepairTests(context);
         registerRunecarvingTests(context);
+        registerWandInscriptionTests(context);
         registerRunescribingResultTests(context);
         registerCasterEnchantabilityTests(context);
         registerRitualEnchantmentTests(context);
@@ -1019,6 +1025,12 @@ public class TestInstancesPM {
 
     private static void registerRunecarvingTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, RUNECARVING_CRAFT_WORKS, TestFunctionsPM.RUNECARVING_CRAFT_WORKS.getKey());
+    }
+
+    private static void registerWandInscriptionTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_WAND, TestFunctionsPM.WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_WAND.getKey());
+        registerFunction(context, WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_SPELLTOME, TestFunctionsPM.WAND_INSCRIPTION_INSCRIBES_SCROLL_INTO_SPELLTOME.getKey());
+        registerFunction(context, WAND_INSCRIPTION_REJECTS_FULL_CONTAINER, TestFunctionsPM.WAND_INSCRIPTION_REJECTS_FULL_CONTAINER.getKey());
     }
 
     private static void registerRunescribingResultTests(BootstrapContext<GameTestInstance> context) {

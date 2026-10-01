@@ -29,7 +29,6 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -174,10 +173,10 @@ public class WandInscriptionTableMenu extends AbstractContainerMenu {
     protected void slotChangedCraftingGrid(Level world) {
         if (!world.isClientSide() && this.player instanceof ServerPlayer spe) {
             ItemStack stack = ItemStack.EMPTY;
-            for (ResourceKey<Recipe<?>> key : List.of(WandInscriptionRecipe.WAND_KEY, WandInscriptionRecipe.STAFF_KEY)) {
+            for (ResourceKey<Recipe<?>> key : WandInscriptionRecipe.ALL_KEYS) {
                 Optional<RecipeHolder<?>> opt = spe.level().recipeAccess().byKey(key);
                 if (opt.isPresent() && opt.get().value() instanceof WandInscriptionRecipe recipe) {
-                    // If the inputs are valid for inscribing a spell onto a wand or staff, show the output
+                    // If the inputs are valid for inscribing a spell onto a wand, staff, or spelltome, show the output
                     if (recipe.matches(this.componentInv.asCraftInput(), world)) {
                         stack = recipe.assemble(this.componentInv.asCraftInput());
                         break;
