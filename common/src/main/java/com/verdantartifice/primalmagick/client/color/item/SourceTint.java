@@ -3,8 +3,10 @@ package com.verdantartifice.primalmagick.client.color.item;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.verdantartifice.primalmagick.common.components.DataComponentsPM;
+import com.verdantartifice.primalmagick.common.sources.Source;
 import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.util.ARGB;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -28,9 +30,10 @@ public record SourceTint(int defaultColor) implements ItemTintSource {
 
     @Override
     public int calculate(@NotNull ItemStack itemStack, @Nullable ClientLevel clientLevel, @Nullable LivingEntity livingEntity) {
-        return itemStack.has(DataComponentsPM.SOURCE_TINT.get()) ?
-            itemStack.get(DataComponentsPM.SOURCE_TINT.get()).getColor() :
-            this.defaultColor;
+        // Source colors are stored as plain RGB with a zero alpha channel, but item tints are applied as full ARGB
+        // vertex colors, so force the result opaque or the tinted layer would be rendered fully transparent.
+        Source source = itemStack.get(DataComponentsPM.SOURCE_TINT.get());
+        return ARGB.opaque(source != null ? source.getColor() : this.defaultColor);
     }
 
     @Override
