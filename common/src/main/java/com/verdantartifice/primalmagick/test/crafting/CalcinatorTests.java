@@ -87,4 +87,46 @@ public class CalcinatorTests extends AbstractBaseTest {
         helper.assertEntityNotPresent(EntityType.ITEM);
         helper.succeed();
     }
+
+    /**
+     * Confirms that the check for room in the output inventory counts all of the outputs together. With one free output
+     * slot, earth dust and sea dust would each fit on their own but not both, so the calcinator must not be able to
+     * calcinate and must leave its input untouched.
+     */
+    public static void calcinator_output_capacity_check_counts_all_outputs(GameTestHelper helper) {
+        // Create a test player with the research needed for basic alchemy
+        var player = makeMockServerPlayer(helper, false);
+        ResearchManager.forceGrantWithAllParents(player, ResearchEntries.BASIC_ALCHEMY);
+
+        // Pre-cache affinities for a nautilus shell that yield one earth dust and one sea dust
+        ItemStack inputStack = new ItemStack(Items.NAUTILUS_SHELL);
+        AffinityManager.getInstance().setCachedItemResult(inputStack, CompletableFuture.completedFuture(SourceList.builder().withEarth(5).withSea(5).build()));
+
+        // Place a basic calcinator and set the player to be its owner
+        BlockPos calcinatorPos = new BlockPos(1, 1, 1);
+        helper.setBlock(calcinatorPos, BlocksPM.CALCINATOR_BASIC.get());
+        var calcinator = helper.getBlockEntity(calcinatorPos, AbstractCalcinatorTileEntity.class);
+        calcinator.setTileOwner(player);
+        calcinator.addItem(0, 0, inputStack.copy());
+
+        // Fill all but the last output slot with full stacks of stone
+        for (int index = 0; index < 8; index++) {
+            calcinator.addItem(2, index, new ItemStack(Items.STONE, 64));
+        }
+
+        // Confirm that the two outputs don't both fit and that calcinating changes nothing
+        assertFalse(helper, calcinator.canCalcinate(calcinator.getItem(0, 0)), "Calcinator can calcinate with room for only one of its two outputs");
+        calcinator.doCalcination();
+        assertTrue(helper, calcinator.getItem(0, 0).is(Items.NAUTILUS_SHELL), "Input consumed without room for its outputs");
+        assertTrue(helper, calcinator.getItem(2, 8).isEmpty(), "Output added without room for all outputs: " + calcinator.getItem(2, 8));
+
+        // Free a second output slot and confirm that both outputs now fit
+        calcinator.removeItem(2, 7, 64);
+        assertTrue(helper, calcinator.canCalcinate(calcinator.getItem(0, 0)), "Calcinator can't calcinate with room for both of its outputs");
+        calcinator.doCalcination();
+        assertTrue(helper, calcinator.getItem(0, 0).isEmpty(), "Input not consumed with room for its outputs");
+        assertTrue(helper, calcinator.getItem(2, 7).is(ItemsPM.ESSENCE_DUST_EARTH.get()), "First free output slot is not earth dust: " + calcinator.getItem(2, 7));
+        assertTrue(helper, calcinator.getItem(2, 8).is(ItemsPM.ESSENCE_DUST_SEA.get()), "Second free output slot is not sea dust: " + calcinator.getItem(2, 8));
+        helper.succeed();
+    }
 }

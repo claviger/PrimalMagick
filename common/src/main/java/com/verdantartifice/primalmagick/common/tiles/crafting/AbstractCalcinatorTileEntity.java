@@ -281,11 +281,16 @@ public abstract class AbstractCalcinatorTileEntity extends AbstractTileSidedInve
     public void doCalcination() {
         ItemStack inputStack = this.getItem(INPUT_INV_INDEX, 0);
         if (!inputStack.isEmpty() && this.canCalcinate(inputStack)) {
-            // Merge the items already in the output inventory with the new output items from the melting
-            this.getCalcinationOutput(inputStack, false).forEach(output -> this.addItem(OUTPUT_INV_INDEX, output));
+            // Merge the items already in the output inventory with the new output items from the melting. This is done
+            // as one transaction, so that if the outputs somehow don't all fit, none are added and the input is kept.
+            boolean outputAdded = this.itemHandlers.get(OUTPUT_INV_INDEX).transact(false,
+                    this.getCalcinationOutput(inputStack, false).stream().map(output ->
+                            new IItemHandlerPM.HandlerOperation(IItemHandlerPM.OperationType.INSERT, output)).toList());
 
             // Shrink the input stack
-            this.removeItem(INPUT_INV_INDEX, 0, 1);
+            if (outputAdded) {
+                this.removeItem(INPUT_INV_INDEX, 0, 1);
+            }
         }
     }
 
@@ -295,7 +300,8 @@ public abstract class AbstractCalcinatorTileEntity extends AbstractTileSidedInve
         return Services.EVENTS.getBurnTime(stack, null, fuelValues) > 0;
     }
 
-    protected boolean canCalcinate(ItemStack inputStack) {
+    @VisibleForTesting
+    public boolean canCalcinate(ItemStack inputStack) {
         Level level = this.getLevel();
         if (level != null && inputStack != null && !inputStack.isEmpty()) {
             // An item without affinities cannot be melted

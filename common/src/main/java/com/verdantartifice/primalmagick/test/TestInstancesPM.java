@@ -55,6 +55,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> ITEM_HANDLER_NULL_DIRECTION_RESEARCH_TABLE = createInstanceKey("item_handler_null_direction_research_table");
     public static final ResourceKey<GameTestInstance> ITEM_HANDLER_NULL_DIRECTION_WAND_CHARGER = createInstanceKey("item_handler_null_direction_wand_charger");
     public static final ResourceKey<GameTestInstance> ITEM_HANDLER_NULL_DIRECTION_CALCINATOR_BASIC = createInstanceKey("item_handler_null_direction_calculator_basic");
+    public static final ResourceKey<GameTestInstance> ITEM_HANDLER_SIMULATED_TRANSACTION_SEES_CUMULATIVE_STATE = createInstanceKey("item_handler_simulated_transaction_sees_cumulative_state");
 
     // Item handler capability tests
     public static final ResourceKey<GameTestInstance> ITEM_HANDLER_CAPABILITY_REJECTS_INVALID_ITEM_FOR_ALTAR_OUTPUT = createInstanceKey("item_handler_capability_rejects_invalid_item_for_altar_output");
@@ -87,6 +88,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> CALCINATOR_WORKS_WITH_PLAYER_PRESENT = createInstanceKey("calcinator_works_with_player_present");
     public static final ResourceKey<GameTestInstance> CALCINATOR_WORKS_WITHOUT_PLAYER_PRESENT = createInstanceKey("calcinator_works_without_player_present");
     public static final ResourceKey<GameTestInstance> CALCINATOR_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = createInstanceKey("calcinator_lava_bucket_fuel_leaves_empty_bucket");
+    public static final ResourceKey<GameTestInstance> CALCINATOR_OUTPUT_CAPACITY_CHECK_COUNTS_ALL_OUTPUTS = createInstanceKey("calcinator_output_capacity_check_counts_all_outputs");
 
     // Crafting requirement tests
     public static final ResourceKey<GameTestInstance> CRAFTING_REQUIREMENT_ARCANE_RECIPE = createInstanceKey("crafting_requirement_arcane_recipe");
@@ -1104,6 +1106,7 @@ public class TestInstancesPM {
         registerFunction(context, CALCINATOR_WORKS_WITH_PLAYER_PRESENT, TestFunctionsPM.CALCINATOR_WORKS_WITH_PLAYER_PRESENT.getKey());
         registerFunction(context, CALCINATOR_WORKS_WITHOUT_PLAYER_PRESENT, TestFunctionsPM.CALCINATOR_WORKS_WITHOUT_PLAYER_PRESENT.getKey());
         registerFunction(context, CALCINATOR_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET, TestFunctionsPM.CALCINATOR_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET.getKey());
+        registerFunction(context, CALCINATOR_OUTPUT_CAPACITY_CHECK_COUNTS_ALL_OUTPUTS, TestFunctionsPM.CALCINATOR_OUTPUT_CAPACITY_CHECK_COUNTS_ALL_OUTPUTS.getKey());
     }
 
     private static void registerArcaneWorkbenchTests(BootstrapContext<GameTestInstance> context) {
@@ -1134,6 +1137,7 @@ public class TestInstancesPM {
         registerFunction(context, ITEM_HANDLER_NULL_DIRECTION_RESEARCH_TABLE, TestFunctionsPM.ITEM_HANDLER_NULL_DIRECTION_RESEARCH_TABLE.getKey());
         registerFunction(context, ITEM_HANDLER_NULL_DIRECTION_WAND_CHARGER, TestFunctionsPM.ITEM_HANDLER_NULL_DIRECTION_WAND_CHARGER.getKey());
         registerFunction(context, ITEM_HANDLER_NULL_DIRECTION_CALCINATOR_BASIC, TestFunctionsPM.ITEM_HANDLER_NULL_DIRECTION_CALCINATOR_BASIC.getKey());
+        registerFunction(context, ITEM_HANDLER_SIMULATED_TRANSACTION_SEES_CUMULATIVE_STATE, TestFunctionsPM.ITEM_HANDLER_SIMULATED_TRANSACTION_SEES_CUMULATIVE_STATE.getKey());
     }
 
     private static void registerItemHandlerCapabilityTests(BootstrapContext<GameTestInstance> context) {
