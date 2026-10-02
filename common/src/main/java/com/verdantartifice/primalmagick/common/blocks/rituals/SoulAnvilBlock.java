@@ -135,7 +135,7 @@ public class SoulAnvilBlock extends BaseEntityBlock implements IRitualPropBlock 
             }
             return InteractionResult.SUCCESS;
         } else {
-            return InteractionResult.PASS;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
     }
     

@@ -64,7 +64,7 @@ public class HydromelonBlock extends Block {
             }
             return InteractionResult.SUCCESS;
         } else {
-            return InteractionResult.PASS;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
     }
 }

@@ -560,6 +560,16 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK = createInstanceKey("ritual_altar_replace_item_with_empty_stack");
     public static final ResourceKey<GameTestInstance> RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW = createInstanceKey("ritual_altar_finish_craft_with_empty_slot_does_not_throw");
 
+    // Ritual candle tests
+    public static final ResourceKey<GameTestInstance> RITUAL_CANDLE_EXTINGUISHED_BY_EMPTY_HAND = createInstanceKey("ritual_candle_extinguished_by_empty_hand");
+    public static final ResourceKey<GameTestInstance> RITUAL_CANDLE_LIT_BY_FLINT_AND_STEEL = createInstanceKey("ritual_candle_lit_by_flint_and_steel");
+    public static final ResourceKey<GameTestInstance> RITUAL_CANDLE_EMPTY_HAND_ON_UNLIT_DOES_NOTHING = createInstanceKey("ritual_candle_empty_hand_on_unlit_does_nothing");
+
+    // Ritual prop tests
+    public static final ResourceKey<GameTestInstance> INCENSE_BRAZIER_EXTINGUISHED_BY_EMPTY_HAND = createInstanceKey("incense_brazier_extinguished_by_empty_hand");
+    public static final ResourceKey<GameTestInstance> SANGUINE_CRUCIBLE_CORE_REMOVED_BY_SNEAKING_EMPTY_HAND = createInstanceKey("sanguine_crucible_core_removed_by_sneaking_empty_hand");
+    public static final ResourceKey<GameTestInstance> BLOODLETTER_FILLED_BY_EMPTY_HAND = createInstanceKey("bloodletter_filled_by_empty_hand");
+
     // Infernal furnace tests
     public static final ResourceKey<GameTestInstance> INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = createInstanceKey("infernal_furnace_lava_bucket_fuel_leaves_empty_bucket");
 
@@ -598,6 +608,8 @@ public class TestInstancesPM {
         registerManaFontTests(context);
         registerWandChargerTests(context);
         registerRitualAltarTests(context);
+        registerRitualCandleTests(context);
+        registerRitualPropTests(context);
         registerInfernalFurnaceTests(context);
     }
 
@@ -627,6 +639,18 @@ public class TestInstancesPM {
         registerFunction(context, RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT, TestFunctionsPM.RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT.getKey());
         registerFunction(context, RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK, TestFunctionsPM.RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK.getKey());
         registerFunction(context, RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW, TestFunctionsPM.RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW.getKey());
+    }
+
+    public static void registerRitualCandleTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, RITUAL_CANDLE_EXTINGUISHED_BY_EMPTY_HAND, TestFunctionsPM.RITUAL_CANDLE_EXTINGUISHED_BY_EMPTY_HAND.getKey());
+        registerFunction(context, RITUAL_CANDLE_LIT_BY_FLINT_AND_STEEL, TestFunctionsPM.RITUAL_CANDLE_LIT_BY_FLINT_AND_STEEL.getKey());
+        registerFunction(context, RITUAL_CANDLE_EMPTY_HAND_ON_UNLIT_DOES_NOTHING, TestFunctionsPM.RITUAL_CANDLE_EMPTY_HAND_ON_UNLIT_DOES_NOTHING.getKey());
+    }
+
+    public static void registerRitualPropTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, INCENSE_BRAZIER_EXTINGUISHED_BY_EMPTY_HAND, TestFunctionsPM.INCENSE_BRAZIER_EXTINGUISHED_BY_EMPTY_HAND.getKey());
+        registerFunction(context, SANGUINE_CRUCIBLE_CORE_REMOVED_BY_SNEAKING_EMPTY_HAND, TestFunctionsPM.SANGUINE_CRUCIBLE_CORE_REMOVED_BY_SNEAKING_EMPTY_HAND.getKey());
+        registerFunction(context, BLOODLETTER_FILLED_BY_EMPTY_HAND, TestFunctionsPM.BLOODLETTER_FILLED_BY_EMPTY_HAND.getKey());
     }
 
     public static void registerInfernalFurnaceTests(BootstrapContext<GameTestInstance> context) {
