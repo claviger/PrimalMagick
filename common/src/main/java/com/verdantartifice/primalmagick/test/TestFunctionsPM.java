@@ -22,6 +22,7 @@ import com.verdantartifice.primalmagick.common.wands.WandGem;
 import com.verdantartifice.primalmagick.platform.Services;
 import com.verdantartifice.primalmagick.test.attunements.AttunementTests;
 import com.verdantartifice.primalmagick.test.capabilities.PlayerKnowledgeTests;
+import com.verdantartifice.primalmagick.test.capabilities.ItemHandlerCapabilityTests;
 import com.verdantartifice.primalmagick.test.capabilities.ItemHandlerTests;
 import com.verdantartifice.primalmagick.test.crafting.RepairTests;
 import com.verdantartifice.primalmagick.test.crafting.EarthshatterHammerTests;
@@ -112,6 +113,11 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ITEM_HANDLER_NULL_DIRECTION_RESEARCH_TABLE = Services.TEST_FUNCTIONS_REGISTRY.register("block_entity_can_retrieve_item_handler_with_null_direction_research_table", () -> (helper) -> ItemHandlerTests.block_entity_can_retrieve_item_handler_with_null_direction(helper, BlocksPM.RESEARCH_TABLE.get()));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ITEM_HANDLER_NULL_DIRECTION_WAND_CHARGER = Services.TEST_FUNCTIONS_REGISTRY.register("block_entity_can_retrieve_item_handler_with_null_direction_wand_charger", () -> (helper) -> ItemHandlerTests.block_entity_can_retrieve_item_handler_with_null_direction(helper, BlocksPM.WAND_CHARGER.get()));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ITEM_HANDLER_NULL_DIRECTION_CALCINATOR_BASIC = Services.TEST_FUNCTIONS_REGISTRY.register("block_entity_can_retrieve_item_handler_with_null_direction_calcinator_basic", () -> (helper) -> ItemHandlerTests.block_entity_can_retrieve_item_handler_with_null_direction(helper, BlocksPM.CALCINATOR_BASIC.get()));
+
+    // Item handler capability tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ITEM_HANDLER_CAPABILITY_REJECTS_INVALID_ITEM_FOR_ALTAR_OUTPUT = Services.TEST_FUNCTIONS_REGISTRY.register("item_handler_capability_rejects_invalid_item_for_altar_output", () -> ItemHandlerCapabilityTests::item_handler_capability_rejects_invalid_item_for_altar_output);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ITEM_HANDLER_CAPABILITY_ENFORCES_SLOT_LIMIT_ON_OFFERING_PEDESTAL = Services.TEST_FUNCTIONS_REGISTRY.register("item_handler_capability_enforces_slot_limit_on_offering_pedestal", () -> ItemHandlerCapabilityTests::item_handler_capability_enforces_slot_limit_on_offering_pedestal);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ITEM_HANDLER_CAPABILITY_ACCEPTS_VALID_ITEM = Services.TEST_FUNCTIONS_REGISTRY.register("item_handler_capability_accepts_valid_item", () -> ItemHandlerCapabilityTests::item_handler_capability_accepts_valid_item);
 
     // Player knowledge tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ADD_AND_CHECK_RESEARCH = Services.TEST_FUNCTIONS_REGISTRY.register("player_knowledge_add_and_check_research", () -> PlayerKnowledgeTests::player_knowledge_add_and_check_research);

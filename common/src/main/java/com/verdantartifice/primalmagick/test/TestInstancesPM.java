@@ -56,6 +56,11 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> ITEM_HANDLER_NULL_DIRECTION_WAND_CHARGER = createInstanceKey("item_handler_null_direction_wand_charger");
     public static final ResourceKey<GameTestInstance> ITEM_HANDLER_NULL_DIRECTION_CALCINATOR_BASIC = createInstanceKey("item_handler_null_direction_calculator_basic");
 
+    // Item handler capability tests
+    public static final ResourceKey<GameTestInstance> ITEM_HANDLER_CAPABILITY_REJECTS_INVALID_ITEM_FOR_ALTAR_OUTPUT = createInstanceKey("item_handler_capability_rejects_invalid_item_for_altar_output");
+    public static final ResourceKey<GameTestInstance> ITEM_HANDLER_CAPABILITY_ENFORCES_SLOT_LIMIT_ON_OFFERING_PEDESTAL = createInstanceKey("item_handler_capability_enforces_slot_limit_on_offering_pedestal");
+    public static final ResourceKey<GameTestInstance> ITEM_HANDLER_CAPABILITY_ACCEPTS_VALID_ITEM = createInstanceKey("item_handler_capability_accepts_valid_item");
+
     // Player knowledge tests
     public static final ResourceKey<GameTestInstance> ADD_AND_CHECK_RESEARCH = createInstanceKey("add_and_check_research");
     public static final ResourceKey<GameTestInstance> CANNOT_ADD_DUPLICATE_RESEARCH = createInstanceKey("cannot_add_duplicate_research");
@@ -556,6 +561,7 @@ public class TestInstancesPM {
         registerFunction(context, CANARY, TestFunctionsPM.CANARY.getKey());
         registerAttunementBuffTests(context);
         registerItemHandlerTests(context);
+        registerItemHandlerCapabilityTests(context);
         registerPlayerKnowledgeTests(context);
         registerArcaneWorkbenchTests(context);
         registerCalcinatorTests(context);
@@ -1118,6 +1124,12 @@ public class TestInstancesPM {
         registerFunction(context, ITEM_HANDLER_NULL_DIRECTION_RESEARCH_TABLE, TestFunctionsPM.ITEM_HANDLER_NULL_DIRECTION_RESEARCH_TABLE.getKey());
         registerFunction(context, ITEM_HANDLER_NULL_DIRECTION_WAND_CHARGER, TestFunctionsPM.ITEM_HANDLER_NULL_DIRECTION_WAND_CHARGER.getKey());
         registerFunction(context, ITEM_HANDLER_NULL_DIRECTION_CALCINATOR_BASIC, TestFunctionsPM.ITEM_HANDLER_NULL_DIRECTION_CALCINATOR_BASIC.getKey());
+    }
+
+    private static void registerItemHandlerCapabilityTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ITEM_HANDLER_CAPABILITY_REJECTS_INVALID_ITEM_FOR_ALTAR_OUTPUT, TestFunctionsPM.ITEM_HANDLER_CAPABILITY_REJECTS_INVALID_ITEM_FOR_ALTAR_OUTPUT.getKey());
+        registerFunction(context, ITEM_HANDLER_CAPABILITY_ENFORCES_SLOT_LIMIT_ON_OFFERING_PEDESTAL, TestFunctionsPM.ITEM_HANDLER_CAPABILITY_ENFORCES_SLOT_LIMIT_ON_OFFERING_PEDESTAL.getKey());
+        registerFunction(context, ITEM_HANDLER_CAPABILITY_ACCEPTS_VALID_ITEM, TestFunctionsPM.ITEM_HANDLER_CAPABILITY_ACCEPTS_VALID_ITEM.getKey());
     }
 
     private static void registerAttunementBuffTests(BootstrapContext<GameTestInstance> context) {

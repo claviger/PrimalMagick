@@ -2,7 +2,6 @@ package com.verdantartifice.primalmagick.common.menus.base;
 
 import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
 import com.verdantartifice.primalmagick.common.tiles.base.AbstractTileSidedInventoryPM;
-import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.inventory.MenuType;
@@ -20,7 +19,13 @@ public abstract class AbstractTileSidedInventoryMenu<T extends AbstractTileSided
     
     @Override
     public IItemHandlerPM getTileInventory(Direction face) {
-        return Services.CAPABILITIES.itemHandler(this.tile, face).orElseThrow(IllegalStateException::new);
+        // Use the tile's own handler rather than the capability, which restricts insertions to what automation may do
+        IItemHandlerPM retVal = this.tile.getRawItemHandler(face);
+        if (retVal == null) {
+            throw new IllegalStateException("No tile inventory found for face " + face);
+        } else {
+            return retVal;
+        }
     }
 
     @Override

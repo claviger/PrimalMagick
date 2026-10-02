@@ -54,7 +54,8 @@ public class CapabilityEvents {
 
     private static ResourceHandler<ItemResource> cast(final IItemHandlerPM handler) {
         if (handler instanceof ItemStackHandlerPMNeoforge nfHandler) {
-            return nfHandler;
+            // Expose a view that applies the handler's validity and slot limit rules to external insertions
+            return nfHandler.getCapabilityHandler();
         } else {
             return null;
         }

@@ -33,6 +33,7 @@ public class ItemStackHandlerPMNeoforge extends ItemStacksResourceHandler implem
     protected final Optional<Function<Integer, Integer>> limitFuncOverride;
     protected final Optional<BiPredicate<Integer, ItemStack>> validityFuncOverride;
     protected final Optional<BiConsumer<Integer, ItemStack>> contentsChangedFuncOverride;
+    protected FilteredItemHandlerPMNeoforge capabilityHandler;
 
     public ItemStackHandlerPMNeoforge(int size, AbstractTilePM tile) {
         super(size);
@@ -78,6 +79,19 @@ public class ItemStackHandlerPMNeoforge extends ItemStacksResourceHandler implem
     @Override
     public ResourceHandler<ItemResource> getResourceHandler() {
         return this;
+    }
+
+    /**
+     * Returns the view of this handler to expose through the item capability, which holds external insertions to this
+     * handler's item validity and slot limit functions.
+     *
+     * @return the filtered view of this handler
+     */
+    public FilteredItemHandlerPMNeoforge getCapabilityHandler() {
+        if (this.capabilityHandler == null) {
+            this.capabilityHandler = new FilteredItemHandlerPMNeoforge(this);
+        }
+        return this.capabilityHandler;
     }
 
     @Override
