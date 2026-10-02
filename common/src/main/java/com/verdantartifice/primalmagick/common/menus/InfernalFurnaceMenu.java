@@ -4,6 +4,7 @@ import com.verdantartifice.primalmagick.common.menus.base.AbstractTileRecipeBook
 import com.verdantartifice.primalmagick.common.menus.slots.FilteredSlotProperties;
 import com.verdantartifice.primalmagick.common.tags.ItemTagsPM;
 import com.verdantartifice.primalmagick.common.tiles.devices.InfernalFurnaceTileEntity;
+import com.verdantartifice.primalmagick.common.util.ProgressUtils;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.BlockPos;
@@ -79,7 +80,7 @@ public class InfernalFurnaceMenu extends AbstractTileRecipeBookMenu<InfernalFurn
         // Determine how much of the progress arrow to show
         int i = this.furnaceData.get(0);
         int j = this.furnaceData.get(1);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
+        return ProgressUtils.scaledProgress(i, j, 24);
     }
     
     public int getCurrentMana() {
@@ -91,10 +92,11 @@ public class InfernalFurnaceMenu extends AbstractTileRecipeBookMenu<InfernalFurn
     }
     
     public int getSuperchargeProgressionScaled() {
-        // Determine how much of the supercharge burner to show
+        // Determine how much of the supercharge burner to show; the flame indicator is 13 pixels tall, like the
+        // calcinator's fuel indicator, not the 24 pixel width of the progress arrow
         int i = this.furnaceData.get(4);
         int j = this.furnaceData.get(5);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
+        return ProgressUtils.scaledProgress(i, j, 13);
     }
     
     public boolean isSupercharged() {

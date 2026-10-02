@@ -573,6 +573,16 @@ public class TestInstancesPM {
     // Infernal furnace tests
     public static final ResourceKey<GameTestInstance> INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = createInstanceKey("infernal_furnace_lava_bucket_fuel_leaves_empty_bucket");
 
+    // Progress scaling tests
+    public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_EMPTY = createInstanceKey("scaled_progress_empty");
+    public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_HALF = createInstanceKey("scaled_progress_half");
+    public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_FULL = createInstanceKey("scaled_progress_full");
+    public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_OVERFLOW = createInstanceKey("scaled_progress_overflow");
+    public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_ZERO_MAX = createInstanceKey("scaled_progress_zero_max");
+    public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_TRUNCATES = createInstanceKey("scaled_progress_truncates");
+    public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_NEGATIVE_CURRENT = createInstanceKey("scaled_progress_negative_current");
+    public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_ARROW = createInstanceKey("scaled_progress_arrow");
+
     public static void bootstrap(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, CANARY, TestFunctionsPM.CANARY.getKey());
         registerAttunementBuffTests(context);
@@ -611,6 +621,7 @@ public class TestInstancesPM {
         registerRitualCandleTests(context);
         registerRitualPropTests(context);
         registerInfernalFurnaceTests(context);
+        registerProgressUtilsTests(context);
     }
 
     public static void registerWandChargerTests(BootstrapContext<GameTestInstance> context) {
@@ -651,6 +662,17 @@ public class TestInstancesPM {
         registerFunction(context, INCENSE_BRAZIER_EXTINGUISHED_BY_EMPTY_HAND, TestFunctionsPM.INCENSE_BRAZIER_EXTINGUISHED_BY_EMPTY_HAND.getKey());
         registerFunction(context, SANGUINE_CRUCIBLE_CORE_REMOVED_BY_SNEAKING_EMPTY_HAND, TestFunctionsPM.SANGUINE_CRUCIBLE_CORE_REMOVED_BY_SNEAKING_EMPTY_HAND.getKey());
         registerFunction(context, BLOODLETTER_FILLED_BY_EMPTY_HAND, TestFunctionsPM.BLOODLETTER_FILLED_BY_EMPTY_HAND.getKey());
+    }
+
+    public static void registerProgressUtilsTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SCALED_PROGRESS_EMPTY, TestFunctionsPM.SCALED_PROGRESS_EMPTY.getKey());
+        registerFunction(context, SCALED_PROGRESS_HALF, TestFunctionsPM.SCALED_PROGRESS_HALF.getKey());
+        registerFunction(context, SCALED_PROGRESS_FULL, TestFunctionsPM.SCALED_PROGRESS_FULL.getKey());
+        registerFunction(context, SCALED_PROGRESS_OVERFLOW, TestFunctionsPM.SCALED_PROGRESS_OVERFLOW.getKey());
+        registerFunction(context, SCALED_PROGRESS_ZERO_MAX, TestFunctionsPM.SCALED_PROGRESS_ZERO_MAX.getKey());
+        registerFunction(context, SCALED_PROGRESS_TRUNCATES, TestFunctionsPM.SCALED_PROGRESS_TRUNCATES.getKey());
+        registerFunction(context, SCALED_PROGRESS_NEGATIVE_CURRENT, TestFunctionsPM.SCALED_PROGRESS_NEGATIVE_CURRENT.getKey());
+        registerFunction(context, SCALED_PROGRESS_ARROW, TestFunctionsPM.SCALED_PROGRESS_ARROW.getKey());
     }
 
     public static void registerInfernalFurnaceTests(BootstrapContext<GameTestInstance> context) {

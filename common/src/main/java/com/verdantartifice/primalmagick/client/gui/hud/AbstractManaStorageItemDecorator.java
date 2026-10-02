@@ -6,6 +6,7 @@ import com.verdantartifice.primalmagick.common.sources.Source;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,7 +47,11 @@ public abstract class AbstractManaStorageItemDecorator {
     protected int getBarWidth(ItemStack stack, Source source) {
         ManaStorage manaCap = stack.get(DataComponentsPM.CAPABILITY_MANA_STORAGE.get());
         if (manaCap != null && manaCap.canStore(this.source)) {
-            return Math.round((float)manaCap.getManaStored(source) * 13.0F / (float)manaCap.getMaxManaStored(source));
+            int max = manaCap.getMaxManaStored(source);
+            if (max == ManaStorage.INFINITE) {
+                return 13;
+            }
+            return Mth.clamp(Math.round((float)manaCap.getManaStored(source) * 13.0F / (float)max), 0, 13);
         } else {
             return 0;
         }

@@ -3,6 +3,7 @@ package com.verdantartifice.primalmagick.common.menus;
 import com.verdantartifice.primalmagick.common.menus.base.AbstractTileSidedInventoryMenu;
 import com.verdantartifice.primalmagick.common.menus.slots.FilteredSlotProperties;
 import com.verdantartifice.primalmagick.common.tiles.crafting.AbstractCalcinatorTileEntity;
+import com.verdantartifice.primalmagick.common.util.ProgressUtils;
 import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -121,7 +122,7 @@ public class CalcinatorMenu extends AbstractTileSidedInventoryMenu<AbstractCalci
         // Determine how much of the cook arrow to show
         int i = this.calcinatorData.get(2);
         int j = this.calcinatorData.get(3);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
+        return ProgressUtils.scaledProgress(i, j, 24);
     }
     
     public int getBurnLeftScaled() {
@@ -130,7 +131,7 @@ public class CalcinatorMenu extends AbstractTileSidedInventoryMenu<AbstractCalci
         if (total == 0) {
             total = 200;
         }
-        return this.calcinatorData.get(0) * 13 / total;
+        return ProgressUtils.scaledProgress(this.calcinatorData.get(0), total, 13);
     }
     
     public boolean isBurning() {

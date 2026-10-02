@@ -3,6 +3,7 @@ package com.verdantartifice.primalmagick.client.gui.widgets.grimoire;
 import com.verdantartifice.primalmagick.client.util.GuiUtils;
 import com.verdantartifice.primalmagick.common.misc.IconDefinition;
 import com.verdantartifice.primalmagick.common.research.requirements.IVanillaStatRequirement;
+import com.verdantartifice.primalmagick.common.util.ProgressUtils;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -56,10 +57,11 @@ public class VanillaStatProgressWidget extends AbstractWidget {
         // Draw progress bar foreground
         Minecraft mc = Minecraft.getInstance();
         int currentValue = this.requirement.getCurrentValue(mc.player);
-        int px = (int)(16.0D * ((double)currentValue / (double)this.requirement.getThreshold()));
+        int px = ProgressUtils.scaledProgress(currentValue, this.requirement.getThreshold(), 16);
         pGuiGraphics.pose().pushMatrix();
         pGuiGraphics.pose().translate(this.getX(), this.getY() + 17);
-        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_FG, 0, 0, px, 2);
+        // Crop the sprite to the filled width rather than stretching it; 16x2 is the bar's GUI size, not its pixel size
+        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_FG, 16, 2, 0, 0, 0, 0, px, 2);
         pGuiGraphics.pose().popMatrix();
         
         // Prepare the tooltip

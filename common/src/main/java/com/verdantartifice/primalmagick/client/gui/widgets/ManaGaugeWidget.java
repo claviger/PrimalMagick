@@ -2,6 +2,7 @@ package com.verdantartifice.primalmagick.client.gui.widgets;
 
 import com.verdantartifice.primalmagick.client.util.GuiUtils;
 import com.verdantartifice.primalmagick.common.sources.Source;
+import com.verdantartifice.primalmagick.common.util.ProgressUtils;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -83,10 +84,8 @@ public class ManaGaugeWidget extends AbstractWidget {
     protected int getScaledMana() {
         if (this.maxAmount == -1) {
             return 50;
-        } else if (this.maxAmount != 0 && this.curAmount != 0) {
-            return (this.curAmount * 50 / this.maxAmount);
         } else {
-            return 0;
+            return ProgressUtils.scaledProgress(this.curAmount, this.maxAmount, 50);
         }
     }
 
