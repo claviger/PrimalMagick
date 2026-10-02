@@ -93,7 +93,7 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
     public boolean transactSlots(boolean simulate, List<SlotOperation> slotOperations) {
         boolean success;
         try (Transaction tx = Transaction.openRoot()) {
-            success = slotOperations.stream().allMatch(op -> ItemStack.matches(op.stack(), this.performSlotTransactionOperation(simulate, op, tx)));
+            success = slotOperations.stream().allMatch(op -> ItemStack.matches(op.stack(), this.performSlotTransactionOperation(op, tx)));
             if (success && !simulate) {
                 tx.commit();
             }
@@ -101,7 +101,7 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
         return success;
     }
 
-    protected ItemStack performSlotTransactionOperation(boolean simulate, SlotOperation slotOperation, TransactionContext parent) {
+    protected ItemStack performSlotTransactionOperation(SlotOperation slotOperation, TransactionContext parent) {
         if (slotOperation.stack().isEmpty()) {
             // The transfer API rejects empty resources, so treat moving an empty stack as a successful no-op. This lets
             // a replacement extract from an empty slot or insert nothing, as setting a slot's contents could before.
@@ -113,9 +113,9 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
                 case EXTRACT -> this.handler.getResource(slotOperation.slot()).toStack(this.handler.extract(slotOperation.slot(), opResource, slotOperation.stack().count(), childTx));
                 case INSERT -> opResource.toStack(this.handler.insert(slotOperation.slot(), opResource, slotOperation.stack().count(), childTx));
             };
-            if (!simulate) {
-                childTx.commit();
-            }
+            // Always commit into the parent so that later operations see this one's result; the root transaction is
+            // only committed when not simulating, so a simulation still rolls everything back
+            childTx.commit();
             return retVal;
         }
     }
@@ -124,7 +124,7 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
     public boolean transact(boolean simulate, List<HandlerOperation> handlerOperations) {
         boolean success;
         try (Transaction tx = Transaction.openRoot()) {
-            success = handlerOperations.stream().allMatch(op -> ItemStack.matches(op.stack(), this.performHandlerTransactionOperations(simulate, op, tx)));
+            success = handlerOperations.stream().allMatch(op -> ItemStack.matches(op.stack(), this.performHandlerTransactionOperations(op, tx)));
             if (success && !simulate) {
                 tx.commit();
             }
@@ -132,7 +132,7 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
         return success;
     }
 
-    protected ItemStack performHandlerTransactionOperations(boolean simulate, HandlerOperation handlerOperation, TransactionContext parent) {
+    protected ItemStack performHandlerTransactionOperations(HandlerOperation handlerOperation, TransactionContext parent) {
         if (handlerOperation.stack().isEmpty()) {
             // The transfer API rejects empty resources, so treat moving an empty stack as a successful no-op
             return ItemStack.EMPTY;
@@ -143,9 +143,9 @@ public abstract class AbstractContainerWrapperPMNeoforge implements IItemHandler
                 case EXTRACT -> opResource.toStack(this.handler.extract(opResource, handlerOperation.stack().count(), childTx));
                 case INSERT -> opResource.toStack(this.handler.insert(opResource, handlerOperation.stack().count(), childTx));
             };
-            if (!simulate) {
-                childTx.commit();
-            }
+            // Always commit into the parent so that later operations see this one's result; the root transaction is
+            // only committed when not simulating, so a simulation still rolls everything back
+            childTx.commit();
             return retVal;
         }
     }

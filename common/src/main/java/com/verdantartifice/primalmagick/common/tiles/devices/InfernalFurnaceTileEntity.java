@@ -242,10 +242,15 @@ public abstract class InfernalFurnaceTileEntity extends AbstractTileSidedInvento
                     shouldMarkDirty = true;
                     ItemStackTemplate remainderStack = fuelStack.getItem().getCraftingRemainder();
                     if (remainderStack != null) {
-                        // If the fuel has a container item (e.g. a lava bucket), place the empty container in the fuel slot
-                        ItemStack oldFuelStack = entity.replaceItem(FUEL_INV_INDEX, 0, remainderStack.create());
-                        if (!oldFuelStack.isEmpty()) {
-                            Containers.dropContents(level, pos, NonNullList.of(ItemStack.EMPTY, oldFuelStack));
+                        // If the fuel has a container item (e.g. a lava bucket), the burnt fuel leaves that container behind
+                        if (fuelStack.getCount() > 1) {
+                            // Burn one item of the stack and drop its container, as the slot is still occupied. No vanilla
+                            // fuel with a container item stacks, so this is only reachable with modded fuels.
+                            entity.removeItem(FUEL_INV_INDEX, 0, 1);
+                            Containers.dropContents(level, pos, NonNullList.of(ItemStack.EMPTY, remainderStack.create()));
+                        } else {
+                            // Replace the burnt fuel with its container
+                            entity.replaceItem(FUEL_INV_INDEX, 0, remainderStack.create());
                         }
                     } else {
                         // Otherwise, shrink the fuel stack
@@ -450,7 +455,8 @@ public abstract class InfernalFurnaceTileEntity extends AbstractTileSidedInvento
 
     @Override
     protected int getInventoryCount() {
-        return 3;
+        // Output, input, wand and fuel
+        return 4;
     }
 
     @Override
