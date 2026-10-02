@@ -86,6 +86,7 @@ public class TestInstancesPM {
     // Calcinator tests
     public static final ResourceKey<GameTestInstance> CALCINATOR_WORKS_WITH_PLAYER_PRESENT = createInstanceKey("calcinator_works_with_player_present");
     public static final ResourceKey<GameTestInstance> CALCINATOR_WORKS_WITHOUT_PLAYER_PRESENT = createInstanceKey("calcinator_works_without_player_present");
+    public static final ResourceKey<GameTestInstance> CALCINATOR_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = createInstanceKey("calcinator_lava_bucket_fuel_leaves_empty_bucket");
 
     // Crafting requirement tests
     public static final ResourceKey<GameTestInstance> CRAFTING_REQUIREMENT_ARCANE_RECIPE = createInstanceKey("crafting_requirement_arcane_recipe");
@@ -557,6 +558,9 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK = createInstanceKey("ritual_altar_replace_item_with_empty_stack");
     public static final ResourceKey<GameTestInstance> RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW = createInstanceKey("ritual_altar_finish_craft_with_empty_slot_does_not_throw");
 
+    // Infernal furnace tests
+    public static final ResourceKey<GameTestInstance> INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = createInstanceKey("infernal_furnace_lava_bucket_fuel_leaves_empty_bucket");
+
     public static void bootstrap(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, CANARY, TestFunctionsPM.CANARY.getKey());
         registerAttunementBuffTests(context);
@@ -592,6 +596,7 @@ public class TestInstancesPM {
         registerManaFontTests(context);
         registerWandChargerTests(context);
         registerRitualAltarTests(context);
+        registerInfernalFurnaceTests(context);
     }
 
     public static void registerWandChargerTests(BootstrapContext<GameTestInstance> context) {
@@ -620,6 +625,10 @@ public class TestInstancesPM {
         registerFunction(context, RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT, TestFunctionsPM.RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT.getKey());
         registerFunction(context, RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK, TestFunctionsPM.RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK.getKey());
         registerFunction(context, RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW, TestFunctionsPM.RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW.getKey());
+    }
+
+    public static void registerInfernalFurnaceTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET, TestFunctionsPM.INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET.getKey());
     }
 
     public static void registerManaFontTests(BootstrapContext<GameTestInstance> context) {
@@ -1094,6 +1103,7 @@ public class TestInstancesPM {
     private static void registerCalcinatorTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, CALCINATOR_WORKS_WITH_PLAYER_PRESENT, TestFunctionsPM.CALCINATOR_WORKS_WITH_PLAYER_PRESENT.getKey());
         registerFunction(context, CALCINATOR_WORKS_WITHOUT_PLAYER_PRESENT, TestFunctionsPM.CALCINATOR_WORKS_WITHOUT_PLAYER_PRESENT.getKey());
+        registerFunction(context, CALCINATOR_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET, TestFunctionsPM.CALCINATOR_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET.getKey());
     }
 
     private static void registerArcaneWorkbenchTests(BootstrapContext<GameTestInstance> context) {

@@ -49,6 +49,7 @@ import com.verdantartifice.primalmagick.test.research.ResearchKeysTests;
 import com.verdantartifice.primalmagick.test.runes.RuneManagerTests;
 import com.verdantartifice.primalmagick.test.spells.SpellPackageTests;
 import com.verdantartifice.primalmagick.test.spells.WandSpellcastTests;
+import com.verdantartifice.primalmagick.test.tiles.InfernalFurnaceTests;
 import com.verdantartifice.primalmagick.test.tiles.RitualAltarTests;
 import com.verdantartifice.primalmagick.test.tiles.WandChargerTests;
 import com.verdantartifice.primalmagick.test.tiles.ManaFontTests;
@@ -144,6 +145,7 @@ public class TestFunctionsPM {
     // Calcinator tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CALCINATOR_WORKS_WITH_PLAYER_PRESENT = Services.TEST_FUNCTIONS_REGISTRY.register("calcinator_works_with_player_present", () -> (helper) -> CalcinatorTests.calcinator_works(helper, true));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CALCINATOR_WORKS_WITHOUT_PLAYER_PRESENT = Services.TEST_FUNCTIONS_REGISTRY.register("calcinator_works_without_player_present", () -> (helper) -> CalcinatorTests.calcinator_works(helper, false));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CALCINATOR_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = Services.TEST_FUNCTIONS_REGISTRY.register("calcinator_lava_bucket_fuel_leaves_empty_bucket", () -> CalcinatorTests::calcinator_lava_bucket_fuel_leaves_empty_bucket);
 
     // Crafting requirement tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CRAFTING_REQUIREMENT_ARCANE_RECIPE = Services.TEST_FUNCTIONS_REGISTRY.register("crafting_requirement_arcane_recipe", () -> CraftingRequirementsTests::arcane_recipe);
@@ -644,4 +646,7 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_replace_item_on_empty_slot", () -> RitualAltarTests::ritual_altar_replace_item_on_empty_slot);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_replace_item_with_empty_stack", () -> RitualAltarTests::ritual_altar_replace_item_with_empty_stack);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_finish_craft_with_empty_slot_does_not_throw", () -> RitualAltarTests::ritual_altar_finish_craft_with_empty_slot_does_not_throw);
+
+    // Infernal furnace tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = Services.TEST_FUNCTIONS_REGISTRY.register("infernal_furnace_lava_bucket_fuel_leaves_empty_bucket", () -> InfernalFurnaceTests::infernal_furnace_lava_bucket_fuel_leaves_empty_bucket);
 }

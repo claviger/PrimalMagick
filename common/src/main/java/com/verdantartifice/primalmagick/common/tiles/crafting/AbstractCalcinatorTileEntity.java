@@ -230,10 +230,16 @@ public abstract class AbstractCalcinatorTileEntity extends AbstractTileSidedInve
                     if (entity.isBurning()) {
                         shouldMarkDirty = true;
                         if (entity.hasFuelRemainingItem(fuelStack)) {
-                            // If the fuel has a container item (e.g. a lava bucket), place the empty container in the fuel slot
-                            ItemStack oldFuelStack = entity.replaceItem(FUEL_INV_INDEX, 0, entity.getFuelRemainingItem(fuelStack));
-                            if (!oldFuelStack.isEmpty()) {
-                                Containers.dropContents(level, pos, NonNullList.of(ItemStack.EMPTY, oldFuelStack));
+                            // If the fuel has a container item (e.g. a lava bucket), the burnt fuel leaves that container behind
+                            ItemStack remainingStack = entity.getFuelRemainingItem(fuelStack);
+                            if (fuelStack.getCount() > 1) {
+                                // Burn one item of the stack and drop its container, as the slot is still occupied. No vanilla
+                                // fuel with a container item stacks, so this is only reachable with modded fuels.
+                                entity.removeItem(FUEL_INV_INDEX, 0, 1);
+                                Containers.dropContents(level, pos, NonNullList.of(ItemStack.EMPTY, remainingStack));
+                            } else {
+                                // Replace the burnt fuel with its container
+                                entity.replaceItem(FUEL_INV_INDEX, 0, remainingStack);
                             }
                         } else if (!fuelStack.isEmpty()) {
                             // Otherwise, shrink the fuel stack
