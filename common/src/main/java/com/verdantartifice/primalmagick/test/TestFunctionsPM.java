@@ -56,6 +56,7 @@ import com.verdantartifice.primalmagick.test.tiles.ManaFontTests;
 import com.verdantartifice.primalmagick.test.tiles.ManaBatteryTests;
 import com.verdantartifice.primalmagick.test.tiles.AutoChargerTests;
 import com.verdantartifice.primalmagick.test.tiles.ChargeableItem;
+import com.verdantartifice.primalmagick.test.util.ProgressUtilsTests;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.EntityType;
@@ -651,4 +652,16 @@ public class TestFunctionsPM {
 
     // Infernal furnace tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = Services.TEST_FUNCTIONS_REGISTRY.register("infernal_furnace_lava_bucket_fuel_leaves_empty_bucket", () -> InfernalFurnaceTests::infernal_furnace_lava_bucket_fuel_leaves_empty_bucket);
+
+    // Progress scaling tests; expected values are pixels of a 16 pixel bar, so 25/50 fills half (8), and 200/50
+    // overflows and clamps to the full 16 rather than drawing at four times the bar's width
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_EMPTY = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_empty", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 0, 50, 0));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_HALF = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_half", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 25, 50, 8));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_FULL = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_full", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 50, 50, 16));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_OVERFLOW = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_overflow", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 200, 50, 16));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_ZERO_MAX = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_zero_max", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 0, 0, 0));
+    // 49/50 of 16 is 15.68, which truncates to 15; negative progress is empty; 12/24 of the 24 pixel device arrow is 12
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_TRUNCATES = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_truncates", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 49, 50, 15));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_NEGATIVE_CURRENT = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_negative_current", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, -5, 50, 0));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_ARROW = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_arrow", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 12, 24, 24, 12));
 }

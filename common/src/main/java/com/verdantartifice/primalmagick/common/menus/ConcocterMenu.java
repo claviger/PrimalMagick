@@ -4,6 +4,7 @@ import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
 import com.verdantartifice.primalmagick.common.crafting.IConcoctingRecipe;
 import com.verdantartifice.primalmagick.common.menus.base.AbstractTileRecipeBookMenu;
 import com.verdantartifice.primalmagick.common.tiles.crafting.ConcocterTileEntity;
+import com.verdantartifice.primalmagick.common.util.ProgressUtils;
 import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -124,7 +125,7 @@ public class ConcocterMenu extends AbstractTileRecipeBookMenu<ConcocterTileEntit
         // Determine how much of the cook arrow to show
         int i = this.concocterData.get(0);
         int j = this.concocterData.get(1);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
+        return ProgressUtils.scaledProgress(i, j, 24);
     }
     
     public int getCurrentMana() {

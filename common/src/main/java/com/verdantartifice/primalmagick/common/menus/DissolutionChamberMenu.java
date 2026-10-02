@@ -3,6 +3,7 @@ package com.verdantartifice.primalmagick.common.menus;
 import com.verdantartifice.primalmagick.common.crafting.IDissolutionRecipe;
 import com.verdantartifice.primalmagick.common.menus.base.AbstractTileRecipeBookMenu;
 import com.verdantartifice.primalmagick.common.tiles.devices.DissolutionChamberTileEntity;
+import com.verdantartifice.primalmagick.common.util.ProgressUtils;
 import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -119,7 +120,7 @@ public class DissolutionChamberMenu extends AbstractTileRecipeBookMenu<Dissoluti
         // Determine how much of the progress arrow to show
         int i = this.chamberData.get(0);
         int j = this.chamberData.get(1);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
+        return ProgressUtils.scaledProgress(i, j, 24);
     }
     
     public int getCurrentMana() {

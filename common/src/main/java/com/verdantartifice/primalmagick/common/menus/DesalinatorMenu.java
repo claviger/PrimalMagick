@@ -10,6 +10,7 @@ import com.verdantartifice.primalmagick.common.research.keys.ResearchEntryKey;
 import com.verdantartifice.primalmagick.common.research.requirements.AbstractRequirement;
 import com.verdantartifice.primalmagick.common.research.requirements.ResearchRequirement;
 import com.verdantartifice.primalmagick.common.tiles.devices.DesalinatorTileEntity;
+import com.verdantartifice.primalmagick.common.util.ProgressUtils;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.BlockPos;
@@ -152,7 +153,7 @@ public class DesalinatorMenu extends AbstractTileSidedInventoryMenu<DesalinatorT
         // Determine how much of the progress arrow to show
         int i = this.containerData.get(0);
         int j = this.containerData.get(1);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
+        return ProgressUtils.scaledProgress(i, j, 24);
     }
 
     public int getCurrentMana() {

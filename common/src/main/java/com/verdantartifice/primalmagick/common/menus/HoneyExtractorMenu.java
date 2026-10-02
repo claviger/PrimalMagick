@@ -3,6 +3,7 @@ package com.verdantartifice.primalmagick.common.menus;
 import com.verdantartifice.primalmagick.common.menus.base.AbstractTileSidedInventoryMenu;
 import com.verdantartifice.primalmagick.common.menus.slots.FilteredSlotProperties;
 import com.verdantartifice.primalmagick.common.tiles.devices.HoneyExtractorTileEntity;
+import com.verdantartifice.primalmagick.common.util.ProgressUtils;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.BlockPos;
@@ -139,7 +140,7 @@ public class HoneyExtractorMenu extends AbstractTileSidedInventoryMenu<HoneyExtr
         // Determine how much of the progress arrow to show
         int i = this.extractorData.get(0);
         int j = this.extractorData.get(1);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
+        return ProgressUtils.scaledProgress(i, j, 24);
     }
     
     public int getCurrentMana() {

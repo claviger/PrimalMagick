@@ -90,7 +90,8 @@ public class KnowledgeTotalWidget extends AbstractWidget {
             int px = (int)(16.0D * ((double)levelPoints / (double)this.type.getProgression()));
             pGuiGraphics.pose().pushMatrix();
             pGuiGraphics.pose().translate(this.getX(), this.getY() + 17);
-            pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, FG_SPRITE, 0, 0, px, 2);
+            // Crop the sprite to the filled width rather than stretching it; 16x2 is the bar's GUI size, not its pixel size
+            pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, FG_SPRITE, 16, 2, 0, 0, 0, 0, px, 2);
             pGuiGraphics.pose().popMatrix();
         });
         

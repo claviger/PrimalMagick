@@ -5,6 +5,7 @@ import com.verdantartifice.primalmagick.common.research.ResearchTier;
 import com.verdantartifice.primalmagick.common.research.keys.ResearchDisciplineKey;
 import com.verdantartifice.primalmagick.common.stats.ExpertiseManager;
 import com.verdantartifice.primalmagick.common.stats.Stat;
+import com.verdantartifice.primalmagick.common.util.ProgressUtils;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -73,7 +74,8 @@ public class ExpertiseProgressWidget extends AbstractWidget {
         int px = this.getProgressionScaled();
         pGuiGraphics.pose().pushMatrix();
         pGuiGraphics.pose().translate(this.getX(), this.getY() + 17);
-        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_FG, 0, 0, px, 2);
+        // Crop the sprite to the filled width rather than stretching it; 16x2 is the bar's GUI size, not its pixel size
+        pGuiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_FG, 16, 2, 0, 0, 0, 0, px, 2);
         pGuiGraphics.pose().popMatrix();
         
         // Prepare the tooltip
@@ -119,9 +121,7 @@ public class ExpertiseProgressWidget extends AbstractWidget {
     }
 
     protected int getProgressionScaled() {
-        // Determine how much of the progress meter to show
-        int i = this.currentValue;
-        int j = this.maxValue;
-        return j != 0 && i != 0 ? (int)(16.0D * ((double)i / (double)j)) : 0;
+        // Determine how much of the progress meter to show, clamped to the meter's width
+        return ProgressUtils.scaledProgress(this.currentValue, this.maxValue, 16);
     }
 }
