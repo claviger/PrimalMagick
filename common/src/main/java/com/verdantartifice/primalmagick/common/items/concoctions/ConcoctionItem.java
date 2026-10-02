@@ -60,7 +60,7 @@ public class ConcoctionItem extends Item {
             }
             return InteractionResult.SUCCESS;
         } else {
-            return InteractionResult.PASS;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
     };
     public static final CauldronInteraction FILL_WATER_CAULDRON = (BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) -> {
@@ -76,7 +76,7 @@ public class ConcoctionItem extends Item {
             }
             return InteractionResult.SUCCESS;
         } else {
-            return InteractionResult.PASS;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
     };
     

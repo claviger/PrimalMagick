@@ -27,6 +27,8 @@ import com.verdantartifice.primalmagick.test.capabilities.ItemHandlerTests;
 import com.verdantartifice.primalmagick.test.crafting.RepairTests;
 import com.verdantartifice.primalmagick.test.crafting.EarthshatterHammerTests;
 import com.verdantartifice.primalmagick.test.crafting.RunecarvingTests;
+import com.verdantartifice.primalmagick.test.blocks.RitualCandleTests;
+import com.verdantartifice.primalmagick.test.blocks.RitualPropTests;
 import com.verdantartifice.primalmagick.test.crafting.WandInscriptionTests;
 import com.verdantartifice.primalmagick.test.crafting.CraftingRequirementsTests;
 import com.verdantartifice.primalmagick.test.crafting.CalcinatorTests;
@@ -648,6 +650,16 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_REPLACE_ITEM_ON_EMPTY_SLOT = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_replace_item_on_empty_slot", () -> RitualAltarTests::ritual_altar_replace_item_on_empty_slot);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_REPLACE_ITEM_WITH_EMPTY_STACK = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_replace_item_with_empty_stack", () -> RitualAltarTests::ritual_altar_replace_item_with_empty_stack);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_ALTAR_FINISH_CRAFT_WITH_EMPTY_SLOT_DOES_NOT_THROW = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_altar_finish_craft_with_empty_slot_does_not_throw", () -> RitualAltarTests::ritual_altar_finish_craft_with_empty_slot_does_not_throw);
+
+    // Ritual candle tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_CANDLE_EXTINGUISHED_BY_EMPTY_HAND = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_candle_extinguished_by_empty_hand", () -> RitualCandleTests::ritual_candle_extinguished_by_empty_hand);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_CANDLE_LIT_BY_FLINT_AND_STEEL = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_candle_lit_by_flint_and_steel", () -> RitualCandleTests::ritual_candle_lit_by_flint_and_steel);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RITUAL_CANDLE_EMPTY_HAND_ON_UNLIT_DOES_NOTHING = Services.TEST_FUNCTIONS_REGISTRY.register("ritual_candle_empty_hand_on_unlit_does_nothing", () -> RitualCandleTests::ritual_candle_empty_hand_on_unlit_does_nothing);
+
+    // Ritual prop tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INCENSE_BRAZIER_EXTINGUISHED_BY_EMPTY_HAND = Services.TEST_FUNCTIONS_REGISTRY.register("incense_brazier_extinguished_by_empty_hand", () -> RitualPropTests::incense_brazier_extinguished_by_empty_hand);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SANGUINE_CRUCIBLE_CORE_REMOVED_BY_SNEAKING_EMPTY_HAND = Services.TEST_FUNCTIONS_REGISTRY.register("sanguine_crucible_core_removed_by_sneaking_empty_hand", () -> RitualPropTests::sanguine_crucible_core_removed_by_sneaking_empty_hand);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> BLOODLETTER_FILLED_BY_EMPTY_HAND = Services.TEST_FUNCTIONS_REGISTRY.register("bloodletter_filled_by_empty_hand", () -> RitualPropTests::bloodletter_filled_by_empty_hand);
 
     // Infernal furnace tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = Services.TEST_FUNCTIONS_REGISTRY.register("infernal_furnace_lava_bucket_fuel_leaves_empty_bucket", () -> InfernalFurnaceTests::infernal_furnace_lava_bucket_fuel_leaves_empty_bucket);
