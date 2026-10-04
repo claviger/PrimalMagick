@@ -1,17 +1,35 @@
 package com.verdantartifice.primalmagick.test.worldgen;
 
+import com.verdantartifice.primalmagick.Constants;
+import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import com.verdantartifice.primalmagick.test.AbstractBaseTest;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtAccounter;
+import net.minecraft.nbt.NbtIo;
+import net.minecraft.nbt.NbtUtils;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Tests for the mod's world generation data.
@@ -19,6 +37,54 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 public class WorldgenTests extends AbstractBaseTest {
     private static final BlockPos GROUND_POS = new BlockPos(3, 0, 3);
     private static final BlockPos TREE_POS = GROUND_POS.above();
+
+    /**
+     * Every block named in a mod structure template's palette must still be registered once the template has been
+     * run through the vanilla structure data fixers; an unknown name silently loads as air.
+     */
+    public static void structure_templates_reference_known_blocks(GameTestHelper helper) {
+        var server = helper.getLevel().getServer();
+        Map<Identifier, Resource> resources = server.getResourceManager().listResources("structure",
+                loc -> loc.getNamespace().equals(Constants.MOD_ID) && loc.getPath().endsWith(".nbt"));
+        assertFalse(helper, resources.isEmpty(), "No mod structure templates found");
+        List<String> unknown = new ArrayList<>();
+        resources.forEach((loc, resource) -> {
+            CompoundTag tag;
+            try (InputStream input = resource.open()) {
+                tag = NbtIo.readCompressed(input, NbtAccounter.unlimitedHeap());
+            } catch (IOException e) {
+                unknown.add(loc + " (unreadable: " + e.getMessage() + ")");
+                return;
+            }
+            tag = DataFixTypes.STRUCTURE.updateToCurrentVersion(server.getFixerUpper(), tag, NbtUtils.getDataVersion(tag, 500));
+            List<ListTag> palettes = new ArrayList<>();
+            tag.getList("palette").ifPresent(palettes::add);
+            tag.getList("palettes").ifPresent(list -> list.stream().forEach(t -> t.asList().ifPresent(palettes::add)));
+            for (ListTag palette : palettes) {
+                palette.compoundStream().forEach(entry -> {
+                    String name = entry.getStringOr("Name", "");
+                    if (!BuiltInRegistries.BLOCK.containsKey(Identifier.parse(name))) {
+                        unknown.add(loc + " -> " + name);
+                    }
+                });
+            }
+        });
+        assertTrue(helper, unknown.isEmpty(), "Structure templates reference unregistered blocks: " + unknown);
+        helper.succeed();
+    }
+
+    /**
+     * The bottom layer of a structure template must contain the expected number of the given block, so that its
+     * floor, and the water pools on top of it, are placed intact.
+     */
+    public static void template_has_floor(GameTestHelper helper, String templateName, Block floorBlock, int expectedCount) {
+        StructureTemplate template = helper.getLevel().getStructureManager().getOrCreate(ResourceUtils.loc(templateName));
+        long floorCount = template.filterBlocks(BlockPos.ZERO, new StructurePlaceSettings(), floorBlock, false).stream()
+                .filter(info -> info.pos().getY() == 0)
+                .count();
+        assertValueEqual(helper, (long)expectedCount, floorCount, "Number of " + BuiltInRegistries.BLOCK.getKey(floorBlock) + " blocks in the bottom layer of " + templateName);
+        helper.succeed();
+    }
 
     /**
      * A sapling planted on a grass block must be able to stay there, and bonemealing it must grow its tree.
