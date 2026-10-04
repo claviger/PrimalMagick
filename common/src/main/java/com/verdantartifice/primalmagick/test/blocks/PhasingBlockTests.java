@@ -46,4 +46,17 @@ public class PhasingBlockTests extends AbstractBaseTest {
     public static void moonwood_phase_is_full_at_night(GameTestHelper helper) {
         assertPhase(helper, BlocksPM.MOONWOOD_LOG.get(), BlocksPM.MOONWOOD_LEAVES.get(), TimePhase.FADED, TimePhase.FULL);
     }
+
+    public static void phase_from_fraction(GameTestHelper helper, float fraction, TimePhase expected) {
+        assertValueEqual(helper, expected, TimePhase.getPhaseFromFraction(fraction), "Phase for turn fraction " + fraction);
+        helper.succeed();
+    }
+
+    public static void fixed_time_phases(GameTestHelper helper, float skyLightLevel, TimePhase expectedSun, TimePhase expectedMoon) {
+        // The moon sits half a turn from the sun
+        float sunFraction = TimePhase.getFixedTimeSunFraction(skyLightLevel);
+        assertValueEqual(helper, expectedSun, TimePhase.getPhaseFromFraction(sunFraction), "Sun phase for sky light level " + skyLightLevel);
+        assertValueEqual(helper, expectedMoon, TimePhase.getPhaseFromFraction(sunFraction + 0.5F), "Moon phase for sky light level " + skyLightLevel);
+        helper.succeed();
+    }
 }

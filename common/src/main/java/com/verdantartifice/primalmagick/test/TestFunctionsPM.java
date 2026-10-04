@@ -1,6 +1,7 @@
 package com.verdantartifice.primalmagick.test;
 
 import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
+import com.verdantartifice.primalmagick.common.blockstates.properties.TimePhase;
 import com.verdantartifice.primalmagick.common.concoctions.ConcoctionType;
 import com.verdantartifice.primalmagick.common.concoctions.FuseType;
 import com.verdantartifice.primalmagick.common.damagesource.DamageSourcesPM;
@@ -684,6 +685,17 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUNWOOD_PHASE_FADED_NIGHT = Services.TEST_FUNCTIONS_REGISTRY.register("sunwood_phase_is_faded_at_night", () -> PhasingBlockTests::sunwood_phase_is_faded_at_night);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOONWOOD_PHASE_FADED_DAY = Services.TEST_FUNCTIONS_REGISTRY.register("moonwood_phase_is_faded_during_day", () -> PhasingBlockTests::moonwood_phase_is_faded_during_day);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOONWOOD_PHASE_FULL_NIGHT = Services.TEST_FUNCTIONS_REGISTRY.register("moonwood_phase_is_full_at_night", () -> PhasingBlockTests::moonwood_phase_is_full_at_night);
+
+    // One turn fraction inside each phase bucket; fixed-time dimensions use the night (4) or day (15) sky light level
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> PHASE_FROM_FRACTION_NOON = Services.TEST_FUNCTIONS_REGISTRY.register("phase_from_fraction_noon", () -> (helper) -> PhasingBlockTests.phase_from_fraction(helper, 0.0F, TimePhase.FULL));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> PHASE_FROM_FRACTION_BEFORE_SUNSET = Services.TEST_FUNCTIONS_REGISTRY.register("phase_from_fraction_before_sunset", () -> (helper) -> PhasingBlockTests.phase_from_fraction(helper, 0.2F, TimePhase.WAXING));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> PHASE_FROM_FRACTION_AFTER_SUNSET = Services.TEST_FUNCTIONS_REGISTRY.register("phase_from_fraction_after_sunset", () -> (helper) -> PhasingBlockTests.phase_from_fraction(helper, 0.28F, TimePhase.WANING));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> PHASE_FROM_FRACTION_MIDNIGHT = Services.TEST_FUNCTIONS_REGISTRY.register("phase_from_fraction_midnight", () -> (helper) -> PhasingBlockTests.phase_from_fraction(helper, 0.5F, TimePhase.FADED));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> PHASE_FROM_FRACTION_BEFORE_SUNRISE = Services.TEST_FUNCTIONS_REGISTRY.register("phase_from_fraction_before_sunrise", () -> (helper) -> PhasingBlockTests.phase_from_fraction(helper, 0.7F, TimePhase.WANING));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> PHASE_FROM_FRACTION_AFTER_SUNRISE = Services.TEST_FUNCTIONS_REGISTRY.register("phase_from_fraction_after_sunrise", () -> (helper) -> PhasingBlockTests.phase_from_fraction(helper, 0.78F, TimePhase.WAXING));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> PHASE_FROM_FRACTION_MORNING = Services.TEST_FUNCTIONS_REGISTRY.register("phase_from_fraction_morning", () -> (helper) -> PhasingBlockTests.phase_from_fraction(helper, 0.9F, TimePhase.FULL));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> NETHER_FIXED_TIME_PHASES = Services.TEST_FUNCTIONS_REGISTRY.register("nether_fixed_time_phases", () -> (helper) -> PhasingBlockTests.fixed_time_phases(helper, 4.0F, TimePhase.FADED, TimePhase.FULL));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> END_FIXED_TIME_PHASES = Services.TEST_FUNCTIONS_REGISTRY.register("end_fixed_time_phases", () -> (helper) -> PhasingBlockTests.fixed_time_phases(helper, 15.0F, TimePhase.FULL, TimePhase.FADED));
 
     // Environmental research tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUNLIGHT_SCAN_REQUIRES_DAY = Services.TEST_FUNCTIONS_REGISTRY.register("sunlight_scan_requires_day", () -> EnvironmentalResearchTests::sunlight_scan_requires_day);
