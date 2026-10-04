@@ -239,6 +239,10 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> MANA_ARROWS_FIRED_FROM_DISPENSER_VOID = createInstanceKey("mana_arrows_fired_from_dispenser_void");
     public static final ResourceKey<GameTestInstance> MANA_ARROWS_FIRED_FROM_DISPENSER_HALLOWED = createInstanceKey("mana_arrows_fired_from_dispenser_hallowed");
 
+    // Dowsing rod tests
+    public static final ResourceKey<GameTestInstance> DOWSING_ROD_BLOCK_CLICK_DOES_NOT_CLEAR_POSITIONS = createInstanceKey("dowsing_rod_block_click_does_not_clear_positions");
+    public static final ResourceKey<GameTestInstance> DOWSING_ROD_CLEARS_POSITIONS_WHEN_USED_ON_AIR = createInstanceKey("dowsing_rod_clears_positions_when_used_on_air");
+
     // Essence tests
     public static final ResourceKey<GameTestInstance> ESSENCE_ITEM_LOOKUP_DUST = createInstanceKey("essence_item_lookup_dust");
     public static final ResourceKey<GameTestInstance> ESSENCE_ITEM_LOOKUP_SHARD = createInstanceKey("essence_item_lookup_shard");
@@ -604,6 +608,7 @@ public class TestInstancesPM {
         registerFtuxTests(context);
         registerBeeswaxItemTests(context);
         registerDispenserItemTests(context);
+        registerDowsingRodTests(context);
         registerEssenceTests(context);
         registerConcoctionTests(context);
         registerWandManaTests(context);
@@ -996,6 +1001,11 @@ public class TestInstancesPM {
         registerFunction(context, MANA_ARROWS_FIRED_FROM_DISPENSER_INFERNAL, TestFunctionsPM.MANA_ARROWS_FIRED_FROM_DISPENSER_INFERNAL.getKey());
         registerFunction(context, MANA_ARROWS_FIRED_FROM_DISPENSER_VOID, TestFunctionsPM.MANA_ARROWS_FIRED_FROM_DISPENSER_VOID.getKey());
         registerFunction(context, MANA_ARROWS_FIRED_FROM_DISPENSER_HALLOWED, TestFunctionsPM.MANA_ARROWS_FIRED_FROM_DISPENSER_HALLOWED.getKey());
+    }
+
+    public static void registerDowsingRodTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, DOWSING_ROD_BLOCK_CLICK_DOES_NOT_CLEAR_POSITIONS, TestFunctionsPM.DOWSING_ROD_BLOCK_CLICK_DOES_NOT_CLEAR_POSITIONS.getKey());
+        registerFunction(context, DOWSING_ROD_CLEARS_POSITIONS_WHEN_USED_ON_AIR, TestFunctionsPM.DOWSING_ROD_CLEARS_POSITIONS_WHEN_USED_ON_AIR.getKey());
     }
 
     public static void registerBeeswaxItemTests(BootstrapContext<GameTestInstance> context) {

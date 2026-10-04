@@ -37,6 +37,16 @@ public abstract class AbstractBaseTest {
                 return true;
             }
         };
+        attachMockConnection(helper, player, cookie, joinLevel);
+        return player;
+    }
+
+    /**
+     * Gives a mock server player a working network connection, optionally adding it to the test level. Tests that
+     * need a custom {@link ServerPlayer} subclass can construct it themselves and pass it here.
+     */
+    protected static void attachMockConnection(GameTestHelper helper, ServerPlayer player, CommonListenerCookie cookie, boolean joinLevel) {
+        ServerLevel level = helper.getLevel();
         Connection connection = new Connection(PacketFlow.SERVERBOUND);
         new EmbeddedChannel(new ChannelHandler[]{connection});
         MinecraftServer server = level.getServer();
@@ -47,7 +57,6 @@ public abstract class AbstractBaseTest {
         if (joinLevel) {
             helper.getLevel().getServer().getPlayerList().placeNewPlayer(connection, player, cookie);
         }
-        return player;
     }
 
     protected static void assertTrue(GameTestHelper helper, boolean condition, String failureMessage) {

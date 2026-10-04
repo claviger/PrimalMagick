@@ -39,6 +39,7 @@ import com.verdantartifice.primalmagick.test.ftux.FtuxTests;
 import com.verdantartifice.primalmagick.test.items.WandComponentTests;
 import com.verdantartifice.primalmagick.test.items.WandManaTests;
 import com.verdantartifice.primalmagick.test.items.DispenserTests;
+import com.verdantartifice.primalmagick.test.items.DowsingRodTests;
 import com.verdantartifice.primalmagick.test.items.BeeswaxTests;
 import com.verdantartifice.primalmagick.test.items.EssenceTests;
 import com.verdantartifice.primalmagick.test.items.ConcoctionTests;
@@ -309,6 +310,10 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_ARROWS_FIRED_FROM_DISPENSER_INFERNAL = Services.TEST_FUNCTIONS_REGISTRY.register("mana_arrows_fired_from_dispenser_infernal", () -> (helper) -> DispenserTests.mana_arrows_fired_from_dispenser(helper, ItemsPM.MANA_ARROW_INFERNAL.get()));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_ARROWS_FIRED_FROM_DISPENSER_VOID = Services.TEST_FUNCTIONS_REGISTRY.register("mana_arrows_fired_from_dispenser_void", () -> (helper) -> DispenserTests.mana_arrows_fired_from_dispenser(helper, ItemsPM.MANA_ARROW_VOID.get()));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_ARROWS_FIRED_FROM_DISPENSER_HALLOWED = Services.TEST_FUNCTIONS_REGISTRY.register("mana_arrows_fired_from_dispenser_hallowed", () -> (helper) -> DispenserTests.mana_arrows_fired_from_dispenser(helper, ItemsPM.MANA_ARROW_HALLOWED.get()));
+
+    // Dowsing rod tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> DOWSING_ROD_BLOCK_CLICK_DOES_NOT_CLEAR_POSITIONS = Services.TEST_FUNCTIONS_REGISTRY.register("dowsing_rod_block_click_does_not_clear_positions", () -> DowsingRodTests::dowsing_rod_block_click_does_not_clear_positions);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> DOWSING_ROD_CLEARS_POSITIONS_WHEN_USED_ON_AIR = Services.TEST_FUNCTIONS_REGISTRY.register("dowsing_rod_clears_positions_when_used_on_air", () -> DowsingRodTests::dowsing_rod_clears_positions_when_used_on_air);
 
     // Essence tests
     // Spot checks pin the Earth and Hallowed essences of each type to their registered items
