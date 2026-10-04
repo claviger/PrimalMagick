@@ -599,6 +599,27 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> MOONWOOD_PLACED_FEATURE_PLACES_TREE = createInstanceKey("moonwood_placed_feature_places_tree");
     public static final ResourceKey<GameTestInstance> HALLOWOOD_PLACED_FEATURE_PLACES_TREE = createInstanceKey("hallowood_placed_feature_places_tree");
 
+    // Phasing block tests
+    public static final ResourceKey<GameTestInstance> SUNWOOD_PHASE_FULL_DAY = createInstanceKey("sunwood_phase_is_full_during_day");
+    public static final ResourceKey<GameTestInstance> SUNWOOD_PHASE_FADED_NIGHT = createInstanceKey("sunwood_phase_is_faded_at_night");
+    public static final ResourceKey<GameTestInstance> MOONWOOD_PHASE_FADED_DAY = createInstanceKey("moonwood_phase_is_faded_during_day");
+    public static final ResourceKey<GameTestInstance> MOONWOOD_PHASE_FULL_NIGHT = createInstanceKey("moonwood_phase_is_full_at_night");
+    public static final ResourceKey<GameTestInstance> PHASE_FROM_FRACTION_NOON = createInstanceKey("phase_from_fraction_noon");
+    public static final ResourceKey<GameTestInstance> PHASE_FROM_FRACTION_BEFORE_SUNSET = createInstanceKey("phase_from_fraction_before_sunset");
+    public static final ResourceKey<GameTestInstance> PHASE_FROM_FRACTION_AFTER_SUNSET = createInstanceKey("phase_from_fraction_after_sunset");
+    public static final ResourceKey<GameTestInstance> PHASE_FROM_FRACTION_MIDNIGHT = createInstanceKey("phase_from_fraction_midnight");
+    public static final ResourceKey<GameTestInstance> PHASE_FROM_FRACTION_BEFORE_SUNRISE = createInstanceKey("phase_from_fraction_before_sunrise");
+    public static final ResourceKey<GameTestInstance> PHASE_FROM_FRACTION_AFTER_SUNRISE = createInstanceKey("phase_from_fraction_after_sunrise");
+    public static final ResourceKey<GameTestInstance> PHASE_FROM_FRACTION_MORNING = createInstanceKey("phase_from_fraction_morning");
+    public static final ResourceKey<GameTestInstance> NETHER_FIXED_TIME_PHASES = createInstanceKey("nether_fixed_time_phases");
+    public static final ResourceKey<GameTestInstance> END_FIXED_TIME_PHASES = createInstanceKey("end_fixed_time_phases");
+
+    // Environmental research tests
+    public static final ResourceKey<GameTestInstance> SUNLIGHT_SCAN_REQUIRES_DAY = createInstanceKey("sunlight_scan_requires_day");
+    public static final ResourceKey<GameTestInstance> SUNLIGHT_SCAN_SUCCEEDS_DURING_DAY = createInstanceKey("sunlight_scan_succeeds_during_day");
+    public static final ResourceKey<GameTestInstance> MOONLIGHT_SCAN_REQUIRES_NIGHT = createInstanceKey("moonlight_scan_requires_night");
+    public static final ResourceKey<GameTestInstance> MOONLIGHT_SCAN_SUCCEEDS_AT_NIGHT = createInstanceKey("moonlight_scan_succeeds_at_night");
+
     public static void bootstrap(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, CANARY, TestFunctionsPM.CANARY.getKey());
         registerAttunementBuffTests(context);
@@ -640,6 +661,8 @@ public class TestInstancesPM {
         registerInfernalFurnaceTests(context);
         registerProgressUtilsTests(context);
         registerWorldgenTests(context);
+        registerPhasingBlockTests(context);
+        registerEnvironmentalResearchTests(context);
     }
 
     public static void registerWandChargerTests(BootstrapContext<GameTestInstance> context) {
@@ -704,6 +727,29 @@ public class TestInstancesPM {
         registerFunction(context, SUNWOOD_PLACED_FEATURE_PLACES_TREE, TestFunctionsPM.SUNWOOD_PLACED_FEATURE_PLACES_TREE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
         registerFunction(context, MOONWOOD_PLACED_FEATURE_PLACES_TREE, TestFunctionsPM.MOONWOOD_PLACED_FEATURE_PLACES_TREE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
         registerFunction(context, HALLOWOOD_PLACED_FEATURE_PLACES_TREE, TestFunctionsPM.HALLOWOOD_PLACED_FEATURE_PLACES_TREE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+    }
+
+    public static void registerPhasingBlockTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SUNWOOD_PHASE_FULL_DAY, TestFunctionsPM.SUNWOOD_PHASE_FULL_DAY.getKey(), TestEnvironmentsPM.DAYTIME_ENV);
+        registerFunction(context, SUNWOOD_PHASE_FADED_NIGHT, TestFunctionsPM.SUNWOOD_PHASE_FADED_NIGHT.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV);
+        registerFunction(context, MOONWOOD_PHASE_FADED_DAY, TestFunctionsPM.MOONWOOD_PHASE_FADED_DAY.getKey(), TestEnvironmentsPM.DAYTIME_ENV);
+        registerFunction(context, MOONWOOD_PHASE_FULL_NIGHT, TestFunctionsPM.MOONWOOD_PHASE_FULL_NIGHT.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV);
+        registerFunction(context, PHASE_FROM_FRACTION_NOON, TestFunctionsPM.PHASE_FROM_FRACTION_NOON.getKey());
+        registerFunction(context, PHASE_FROM_FRACTION_BEFORE_SUNSET, TestFunctionsPM.PHASE_FROM_FRACTION_BEFORE_SUNSET.getKey());
+        registerFunction(context, PHASE_FROM_FRACTION_AFTER_SUNSET, TestFunctionsPM.PHASE_FROM_FRACTION_AFTER_SUNSET.getKey());
+        registerFunction(context, PHASE_FROM_FRACTION_MIDNIGHT, TestFunctionsPM.PHASE_FROM_FRACTION_MIDNIGHT.getKey());
+        registerFunction(context, PHASE_FROM_FRACTION_BEFORE_SUNRISE, TestFunctionsPM.PHASE_FROM_FRACTION_BEFORE_SUNRISE.getKey());
+        registerFunction(context, PHASE_FROM_FRACTION_AFTER_SUNRISE, TestFunctionsPM.PHASE_FROM_FRACTION_AFTER_SUNRISE.getKey());
+        registerFunction(context, PHASE_FROM_FRACTION_MORNING, TestFunctionsPM.PHASE_FROM_FRACTION_MORNING.getKey());
+        registerFunction(context, NETHER_FIXED_TIME_PHASES, TestFunctionsPM.NETHER_FIXED_TIME_PHASES.getKey());
+        registerFunction(context, END_FIXED_TIME_PHASES, TestFunctionsPM.END_FIXED_TIME_PHASES.getKey());
+    }
+
+    public static void registerEnvironmentalResearchTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SUNLIGHT_SCAN_REQUIRES_DAY, TestFunctionsPM.SUNLIGHT_SCAN_REQUIRES_DAY.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV);
+        registerFunction(context, SUNLIGHT_SCAN_SUCCEEDS_DURING_DAY, TestFunctionsPM.SUNLIGHT_SCAN_SUCCEEDS_DURING_DAY.getKey(), TestEnvironmentsPM.DAYTIME_ENV);
+        registerFunction(context, MOONLIGHT_SCAN_REQUIRES_NIGHT, TestFunctionsPM.MOONLIGHT_SCAN_REQUIRES_NIGHT.getKey(), TestEnvironmentsPM.DAYTIME_ENV);
+        registerFunction(context, MOONLIGHT_SCAN_SUCCEEDS_AT_NIGHT, TestFunctionsPM.MOONLIGHT_SCAN_SUCCEEDS_AT_NIGHT.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV);
     }
 
     public static void registerInfernalFurnaceTests(BootstrapContext<GameTestInstance> context) {
