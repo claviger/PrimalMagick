@@ -587,6 +587,18 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_NEGATIVE_CURRENT = createInstanceKey("scaled_progress_negative_current");
     public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_ARROW = createInstanceKey("scaled_progress_arrow");
 
+    // Worldgen tests
+    public static final ResourceKey<GameTestInstance> STRUCTURE_TEMPLATES_REFERENCE_KNOWN_BLOCKS = createInstanceKey("structure_templates_reference_known_blocks");
+    public static final ResourceKey<GameTestInstance> SHRINE_TEMPLATE_HAS_MARBLE_FLOOR = createInstanceKey("shrine_template_has_marble_floor");
+    public static final ResourceKey<GameTestInstance> LIBRARY_TEMPLATE_HAS_MARBLE_FLOOR = createInstanceKey("library_template_has_marble_floor");
+    public static final ResourceKey<GameTestInstance> NETHER_LIBRARY_TEMPLATE_HAS_SMOKED_MARBLE_FLOOR = createInstanceKey("nether_library_template_has_smoked_marble_floor");
+    public static final ResourceKey<GameTestInstance> SUNWOOD_SAPLING_GROWS_TREE = createInstanceKey("sunwood_sapling_grows_tree");
+    public static final ResourceKey<GameTestInstance> MOONWOOD_SAPLING_GROWS_TREE = createInstanceKey("moonwood_sapling_grows_tree");
+    public static final ResourceKey<GameTestInstance> HALLOWOOD_SAPLING_GROWS_TREE = createInstanceKey("hallowood_sapling_grows_tree");
+    public static final ResourceKey<GameTestInstance> SUNWOOD_PLACED_FEATURE_PLACES_TREE = createInstanceKey("sunwood_placed_feature_places_tree");
+    public static final ResourceKey<GameTestInstance> MOONWOOD_PLACED_FEATURE_PLACES_TREE = createInstanceKey("moonwood_placed_feature_places_tree");
+    public static final ResourceKey<GameTestInstance> HALLOWOOD_PLACED_FEATURE_PLACES_TREE = createInstanceKey("hallowood_placed_feature_places_tree");
+
     public static void bootstrap(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, CANARY, TestFunctionsPM.CANARY.getKey());
         registerAttunementBuffTests(context);
@@ -627,6 +639,7 @@ public class TestInstancesPM {
         registerRitualPropTests(context);
         registerInfernalFurnaceTests(context);
         registerProgressUtilsTests(context);
+        registerWorldgenTests(context);
     }
 
     public static void registerWandChargerTests(BootstrapContext<GameTestInstance> context) {
@@ -678,6 +691,19 @@ public class TestInstancesPM {
         registerFunction(context, SCALED_PROGRESS_TRUNCATES, TestFunctionsPM.SCALED_PROGRESS_TRUNCATES.getKey());
         registerFunction(context, SCALED_PROGRESS_NEGATIVE_CURRENT, TestFunctionsPM.SCALED_PROGRESS_NEGATIVE_CURRENT.getKey());
         registerFunction(context, SCALED_PROGRESS_ARROW, TestFunctionsPM.SCALED_PROGRESS_ARROW.getKey());
+    }
+
+    public static void registerWorldgenTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, STRUCTURE_TEMPLATES_REFERENCE_KNOWN_BLOCKS, TestFunctionsPM.STRUCTURE_TEMPLATES_REFERENCE_KNOWN_BLOCKS.getKey());
+        registerFunction(context, SHRINE_TEMPLATE_HAS_MARBLE_FLOOR, TestFunctionsPM.SHRINE_TEMPLATE_HAS_MARBLE_FLOOR.getKey());
+        registerFunction(context, LIBRARY_TEMPLATE_HAS_MARBLE_FLOOR, TestFunctionsPM.LIBRARY_TEMPLATE_HAS_MARBLE_FLOOR.getKey());
+        registerFunction(context, NETHER_LIBRARY_TEMPLATE_HAS_SMOKED_MARBLE_FLOOR, TestFunctionsPM.NETHER_LIBRARY_TEMPLATE_HAS_SMOKED_MARBLE_FLOOR.getKey());
+        registerFunction(context, SUNWOOD_SAPLING_GROWS_TREE, TestFunctionsPM.SUNWOOD_SAPLING_GROWS_TREE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+        registerFunction(context, MOONWOOD_SAPLING_GROWS_TREE, TestFunctionsPM.MOONWOOD_SAPLING_GROWS_TREE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+        registerFunction(context, HALLOWOOD_SAPLING_GROWS_TREE, TestFunctionsPM.HALLOWOOD_SAPLING_GROWS_TREE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+        registerFunction(context, SUNWOOD_PLACED_FEATURE_PLACES_TREE, TestFunctionsPM.SUNWOOD_PLACED_FEATURE_PLACES_TREE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+        registerFunction(context, MOONWOOD_PLACED_FEATURE_PLACES_TREE, TestFunctionsPM.MOONWOOD_PLACED_FEATURE_PLACES_TREE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+        registerFunction(context, HALLOWOOD_PLACED_FEATURE_PLACES_TREE, TestFunctionsPM.HALLOWOOD_PLACED_FEATURE_PLACES_TREE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
     }
 
     public static void registerInfernalFurnaceTests(BootstrapContext<GameTestInstance> context) {

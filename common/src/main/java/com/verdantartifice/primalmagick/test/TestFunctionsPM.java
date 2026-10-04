@@ -60,6 +60,8 @@ import com.verdantartifice.primalmagick.test.tiles.ManaBatteryTests;
 import com.verdantartifice.primalmagick.test.tiles.AutoChargerTests;
 import com.verdantartifice.primalmagick.test.tiles.ChargeableItem;
 import com.verdantartifice.primalmagick.test.util.ProgressUtilsTests;
+import com.verdantartifice.primalmagick.common.worldgen.features.PlacedFeaturesPM;
+import com.verdantartifice.primalmagick.test.worldgen.WorldgenTests;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.EntityType;
@@ -681,4 +683,16 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_TRUNCATES = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_truncates", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 49, 50, 15));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_NEGATIVE_CURRENT = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_negative_current", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, -5, 50, 0));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_ARROW = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_arrow", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 12, 24, 24, 12));
+
+    // Worldgen tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> STRUCTURE_TEMPLATES_REFERENCE_KNOWN_BLOCKS = Services.TEST_FUNCTIONS_REGISTRY.register("structure_templates_reference_known_blocks", () -> WorldgenTests::structure_templates_reference_known_blocks);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SHRINE_TEMPLATE_HAS_MARBLE_FLOOR = Services.TEST_FUNCTIONS_REGISTRY.register("shrine_template_has_marble_floor", () -> (helper) -> WorldgenTests.template_has_floor(helper, "shrine", BlocksPM.MARBLE.get(), 93));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> LIBRARY_TEMPLATE_HAS_MARBLE_FLOOR = Services.TEST_FUNCTIONS_REGISTRY.register("library_template_has_marble_floor", () -> (helper) -> WorldgenTests.template_has_floor(helper, "library/default", BlocksPM.MARBLE.get(), 88));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> NETHER_LIBRARY_TEMPLATE_HAS_SMOKED_MARBLE_FLOOR = Services.TEST_FUNCTIONS_REGISTRY.register("nether_library_template_has_smoked_marble_floor", () -> (helper) -> WorldgenTests.template_has_floor(helper, "library/nether", BlocksPM.MARBLE_SMOKED.get(), 88));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUNWOOD_SAPLING_GROWS_TREE = Services.TEST_FUNCTIONS_REGISTRY.register("sunwood_sapling_grows_tree", () -> (helper) -> WorldgenTests.sapling_grows_tree(helper, BlocksPM.SUNWOOD_SAPLING.get(), BlocksPM.SUNWOOD_LOG.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOONWOOD_SAPLING_GROWS_TREE = Services.TEST_FUNCTIONS_REGISTRY.register("moonwood_sapling_grows_tree", () -> (helper) -> WorldgenTests.sapling_grows_tree(helper, BlocksPM.MOONWOOD_SAPLING.get(), BlocksPM.MOONWOOD_LOG.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> HALLOWOOD_SAPLING_GROWS_TREE = Services.TEST_FUNCTIONS_REGISTRY.register("hallowood_sapling_grows_tree", () -> (helper) -> WorldgenTests.sapling_grows_tree(helper, BlocksPM.HALLOWOOD_SAPLING.get(), BlocksPM.HALLOWOOD_LOG.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUNWOOD_PLACED_FEATURE_PLACES_TREE = Services.TEST_FUNCTIONS_REGISTRY.register("sunwood_placed_feature_places_tree", () -> (helper) -> WorldgenTests.placed_feature_places_tree(helper, PlacedFeaturesPM.TREE_SUNWOOD_FULL_CHECKED, BlocksPM.SUNWOOD_LOG.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOONWOOD_PLACED_FEATURE_PLACES_TREE = Services.TEST_FUNCTIONS_REGISTRY.register("moonwood_placed_feature_places_tree", () -> (helper) -> WorldgenTests.placed_feature_places_tree(helper, PlacedFeaturesPM.TREE_MOONWOOD_FULL_CHECKED, BlocksPM.MOONWOOD_LOG.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> HALLOWOOD_PLACED_FEATURE_PLACES_TREE = Services.TEST_FUNCTIONS_REGISTRY.register("hallowood_placed_feature_places_tree", () -> (helper) -> WorldgenTests.placed_feature_places_tree(helper, PlacedFeaturesPM.TREE_HALLOWOOD_CHECKED, BlocksPM.HALLOWOOD_LOG.get()));
 }
