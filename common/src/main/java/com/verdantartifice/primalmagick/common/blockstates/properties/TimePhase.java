@@ -1,6 +1,7 @@
 package com.verdantartifice.primalmagick.common.blockstates.properties;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.level.LevelReader;
@@ -33,7 +34,10 @@ public enum TimePhase implements StringRepresentable {
         return getPhaseFromAngle(world.environmentAttributes().getValue(EnvironmentAttributes.MOON_ANGLE, pos));
     }
 
-    private static TimePhase getPhaseFromAngle(float angle) {
+    private static TimePhase getPhaseFromAngle(float degrees) {
+        // Celestial angles are in degrees, zero at the body's zenith, and the moon's runs from 180 to 540; reduce
+        // them to a fraction of a full turn
+        float angle = Mth.positiveModulo(degrees / 360.0F, 1.0F);
         if (angle < 0.1875F) {
             return FULL;    // Afternoon
         } else if (angle < 0.25F) {

@@ -27,6 +27,7 @@ import com.verdantartifice.primalmagick.test.capabilities.ItemHandlerTests;
 import com.verdantartifice.primalmagick.test.crafting.RepairTests;
 import com.verdantartifice.primalmagick.test.crafting.EarthshatterHammerTests;
 import com.verdantartifice.primalmagick.test.crafting.RunecarvingTests;
+import com.verdantartifice.primalmagick.test.blocks.PhasingBlockTests;
 import com.verdantartifice.primalmagick.test.blocks.RitualCandleTests;
 import com.verdantartifice.primalmagick.test.blocks.RitualPropTests;
 import com.verdantartifice.primalmagick.test.crafting.WandInscriptionTests;
@@ -45,6 +46,7 @@ import com.verdantartifice.primalmagick.test.items.ConcoctionTests;
 import com.verdantartifice.primalmagick.test.items.WardingModuleTests;
 import com.verdantartifice.primalmagick.test.loot.LootModifierTests;
 import com.verdantartifice.primalmagick.test.menus.RunescribingResultSlotTests;
+import com.verdantartifice.primalmagick.test.research.EnvironmentalResearchTests;
 import com.verdantartifice.primalmagick.test.research.ResearchTests;
 import com.verdantartifice.primalmagick.test.research.ResearchRequirementsTests;
 import com.verdantartifice.primalmagick.test.research.ResearchKeysTests;
@@ -676,4 +678,16 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_TRUNCATES = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_truncates", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 49, 50, 15));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_NEGATIVE_CURRENT = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_negative_current", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, -5, 50, 0));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCALED_PROGRESS_ARROW = Services.TEST_FUNCTIONS_REGISTRY.register("scaled_progress_arrow", () -> (helper) -> ProgressUtilsTests.scaled_progress(helper, 12, 24, 24, 12));
+
+    // Phasing block tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUNWOOD_PHASE_FULL_DAY = Services.TEST_FUNCTIONS_REGISTRY.register("sunwood_phase_is_full_during_day", () -> PhasingBlockTests::sunwood_phase_is_full_during_day);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUNWOOD_PHASE_FADED_NIGHT = Services.TEST_FUNCTIONS_REGISTRY.register("sunwood_phase_is_faded_at_night", () -> PhasingBlockTests::sunwood_phase_is_faded_at_night);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOONWOOD_PHASE_FADED_DAY = Services.TEST_FUNCTIONS_REGISTRY.register("moonwood_phase_is_faded_during_day", () -> PhasingBlockTests::moonwood_phase_is_faded_during_day);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOONWOOD_PHASE_FULL_NIGHT = Services.TEST_FUNCTIONS_REGISTRY.register("moonwood_phase_is_full_at_night", () -> PhasingBlockTests::moonwood_phase_is_full_at_night);
+
+    // Environmental research tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUNLIGHT_SCAN_REQUIRES_DAY = Services.TEST_FUNCTIONS_REGISTRY.register("sunlight_scan_requires_day", () -> EnvironmentalResearchTests::sunlight_scan_requires_day);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUNLIGHT_SCAN_SUCCEEDS_DURING_DAY = Services.TEST_FUNCTIONS_REGISTRY.register("sunlight_scan_succeeds_during_day", () -> EnvironmentalResearchTests::sunlight_scan_succeeds_during_day);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOONLIGHT_SCAN_REQUIRES_NIGHT = Services.TEST_FUNCTIONS_REGISTRY.register("moonlight_scan_requires_night", () -> EnvironmentalResearchTests::moonlight_scan_requires_night);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOONLIGHT_SCAN_SUCCEEDS_AT_NIGHT = Services.TEST_FUNCTIONS_REGISTRY.register("moonlight_scan_succeeds_at_night", () -> EnvironmentalResearchTests::moonlight_scan_succeeds_at_night);
 }

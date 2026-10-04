@@ -583,6 +583,18 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_NEGATIVE_CURRENT = createInstanceKey("scaled_progress_negative_current");
     public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_ARROW = createInstanceKey("scaled_progress_arrow");
 
+    // Phasing block tests
+    public static final ResourceKey<GameTestInstance> SUNWOOD_PHASE_FULL_DAY = createInstanceKey("sunwood_phase_is_full_during_day");
+    public static final ResourceKey<GameTestInstance> SUNWOOD_PHASE_FADED_NIGHT = createInstanceKey("sunwood_phase_is_faded_at_night");
+    public static final ResourceKey<GameTestInstance> MOONWOOD_PHASE_FADED_DAY = createInstanceKey("moonwood_phase_is_faded_during_day");
+    public static final ResourceKey<GameTestInstance> MOONWOOD_PHASE_FULL_NIGHT = createInstanceKey("moonwood_phase_is_full_at_night");
+
+    // Environmental research tests
+    public static final ResourceKey<GameTestInstance> SUNLIGHT_SCAN_REQUIRES_DAY = createInstanceKey("sunlight_scan_requires_day");
+    public static final ResourceKey<GameTestInstance> SUNLIGHT_SCAN_SUCCEEDS_DURING_DAY = createInstanceKey("sunlight_scan_succeeds_during_day");
+    public static final ResourceKey<GameTestInstance> MOONLIGHT_SCAN_REQUIRES_NIGHT = createInstanceKey("moonlight_scan_requires_night");
+    public static final ResourceKey<GameTestInstance> MOONLIGHT_SCAN_SUCCEEDS_AT_NIGHT = createInstanceKey("moonlight_scan_succeeds_at_night");
+
     public static void bootstrap(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, CANARY, TestFunctionsPM.CANARY.getKey());
         registerAttunementBuffTests(context);
@@ -622,6 +634,8 @@ public class TestInstancesPM {
         registerRitualPropTests(context);
         registerInfernalFurnaceTests(context);
         registerProgressUtilsTests(context);
+        registerPhasingBlockTests(context);
+        registerEnvironmentalResearchTests(context);
     }
 
     public static void registerWandChargerTests(BootstrapContext<GameTestInstance> context) {
@@ -673,6 +687,20 @@ public class TestInstancesPM {
         registerFunction(context, SCALED_PROGRESS_TRUNCATES, TestFunctionsPM.SCALED_PROGRESS_TRUNCATES.getKey());
         registerFunction(context, SCALED_PROGRESS_NEGATIVE_CURRENT, TestFunctionsPM.SCALED_PROGRESS_NEGATIVE_CURRENT.getKey());
         registerFunction(context, SCALED_PROGRESS_ARROW, TestFunctionsPM.SCALED_PROGRESS_ARROW.getKey());
+    }
+
+    public static void registerPhasingBlockTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SUNWOOD_PHASE_FULL_DAY, TestFunctionsPM.SUNWOOD_PHASE_FULL_DAY.getKey(), TestEnvironmentsPM.DAYTIME_ENV);
+        registerFunction(context, SUNWOOD_PHASE_FADED_NIGHT, TestFunctionsPM.SUNWOOD_PHASE_FADED_NIGHT.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV);
+        registerFunction(context, MOONWOOD_PHASE_FADED_DAY, TestFunctionsPM.MOONWOOD_PHASE_FADED_DAY.getKey(), TestEnvironmentsPM.DAYTIME_ENV);
+        registerFunction(context, MOONWOOD_PHASE_FULL_NIGHT, TestFunctionsPM.MOONWOOD_PHASE_FULL_NIGHT.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV);
+    }
+
+    public static void registerEnvironmentalResearchTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SUNLIGHT_SCAN_REQUIRES_DAY, TestFunctionsPM.SUNLIGHT_SCAN_REQUIRES_DAY.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV);
+        registerFunction(context, SUNLIGHT_SCAN_SUCCEEDS_DURING_DAY, TestFunctionsPM.SUNLIGHT_SCAN_SUCCEEDS_DURING_DAY.getKey(), TestEnvironmentsPM.DAYTIME_ENV);
+        registerFunction(context, MOONLIGHT_SCAN_REQUIRES_NIGHT, TestFunctionsPM.MOONLIGHT_SCAN_REQUIRES_NIGHT.getKey(), TestEnvironmentsPM.DAYTIME_ENV);
+        registerFunction(context, MOONLIGHT_SCAN_SUCCEEDS_AT_NIGHT, TestFunctionsPM.MOONLIGHT_SCAN_SUCCEEDS_AT_NIGHT.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV);
     }
 
     public static void registerInfernalFurnaceTests(BootstrapContext<GameTestInstance> context) {

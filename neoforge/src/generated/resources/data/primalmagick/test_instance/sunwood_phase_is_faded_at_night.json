@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "primalmagick:nighttime",
+  "function": "primalmagick:sunwood_phase_is_faded_at_night",
+  "max_attempts": 3,
+  "max_ticks": 400,
+  "setup_ticks": 50,
+  "structure": "primalmagick:test/empty3x3x3"
+}

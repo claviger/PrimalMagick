@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "primalmagick:daytime",
+  "function": "primalmagick:sunlight_scan_succeeds_during_day",
+  "max_attempts": 3,
+  "max_ticks": 400,
+  "setup_ticks": 50,
+  "structure": "primalmagick:test/empty3x3x3"
+}

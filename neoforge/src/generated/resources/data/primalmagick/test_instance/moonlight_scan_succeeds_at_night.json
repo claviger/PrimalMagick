@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "primalmagick:nighttime",
+  "function": "primalmagick:moonlight_scan_succeeds_at_night",
+  "max_attempts": 3,
+  "max_ticks": 400,
+  "setup_ticks": 50,
+  "structure": "primalmagick:test/empty3x3x3"
+}
