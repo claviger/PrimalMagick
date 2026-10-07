@@ -35,7 +35,7 @@ import java.util.Optional;
  */
 public class SinCrystalEntity extends Entity {
     private static final EntityDataAccessor<Optional<BlockPos>> BEAM_TARGET = SynchedEntityData.defineId(SinCrystalEntity.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
-    private static final EntityDataAccessor<Optional<EntityReference<Entity>>> DAMAGE_CLOUD = SynchedEntityData.defineId(SinCrystalEntity.class, EntityDataSerializersPM.OPTIONAL_ENTITY_REFERENCE);
+    private static final EntityDataAccessor<Optional<EntityReference<Entity>>> DAMAGE_CLOUD = SynchedEntityData.defineId(SinCrystalEntity.class, EntityDataSerializersPM.OPTIONAL_ENTITY_REFERENCE.get());
     
     public int innerRotation;
 
