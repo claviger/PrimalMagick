@@ -655,6 +655,75 @@ public class TestInstancesPM {
     // Infernal furnace tests
     public static final ResourceKey<GameTestInstance> INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET = createInstanceKey("infernal_furnace_lava_bucket_fuel_leaves_empty_bucket");
 
+    // Honey extractor tests
+    public static final ResourceKey<GameTestInstance> HONEY_EXTRACTOR_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("honey_extractor_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> HONEY_EXTRACTOR_ABSORBS_SKY_MANA_FROM_WAND = createInstanceKey("honey_extractor_absorbs_sky_mana_from_wand");
+    public static final ResourceKey<GameTestInstance> HONEY_EXTRACTOR_MAKES_HONEY_BOTTLE_AND_BEESWAX = createInstanceKey("honey_extractor_makes_honey_bottle_and_beeswax");
+
+    // Research table pen tests
+    public static final ResourceKey<GameTestInstance> SEASCRIBE_PEN_DOES_NOT_LOSE_DURABILITY_IN_RESEARCH_TABLE = createInstanceKey("seascribe_pen_does_not_lose_durability_in_research_table");
+    public static final ResourceKey<GameTestInstance> ENCHANTED_INK_AND_QUILL_LOSES_DURABILITY_IN_RESEARCH_TABLE = createInstanceKey("enchanted_ink_and_quill_loses_durability_in_research_table");
+
+    // Essence transmuter tests
+    public static final ResourceKey<GameTestInstance> ESSENCE_TRANSMUTER_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("essence_transmuter_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TRANSMUTER_ABSORBS_MOON_MANA_FROM_WAND = createInstanceKey("essence_transmuter_absorbs_moon_mana_from_wand");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TRANSMUTER_CONVERTS_EIGHT_ESSENCE_TO_A_DIFFERENT_SOURCE = createInstanceKey("essence_transmuter_converts_eight_essence_to_a_different_source");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TRANSMUTER_DOES_NOT_CONVERT_FEWER_THAN_EIGHT_ESSENCE = createInstanceKey("essence_transmuter_does_not_convert_fewer_than_eight_essence");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_DUST = createInstanceKey("essence_transmuter_preserves_essence_grade_dust");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_SHARD = createInstanceKey("essence_transmuter_preserves_essence_grade_shard");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_CRYSTAL = createInstanceKey("essence_transmuter_preserves_essence_grade_crystal");
+    public static final ResourceKey<GameTestInstance> ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_CLUSTER = createInstanceKey("essence_transmuter_preserves_essence_grade_cluster");
+
+    // Wind generator tests
+    public static final ResourceKey<GameTestInstance> ZEPHYR_ENGINE_PUSHES_ENTITIES_WITHIN_ITS_POWER_RANGE_1 = createInstanceKey("zephyr_engine_pushes_entities_within_its_power_range_1");
+    public static final ResourceKey<GameTestInstance> ZEPHYR_ENGINE_PUSHES_ENTITIES_WITHIN_ITS_POWER_RANGE_2 = createInstanceKey("zephyr_engine_pushes_entities_within_its_power_range_2");
+    public static final ResourceKey<GameTestInstance> VOID_TURBINE_PULLS_ENTITIES_WITHIN_ITS_POWER_RANGE_1 = createInstanceKey("void_turbine_pulls_entities_within_its_power_range_1");
+    public static final ResourceKey<GameTestInstance> VOID_TURBINE_PULLS_ENTITIES_WITHIN_ITS_POWER_RANGE_2 = createInstanceKey("void_turbine_pulls_entities_within_its_power_range_2");
+
+    // Concocter and tincture tests
+    public static final ResourceKey<GameTestInstance> CONCOCTER_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("concocter_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> CONCOCTER_ABSORBS_INFERNAL_MANA_FROM_WAND = createInstanceKey("concocter_absorbs_infernal_mana_from_wand");
+    public static final ResourceKey<GameTestInstance> CONCOCTER_CREATES_THREE_DOSE_TINCTURES = createInstanceKey("concocter_creates_three_dose_tinctures");
+    public static final ResourceKey<GameTestInstance> TINCTURE_TOOLTIP_SHOWS_REMAINING_DOSES_THREE = createInstanceKey("tincture_tooltip_shows_remaining_doses_three");
+    public static final ResourceKey<GameTestInstance> TINCTURE_TOOLTIP_SHOWS_REMAINING_DOSES_ONE = createInstanceKey("tincture_tooltip_shows_remaining_doses_one");
+    public static final ResourceKey<GameTestInstance> TINCTURE_GRANTS_ITS_POTION_EFFECT_WHEN_DRUNK = createInstanceKey("tincture_grants_its_potion_effect_when_drunk");
+    public static final ResourceKey<GameTestInstance> TINCTURE_LOSES_A_DOSE_WHEN_DRUNK = createInstanceKey("tincture_loses_a_dose_when_drunk");
+    public static final ResourceKey<GameTestInstance> TINCTURE_RETURNS_SKYGLASS_FLASK_WHEN_LAST_DOSE_DRUNK = createInstanceKey("tincture_returns_skyglass_flask_when_last_dose_drunk");
+
+    // Alchemical bomb tests
+    public static final ResourceKey<GameTestInstance> BOMB_TOOLTIP_SHOWS_CHARGES_AND_FUSE_MEDIUM = createInstanceKey("bomb_tooltip_shows_charges_and_fuse_medium");
+    public static final ResourceKey<GameTestInstance> BOMB_TOOLTIP_SHOWS_CHARGES_AND_FUSE_IMPACT = createInstanceKey("bomb_tooltip_shows_charges_and_fuse_impact");
+    public static final ResourceKey<GameTestInstance> BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_IMPACT = createInstanceKey("bomb_fuse_advances_when_used_while_sneaking_from_impact");
+    public static final ResourceKey<GameTestInstance> BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_SHORT = createInstanceKey("bomb_fuse_advances_when_used_while_sneaking_from_short");
+    public static final ResourceKey<GameTestInstance> BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_MEDIUM = createInstanceKey("bomb_fuse_advances_when_used_while_sneaking_from_medium");
+    public static final ResourceKey<GameTestInstance> BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_LONG = createInstanceKey("bomb_fuse_advances_when_used_while_sneaking_from_long");
+    public static final ResourceKey<GameTestInstance> BOMB_CHARGES_DECREASE_WHEN_THROWN = createInstanceKey("bomb_charges_decrease_when_thrown");
+    public static final ResourceKey<GameTestInstance> BOMB_IS_USED_UP_WHEN_LAST_CHARGE_THROWN = createInstanceKey("bomb_is_used_up_when_last_charge_thrown");
+    public static final ResourceKey<GameTestInstance> IMPACT_BOMB_EXPLODES_ON_HITTING_A_BLOCK = createInstanceKey("impact_bomb_explodes_on_hitting_a_block");
+    public static final ResourceKey<GameTestInstance> TIMED_BOMB_EXPLODES_WHEN_ITS_FUSE_RUNS_OUT_SHORT = createInstanceKey("timed_bomb_explodes_when_its_fuse_runs_out_short");
+    public static final ResourceKey<GameTestInstance> TIMED_BOMB_EXPLODES_WHEN_ITS_FUSE_RUNS_OUT_MEDIUM = createInstanceKey("timed_bomb_explodes_when_its_fuse_runs_out_medium");
+    public static final ResourceKey<GameTestInstance> TIMED_BOMB_EXPLODES_WHEN_ITS_FUSE_RUNS_OUT_LONG = createInstanceKey("timed_bomb_explodes_when_its_fuse_runs_out_long");
+    public static final ResourceKey<GameTestInstance> TIMED_BOMB_BOUNCES_OFF_A_BLOCK = createInstanceKey("timed_bomb_bounces_off_a_block");
+    public static final ResourceKey<GameTestInstance> TIMED_BOMB_EXPLODES_ON_HITTING_AN_ENTITY = createInstanceKey("timed_bomb_explodes_on_hitting_an_entity");
+    public static final ResourceKey<GameTestInstance> BOMB_EFFECT_REACHES_ALL_ENTITIES_NEAR_THE_DETONATION = createInstanceKey("bomb_effect_reaches_all_entities_near_the_detonation");
+
+    // Dissolution chamber tests
+    public static final ResourceKey<GameTestInstance> DISSOLUTION_CHAMBER_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("dissolution_chamber_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> DISSOLUTION_CHAMBER_ABSORBS_EARTH_MANA_FROM_WAND = createInstanceKey("dissolution_chamber_absorbs_earth_mana_from_wand");
+    public static final ResourceKey<GameTestInstance> DISSOLUTION_CHAMBER_DISSOLVES_IRON_ORE = createInstanceKey("dissolution_chamber_dissolves_iron_ore");
+    public static final ResourceKey<GameTestInstance> DISSOLUTION_CHAMBER_DISSOLVES_GOLD_ORE = createInstanceKey("dissolution_chamber_dissolves_gold_ore");
+    public static final ResourceKey<GameTestInstance> DISSOLUTION_CHAMBER_DISSOLVES_COPPER_ORE = createInstanceKey("dissolution_chamber_dissolves_copper_ore");
+    public static final ResourceKey<GameTestInstance> DISSOLUTION_CHAMBER_DISSOLVES_RAW_IRON = createInstanceKey("dissolution_chamber_dissolves_raw_iron");
+    public static final ResourceKey<GameTestInstance> DISSOLUTION_CHAMBER_DISSOLVES_RAW_GOLD = createInstanceKey("dissolution_chamber_dissolves_raw_gold");
+    public static final ResourceKey<GameTestInstance> DISSOLUTION_CHAMBER_DISSOLVES_RAW_COPPER = createInstanceKey("dissolution_chamber_dissolves_raw_copper");
+
+    // Infernal furnace operation tests
+    public static final ResourceKey<GameTestInstance> INFERNAL_FURNACE_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("infernal_furnace_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> INFERNAL_FURNACE_ABSORBS_INFERNAL_MANA_FROM_WAND = createInstanceKey("infernal_furnace_absorbs_infernal_mana_from_wand");
+    public static final ResourceKey<GameTestInstance> INFERNAL_FURNACE_SMELTS_ITEMS_AT_THE_COST_OF_MANA = createInstanceKey("infernal_furnace_smelts_items_at_the_cost_of_mana");
+    public static final ResourceKey<GameTestInstance> INFERNAL_FURNACE_DOES_NOT_SMELT_WITHOUT_MANA = createInstanceKey("infernal_furnace_does_not_smelt_without_mana");
+    public static final ResourceKey<GameTestInstance> INFERNAL_FURNACE_RUNS_FASTER_WHEN_SUPERCHARGED_WITH_IGNYX = createInstanceKey("infernal_furnace_runs_faster_when_supercharged_with_ignyx");
+
     // Progress scaling tests
     public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_EMPTY = createInstanceKey("scaled_progress_empty");
     public static final ResourceKey<GameTestInstance> SCALED_PROGRESS_HALF = createInstanceKey("scaled_progress_half");
@@ -749,6 +818,14 @@ public class TestInstancesPM {
         registerRitualCandleTests(context);
         registerRitualPropTests(context);
         registerInfernalFurnaceTests(context);
+        registerHoneyExtractorTests(context);
+        registerResearchTablePenTests(context);
+        registerEssenceTransmuterTests(context);
+        registerWindGeneratorTests(context);
+        registerConcocterTests(context);
+        registerAlchemicalBombTests(context);
+        registerDissolutionChamberTests(context);
+        registerInfernalFurnaceOperationTests(context);
         registerProgressUtilsTests(context);
         registerWorldgenTests(context);
         registerPhasingBlockTests(context);
@@ -844,6 +921,83 @@ public class TestInstancesPM {
 
     public static void registerInfernalFurnaceTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET, TestFunctionsPM.INFERNAL_FURNACE_LAVA_BUCKET_FUEL_LEAVES_EMPTY_BUCKET.getKey());
+    }
+
+    public static void registerHoneyExtractorTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, HONEY_EXTRACTOR_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.HONEY_EXTRACTOR_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, HONEY_EXTRACTOR_ABSORBS_SKY_MANA_FROM_WAND, TestFunctionsPM.HONEY_EXTRACTOR_ABSORBS_SKY_MANA_FROM_WAND.getKey());
+        registerFunction(context, HONEY_EXTRACTOR_MAKES_HONEY_BOTTLE_AND_BEESWAX, TestFunctionsPM.HONEY_EXTRACTOR_MAKES_HONEY_BOTTLE_AND_BEESWAX.getKey());
+    }
+
+    public static void registerResearchTablePenTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SEASCRIBE_PEN_DOES_NOT_LOSE_DURABILITY_IN_RESEARCH_TABLE, TestFunctionsPM.SEASCRIBE_PEN_DOES_NOT_LOSE_DURABILITY_IN_RESEARCH_TABLE.getKey());
+        registerFunction(context, ENCHANTED_INK_AND_QUILL_LOSES_DURABILITY_IN_RESEARCH_TABLE, TestFunctionsPM.ENCHANTED_INK_AND_QUILL_LOSES_DURABILITY_IN_RESEARCH_TABLE.getKey());
+    }
+
+    public static void registerEssenceTransmuterTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ESSENCE_TRANSMUTER_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.ESSENCE_TRANSMUTER_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, ESSENCE_TRANSMUTER_ABSORBS_MOON_MANA_FROM_WAND, TestFunctionsPM.ESSENCE_TRANSMUTER_ABSORBS_MOON_MANA_FROM_WAND.getKey());
+        registerFunction(context, ESSENCE_TRANSMUTER_CONVERTS_EIGHT_ESSENCE_TO_A_DIFFERENT_SOURCE, TestFunctionsPM.ESSENCE_TRANSMUTER_CONVERTS_EIGHT_ESSENCE_TO_A_DIFFERENT_SOURCE.getKey());
+        registerFunction(context, ESSENCE_TRANSMUTER_DOES_NOT_CONVERT_FEWER_THAN_EIGHT_ESSENCE, TestFunctionsPM.ESSENCE_TRANSMUTER_DOES_NOT_CONVERT_FEWER_THAN_EIGHT_ESSENCE.getKey());
+        registerFunction(context, ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_DUST, TestFunctionsPM.ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_DUST.getKey());
+        registerFunction(context, ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_SHARD, TestFunctionsPM.ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_SHARD.getKey());
+        registerFunction(context, ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_CRYSTAL, TestFunctionsPM.ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_CRYSTAL.getKey());
+        registerFunction(context, ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_CLUSTER, TestFunctionsPM.ESSENCE_TRANSMUTER_PRESERVES_ESSENCE_GRADE_CLUSTER.getKey());
+    }
+
+    public static void registerWindGeneratorTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ZEPHYR_ENGINE_PUSHES_ENTITIES_WITHIN_ITS_POWER_RANGE_1, TestFunctionsPM.ZEPHYR_ENGINE_PUSHES_ENTITIES_WITHIN_ITS_POWER_RANGE_1.getKey());
+        registerFunction(context, ZEPHYR_ENGINE_PUSHES_ENTITIES_WITHIN_ITS_POWER_RANGE_2, TestFunctionsPM.ZEPHYR_ENGINE_PUSHES_ENTITIES_WITHIN_ITS_POWER_RANGE_2.getKey());
+        registerFunction(context, VOID_TURBINE_PULLS_ENTITIES_WITHIN_ITS_POWER_RANGE_1, TestFunctionsPM.VOID_TURBINE_PULLS_ENTITIES_WITHIN_ITS_POWER_RANGE_1.getKey());
+        registerFunction(context, VOID_TURBINE_PULLS_ENTITIES_WITHIN_ITS_POWER_RANGE_2, TestFunctionsPM.VOID_TURBINE_PULLS_ENTITIES_WITHIN_ITS_POWER_RANGE_2.getKey());
+    }
+
+    public static void registerConcocterTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, CONCOCTER_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.CONCOCTER_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, CONCOCTER_ABSORBS_INFERNAL_MANA_FROM_WAND, TestFunctionsPM.CONCOCTER_ABSORBS_INFERNAL_MANA_FROM_WAND.getKey());
+        registerFunction(context, CONCOCTER_CREATES_THREE_DOSE_TINCTURES, TestFunctionsPM.CONCOCTER_CREATES_THREE_DOSE_TINCTURES.getKey());
+        registerFunction(context, TINCTURE_TOOLTIP_SHOWS_REMAINING_DOSES_THREE, TestFunctionsPM.TINCTURE_TOOLTIP_SHOWS_REMAINING_DOSES_THREE.getKey());
+        registerFunction(context, TINCTURE_TOOLTIP_SHOWS_REMAINING_DOSES_ONE, TestFunctionsPM.TINCTURE_TOOLTIP_SHOWS_REMAINING_DOSES_ONE.getKey());
+        registerFunction(context, TINCTURE_GRANTS_ITS_POTION_EFFECT_WHEN_DRUNK, TestFunctionsPM.TINCTURE_GRANTS_ITS_POTION_EFFECT_WHEN_DRUNK.getKey());
+        registerFunction(context, TINCTURE_LOSES_A_DOSE_WHEN_DRUNK, TestFunctionsPM.TINCTURE_LOSES_A_DOSE_WHEN_DRUNK.getKey());
+        registerFunction(context, TINCTURE_RETURNS_SKYGLASS_FLASK_WHEN_LAST_DOSE_DRUNK, TestFunctionsPM.TINCTURE_RETURNS_SKYGLASS_FLASK_WHEN_LAST_DOSE_DRUNK.getKey());
+    }
+
+    public static void registerAlchemicalBombTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, BOMB_TOOLTIP_SHOWS_CHARGES_AND_FUSE_MEDIUM, TestFunctionsPM.BOMB_TOOLTIP_SHOWS_CHARGES_AND_FUSE_MEDIUM.getKey());
+        registerFunction(context, BOMB_TOOLTIP_SHOWS_CHARGES_AND_FUSE_IMPACT, TestFunctionsPM.BOMB_TOOLTIP_SHOWS_CHARGES_AND_FUSE_IMPACT.getKey());
+        registerFunction(context, BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_IMPACT, TestFunctionsPM.BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_IMPACT.getKey());
+        registerFunction(context, BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_SHORT, TestFunctionsPM.BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_SHORT.getKey());
+        registerFunction(context, BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_MEDIUM, TestFunctionsPM.BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_MEDIUM.getKey());
+        registerFunction(context, BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_LONG, TestFunctionsPM.BOMB_FUSE_ADVANCES_WHEN_USED_WHILE_SNEAKING_FROM_LONG.getKey());
+        registerFunction(context, BOMB_CHARGES_DECREASE_WHEN_THROWN, TestFunctionsPM.BOMB_CHARGES_DECREASE_WHEN_THROWN.getKey());
+        registerFunction(context, BOMB_IS_USED_UP_WHEN_LAST_CHARGE_THROWN, TestFunctionsPM.BOMB_IS_USED_UP_WHEN_LAST_CHARGE_THROWN.getKey());
+        registerFunction(context, IMPACT_BOMB_EXPLODES_ON_HITTING_A_BLOCK, TestFunctionsPM.IMPACT_BOMB_EXPLODES_ON_HITTING_A_BLOCK.getKey());
+        registerFunction(context, TIMED_BOMB_EXPLODES_WHEN_ITS_FUSE_RUNS_OUT_SHORT, TestFunctionsPM.TIMED_BOMB_EXPLODES_WHEN_ITS_FUSE_RUNS_OUT_SHORT.getKey());
+        registerFunction(context, TIMED_BOMB_EXPLODES_WHEN_ITS_FUSE_RUNS_OUT_MEDIUM, TestFunctionsPM.TIMED_BOMB_EXPLODES_WHEN_ITS_FUSE_RUNS_OUT_MEDIUM.getKey());
+        registerFunction(context, TIMED_BOMB_EXPLODES_WHEN_ITS_FUSE_RUNS_OUT_LONG, TestFunctionsPM.TIMED_BOMB_EXPLODES_WHEN_ITS_FUSE_RUNS_OUT_LONG.getKey());
+        registerFunction(context, TIMED_BOMB_BOUNCES_OFF_A_BLOCK, TestFunctionsPM.TIMED_BOMB_BOUNCES_OFF_A_BLOCK.getKey());
+        registerFunction(context, TIMED_BOMB_EXPLODES_ON_HITTING_AN_ENTITY, TestFunctionsPM.TIMED_BOMB_EXPLODES_ON_HITTING_AN_ENTITY.getKey());
+        registerFunction(context, BOMB_EFFECT_REACHES_ALL_ENTITIES_NEAR_THE_DETONATION, TestFunctionsPM.BOMB_EFFECT_REACHES_ALL_ENTITIES_NEAR_THE_DETONATION.getKey());
+    }
+
+    public static void registerDissolutionChamberTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, DISSOLUTION_CHAMBER_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.DISSOLUTION_CHAMBER_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, DISSOLUTION_CHAMBER_ABSORBS_EARTH_MANA_FROM_WAND, TestFunctionsPM.DISSOLUTION_CHAMBER_ABSORBS_EARTH_MANA_FROM_WAND.getKey());
+        registerFunction(context, DISSOLUTION_CHAMBER_DISSOLVES_IRON_ORE, TestFunctionsPM.DISSOLUTION_CHAMBER_DISSOLVES_IRON_ORE.getKey());
+        registerFunction(context, DISSOLUTION_CHAMBER_DISSOLVES_GOLD_ORE, TestFunctionsPM.DISSOLUTION_CHAMBER_DISSOLVES_GOLD_ORE.getKey());
+        registerFunction(context, DISSOLUTION_CHAMBER_DISSOLVES_COPPER_ORE, TestFunctionsPM.DISSOLUTION_CHAMBER_DISSOLVES_COPPER_ORE.getKey());
+        registerFunction(context, DISSOLUTION_CHAMBER_DISSOLVES_RAW_IRON, TestFunctionsPM.DISSOLUTION_CHAMBER_DISSOLVES_RAW_IRON.getKey());
+        registerFunction(context, DISSOLUTION_CHAMBER_DISSOLVES_RAW_GOLD, TestFunctionsPM.DISSOLUTION_CHAMBER_DISSOLVES_RAW_GOLD.getKey());
+        registerFunction(context, DISSOLUTION_CHAMBER_DISSOLVES_RAW_COPPER, TestFunctionsPM.DISSOLUTION_CHAMBER_DISSOLVES_RAW_COPPER.getKey());
+    }
+
+    public static void registerInfernalFurnaceOperationTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, INFERNAL_FURNACE_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.INFERNAL_FURNACE_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, INFERNAL_FURNACE_ABSORBS_INFERNAL_MANA_FROM_WAND, TestFunctionsPM.INFERNAL_FURNACE_ABSORBS_INFERNAL_MANA_FROM_WAND.getKey());
+        registerFunction(context, INFERNAL_FURNACE_SMELTS_ITEMS_AT_THE_COST_OF_MANA, TestFunctionsPM.INFERNAL_FURNACE_SMELTS_ITEMS_AT_THE_COST_OF_MANA.getKey());
+        registerFunction(context, INFERNAL_FURNACE_DOES_NOT_SMELT_WITHOUT_MANA, TestFunctionsPM.INFERNAL_FURNACE_DOES_NOT_SMELT_WITHOUT_MANA.getKey());
+        registerFunction(context, INFERNAL_FURNACE_RUNS_FASTER_WHEN_SUPERCHARGED_WITH_IGNYX, TestFunctionsPM.INFERNAL_FURNACE_RUNS_FASTER_WHEN_SUPERCHARGED_WITH_IGNYX.getKey());
     }
 
     public static void registerManaFontTests(BootstrapContext<GameTestInstance> context) {
