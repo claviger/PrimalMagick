@@ -12,7 +12,9 @@ import net.minecraft.util.Util;
 import net.minecraft.world.item.equipment.trim.MaterialAssetGroup;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -22,29 +24,31 @@ import java.util.Map;
  */
 public class TrimMaterialsPM {
     protected static final Map<ResourceKey<TrimMaterial>, Source> SOURCE_MAPPING = new HashMap<>();
+    protected static final Map<ResourceKey<TrimMaterial>, MaterialAssetGroup> ASSET_MAPPING = new LinkedHashMap<>();
     
-    public static final ResourceKey<TrimMaterial> RUNE_EARTH = registryKey("rune_earth", Sources.EARTH);
-    public static final ResourceKey<TrimMaterial> RUNE_SEA = registryKey("rune_sea", Sources.SEA);
-    public static final ResourceKey<TrimMaterial> RUNE_SKY = registryKey("rune_sky", Sources.SKY);
-    public static final ResourceKey<TrimMaterial> RUNE_SUN = registryKey("rune_sun", Sources.SUN);
-    public static final ResourceKey<TrimMaterial> RUNE_MOON = registryKey("rune_moon", Sources.MOON);
-    public static final ResourceKey<TrimMaterial> RUNE_BLOOD = registryKey("rune_blood", Sources.BLOOD);
-    public static final ResourceKey<TrimMaterial> RUNE_INFERNAL = registryKey("rune_infernal", Sources.INFERNAL);
-    public static final ResourceKey<TrimMaterial> RUNE_VOID = registryKey("rune_void", Sources.VOID);
-    public static final ResourceKey<TrimMaterial> RUNE_HALLOWED = registryKey("rune_hallowed", Sources.HALLOWED);
+    public static final ResourceKey<TrimMaterial> RUNE_EARTH = registryKey("rune_earth", Sources.EARTH, MaterialAssetGroup.EMERALD);           // Use emerald trim palette
+    public static final ResourceKey<TrimMaterial> RUNE_SEA = registryKey("rune_sea", Sources.SEA, MaterialAssetGroup.LAPIS);                   // Use lapis trim palette
+    public static final ResourceKey<TrimMaterial> RUNE_SKY = registryKey("rune_sky", Sources.SKY, MaterialAssetGroup.DIAMOND);                 // Use diamond trim palette
+    public static final ResourceKey<TrimMaterial> RUNE_SUN = registryKey("rune_sun", Sources.SUN, MaterialAssetGroup.GOLD);                    // Use gold trim palette
+    public static final ResourceKey<TrimMaterial> RUNE_MOON = registryKey("rune_moon", Sources.MOON, MaterialAssetGroup.IRON);                 // Use iron trim palette
+    public static final ResourceKey<TrimMaterial> RUNE_BLOOD = registryKey("rune_blood", Sources.BLOOD, MaterialAssetGroup.REDSTONE);          // Use redstone trim palette
+    public static final ResourceKey<TrimMaterial> RUNE_INFERNAL = registryKey("rune_infernal", Sources.INFERNAL, MaterialAssetGroup.COPPER);   // Use copper trim palette
+    public static final ResourceKey<TrimMaterial> RUNE_VOID = registryKey("rune_void", Sources.VOID, MaterialAssetGroup.AMETHYST);             // Use amethyst trim palette
+    public static final ResourceKey<TrimMaterial> RUNE_HALLOWED = registryKey("rune_hallowed", Sources.HALLOWED, MaterialAssetGroup.QUARTZ);   // Use quartz trim palette
     
-    private static ResourceKey<TrimMaterial> registryKey(String name, Source source) {
+    private static ResourceKey<TrimMaterial> registryKey(String name, Source source, MaterialAssetGroup assets) {
         ResourceKey<TrimMaterial> key = ResourceKey.create(Registries.TRIM_MATERIAL, ResourceUtils.loc(name));
         if (SOURCE_MAPPING.containsKey(key)) {
             throw new IllegalStateException("Source mapping already set for trim material " + name);
         }
         SOURCE_MAPPING.put(key, source);
+        ASSET_MAPPING.put(key, assets);
         return key;
     }
 
-    private static void register(BootstrapContext<TrimMaterial> pContext, ResourceKey<TrimMaterial> pKey, Style pStyle, MaterialAssetGroup pAssets) {
-        Component component = Component.translatable(Util.makeDescriptionId("trim_material", pKey.identifier())).withStyle(pStyle);
-        pContext.register(pKey, new TrimMaterial(pAssets, component));
+    private static void register(BootstrapContext<TrimMaterial> pContext, ResourceKey<TrimMaterial> pKey) {
+        Component component = Component.translatable(Util.makeDescriptionId("trim_material", pKey.identifier())).withStyle(getStyle(getSource(pKey)));
+        pContext.register(pKey, new TrimMaterial(ASSET_MAPPING.get(pKey), component));
     }
     
     private static Style getStyle(Source source) {
@@ -59,15 +63,22 @@ public class TrimMaterialsPM {
         }
     }
     
+    /**
+     * Returns the texture assets used by each mod trim material, in registration order.
+     */
+    public static Map<ResourceKey<TrimMaterial>, MaterialAssetGroup> getAssetMapping() {
+        return Collections.unmodifiableMap(ASSET_MAPPING);
+    }
+    
     public static void bootstrap(BootstrapContext<TrimMaterial> context) {
-        register(context, RUNE_EARTH, getStyle(Sources.EARTH), MaterialAssetGroup.EMERALD);         // Use emerald model index
-        register(context, RUNE_SEA, getStyle(Sources.SEA), MaterialAssetGroup.LAPIS);               // Use lapis model index
-        register(context, RUNE_SKY, getStyle(Sources.SKY), MaterialAssetGroup.DIAMOND);             // Use diamond model index
-        register(context, RUNE_SUN, getStyle(Sources.SUN), MaterialAssetGroup.GOLD);                // Use gold model index
-        register(context, RUNE_MOON, getStyle(Sources.MOON), MaterialAssetGroup.IRON);              // Use iron model index
-        register(context, RUNE_BLOOD, getStyle(Sources.BLOOD), MaterialAssetGroup.REDSTONE);        // Use redstone model index
-        register(context, RUNE_INFERNAL, getStyle(Sources.INFERNAL), MaterialAssetGroup.COPPER);    // Use copper model index
-        register(context, RUNE_VOID, getStyle(Sources.VOID), MaterialAssetGroup.AMETHYST);          // Use amethyst model index
-        register(context, RUNE_HALLOWED, getStyle(Sources.HALLOWED), MaterialAssetGroup.QUARTZ);    // Use quartz model index
+        register(context, RUNE_EARTH);
+        register(context, RUNE_SEA);
+        register(context, RUNE_SKY);
+        register(context, RUNE_SUN);
+        register(context, RUNE_MOON);
+        register(context, RUNE_BLOOD);
+        register(context, RUNE_INFERNAL);
+        register(context, RUNE_VOID);
+        register(context, RUNE_HALLOWED);
     }
 }

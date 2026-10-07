@@ -18,6 +18,8 @@ import net.minecraft.world.item.crafting.SmithingRecipeInput;
 import net.minecraft.world.item.equipment.trim.ArmorTrim;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 
+import java.util.Map;
+
 /**
  * Tests for the runic armor trim: which armor the smithing recipe accepts, and how a trimmed robe changes its mana
  * discounts. The chest robe piece's base discount is 2, as set on its item properties.
@@ -40,13 +42,26 @@ public class RunicArmorTrimTests extends AbstractBaseTest {
         return recipe.get().value().assemble(input);
     }
 
-    /** The smithing recipe trims a Primal Magick robe and marks it with the runic pattern. */
+    /** The smithing recipe trims a Primal Magick robe with the runic pattern, in the material of the source rune used. */
     public static void runic_trim_recipe_applies_to_robe(GameTestHelper helper) {
-        var result = trimmedRobe(helper, ItemsPM.RUNE_EARTH.get());
-        assertTrue(helper, result.is(ItemsPM.IMBUED_WOOL_CHEST.get()), "Trim result is not the robe: " + result);
-        var trim = result.get(DataComponents.TRIM);
-        assertTrue(helper, trim != null, "Trim result has no armor trim");
-        assertTrue(helper, trim.pattern().is(TrimPatternsPM.RUNIC), "Armor trim pattern is not runic");
+        Map<Item, ResourceKey<TrimMaterial>> runeMaterials = Map.of(
+                ItemsPM.RUNE_EARTH.get(), TrimMaterialsPM.RUNE_EARTH,
+                ItemsPM.RUNE_SEA.get(), TrimMaterialsPM.RUNE_SEA,
+                ItemsPM.RUNE_SKY.get(), TrimMaterialsPM.RUNE_SKY,
+                ItemsPM.RUNE_SUN.get(), TrimMaterialsPM.RUNE_SUN,
+                ItemsPM.RUNE_MOON.get(), TrimMaterialsPM.RUNE_MOON,
+                ItemsPM.RUNE_BLOOD.get(), TrimMaterialsPM.RUNE_BLOOD,
+                ItemsPM.RUNE_INFERNAL.get(), TrimMaterialsPM.RUNE_INFERNAL,
+                ItemsPM.RUNE_VOID.get(), TrimMaterialsPM.RUNE_VOID,
+                ItemsPM.RUNE_HALLOWED.get(), TrimMaterialsPM.RUNE_HALLOWED);
+        runeMaterials.forEach((runeItem, material) -> {
+            var result = trimmedRobe(helper, runeItem);
+            assertTrue(helper, result.is(ItemsPM.IMBUED_WOOL_CHEST.get()), "Trim result for " + runeItem + " is not the robe: " + result);
+            var trim = result.get(DataComponents.TRIM);
+            assertTrue(helper, trim != null, "Trim result for " + runeItem + " has no armor trim");
+            assertTrue(helper, trim.pattern().is(TrimPatternsPM.RUNIC), "Armor trim pattern for " + runeItem + " is not runic");
+            assertTrue(helper, trim.material().is(material), "Armor trim material for " + runeItem + " is not " + material.identifier());
+        });
         helper.succeed();
     }
 

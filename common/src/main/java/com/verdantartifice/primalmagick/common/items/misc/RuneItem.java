@@ -30,7 +30,11 @@ public class RuneItem extends Item {
     protected final Rune rune;
     
     public RuneItem(@Nonnull Rune rune) {
-        super(new Item.Properties().rarity(rune.getRarity()));
+        this(rune, new Item.Properties());
+    }
+    
+    public RuneItem(@Nonnull Rune rune, Item.Properties properties) {
+        super(properties.rarity(rune.getRarity()));
         this.rune = rune;
         register(rune, this);
     }
