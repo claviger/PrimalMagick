@@ -158,23 +158,25 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
                         .put("emerald", Identifier.withDefaultNamespace("trims/color_palettes/emerald"))
                         .put("lapis", Identifier.withDefaultNamespace("trims/color_palettes/lapis"))
                         .put("amethyst", Identifier.withDefaultNamespace("trims/color_palettes/amethyst"))
+                        .put("resin", Identifier.withDefaultNamespace("trims/color_palettes/resin"))
                         .build()));
         
-        // Add mod armor trim pattern model overlays to the armor trims atlas
+        // Add mod armor trim pattern model overlays to the armor trims atlas; the permutation keys must match the
+        // asset names of the runic trim materials, since the renderer looks up "<pattern>_<asset name>" sprites
         armorTrimsAtlas.addSource(new PalettedPermutations(
-                List.of(ResourceUtils.loc("trims/models/armor/runic"),
-                        ResourceUtils.loc("trims/models/armor/runic_leggings")),
+                List.of(ResourceUtils.loc("trims/entity/humanoid/runic"),
+                        ResourceUtils.loc("trims/entity/humanoid_leggings/runic")),
                 Identifier.withDefaultNamespace("trims/color_palettes/trim_palette"),
                 ImmutableMap.<String, Identifier>builder()
-                        .put("rune_earth", Identifier.withDefaultNamespace("trims/color_palettes/emerald"))
-                        .put("rune_sea", Identifier.withDefaultNamespace("trims/color_palettes/lapis"))
-                        .put("rune_sky", Identifier.withDefaultNamespace("trims/color_palettes/diamond"))
-                        .put("rune_sun", Identifier.withDefaultNamespace("trims/color_palettes/gold"))
-                        .put("rune_moon", Identifier.withDefaultNamespace("trims/color_palettes/iron"))
-                        .put("rune_blood", Identifier.withDefaultNamespace("trims/color_palettes/redstone"))
-                        .put("rune_infernal", Identifier.withDefaultNamespace("trims/color_palettes/copper"))
-                        .put("rune_void", Identifier.withDefaultNamespace("trims/color_palettes/amethyst"))
-                        .put("rune_hallowed", Identifier.withDefaultNamespace("trims/color_palettes/quartz"))
+                        .put("emerald", Identifier.withDefaultNamespace("trims/color_palettes/emerald"))    // Earth
+                        .put("lapis", Identifier.withDefaultNamespace("trims/color_palettes/lapis"))        // Sea
+                        .put("diamond", Identifier.withDefaultNamespace("trims/color_palettes/diamond"))    // Sky
+                        .put("gold", Identifier.withDefaultNamespace("trims/color_palettes/gold"))          // Sun
+                        .put("iron", Identifier.withDefaultNamespace("trims/color_palettes/iron"))          // Moon
+                        .put("redstone", Identifier.withDefaultNamespace("trims/color_palettes/redstone"))  // Blood
+                        .put("copper", Identifier.withDefaultNamespace("trims/color_palettes/copper"))      // Infernal
+                        .put("amethyst", Identifier.withDefaultNamespace("trims/color_palettes/amethyst"))  // Void
+                        .put("quartz", Identifier.withDefaultNamespace("trims/color_palettes/quartz"))      // Hallowed
                         .build()));
     }
 }

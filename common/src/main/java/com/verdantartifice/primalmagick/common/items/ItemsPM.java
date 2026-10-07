@@ -1,5 +1,6 @@
 package com.verdantartifice.primalmagick.common.items;
 
+import com.verdantartifice.primalmagick.common.armortrim.TrimMaterialsPM;
 import com.verdantartifice.primalmagick.common.armortrim.TrimPatternsPM;
 import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
 import com.verdantartifice.primalmagick.common.books.BookType;
@@ -657,15 +658,15 @@ public class ItemsPM {
 
     // Register rune items
     public static final IRegistryItem<Item, Item> RUNE_UNATTUNED = registerSupplier("rune_unattuned", () -> new Item(new Item.Properties()));
-    public static final IRegistryItem<Item, RuneItem> RUNE_EARTH = registerSupplier("rune_earth", () -> new RuneItem(Rune.EARTH));
-    public static final IRegistryItem<Item, RuneItem> RUNE_SEA = registerSupplier("rune_sea", () -> new RuneItem(Rune.SEA));
-    public static final IRegistryItem<Item, RuneItem> RUNE_SKY = registerSupplier("rune_sky", () -> new RuneItem(Rune.SKY));
-    public static final IRegistryItem<Item, RuneItem> RUNE_SUN = registerSupplier("rune_sun", () -> new RuneItem(Rune.SUN));
-    public static final IRegistryItem<Item, RuneItem> RUNE_MOON = registerSupplier("rune_moon", () -> new RuneItem(Rune.MOON));
-    public static final IRegistryItem<Item, RuneItem> RUNE_BLOOD = registerSupplier("rune_blood", () -> new RuneItem(Rune.BLOOD));
-    public static final IRegistryItem<Item, RuneItem> RUNE_INFERNAL = registerSupplier("rune_infernal", () -> new RuneItem(Rune.INFERNAL));
-    public static final IRegistryItem<Item, RuneItem> RUNE_VOID = registerSupplier("rune_void", () -> new RuneItem(Rune.VOID));
-    public static final IRegistryItem<Item, RuneItem> RUNE_HALLOWED = registerSupplier("rune_hallowed", () -> new RuneItem(Rune.HALLOWED));
+    public static final IRegistryItem<Item, RuneItem> RUNE_EARTH = registerSupplier("rune_earth", () -> new RuneItem(Rune.EARTH, new Item.Properties().trimMaterial(TrimMaterialsPM.RUNE_EARTH)));
+    public static final IRegistryItem<Item, RuneItem> RUNE_SEA = registerSupplier("rune_sea", () -> new RuneItem(Rune.SEA, new Item.Properties().trimMaterial(TrimMaterialsPM.RUNE_SEA)));
+    public static final IRegistryItem<Item, RuneItem> RUNE_SKY = registerSupplier("rune_sky", () -> new RuneItem(Rune.SKY, new Item.Properties().trimMaterial(TrimMaterialsPM.RUNE_SKY)));
+    public static final IRegistryItem<Item, RuneItem> RUNE_SUN = registerSupplier("rune_sun", () -> new RuneItem(Rune.SUN, new Item.Properties().trimMaterial(TrimMaterialsPM.RUNE_SUN)));
+    public static final IRegistryItem<Item, RuneItem> RUNE_MOON = registerSupplier("rune_moon", () -> new RuneItem(Rune.MOON, new Item.Properties().trimMaterial(TrimMaterialsPM.RUNE_MOON)));
+    public static final IRegistryItem<Item, RuneItem> RUNE_BLOOD = registerSupplier("rune_blood", () -> new RuneItem(Rune.BLOOD, new Item.Properties().trimMaterial(TrimMaterialsPM.RUNE_BLOOD)));
+    public static final IRegistryItem<Item, RuneItem> RUNE_INFERNAL = registerSupplier("rune_infernal", () -> new RuneItem(Rune.INFERNAL, new Item.Properties().trimMaterial(TrimMaterialsPM.RUNE_INFERNAL)));
+    public static final IRegistryItem<Item, RuneItem> RUNE_VOID = registerSupplier("rune_void", () -> new RuneItem(Rune.VOID, new Item.Properties().trimMaterial(TrimMaterialsPM.RUNE_VOID)));
+    public static final IRegistryItem<Item, RuneItem> RUNE_HALLOWED = registerSupplier("rune_hallowed", () -> new RuneItem(Rune.HALLOWED, new Item.Properties().trimMaterial(TrimMaterialsPM.RUNE_HALLOWED)));
     public static final IRegistryItem<Item, RuneItem> RUNE_ABSORB = registerSupplier("rune_absorb", () -> new RuneItem(Rune.ABSORB));
     public static final IRegistryItem<Item, RuneItem> RUNE_DISPEL = registerSupplier("rune_dispel", () -> new RuneItem(Rune.DISPEL));
     public static final IRegistryItem<Item, RuneItem> RUNE_PROJECT = registerSupplier("rune_project", () -> new RuneItem(Rune.PROJECT));

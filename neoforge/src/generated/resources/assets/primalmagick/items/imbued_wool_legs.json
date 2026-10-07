@@ -78,6 +78,69 @@
           "model": "primalmagick:item/imbued_wool_legs_resin_trim"
         },
         "when": "minecraft:resin"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "primalmagick:item/imbued_wool_legs_emerald_trim"
+        },
+        "when": "primalmagick:rune_earth"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "primalmagick:item/imbued_wool_legs_lapis_trim"
+        },
+        "when": "primalmagick:rune_sea"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "primalmagick:item/imbued_wool_legs_diamond_trim"
+        },
+        "when": "primalmagick:rune_sky"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "primalmagick:item/imbued_wool_legs_gold_trim"
+        },
+        "when": "primalmagick:rune_sun"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "primalmagick:item/imbued_wool_legs_iron_trim"
+        },
+        "when": "primalmagick:rune_moon"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "primalmagick:item/imbued_wool_legs_redstone_trim"
+        },
+        "when": "primalmagick:rune_blood"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "primalmagick:item/imbued_wool_legs_copper_trim"
+        },
+        "when": "primalmagick:rune_infernal"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "primalmagick:item/imbued_wool_legs_amethyst_trim"
+        },
+        "when": "primalmagick:rune_void"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "primalmagick:item/imbued_wool_legs_quartz_trim"
+        },
+        "when": "primalmagick:rune_hallowed"
       }
     ],
     "fallback": {
