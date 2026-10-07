@@ -133,6 +133,8 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> WAND_GLAMOUR_TABLE_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("wand_glamour_table_can_have_its_menu_opened");
     public static final ResourceKey<GameTestInstance> WAND_GLAMOUR_TABLE_APPLIES_GLAMOURS_FROM_COMPONENTS = createInstanceKey("wand_glamour_table_applies_glamours_from_components");
     public static final ResourceKey<GameTestInstance> WAND_GLAMOUR_TABLE_REMOVES_GLAMOURS_WHEN_SLOTTED_ALONE = createInstanceKey("wand_glamour_table_removes_glamours_when_slotted_alone");
+    public static final ResourceKey<GameTestInstance> WAND_GLAMOUR_TABLE_REMOVES_STAFF_GLAMOURS_WHEN_SLOTTED_ALONE = createInstanceKey("wand_glamour_table_removes_staff_glamours_when_slotted_alone");
+    public static final ResourceKey<GameTestInstance> WAND_GLAMOUR_TABLE_REPLACES_GLAMOURS_WHEN_SLOTTED_WITH_ONLY_A_CAP = createInstanceKey("wand_glamour_table_replaces_glamours_when_slotted_with_only_a_cap");
 
     // Essence furnace tests
     public static final ResourceKey<GameTestInstance> ESSENCE_FURNACE_WAND_TRANSFORM_WORKS_AFTER_BASIC_ALCHEMY = createInstanceKey("essence_furnace_wand_transform_works_after_basic_alchemy");
@@ -1935,6 +1937,8 @@ public class TestInstancesPM {
         registerFunction(context, WAND_GLAMOUR_TABLE_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.WAND_GLAMOUR_TABLE_CAN_HAVE_ITS_MENU_OPENED.getKey());
         registerFunction(context, WAND_GLAMOUR_TABLE_APPLIES_GLAMOURS_FROM_COMPONENTS, TestFunctionsPM.WAND_GLAMOUR_TABLE_APPLIES_GLAMOURS_FROM_COMPONENTS.getKey());
         registerFunction(context, WAND_GLAMOUR_TABLE_REMOVES_GLAMOURS_WHEN_SLOTTED_ALONE, TestFunctionsPM.WAND_GLAMOUR_TABLE_REMOVES_GLAMOURS_WHEN_SLOTTED_ALONE.getKey());
+        registerFunction(context, WAND_GLAMOUR_TABLE_REMOVES_STAFF_GLAMOURS_WHEN_SLOTTED_ALONE, TestFunctionsPM.WAND_GLAMOUR_TABLE_REMOVES_STAFF_GLAMOURS_WHEN_SLOTTED_ALONE.getKey());
+        registerFunction(context, WAND_GLAMOUR_TABLE_REPLACES_GLAMOURS_WHEN_SLOTTED_WITH_ONLY_A_CAP, TestFunctionsPM.WAND_GLAMOUR_TABLE_REPLACES_GLAMOURS_WHEN_SLOTTED_WITH_ONLY_A_CAP.getKey());
     }
 
     private static void registerEssenceFurnaceTests(BootstrapContext<GameTestInstance> context) {
