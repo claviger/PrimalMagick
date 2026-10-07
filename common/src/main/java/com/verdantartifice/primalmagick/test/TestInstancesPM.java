@@ -280,6 +280,67 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE = createInstanceKey("loot_relic_fragments_count_within_range");
     public static final ResourceKey<GameTestInstance> LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT = createInstanceKey("loot_essence_thief_requires_enchantment");
 
+    // Runeworking and ritual item tests
+    public static final ResourceKey<GameTestInstance> TABLE_HOLDS_MATERIALS_BETWEEN_USES = createInstanceKey("table_holds_materials_between_uses");
+    public static final ResourceKey<GameTestInstance> RUNESCRIBING_ALTAR_RUNE_CAPACITY_BASIC = createInstanceKey("runescribing_altar_rune_capacity_basic");
+    public static final ResourceKey<GameTestInstance> RUNESCRIBING_ALTAR_RUNE_CAPACITY_ENCHANTED = createInstanceKey("runescribing_altar_rune_capacity_enchanted");
+    public static final ResourceKey<GameTestInstance> RUNESCRIBING_ALTAR_RUNE_CAPACITY_FORBIDDEN = createInstanceKey("runescribing_altar_rune_capacity_forbidden");
+    public static final ResourceKey<GameTestInstance> RUNESCRIBING_ALTAR_RUNE_CAPACITY_HEAVENLY = createInstanceKey("runescribing_altar_rune_capacity_heavenly");
+    public static final ResourceKey<GameTestInstance> PROTECT_ITEM_EARTH_RUNES_GIVE_UNBREAKING_ON_PICKAXE = createInstanceKey("protect_item_earth_runes_give_unbreaking_on_pickaxe");
+    public static final ResourceKey<GameTestInstance> RUNESCRIBED_ITEM_CANNOT_BE_RUNESCRIBED_AGAIN = createInstanceKey("runescribed_item_cannot_be_runescribed_again");
+    public static final ResourceKey<GameTestInstance> SALT_POWER_DROPS_BY_ONE_PER_TRAIL_BLOCK = createInstanceKey("salt_power_drops_by_one_per_trail_block");
+    public static final ResourceKey<GameTestInstance> UNCONNECTED_SALT_TRAIL_HAS_NO_POWER = createInstanceKey("unconnected_salt_trail_has_no_power");
+    public static final ResourceKey<GameTestInstance> DOWSING_ROD_ON_ALTAR_REPORTS_NEUTRAL_STABILITY = createInstanceKey("dowsing_rod_on_altar_reports_neutral_stability");
+    public static final ResourceKey<GameTestInstance> DOWSING_ROD_ON_ALTAR_REPORTS_GOOD_STABILITY = createInstanceKey("dowsing_rod_on_altar_reports_good_stability");
+    public static final ResourceKey<GameTestInstance> DOWSING_ROD_ON_ALTAR_REPORTS_POOR_STABILITY = createInstanceKey("dowsing_rod_on_altar_reports_poor_stability");
+    public static final ResourceKey<GameTestInstance> DOWSING_ROD_ON_PROP_REPORTS_SALT_AND_SYMMETRY = createInstanceKey("dowsing_rod_on_prop_reports_salt_and_symmetry");
+    public static final ResourceKey<GameTestInstance> DOWSING_ROD_ON_PROP_REPORTS_MISSING_SYMMETRY = createInstanceKey("dowsing_rod_on_prop_reports_missing_symmetry");
+    public static final ResourceKey<GameTestInstance> DOWSING_ROD_ON_UNCONNECTED_PROP_REPORTS_INACTIVE_SALT = createInstanceKey("dowsing_rod_on_unconnected_prop_reports_inactive_salt");
+    public static final ResourceKey<GameTestInstance> DOWSING_ROD_ON_PEDESTAL_REPORTS_SALT_AND_SYMMETRY = createInstanceKey("dowsing_rod_on_pedestal_reports_salt_and_symmetry");
+    public static final ResourceKey<GameTestInstance> INCENSE_BRAZIER_LIT_BY_INCENSE_STICK = createInstanceKey("incense_brazier_lit_by_incense_stick");
+    public static final ResourceKey<GameTestInstance> RUNIC_GRINDSTONE_REMOVES_ENCHANTMENTS_AND_RUNES = createInstanceKey("runic_grindstone_removes_enchantments_and_runes");
+    public static final ResourceKey<GameTestInstance> RECALL_STONE_TELEPORTS_PLAYER_TO_RESPAWN_POINT = createInstanceKey("recall_stone_teleports_player_to_respawn_point");
+    public static final ResourceKey<GameTestInstance> RECALL_STONE_FAILS_WHEN_RESPAWN_IS_IN_ANOTHER_DIMENSION = createInstanceKey("recall_stone_fails_when_respawn_is_in_another_dimension");
+    public static final ResourceKey<GameTestInstance> RUNIC_TRIM_RECIPE_APPLIES_TO_ROBE = createInstanceKey("runic_trim_recipe_applies_to_robe");
+    public static final ResourceKey<GameTestInstance> RUNIC_TRIM_RECIPE_REJECTS_OTHER_ARMOR = createInstanceKey("runic_trim_recipe_rejects_other_armor");
+    public static final ResourceKey<GameTestInstance> UNTRIMMED_ROBE_GIVES_BASE_DISCOUNT_FOR_EVERY_SOURCE = createInstanceKey("untrimmed_robe_gives_base_discount_for_every_source");
+    public static final ResourceKey<GameTestInstance> RUNIC_TRIM_DOUBLES_DISCOUNT_FOR_TRIM_SOURCE = createInstanceKey("runic_trim_doubles_discount_for_trim_source");
+    public static final ResourceKey<GameTestInstance> RUNIC_TRIM_REMOVES_DISCOUNTS_FOR_OTHER_SOURCES = createInstanceKey("runic_trim_removes_discounts_for_other_sources");
+    public static final ResourceKey<GameTestInstance> AMBROSIA_GRANTS_TWO_INDUCED_ATTUNEMENT = createInstanceKey("ambrosia_grants_two_induced_attunement");
+    public static final ResourceKey<GameTestInstance> AMBROSIA_DEDUCTS_ONE_POINT_FROM_OTHER_SOURCES = createInstanceKey("ambrosia_deducts_one_point_from_other_sources");
+    public static final ResourceKey<GameTestInstance> AMBROSIA_STOPS_AT_TIER_CAP_BASIC = createInstanceKey("ambrosia_stops_at_tier_cap_basic");
+    public static final ResourceKey<GameTestInstance> AMBROSIA_STOPS_AT_TIER_CAP_GREATER = createInstanceKey("ambrosia_stops_at_tier_cap_greater");
+    public static final ResourceKey<GameTestInstance> AMBROSIA_STOPS_AT_TIER_CAP_SUPREME = createInstanceKey("ambrosia_stops_at_tier_cap_supreme");
+    public static final ResourceKey<GameTestInstance> TALISMAN_ABSORBS_EXPERIENCE_FROM_ORBS = createInstanceKey("talisman_absorbs_experience_from_orbs");
+    public static final ResourceKey<GameTestInstance> DISABLED_TALISMAN_DOES_NOT_ABSORB_EXPERIENCE = createInstanceKey("disabled_talisman_does_not_absorb_experience");
+    public static final ResourceKey<GameTestInstance> FULL_TALISMAN_GRANTS_OBSERVATION_ON_WAKING = createInstanceKey("full_talisman_grants_observation_on_waking");
+    public static final ResourceKey<GameTestInstance> PARTIAL_TALISMAN_GRANTS_NOTHING_ON_WAKING = createInstanceKey("partial_talisman_grants_nothing_on_waking");
+    public static final ResourceKey<GameTestInstance> HYDROMELON_SEEDS_PLANT_ON_FARMLAND = createInstanceKey("hydromelon_seeds_plant_on_farmland");
+    public static final ResourceKey<GameTestInstance> HYDROMELON_STEM_GROWS_HYDROMELON = createInstanceKey("hydromelon_stem_grows_hydromelon");
+    public static final ResourceKey<GameTestInstance> AXE_TURNS_HYDROMELON_INTO_WATER = createInstanceKey("axe_turns_hydromelon_into_water");
+    public static final ResourceKey<GameTestInstance> DISINTEGRATION_BREAKS_CONNECTED_BLOCKS_OF_SAME_TYPE = createInstanceKey("disintegration_breaks_connected_blocks_of_same_type");
+    public static final ResourceKey<GameTestInstance> VERDANT_HOE_GROWS_CROP_AND_COSTS_DURABILITY = createInstanceKey("verdant_hoe_grows_crop_and_costs_durability");
+    public static final ResourceKey<GameTestInstance> REVERBERATION_BREAKS_THREE_BY_THREE_AREA = createInstanceKey("reverberation_breaks_three_by_three_area");
+    public static final ResourceKey<GameTestInstance> PIXIE_DROPS_DRAINED_PIXIE_WHEN_KILLED_BASIC_EARTH = createInstanceKey("pixie_drops_drained_pixie_when_killed_basic_earth");
+    public static final ResourceKey<GameTestInstance> PIXIE_DROPS_DRAINED_PIXIE_WHEN_KILLED_BASIC_SEA = createInstanceKey("pixie_drops_drained_pixie_when_killed_basic_sea");
+    public static final ResourceKey<GameTestInstance> PIXIE_DROPS_DRAINED_PIXIE_WHEN_KILLED_BASIC_MOON = createInstanceKey("pixie_drops_drained_pixie_when_killed_basic_moon");
+    public static final ResourceKey<GameTestInstance> OWNER_PLUCKS_PIXIE_WITH_EMPTY_HAND_BASIC_EARTH = createInstanceKey("owner_plucks_pixie_with_empty_hand_basic_earth");
+    public static final ResourceKey<GameTestInstance> EARTH_PIXIE_ATTACK_KNOCKS_TARGET_BACK = createInstanceKey("earth_pixie_attack_knocks_target_back");
+    public static final ResourceKey<GameTestInstance> SEA_PIXIE_ATTACK_INFLICTS_SLOWNESS = createInstanceKey("sea_pixie_attack_inflicts_slowness");
+    public static final ResourceKey<GameTestInstance> MOON_PIXIE_ATTACK_INFLICTS_WEAKNESS = createInstanceKey("moon_pixie_attack_inflicts_weakness");
+    public static final ResourceKey<GameTestInstance> ENDERWARD_BLOCKS_ENDER_PEARL = createInstanceKey("enderward_blocks_ender_pearl");
+    public static final ResourceKey<GameTestInstance> ENDERWARD_BLOCKS_CHORUS_FRUIT = createInstanceKey("enderward_blocks_chorus_fruit");
+    public static final ResourceKey<GameTestInstance> ENDERWARD_BLOCKS_TELEPORT_SPELL = createInstanceKey("enderward_blocks_teleport_spell");
+    public static final ResourceKey<GameTestInstance> ENDERWARD_DOES_NOT_BLOCK_RECALL_STONE = createInstanceKey("enderward_does_not_block_recall_stone");
+    public static final ResourceKey<GameTestInstance> BLOOD_ROSE_DAMAGES_ENTITIES_INSIDE = createInstanceKey("blood_rose_damages_entities_inside");
+    public static final ResourceKey<GameTestInstance> BLOOD_ROSE_DOES_NOT_DESTROY_ITEMS = createInstanceKey("blood_rose_does_not_destroy_items");
+    public static final ResourceKey<GameTestInstance> SOULPIERCING_DROPS_SLIVERS_ONLY_ONCE_LEVEL_1 = createInstanceKey("soulpiercing_drops_slivers_only_once_level_1");
+    public static final ResourceKey<GameTestInstance> SOULPIERCING_DROPS_SLIVERS_ONLY_ONCE_LEVEL_2 = createInstanceKey("soulpiercing_drops_slivers_only_once_level_2");
+    public static final ResourceKey<GameTestInstance> RENDING_HITS_STACK_BLEEDING = createInstanceKey("rending_hits_stack_bleeding");
+    public static final ResourceKey<GameTestInstance> SNEAKING_INTERACTION_PICKS_UP_FLYING_CARPET = createInstanceKey("sneaking_interaction_picks_up_flying_carpet");
+    public static final ResourceKey<GameTestInstance> BULWARK_STACKS_RESISTANCE_WHILE_BLOCKING = createInstanceKey("bulwark_stacks_resistance_while_blocking");
+    public static final ResourceKey<GameTestInstance> BULWARK_RESISTANCE_LAPSES_AFTER_BLOCKING_STOPS = createInstanceKey("bulwark_resistance_lapses_after_blocking_stops");
+
     // FTUX tests
     public static final ResourceKey<GameTestInstance> FONT_DISCOVERY_EARTH = createInstanceKey("font_discovery_earth");
     public static final ResourceKey<GameTestInstance> FONT_DISCOVERY_SEA = createInstanceKey("font_discovery_sea");
@@ -863,6 +924,7 @@ public class TestInstancesPM {
         registerRitualEnchantmentTests(context);
         registerRuneManagerTests(context);
         registerLootModifierTests(context);
+        registerRuneworkingAndRitualItemTests(context);
         registerFtuxTests(context);
         registerBeeswaxItemTests(context);
         registerDispenserItemTests(context);
@@ -1525,6 +1587,69 @@ public class TestInstancesPM {
         registerFunction(context, LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE, TestFunctionsPM.LOOT_RELIC_FRAGMENTS_COUNT_WITHIN_RANGE.getKey());
         registerFunction(context, LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT, TestFunctionsPM.LOOT_ESSENCE_THIEF_REQUIRES_ENCHANTMENT.getKey());
     }
+
+    public static void registerRuneworkingAndRitualItemTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, TABLE_HOLDS_MATERIALS_BETWEEN_USES, TestFunctionsPM.TABLE_HOLDS_MATERIALS_BETWEEN_USES.getKey());
+        registerFunction(context, RUNESCRIBING_ALTAR_RUNE_CAPACITY_BASIC, TestFunctionsPM.RUNESCRIBING_ALTAR_RUNE_CAPACITY_BASIC.getKey());
+        registerFunction(context, RUNESCRIBING_ALTAR_RUNE_CAPACITY_ENCHANTED, TestFunctionsPM.RUNESCRIBING_ALTAR_RUNE_CAPACITY_ENCHANTED.getKey());
+        registerFunction(context, RUNESCRIBING_ALTAR_RUNE_CAPACITY_FORBIDDEN, TestFunctionsPM.RUNESCRIBING_ALTAR_RUNE_CAPACITY_FORBIDDEN.getKey());
+        registerFunction(context, RUNESCRIBING_ALTAR_RUNE_CAPACITY_HEAVENLY, TestFunctionsPM.RUNESCRIBING_ALTAR_RUNE_CAPACITY_HEAVENLY.getKey());
+        registerFunction(context, PROTECT_ITEM_EARTH_RUNES_GIVE_UNBREAKING_ON_PICKAXE, TestFunctionsPM.PROTECT_ITEM_EARTH_RUNES_GIVE_UNBREAKING_ON_PICKAXE.getKey());
+        registerFunction(context, RUNESCRIBED_ITEM_CANNOT_BE_RUNESCRIBED_AGAIN, TestFunctionsPM.RUNESCRIBED_ITEM_CANNOT_BE_RUNESCRIBED_AGAIN.getKey());
+        registerFunction(context, SALT_POWER_DROPS_BY_ONE_PER_TRAIL_BLOCK, TestFunctionsPM.SALT_POWER_DROPS_BY_ONE_PER_TRAIL_BLOCK.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, UNCONNECTED_SALT_TRAIL_HAS_NO_POWER, TestFunctionsPM.UNCONNECTED_SALT_TRAIL_HAS_NO_POWER.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, DOWSING_ROD_ON_ALTAR_REPORTS_NEUTRAL_STABILITY, TestFunctionsPM.DOWSING_ROD_ON_ALTAR_REPORTS_NEUTRAL_STABILITY.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, DOWSING_ROD_ON_ALTAR_REPORTS_GOOD_STABILITY, TestFunctionsPM.DOWSING_ROD_ON_ALTAR_REPORTS_GOOD_STABILITY.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, DOWSING_ROD_ON_ALTAR_REPORTS_POOR_STABILITY, TestFunctionsPM.DOWSING_ROD_ON_ALTAR_REPORTS_POOR_STABILITY.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, DOWSING_ROD_ON_PROP_REPORTS_SALT_AND_SYMMETRY, TestFunctionsPM.DOWSING_ROD_ON_PROP_REPORTS_SALT_AND_SYMMETRY.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, DOWSING_ROD_ON_PROP_REPORTS_MISSING_SYMMETRY, TestFunctionsPM.DOWSING_ROD_ON_PROP_REPORTS_MISSING_SYMMETRY.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, DOWSING_ROD_ON_UNCONNECTED_PROP_REPORTS_INACTIVE_SALT, TestFunctionsPM.DOWSING_ROD_ON_UNCONNECTED_PROP_REPORTS_INACTIVE_SALT.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, DOWSING_ROD_ON_PEDESTAL_REPORTS_SALT_AND_SYMMETRY, TestFunctionsPM.DOWSING_ROD_ON_PEDESTAL_REPORTS_SALT_AND_SYMMETRY.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, INCENSE_BRAZIER_LIT_BY_INCENSE_STICK, TestFunctionsPM.INCENSE_BRAZIER_LIT_BY_INCENSE_STICK.getKey());
+        registerFunction(context, RUNIC_GRINDSTONE_REMOVES_ENCHANTMENTS_AND_RUNES, TestFunctionsPM.RUNIC_GRINDSTONE_REMOVES_ENCHANTMENTS_AND_RUNES.getKey());
+        registerFunction(context, RECALL_STONE_TELEPORTS_PLAYER_TO_RESPAWN_POINT, TestFunctionsPM.RECALL_STONE_TELEPORTS_PLAYER_TO_RESPAWN_POINT.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, RECALL_STONE_FAILS_WHEN_RESPAWN_IS_IN_ANOTHER_DIMENSION, TestFunctionsPM.RECALL_STONE_FAILS_WHEN_RESPAWN_IS_IN_ANOTHER_DIMENSION.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, RUNIC_TRIM_RECIPE_APPLIES_TO_ROBE, TestFunctionsPM.RUNIC_TRIM_RECIPE_APPLIES_TO_ROBE.getKey());
+        registerFunction(context, RUNIC_TRIM_RECIPE_REJECTS_OTHER_ARMOR, TestFunctionsPM.RUNIC_TRIM_RECIPE_REJECTS_OTHER_ARMOR.getKey());
+        registerFunction(context, UNTRIMMED_ROBE_GIVES_BASE_DISCOUNT_FOR_EVERY_SOURCE, TestFunctionsPM.UNTRIMMED_ROBE_GIVES_BASE_DISCOUNT_FOR_EVERY_SOURCE.getKey());
+        registerFunction(context, RUNIC_TRIM_DOUBLES_DISCOUNT_FOR_TRIM_SOURCE, TestFunctionsPM.RUNIC_TRIM_DOUBLES_DISCOUNT_FOR_TRIM_SOURCE.getKey());
+        registerFunction(context, RUNIC_TRIM_REMOVES_DISCOUNTS_FOR_OTHER_SOURCES, TestFunctionsPM.RUNIC_TRIM_REMOVES_DISCOUNTS_FOR_OTHER_SOURCES.getKey());
+        registerFunction(context, AMBROSIA_GRANTS_TWO_INDUCED_ATTUNEMENT, TestFunctionsPM.AMBROSIA_GRANTS_TWO_INDUCED_ATTUNEMENT.getKey());
+        registerFunction(context, AMBROSIA_DEDUCTS_ONE_POINT_FROM_OTHER_SOURCES, TestFunctionsPM.AMBROSIA_DEDUCTS_ONE_POINT_FROM_OTHER_SOURCES.getKey());
+        registerFunction(context, AMBROSIA_STOPS_AT_TIER_CAP_BASIC, TestFunctionsPM.AMBROSIA_STOPS_AT_TIER_CAP_BASIC.getKey());
+        registerFunction(context, AMBROSIA_STOPS_AT_TIER_CAP_GREATER, TestFunctionsPM.AMBROSIA_STOPS_AT_TIER_CAP_GREATER.getKey());
+        registerFunction(context, AMBROSIA_STOPS_AT_TIER_CAP_SUPREME, TestFunctionsPM.AMBROSIA_STOPS_AT_TIER_CAP_SUPREME.getKey());
+        registerFunction(context, TALISMAN_ABSORBS_EXPERIENCE_FROM_ORBS, TestFunctionsPM.TALISMAN_ABSORBS_EXPERIENCE_FROM_ORBS.getKey());
+        registerFunction(context, DISABLED_TALISMAN_DOES_NOT_ABSORB_EXPERIENCE, TestFunctionsPM.DISABLED_TALISMAN_DOES_NOT_ABSORB_EXPERIENCE.getKey());
+        registerFunction(context, FULL_TALISMAN_GRANTS_OBSERVATION_ON_WAKING, TestFunctionsPM.FULL_TALISMAN_GRANTS_OBSERVATION_ON_WAKING.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV, ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, PARTIAL_TALISMAN_GRANTS_NOTHING_ON_WAKING, TestFunctionsPM.PARTIAL_TALISMAN_GRANTS_NOTHING_ON_WAKING.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV, ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, HYDROMELON_SEEDS_PLANT_ON_FARMLAND, TestFunctionsPM.HYDROMELON_SEEDS_PLANT_ON_FARMLAND.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, HYDROMELON_STEM_GROWS_HYDROMELON, TestFunctionsPM.HYDROMELON_STEM_GROWS_HYDROMELON.getKey(), TestEnvironmentsPM.DAYTIME_ENV, ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, AXE_TURNS_HYDROMELON_INTO_WATER, TestFunctionsPM.AXE_TURNS_HYDROMELON_INTO_WATER.getKey());
+        registerFunction(context, DISINTEGRATION_BREAKS_CONNECTED_BLOCKS_OF_SAME_TYPE, TestFunctionsPM.DISINTEGRATION_BREAKS_CONNECTED_BLOCKS_OF_SAME_TYPE.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, VERDANT_HOE_GROWS_CROP_AND_COSTS_DURABILITY, TestFunctionsPM.VERDANT_HOE_GROWS_CROP_AND_COSTS_DURABILITY.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, REVERBERATION_BREAKS_THREE_BY_THREE_AREA, TestFunctionsPM.REVERBERATION_BREAKS_THREE_BY_THREE_AREA.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, PIXIE_DROPS_DRAINED_PIXIE_WHEN_KILLED_BASIC_EARTH, TestFunctionsPM.PIXIE_DROPS_DRAINED_PIXIE_WHEN_KILLED_BASIC_EARTH.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, PIXIE_DROPS_DRAINED_PIXIE_WHEN_KILLED_BASIC_SEA, TestFunctionsPM.PIXIE_DROPS_DRAINED_PIXIE_WHEN_KILLED_BASIC_SEA.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, PIXIE_DROPS_DRAINED_PIXIE_WHEN_KILLED_BASIC_MOON, TestFunctionsPM.PIXIE_DROPS_DRAINED_PIXIE_WHEN_KILLED_BASIC_MOON.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, OWNER_PLUCKS_PIXIE_WITH_EMPTY_HAND_BASIC_EARTH, TestFunctionsPM.OWNER_PLUCKS_PIXIE_WITH_EMPTY_HAND_BASIC_EARTH.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, EARTH_PIXIE_ATTACK_KNOCKS_TARGET_BACK, TestFunctionsPM.EARTH_PIXIE_ATTACK_KNOCKS_TARGET_BACK.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, SEA_PIXIE_ATTACK_INFLICTS_SLOWNESS, TestFunctionsPM.SEA_PIXIE_ATTACK_INFLICTS_SLOWNESS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, MOON_PIXIE_ATTACK_INFLICTS_WEAKNESS, TestFunctionsPM.MOON_PIXIE_ATTACK_INFLICTS_WEAKNESS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENDERWARD_BLOCKS_ENDER_PEARL, TestFunctionsPM.ENDERWARD_BLOCKS_ENDER_PEARL.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENDERWARD_BLOCKS_CHORUS_FRUIT, TestFunctionsPM.ENDERWARD_BLOCKS_CHORUS_FRUIT.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENDERWARD_BLOCKS_TELEPORT_SPELL, TestFunctionsPM.ENDERWARD_BLOCKS_TELEPORT_SPELL.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENDERWARD_DOES_NOT_BLOCK_RECALL_STONE, TestFunctionsPM.ENDERWARD_DOES_NOT_BLOCK_RECALL_STONE.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, BLOOD_ROSE_DAMAGES_ENTITIES_INSIDE, TestFunctionsPM.BLOOD_ROSE_DAMAGES_ENTITIES_INSIDE.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, BLOOD_ROSE_DOES_NOT_DESTROY_ITEMS, TestFunctionsPM.BLOOD_ROSE_DOES_NOT_DESTROY_ITEMS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, SOULPIERCING_DROPS_SLIVERS_ONLY_ONCE_LEVEL_1, TestFunctionsPM.SOULPIERCING_DROPS_SLIVERS_ONLY_ONCE_LEVEL_1.getKey());
+        registerFunction(context, SOULPIERCING_DROPS_SLIVERS_ONLY_ONCE_LEVEL_2, TestFunctionsPM.SOULPIERCING_DROPS_SLIVERS_ONLY_ONCE_LEVEL_2.getKey());
+        registerFunction(context, RENDING_HITS_STACK_BLEEDING, TestFunctionsPM.RENDING_HITS_STACK_BLEEDING.getKey());
+        registerFunction(context, SNEAKING_INTERACTION_PICKS_UP_FLYING_CARPET, TestFunctionsPM.SNEAKING_INTERACTION_PICKS_UP_FLYING_CARPET.getKey());
+        registerFunction(context, BULWARK_STACKS_RESISTANCE_WHILE_BLOCKING, TestFunctionsPM.BULWARK_STACKS_RESISTANCE_WHILE_BLOCKING.getKey());
+        registerFunction(context, BULWARK_RESISTANCE_LAPSES_AFTER_BLOCKING_STOPS, TestFunctionsPM.BULWARK_RESISTANCE_LAPSES_AFTER_BLOCKING_STOPS.getKey());
+    }
+
 
     public static void registerRuneManagerTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, RUNE_ENCHANTMENT_RESOLVES_SHARPNESS, TestFunctionsPM.RUNE_ENCHANTMENT_RESOLVES_SHARPNESS.getKey());

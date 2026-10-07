@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "primalmagick:nighttime",
+  "function": "primalmagick:full_talisman_grants_observation_on_waking",
+  "max_attempts": 3,
+  "max_ticks": 400,
+  "setup_ticks": 50,
+  "structure": "primalmagick:test/floor5x5x5"
+}
