@@ -103,6 +103,84 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_REMAINDER_KEEPS_COMPONENTS = createInstanceKey("earthshatter_hammer_remainder_keeps_components");
     public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_REMAINDER_COUNT_IS_ONE_FOR_STACKED_INPUT = createInstanceKey("earthshatter_hammer_remainder_count_is_one_for_stacked_input");
 
+    // Mana arrow tests
+    public static final ResourceKey<GameTestInstance> EARTH_ARROW_KNOCKS_TARGET_BACK_MORE = createInstanceKey("earth_arrow_knocks_target_back_more");
+    public static final ResourceKey<GameTestInstance> SEA_ARROW_INFLICTS_SLOWNESS = createInstanceKey("sea_arrow_inflicts_slowness");
+    public static final ResourceKey<GameTestInstance> SKY_ARROW_IGNORES_GRAVITY_IN_AIR = createInstanceKey("sky_arrow_ignores_gravity_in_air");
+    public static final ResourceKey<GameTestInstance> SKY_ARROW_REGAINS_GRAVITY_IN_WATER = createInstanceKey("sky_arrow_regains_gravity_in_water");
+    public static final ResourceKey<GameTestInstance> SUN_ARROW_MAKES_TARGET_GLOW = createInstanceKey("sun_arrow_makes_target_glow");
+    public static final ResourceKey<GameTestInstance> SUN_ARROW_IGNITES_UNDEAD = createInstanceKey("sun_arrow_ignites_undead");
+    public static final ResourceKey<GameTestInstance> MOON_ARROW_INFLICTS_WEAKNESS = createInstanceKey("moon_arrow_inflicts_weakness");
+    public static final ResourceKey<GameTestInstance> BLOOD_ARROW_INFLICTS_BLEEDING = createInstanceKey("blood_arrow_inflicts_bleeding");
+    public static final ResourceKey<GameTestInstance> INFERNAL_ARROW_IS_ON_FIRE_AND_IGNITES_TARGET = createInstanceKey("infernal_arrow_is_on_fire_and_ignites_target");
+    public static final ResourceKey<GameTestInstance> VOID_ARROW_INFLICTS_WITHER = createInstanceKey("void_arrow_inflicts_wither");
+    public static final ResourceKey<GameTestInstance> HALLOWED_ARROW_DOES_MORE_DAMAGE = createInstanceKey("hallowed_arrow_does_more_damage");
+    public static final ResourceKey<GameTestInstance> HALLOWED_ARROW_IGNITES_UNDEAD = createInstanceKey("hallowed_arrow_ignites_undead");
+    public static final ResourceKey<GameTestInstance> SEA_ARROW_KEEPS_SPEED_UNDERWATER = createInstanceKey("sea_arrow_keeps_speed_underwater");
+    public static final ResourceKey<GameTestInstance> BLOOD_ARROW_KEEPS_SPEED_UNDERWATER = createInstanceKey("blood_arrow_keeps_speed_underwater");
+
+    // Mana arrow crafting tests
+    public static final ResourceKey<GameTestInstance> MANA_ARROW_FIRST_CRAFT_GRANTS_BASE_AND_BONUS_EXPERTISE = createInstanceKey("mana_arrow_first_craft_grants_base_and_bonus_expertise");
+    public static final ResourceKey<GameTestInstance> MANA_ARROW_SUBSEQUENT_CRAFTS_GRANT_ONLY_BASE_EXPERTISE = createInstanceKey("mana_arrow_subsequent_crafts_grant_only_base_expertise");
+
+    // Wand assembly table tests
+    public static final ResourceKey<GameTestInstance> WAND_ASSEMBLY_TABLE_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("wand_assembly_table_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> WAND_ASSEMBLY_TABLE_ASSEMBLES_MODULAR_WAND = createInstanceKey("wand_assembly_table_assembles_modular_wand");
+    public static final ResourceKey<GameTestInstance> WAND_ASSEMBLY_TABLE_ASSEMBLES_MODULAR_STAFF = createInstanceKey("wand_assembly_table_assembles_modular_staff");
+    public static final ResourceKey<GameTestInstance> WAND_ASSEMBLY_TABLE_REJECTS_MISMATCHED_CAPS = createInstanceKey("wand_assembly_table_rejects_mismatched_caps");
+
+    // Wand glamour table tests
+    public static final ResourceKey<GameTestInstance> WAND_GLAMOUR_TABLE_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("wand_glamour_table_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> WAND_GLAMOUR_TABLE_APPLIES_GLAMOURS_FROM_COMPONENTS = createInstanceKey("wand_glamour_table_applies_glamours_from_components");
+    public static final ResourceKey<GameTestInstance> WAND_GLAMOUR_TABLE_REMOVES_GLAMOURS_WHEN_SLOTTED_ALONE = createInstanceKey("wand_glamour_table_removes_glamours_when_slotted_alone");
+
+    // Essence furnace tests
+    public static final ResourceKey<GameTestInstance> ESSENCE_FURNACE_WAND_TRANSFORM_WORKS_AFTER_BASIC_ALCHEMY = createInstanceKey("essence_furnace_wand_transform_works_after_basic_alchemy");
+    public static final ResourceKey<GameTestInstance> ESSENCE_FURNACE_WAND_TRANSFORM_DOES_NOTHING_BEFORE_BASIC_ALCHEMY = createInstanceKey("essence_furnace_wand_transform_does_nothing_before_basic_alchemy");
+    public static final ResourceKey<GameTestInstance> ESSENCE_FURNACE_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("essence_furnace_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> ESSENCE_FURNACE_GENERATES_DUST_FOR_EACH_SOURCE_OF_AFFINITY = createInstanceKey("essence_furnace_generates_dust_for_each_source_of_affinity");
+    public static final ResourceKey<GameTestInstance> ESSENCE_FURNACE_OUTPUT_IS_ONE_DUST_PER_SOURCE_REGARDLESS_OF_AFFINITY = createInstanceKey("essence_furnace_output_is_one_dust_per_source_regardless_of_affinity");
+
+    // Earthshatter hammer crushing tests
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CRUSHES_IRON_ORE = createInstanceKey("earthshatter_hammer_crushes_iron_ore");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CRUSHES_GOLD_ORE = createInstanceKey("earthshatter_hammer_crushes_gold_ore");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CRUSHES_COPPER_ORE = createInstanceKey("earthshatter_hammer_crushes_copper_ore");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_IRON_ORE = createInstanceKey("earthshatter_hammer_crushes_deepslate_iron_ore");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_GOLD_ORE = createInstanceKey("earthshatter_hammer_crushes_deepslate_gold_ore");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_COPPER_ORE = createInstanceKey("earthshatter_hammer_crushes_deepslate_copper_ore");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CRUSHES_RAW_IRON = createInstanceKey("earthshatter_hammer_crushes_raw_iron");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CRUSHES_RAW_GOLD = createInstanceKey("earthshatter_hammer_crushes_raw_gold");
+    public static final ResourceKey<GameTestInstance> EARTHSHATTER_HAMMER_CRUSHES_RAW_COPPER = createInstanceKey("earthshatter_hammer_crushes_raw_copper");
+
+    // Essence cask tests
+    public static final ResourceKey<GameTestInstance> ESSENCE_CASK_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("essence_cask_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> ESSENCE_CASK_INPUT_SLOT_TRANSFERS_ESSENCE_TO_STORAGE = createInstanceKey("essence_cask_input_slot_transfers_essence_to_storage");
+
+    // Attunement shackles tests
+    public static final ResourceKey<GameTestInstance> ATTUNEMENT_SHACKLES_SUPPRESS_ATTUNEMENT_BONUSES = createInstanceKey("attunement_shackles_suppress_attunement_bonuses");
+    public static final ResourceKey<GameTestInstance> ATTUNEMENT_SHACKLES_SECOND_USE_RESTORES_ATTUNEMENT_BONUSES = createInstanceKey("attunement_shackles_second_use_restores_attunement_bonuses");
+
+    // Sunlamp tests
+    public static final ResourceKey<GameTestInstance> SUNLAMP_REMOVES_GLOW_FIELDS_WITHIN_RADIUS_WHEN_BROKEN = createInstanceKey("sunlamp_removes_glow_fields_within_radius_when_broken");
+    public static final ResourceKey<GameTestInstance> SPIRIT_LANTERN_REMOVES_SOUL_GLOW_FIELDS_WITHIN_RADIUS_WHEN_BROKEN = createInstanceKey("spirit_lantern_removes_soul_glow_fields_within_radius_when_broken");
+
+    // Ignyx tests
+    public static final ResourceKey<GameTestInstance> IGNYX_IS_LONG_LASTING_FURNACE_FUEL = createInstanceKey("ignyx_is_long_lasting_furnace_fuel");
+    public static final ResourceKey<GameTestInstance> IGNYX_EXPLODES_ON_IMPACT_WHEN_THROWN = createInstanceKey("ignyx_explodes_on_impact_when_thrown");
+    public static final ResourceKey<GameTestInstance> IGNYX_EXPLODES_ON_IMPACT_WHEN_FIRED_FROM_DISPENSER = createInstanceKey("ignyx_explodes_on_impact_when_fired_from_dispenser");
+
+    // Synthetic budding amethyst tests
+    public static final ResourceKey<GameTestInstance> SYNTHETIC_BUDDING_AMETHYST_GROWS_BUDS = createInstanceKey("synthetic_budding_amethyst_grows_buds");
+    public static final ResourceKey<GameTestInstance> SYNTHETIC_BUDDING_AMETHYST_DOES_NOT_GROW_WITHOUT_A_GROWTH_ROLL = createInstanceKey("synthetic_budding_amethyst_does_not_grow_without_a_growth_roll");
+    public static final ResourceKey<GameTestInstance> SYNTHETIC_BUDDING_AMETHYST_CAN_DOWNGRADE_WHEN_A_BUD_GROWS = createInstanceKey("synthetic_budding_amethyst_can_downgrade_when_a_bud_grows");
+    public static final ResourceKey<GameTestInstance> SYNTHETIC_BUDDING_AMETHYST_DOES_NOT_DOWNGRADE_WITHOUT_GROWTH = createInstanceKey("synthetic_budding_amethyst_does_not_downgrade_without_growth");
+    public static final ResourceKey<GameTestInstance> SYNTHETIC_BUDDING_AMETHYST_EVENTUALLY_REVERTS_TO_AMETHYST_BLOCK = createInstanceKey("synthetic_budding_amethyst_eventually_reverts_to_amethyst_block");
+    public static final ResourceKey<GameTestInstance> SYNTHETIC_BUDDING_AMETHYST_DECAYS_THROUGH_EVERY_STAGE = createInstanceKey("synthetic_budding_amethyst_decays_through_every_stage");
+
+    // Sanguine crucible tests
+    public static final ResourceKey<GameTestInstance> SANGUINE_CRUCIBLE_CAN_BE_SLOTTED_WITH_CORE = createInstanceKey("sanguine_crucible_can_be_slotted_with_core");
+    public static final ResourceKey<GameTestInstance> SANGUINE_CRUCIBLE_SPAWNS_CREATURE_WITH_CORE_AND_SOULS = createInstanceKey("sanguine_crucible_spawns_creature_with_core_and_souls");
+
     // Runecarving tests
     public static final ResourceKey<GameTestInstance> RUNECARVING_CRAFT_WORKS = createInstanceKey("runecarving_craft_works");
 
@@ -631,6 +709,18 @@ public class TestInstancesPM {
         registerCraftingRequirementTests(context);
         registerRepairTests(context);
         registerEarthshatterHammerTests(context);
+        registerManaArrowTests(context);
+        registerManaArrowCraftingTests(context);
+        registerWandAssemblyTableTests(context);
+        registerWandGlamourTableTests(context);
+        registerEssenceFurnaceTests(context);
+        registerEarthshatterHammerCrushingTests(context);
+        registerEssenceCaskTests(context);
+        registerAttunementShacklesTests(context);
+        registerSunlampTests(context);
+        registerIgnyxTests(context);
+        registerSyntheticBuddingAmethystTests(context);
+        registerSanguineCrucibleTests(context);
         registerRunecarvingTests(context);
         registerWandInscriptionTests(context);
         registerRunescribingResultTests(context);
@@ -1223,6 +1313,96 @@ public class TestInstancesPM {
         registerFunction(context, EARTHSHATTER_HAMMER_HAS_NO_DURABILITY, TestFunctionsPM.EARTHSHATTER_HAMMER_HAS_NO_DURABILITY.getKey());
         registerFunction(context, EARTHSHATTER_HAMMER_REMAINDER_KEEPS_COMPONENTS, TestFunctionsPM.EARTHSHATTER_HAMMER_REMAINDER_KEEPS_COMPONENTS.getKey());
         registerFunction(context, EARTHSHATTER_HAMMER_REMAINDER_COUNT_IS_ONE_FOR_STACKED_INPUT, TestFunctionsPM.EARTHSHATTER_HAMMER_REMAINDER_COUNT_IS_ONE_FOR_STACKED_INPUT.getKey());
+    }
+
+    private static void registerManaArrowTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, EARTH_ARROW_KNOCKS_TARGET_BACK_MORE, TestFunctionsPM.EARTH_ARROW_KNOCKS_TARGET_BACK_MORE.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, SEA_ARROW_INFLICTS_SLOWNESS, TestFunctionsPM.SEA_ARROW_INFLICTS_SLOWNESS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, SKY_ARROW_IGNORES_GRAVITY_IN_AIR, TestFunctionsPM.SKY_ARROW_IGNORES_GRAVITY_IN_AIR.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, SKY_ARROW_REGAINS_GRAVITY_IN_WATER, TestFunctionsPM.SKY_ARROW_REGAINS_GRAVITY_IN_WATER.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, SUN_ARROW_MAKES_TARGET_GLOW, TestFunctionsPM.SUN_ARROW_MAKES_TARGET_GLOW.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, SUN_ARROW_IGNITES_UNDEAD, TestFunctionsPM.SUN_ARROW_IGNITES_UNDEAD.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, MOON_ARROW_INFLICTS_WEAKNESS, TestFunctionsPM.MOON_ARROW_INFLICTS_WEAKNESS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, BLOOD_ARROW_INFLICTS_BLEEDING, TestFunctionsPM.BLOOD_ARROW_INFLICTS_BLEEDING.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, INFERNAL_ARROW_IS_ON_FIRE_AND_IGNITES_TARGET, TestFunctionsPM.INFERNAL_ARROW_IS_ON_FIRE_AND_IGNITES_TARGET.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, VOID_ARROW_INFLICTS_WITHER, TestFunctionsPM.VOID_ARROW_INFLICTS_WITHER.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, HALLOWED_ARROW_DOES_MORE_DAMAGE, TestFunctionsPM.HALLOWED_ARROW_DOES_MORE_DAMAGE.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, HALLOWED_ARROW_IGNITES_UNDEAD, TestFunctionsPM.HALLOWED_ARROW_IGNITES_UNDEAD.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, SEA_ARROW_KEEPS_SPEED_UNDERWATER, TestFunctionsPM.SEA_ARROW_KEEPS_SPEED_UNDERWATER.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, BLOOD_ARROW_KEEPS_SPEED_UNDERWATER, TestFunctionsPM.BLOOD_ARROW_KEEPS_SPEED_UNDERWATER.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+    }
+
+    private static void registerManaArrowCraftingTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, MANA_ARROW_FIRST_CRAFT_GRANTS_BASE_AND_BONUS_EXPERTISE, TestFunctionsPM.MANA_ARROW_FIRST_CRAFT_GRANTS_BASE_AND_BONUS_EXPERTISE.getKey());
+        registerFunction(context, MANA_ARROW_SUBSEQUENT_CRAFTS_GRANT_ONLY_BASE_EXPERTISE, TestFunctionsPM.MANA_ARROW_SUBSEQUENT_CRAFTS_GRANT_ONLY_BASE_EXPERTISE.getKey());
+    }
+
+    private static void registerWandAssemblyTableTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, WAND_ASSEMBLY_TABLE_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.WAND_ASSEMBLY_TABLE_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, WAND_ASSEMBLY_TABLE_ASSEMBLES_MODULAR_WAND, TestFunctionsPM.WAND_ASSEMBLY_TABLE_ASSEMBLES_MODULAR_WAND.getKey());
+        registerFunction(context, WAND_ASSEMBLY_TABLE_ASSEMBLES_MODULAR_STAFF, TestFunctionsPM.WAND_ASSEMBLY_TABLE_ASSEMBLES_MODULAR_STAFF.getKey());
+        registerFunction(context, WAND_ASSEMBLY_TABLE_REJECTS_MISMATCHED_CAPS, TestFunctionsPM.WAND_ASSEMBLY_TABLE_REJECTS_MISMATCHED_CAPS.getKey());
+    }
+
+    private static void registerWandGlamourTableTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, WAND_GLAMOUR_TABLE_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.WAND_GLAMOUR_TABLE_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, WAND_GLAMOUR_TABLE_APPLIES_GLAMOURS_FROM_COMPONENTS, TestFunctionsPM.WAND_GLAMOUR_TABLE_APPLIES_GLAMOURS_FROM_COMPONENTS.getKey());
+        registerFunction(context, WAND_GLAMOUR_TABLE_REMOVES_GLAMOURS_WHEN_SLOTTED_ALONE, TestFunctionsPM.WAND_GLAMOUR_TABLE_REMOVES_GLAMOURS_WHEN_SLOTTED_ALONE.getKey());
+    }
+
+    private static void registerEssenceFurnaceTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ESSENCE_FURNACE_WAND_TRANSFORM_WORKS_AFTER_BASIC_ALCHEMY, TestFunctionsPM.ESSENCE_FURNACE_WAND_TRANSFORM_WORKS_AFTER_BASIC_ALCHEMY.getKey());
+        registerFunction(context, ESSENCE_FURNACE_WAND_TRANSFORM_DOES_NOTHING_BEFORE_BASIC_ALCHEMY, TestFunctionsPM.ESSENCE_FURNACE_WAND_TRANSFORM_DOES_NOTHING_BEFORE_BASIC_ALCHEMY.getKey());
+        registerFunction(context, ESSENCE_FURNACE_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.ESSENCE_FURNACE_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, ESSENCE_FURNACE_GENERATES_DUST_FOR_EACH_SOURCE_OF_AFFINITY, TestFunctionsPM.ESSENCE_FURNACE_GENERATES_DUST_FOR_EACH_SOURCE_OF_AFFINITY.getKey());
+        registerFunction(context, ESSENCE_FURNACE_OUTPUT_IS_ONE_DUST_PER_SOURCE_REGARDLESS_OF_AFFINITY, TestFunctionsPM.ESSENCE_FURNACE_OUTPUT_IS_ONE_DUST_PER_SOURCE_REGARDLESS_OF_AFFINITY.getKey());
+    }
+
+    private static void registerEarthshatterHammerCrushingTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, EARTHSHATTER_HAMMER_CRUSHES_IRON_ORE, TestFunctionsPM.EARTHSHATTER_HAMMER_CRUSHES_IRON_ORE.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_CRUSHES_GOLD_ORE, TestFunctionsPM.EARTHSHATTER_HAMMER_CRUSHES_GOLD_ORE.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_CRUSHES_COPPER_ORE, TestFunctionsPM.EARTHSHATTER_HAMMER_CRUSHES_COPPER_ORE.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_IRON_ORE, TestFunctionsPM.EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_IRON_ORE.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_GOLD_ORE, TestFunctionsPM.EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_GOLD_ORE.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_COPPER_ORE, TestFunctionsPM.EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_COPPER_ORE.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_CRUSHES_RAW_IRON, TestFunctionsPM.EARTHSHATTER_HAMMER_CRUSHES_RAW_IRON.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_CRUSHES_RAW_GOLD, TestFunctionsPM.EARTHSHATTER_HAMMER_CRUSHES_RAW_GOLD.getKey());
+        registerFunction(context, EARTHSHATTER_HAMMER_CRUSHES_RAW_COPPER, TestFunctionsPM.EARTHSHATTER_HAMMER_CRUSHES_RAW_COPPER.getKey());
+    }
+
+    private static void registerEssenceCaskTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ESSENCE_CASK_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.ESSENCE_CASK_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, ESSENCE_CASK_INPUT_SLOT_TRANSFERS_ESSENCE_TO_STORAGE, TestFunctionsPM.ESSENCE_CASK_INPUT_SLOT_TRANSFERS_ESSENCE_TO_STORAGE.getKey());
+    }
+
+    private static void registerAttunementShacklesTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ATTUNEMENT_SHACKLES_SUPPRESS_ATTUNEMENT_BONUSES, TestFunctionsPM.ATTUNEMENT_SHACKLES_SUPPRESS_ATTUNEMENT_BONUSES.getKey());
+        registerFunction(context, ATTUNEMENT_SHACKLES_SECOND_USE_RESTORES_ATTUNEMENT_BONUSES, TestFunctionsPM.ATTUNEMENT_SHACKLES_SECOND_USE_RESTORES_ATTUNEMENT_BONUSES.getKey());
+    }
+
+    private static void registerSunlampTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SUNLAMP_REMOVES_GLOW_FIELDS_WITHIN_RADIUS_WHEN_BROKEN, TestFunctionsPM.SUNLAMP_REMOVES_GLOW_FIELDS_WITHIN_RADIUS_WHEN_BROKEN.getKey());
+        registerFunction(context, SPIRIT_LANTERN_REMOVES_SOUL_GLOW_FIELDS_WITHIN_RADIUS_WHEN_BROKEN, TestFunctionsPM.SPIRIT_LANTERN_REMOVES_SOUL_GLOW_FIELDS_WITHIN_RADIUS_WHEN_BROKEN.getKey());
+    }
+
+    private static void registerIgnyxTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, IGNYX_IS_LONG_LASTING_FURNACE_FUEL, TestFunctionsPM.IGNYX_IS_LONG_LASTING_FURNACE_FUEL.getKey());
+        registerFunction(context, IGNYX_EXPLODES_ON_IMPACT_WHEN_THROWN, TestFunctionsPM.IGNYX_EXPLODES_ON_IMPACT_WHEN_THROWN.getKey());
+        registerFunction(context, IGNYX_EXPLODES_ON_IMPACT_WHEN_FIRED_FROM_DISPENSER, TestFunctionsPM.IGNYX_EXPLODES_ON_IMPACT_WHEN_FIRED_FROM_DISPENSER.getKey());
+    }
+
+    private static void registerSyntheticBuddingAmethystTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SYNTHETIC_BUDDING_AMETHYST_GROWS_BUDS, TestFunctionsPM.SYNTHETIC_BUDDING_AMETHYST_GROWS_BUDS.getKey());
+        registerFunction(context, SYNTHETIC_BUDDING_AMETHYST_DOES_NOT_GROW_WITHOUT_A_GROWTH_ROLL, TestFunctionsPM.SYNTHETIC_BUDDING_AMETHYST_DOES_NOT_GROW_WITHOUT_A_GROWTH_ROLL.getKey());
+        registerFunction(context, SYNTHETIC_BUDDING_AMETHYST_CAN_DOWNGRADE_WHEN_A_BUD_GROWS, TestFunctionsPM.SYNTHETIC_BUDDING_AMETHYST_CAN_DOWNGRADE_WHEN_A_BUD_GROWS.getKey());
+        registerFunction(context, SYNTHETIC_BUDDING_AMETHYST_DOES_NOT_DOWNGRADE_WITHOUT_GROWTH, TestFunctionsPM.SYNTHETIC_BUDDING_AMETHYST_DOES_NOT_DOWNGRADE_WITHOUT_GROWTH.getKey());
+        registerFunction(context, SYNTHETIC_BUDDING_AMETHYST_EVENTUALLY_REVERTS_TO_AMETHYST_BLOCK, TestFunctionsPM.SYNTHETIC_BUDDING_AMETHYST_EVENTUALLY_REVERTS_TO_AMETHYST_BLOCK.getKey());
+        registerFunction(context, SYNTHETIC_BUDDING_AMETHYST_DECAYS_THROUGH_EVERY_STAGE, TestFunctionsPM.SYNTHETIC_BUDDING_AMETHYST_DECAYS_THROUGH_EVERY_STAGE.getKey());
+    }
+
+    private static void registerSanguineCrucibleTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SANGUINE_CRUCIBLE_CAN_BE_SLOTTED_WITH_CORE, TestFunctionsPM.SANGUINE_CRUCIBLE_CAN_BE_SLOTTED_WITH_CORE.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, SANGUINE_CRUCIBLE_SPAWNS_CREATURE_WITH_CORE_AND_SOULS, TestFunctionsPM.SANGUINE_CRUCIBLE_SPAWNS_CREATURE_WITH_CORE_AND_SOULS.getKey(), TestDataBuilder.withEnvironment(TestEnvironmentsPM.DEFAULT, context.lookup(Registries.TEST_ENVIRONMENT)).template(ResourceUtils.loc("test/floor5x5x5")).maxTicks(700).build());
     }
 
     private static void registerCraftingRequirementTests(BootstrapContext<GameTestInstance> context) {

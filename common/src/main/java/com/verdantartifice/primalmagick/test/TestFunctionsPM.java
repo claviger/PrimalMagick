@@ -27,6 +27,18 @@ import com.verdantartifice.primalmagick.test.capabilities.ItemHandlerCapabilityT
 import com.verdantartifice.primalmagick.test.capabilities.ItemHandlerTests;
 import com.verdantartifice.primalmagick.test.crafting.RepairTests;
 import com.verdantartifice.primalmagick.test.crafting.EarthshatterHammerTests;
+import com.verdantartifice.primalmagick.test.attunements.AttunementShacklesTests;
+import com.verdantartifice.primalmagick.test.blocks.SunlampTests;
+import com.verdantartifice.primalmagick.test.blocks.SyntheticBuddingAmethystTests;
+import com.verdantartifice.primalmagick.test.crafting.EarthshatterHammerCrushingTests;
+import com.verdantartifice.primalmagick.test.crafting.EssenceFurnaceTests;
+import com.verdantartifice.primalmagick.test.crafting.ManaArrowCraftingTests;
+import com.verdantartifice.primalmagick.test.entities.ManaArrowTests;
+import com.verdantartifice.primalmagick.test.items.IgnyxTests;
+import com.verdantartifice.primalmagick.test.tiles.EssenceCaskTests;
+import com.verdantartifice.primalmagick.test.tiles.SanguineCrucibleTests;
+import com.verdantartifice.primalmagick.test.tiles.WandAssemblyTableTests;
+import com.verdantartifice.primalmagick.test.tiles.WandGlamourTableTests;
 import com.verdantartifice.primalmagick.test.crafting.RunecarvingTests;
 import com.verdantartifice.primalmagick.test.blocks.PhasingBlockTests;
 import com.verdantartifice.primalmagick.test.blocks.RitualCandleTests;
@@ -170,6 +182,84 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_HAS_NO_DURABILITY = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_has_no_durability", () -> EarthshatterHammerTests::earthshatter_hammer_has_no_durability);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_REMAINDER_KEEPS_COMPONENTS = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_remainder_keeps_components", () -> EarthshatterHammerTests::earthshatter_hammer_remainder_keeps_components);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_REMAINDER_COUNT_IS_ONE_FOR_STACKED_INPUT = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_remainder_count_is_one_for_stacked_input", () -> EarthshatterHammerTests::earthshatter_hammer_remainder_count_is_one_for_stacked_input);
+
+    // Mana arrow tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTH_ARROW_KNOCKS_TARGET_BACK_MORE = Services.TEST_FUNCTIONS_REGISTRY.register("earth_arrow_knocks_target_back_more", () -> ManaArrowTests::earth_arrow_knocks_target_back_more);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SEA_ARROW_INFLICTS_SLOWNESS = Services.TEST_FUNCTIONS_REGISTRY.register("sea_arrow_inflicts_slowness", () -> ManaArrowTests::sea_arrow_inflicts_slowness);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SKY_ARROW_IGNORES_GRAVITY_IN_AIR = Services.TEST_FUNCTIONS_REGISTRY.register("sky_arrow_ignores_gravity_in_air", () -> ManaArrowTests::sky_arrow_ignores_gravity_in_air);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SKY_ARROW_REGAINS_GRAVITY_IN_WATER = Services.TEST_FUNCTIONS_REGISTRY.register("sky_arrow_regains_gravity_in_water", () -> ManaArrowTests::sky_arrow_regains_gravity_in_water);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUN_ARROW_MAKES_TARGET_GLOW = Services.TEST_FUNCTIONS_REGISTRY.register("sun_arrow_makes_target_glow", () -> ManaArrowTests::sun_arrow_makes_target_glow);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUN_ARROW_IGNITES_UNDEAD = Services.TEST_FUNCTIONS_REGISTRY.register("sun_arrow_ignites_undead", () -> ManaArrowTests::sun_arrow_ignites_undead);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOON_ARROW_INFLICTS_WEAKNESS = Services.TEST_FUNCTIONS_REGISTRY.register("moon_arrow_inflicts_weakness", () -> ManaArrowTests::moon_arrow_inflicts_weakness);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> BLOOD_ARROW_INFLICTS_BLEEDING = Services.TEST_FUNCTIONS_REGISTRY.register("blood_arrow_inflicts_bleeding", () -> ManaArrowTests::blood_arrow_inflicts_bleeding);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INFERNAL_ARROW_IS_ON_FIRE_AND_IGNITES_TARGET = Services.TEST_FUNCTIONS_REGISTRY.register("infernal_arrow_is_on_fire_and_ignites_target", () -> ManaArrowTests::infernal_arrow_is_on_fire_and_ignites_target);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> VOID_ARROW_INFLICTS_WITHER = Services.TEST_FUNCTIONS_REGISTRY.register("void_arrow_inflicts_wither", () -> ManaArrowTests::void_arrow_inflicts_wither);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> HALLOWED_ARROW_DOES_MORE_DAMAGE = Services.TEST_FUNCTIONS_REGISTRY.register("hallowed_arrow_does_more_damage", () -> ManaArrowTests::hallowed_arrow_does_more_damage);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> HALLOWED_ARROW_IGNITES_UNDEAD = Services.TEST_FUNCTIONS_REGISTRY.register("hallowed_arrow_ignites_undead", () -> ManaArrowTests::hallowed_arrow_ignites_undead);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SEA_ARROW_KEEPS_SPEED_UNDERWATER = Services.TEST_FUNCTIONS_REGISTRY.register("sea_arrow_keeps_speed_underwater", () -> ManaArrowTests::sea_arrow_keeps_speed_underwater);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> BLOOD_ARROW_KEEPS_SPEED_UNDERWATER = Services.TEST_FUNCTIONS_REGISTRY.register("blood_arrow_keeps_speed_underwater", () -> ManaArrowTests::blood_arrow_keeps_speed_underwater);
+
+    // Mana arrow crafting tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_ARROW_FIRST_CRAFT_GRANTS_BASE_AND_BONUS_EXPERTISE = Services.TEST_FUNCTIONS_REGISTRY.register("mana_arrow_first_craft_grants_base_and_bonus_expertise", () -> ManaArrowCraftingTests::mana_arrow_first_craft_grants_base_and_bonus_expertise);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MANA_ARROW_SUBSEQUENT_CRAFTS_GRANT_ONLY_BASE_EXPERTISE = Services.TEST_FUNCTIONS_REGISTRY.register("mana_arrow_subsequent_crafts_grant_only_base_expertise", () -> ManaArrowCraftingTests::mana_arrow_subsequent_crafts_grant_only_base_expertise);
+
+    // Wand assembly table tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_ASSEMBLY_TABLE_CAN_HAVE_ITS_MENU_OPENED = Services.TEST_FUNCTIONS_REGISTRY.register("wand_assembly_table_can_have_its_menu_opened", () -> WandAssemblyTableTests::wand_assembly_table_can_have_its_menu_opened);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_ASSEMBLY_TABLE_ASSEMBLES_MODULAR_WAND = Services.TEST_FUNCTIONS_REGISTRY.register("wand_assembly_table_assembles_modular_wand", () -> WandAssemblyTableTests::wand_assembly_table_assembles_modular_wand);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_ASSEMBLY_TABLE_ASSEMBLES_MODULAR_STAFF = Services.TEST_FUNCTIONS_REGISTRY.register("wand_assembly_table_assembles_modular_staff", () -> WandAssemblyTableTests::wand_assembly_table_assembles_modular_staff);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_ASSEMBLY_TABLE_REJECTS_MISMATCHED_CAPS = Services.TEST_FUNCTIONS_REGISTRY.register("wand_assembly_table_rejects_mismatched_caps", () -> WandAssemblyTableTests::wand_assembly_table_rejects_mismatched_caps);
+
+    // Wand glamour table tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_GLAMOUR_TABLE_CAN_HAVE_ITS_MENU_OPENED = Services.TEST_FUNCTIONS_REGISTRY.register("wand_glamour_table_can_have_its_menu_opened", () -> WandGlamourTableTests::wand_glamour_table_can_have_its_menu_opened);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_GLAMOUR_TABLE_APPLIES_GLAMOURS_FROM_COMPONENTS = Services.TEST_FUNCTIONS_REGISTRY.register("wand_glamour_table_applies_glamours_from_components", () -> WandGlamourTableTests::wand_glamour_table_applies_glamours_from_components);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WAND_GLAMOUR_TABLE_REMOVES_GLAMOURS_WHEN_SLOTTED_ALONE = Services.TEST_FUNCTIONS_REGISTRY.register("wand_glamour_table_removes_glamours_when_slotted_alone", () -> WandGlamourTableTests::wand_glamour_table_removes_glamours_when_slotted_alone);
+
+    // Essence furnace tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_FURNACE_WAND_TRANSFORM_WORKS_AFTER_BASIC_ALCHEMY = Services.TEST_FUNCTIONS_REGISTRY.register("essence_furnace_wand_transform_works_after_basic_alchemy", () -> EssenceFurnaceTests::essence_furnace_wand_transform_works_after_basic_alchemy);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_FURNACE_WAND_TRANSFORM_DOES_NOTHING_BEFORE_BASIC_ALCHEMY = Services.TEST_FUNCTIONS_REGISTRY.register("essence_furnace_wand_transform_does_nothing_before_basic_alchemy", () -> EssenceFurnaceTests::essence_furnace_wand_transform_does_nothing_before_basic_alchemy);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_FURNACE_CAN_HAVE_ITS_MENU_OPENED = Services.TEST_FUNCTIONS_REGISTRY.register("essence_furnace_can_have_its_menu_opened", () -> EssenceFurnaceTests::essence_furnace_can_have_its_menu_opened);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_FURNACE_GENERATES_DUST_FOR_EACH_SOURCE_OF_AFFINITY = Services.TEST_FUNCTIONS_REGISTRY.register("essence_furnace_generates_dust_for_each_source_of_affinity", () -> EssenceFurnaceTests::essence_furnace_generates_dust_for_each_source_of_affinity);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_FURNACE_OUTPUT_IS_ONE_DUST_PER_SOURCE_REGARDLESS_OF_AFFINITY = Services.TEST_FUNCTIONS_REGISTRY.register("essence_furnace_output_is_one_dust_per_source_regardless_of_affinity", () -> EssenceFurnaceTests::essence_furnace_output_is_one_dust_per_source_regardless_of_affinity);
+
+    // Earthshatter hammer crushing tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CRUSHES_IRON_ORE = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_crushes_iron_ore", () -> (helper) -> EarthshatterHammerCrushingTests.hammer_crushes_ore(helper, Items.IRON_ORE, ItemsPM.IRON_GRIT.get(), "iron_grit_from_ore"));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CRUSHES_GOLD_ORE = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_crushes_gold_ore", () -> (helper) -> EarthshatterHammerCrushingTests.hammer_crushes_ore(helper, Items.GOLD_ORE, ItemsPM.GOLD_GRIT.get(), "gold_grit_from_ore"));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CRUSHES_COPPER_ORE = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_crushes_copper_ore", () -> (helper) -> EarthshatterHammerCrushingTests.hammer_crushes_ore(helper, Items.COPPER_ORE, ItemsPM.COPPER_GRIT.get(), "copper_grit_from_ore"));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_IRON_ORE = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_crushes_deepslate_iron_ore", () -> (helper) -> EarthshatterHammerCrushingTests.hammer_crushes_ore(helper, Items.DEEPSLATE_IRON_ORE, ItemsPM.IRON_GRIT.get(), "iron_grit_from_ore"));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_GOLD_ORE = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_crushes_deepslate_gold_ore", () -> (helper) -> EarthshatterHammerCrushingTests.hammer_crushes_ore(helper, Items.DEEPSLATE_GOLD_ORE, ItemsPM.GOLD_GRIT.get(), "gold_grit_from_ore"));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CRUSHES_DEEPSLATE_COPPER_ORE = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_crushes_deepslate_copper_ore", () -> (helper) -> EarthshatterHammerCrushingTests.hammer_crushes_ore(helper, Items.DEEPSLATE_COPPER_ORE, ItemsPM.COPPER_GRIT.get(), "copper_grit_from_ore"));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CRUSHES_RAW_IRON = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_crushes_raw_iron", () -> (helper) -> EarthshatterHammerCrushingTests.hammer_crushes_raw_metal(helper, Items.RAW_IRON, ItemsPM.IRON_GRIT.get(), "iron_grit_from_raw_metal"));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CRUSHES_RAW_GOLD = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_crushes_raw_gold", () -> (helper) -> EarthshatterHammerCrushingTests.hammer_crushes_raw_metal(helper, Items.RAW_GOLD, ItemsPM.GOLD_GRIT.get(), "gold_grit_from_raw_metal"));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTHSHATTER_HAMMER_CRUSHES_RAW_COPPER = Services.TEST_FUNCTIONS_REGISTRY.register("earthshatter_hammer_crushes_raw_copper", () -> (helper) -> EarthshatterHammerCrushingTests.hammer_crushes_raw_metal(helper, Items.RAW_COPPER, ItemsPM.COPPER_GRIT.get(), "copper_grit_from_raw_metal"));
+
+    // Essence cask tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_CASK_CAN_HAVE_ITS_MENU_OPENED = Services.TEST_FUNCTIONS_REGISTRY.register("essence_cask_can_have_its_menu_opened", () -> EssenceCaskTests::essence_cask_can_have_its_menu_opened);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ESSENCE_CASK_INPUT_SLOT_TRANSFERS_ESSENCE_TO_STORAGE = Services.TEST_FUNCTIONS_REGISTRY.register("essence_cask_input_slot_transfers_essence_to_storage", () -> EssenceCaskTests::essence_cask_input_slot_transfers_essence_to_storage);
+
+    // Attunement shackles tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ATTUNEMENT_SHACKLES_SUPPRESS_ATTUNEMENT_BONUSES = Services.TEST_FUNCTIONS_REGISTRY.register("attunement_shackles_suppress_attunement_bonuses", () -> AttunementShacklesTests::attunement_shackles_suppress_attunement_bonuses);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ATTUNEMENT_SHACKLES_SECOND_USE_RESTORES_ATTUNEMENT_BONUSES = Services.TEST_FUNCTIONS_REGISTRY.register("attunement_shackles_second_use_restores_attunement_bonuses", () -> AttunementShacklesTests::attunement_shackles_second_use_restores_attunement_bonuses);
+
+    // Sunlamp tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SUNLAMP_REMOVES_GLOW_FIELDS_WITHIN_RADIUS_WHEN_BROKEN = Services.TEST_FUNCTIONS_REGISTRY.register("sunlamp_removes_glow_fields_within_radius_when_broken", () -> SunlampTests::sunlamp_removes_glow_fields_within_radius_when_broken);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SPIRIT_LANTERN_REMOVES_SOUL_GLOW_FIELDS_WITHIN_RADIUS_WHEN_BROKEN = Services.TEST_FUNCTIONS_REGISTRY.register("spirit_lantern_removes_soul_glow_fields_within_radius_when_broken", () -> SunlampTests::spirit_lantern_removes_soul_glow_fields_within_radius_when_broken);
+
+    // Ignyx tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> IGNYX_IS_LONG_LASTING_FURNACE_FUEL = Services.TEST_FUNCTIONS_REGISTRY.register("ignyx_is_long_lasting_furnace_fuel", () -> IgnyxTests::ignyx_is_long_lasting_furnace_fuel);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> IGNYX_EXPLODES_ON_IMPACT_WHEN_THROWN = Services.TEST_FUNCTIONS_REGISTRY.register("ignyx_explodes_on_impact_when_thrown", () -> IgnyxTests::ignyx_explodes_on_impact_when_thrown);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> IGNYX_EXPLODES_ON_IMPACT_WHEN_FIRED_FROM_DISPENSER = Services.TEST_FUNCTIONS_REGISTRY.register("ignyx_explodes_on_impact_when_fired_from_dispenser", () -> IgnyxTests::ignyx_explodes_on_impact_when_fired_from_dispenser);
+
+    // Synthetic budding amethyst tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SYNTHETIC_BUDDING_AMETHYST_GROWS_BUDS = Services.TEST_FUNCTIONS_REGISTRY.register("synthetic_budding_amethyst_grows_buds", () -> SyntheticBuddingAmethystTests::synthetic_budding_amethyst_grows_buds);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SYNTHETIC_BUDDING_AMETHYST_DOES_NOT_GROW_WITHOUT_A_GROWTH_ROLL = Services.TEST_FUNCTIONS_REGISTRY.register("synthetic_budding_amethyst_does_not_grow_without_a_growth_roll", () -> SyntheticBuddingAmethystTests::synthetic_budding_amethyst_does_not_grow_without_a_growth_roll);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SYNTHETIC_BUDDING_AMETHYST_CAN_DOWNGRADE_WHEN_A_BUD_GROWS = Services.TEST_FUNCTIONS_REGISTRY.register("synthetic_budding_amethyst_can_downgrade_when_a_bud_grows", () -> SyntheticBuddingAmethystTests::synthetic_budding_amethyst_can_downgrade_when_a_bud_grows);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SYNTHETIC_BUDDING_AMETHYST_DOES_NOT_DOWNGRADE_WITHOUT_GROWTH = Services.TEST_FUNCTIONS_REGISTRY.register("synthetic_budding_amethyst_does_not_downgrade_without_growth", () -> SyntheticBuddingAmethystTests::synthetic_budding_amethyst_does_not_downgrade_without_growth);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SYNTHETIC_BUDDING_AMETHYST_EVENTUALLY_REVERTS_TO_AMETHYST_BLOCK = Services.TEST_FUNCTIONS_REGISTRY.register("synthetic_budding_amethyst_eventually_reverts_to_amethyst_block", () -> SyntheticBuddingAmethystTests::synthetic_budding_amethyst_eventually_reverts_to_amethyst_block);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SYNTHETIC_BUDDING_AMETHYST_DECAYS_THROUGH_EVERY_STAGE = Services.TEST_FUNCTIONS_REGISTRY.register("synthetic_budding_amethyst_decays_through_every_stage", () -> SyntheticBuddingAmethystTests::synthetic_budding_amethyst_decays_through_every_stage);
+
+    // Sanguine crucible tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SANGUINE_CRUCIBLE_CAN_BE_SLOTTED_WITH_CORE = Services.TEST_FUNCTIONS_REGISTRY.register("sanguine_crucible_can_be_slotted_with_core", () -> SanguineCrucibleTests::sanguine_crucible_can_be_slotted_with_core);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SANGUINE_CRUCIBLE_SPAWNS_CREATURE_WITH_CORE_AND_SOULS = Services.TEST_FUNCTIONS_REGISTRY.register("sanguine_crucible_spawns_creature_with_core_and_souls", () -> SanguineCrucibleTests::sanguine_crucible_spawns_creature_with_core_and_souls);
 
     // Runecarving tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RUNECARVING_CRAFT_WORKS = Services.TEST_FUNCTIONS_REGISTRY.register("runecarving_craft_works", () -> RunecarvingTests::craft_works);
