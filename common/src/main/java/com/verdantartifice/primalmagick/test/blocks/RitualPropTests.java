@@ -86,4 +86,25 @@ public class RitualPropTests extends AbstractBaseTest {
         assertValueEqual(helper, 18.0F, player.getHealth(), "Player health after use");
         helper.succeed();
     }
+
+    public static void incense_brazier_lit_by_incense_stick(GameTestHelper helper) {
+        var pos = BlockPos.ZERO.above();
+        helper.setBlock(pos, BlocksPM.INCENSE_BRAZIER.get());
+        assertValueEqual(helper, false, helper.getBlockState(pos).getValue(IncenseBrazierBlock.LIT), "Brazier lit state after placement");
+
+        // Use a survival player so that the stick is consumed, and hold two so that one is left over
+        var player = makeMockServerPlayer(helper);
+        player.setGameMode(GameType.SURVIVAL);
+        var stick = new ItemStack(ItemsPM.INCENSE_STICK.get(), 2);
+        player.setItemInHand(InteractionHand.MAIN_HAND, stick);
+
+        // Right-click the unlit brazier with the incense stick
+        var result = player.gameMode.useItemOn(player, helper.getLevel(), stick, InteractionHand.MAIN_HAND, hitTop(helper, pos));
+
+        // Lighting the brazier takes exactly one stick from the stack
+        assertTrue(helper, result.consumesAction(), "Incense stick use on an unlit brazier was not consumed: " + result);
+        assertValueEqual(helper, true, helper.getBlockState(pos).getValue(IncenseBrazierBlock.LIT), "Brazier lit state after using an incense stick");
+        assertValueEqual(helper, 1, player.getItemInHand(InteractionHand.MAIN_HAND).getCount(), "Incense sticks left in hand");
+        helper.succeed();
+    }
 }

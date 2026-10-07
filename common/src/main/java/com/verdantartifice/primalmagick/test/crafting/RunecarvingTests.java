@@ -53,4 +53,38 @@ public class RunecarvingTests extends AbstractBaseTest {
         
         helper.succeed();
     }
+
+    public static void table_holds_materials_between_uses(GameTestHelper helper) {
+        var player = makeMockServerPlayer(helper);
+        ResearchManager.forceGrantWithAllParents(player, ResearchEntries.BASIC_RUNEWORKING);
+
+        // Stock a runecarving table with enough materials for two runes
+        BlockPos tablePos = new BlockPos(1, 1, 1);
+        helper.setBlock(tablePos, BlocksPM.RUNECARVING_TABLE.get());
+        var tile = helper.getBlockEntity(tablePos, RunecarvingTableTileEntity.class);
+        tile.addItem(0, 0, new ItemStack(Items.STONE_SLAB, 2));
+        tile.addItem(0, 1, new ItemStack(Items.LAPIS_LAZULI, 2));
+
+        // Craft one rune, which consumes one slab and one lapis
+        Services.PLAYER.openMenu(player, tile, helper.absolutePos(tablePos));
+        var menu = assertInstanceOf(helper, player.containerMenu, RunecarvingTableMenu.class, "Menu not of expected type");
+        assertTrue(helper, menu.clickMenuButton(player, 0), "Recipe selection failed");
+        assertTrue(helper, menu.quickMoveStack(player, 2).is(ItemsPM.RUNE_UNATTUNED.get()), "First output item not of expected type");
+
+        // Close the menu; the leftover materials stay in the table rather than going back to the player
+        player.closeContainer();
+        assertValueEqual(helper, 1, tile.getItem(0, 0).getCount(), "Stone slabs left in table after closing the menu");
+        assertValueEqual(helper, 1, tile.getItem(0, 1).getCount(), "Lapis lazuli left in table after closing the menu");
+
+        // Reopen the menu and confirm that the stored materials are offered again and craft a second rune
+        Services.PLAYER.openMenu(player, tile, helper.absolutePos(tablePos));
+        var reopened = assertInstanceOf(helper, player.containerMenu, RunecarvingTableMenu.class, "Reopened menu not of expected type");
+        assertTrue(helper, reopened.hasItemsInInputSlot(), "Reopened menu does not show the stored materials");
+        assertValueEqual(helper, 1, reopened.getRecipeListSize(), "Recipe list size in reopened menu");
+        assertTrue(helper, reopened.clickMenuButton(player, 0), "Recipe selection failed on reopened menu");
+        assertTrue(helper, reopened.quickMoveStack(player, 2).is(ItemsPM.RUNE_UNATTUNED.get()), "Second output item not of expected type");
+        assertTrue(helper, tile.getItem(0, 0).isEmpty(), "Stone slab stack not empty after second craft");
+        assertTrue(helper, tile.getItem(0, 1).isEmpty(), "Lapis lazuli stack not empty after second craft");
+        helper.succeed();
+    }
 }

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "primalmagick:daytime",
+  "function": "primalmagick:hydromelon_stem_grows_hydromelon",
+  "max_attempts": 3,
+  "max_ticks": 400,
+  "setup_ticks": 50,
+  "structure": "primalmagick:test/floor5x5x5"
+}
