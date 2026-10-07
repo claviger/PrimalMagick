@@ -105,6 +105,16 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
 
+import com.verdantartifice.primalmagick.test.blocks.EntropySinkTests;
+import com.verdantartifice.primalmagick.test.blocks.InfusedStoneTests;
+import com.verdantartifice.primalmagick.test.entities.GolemTests;
+import com.verdantartifice.primalmagick.test.entities.InnerDemonTests;
+import com.verdantartifice.primalmagick.test.ftux.FirstStepsTests;
+import com.verdantartifice.primalmagick.test.items.WardTests;
+import com.verdantartifice.primalmagick.test.linguistics.ScribeTableTests;
+import com.verdantartifice.primalmagick.test.menus.AnalysisTableTests;
+import com.verdantartifice.primalmagick.test.research.SourceDiscoveryTests;
+import com.verdantartifice.primalmagick.test.theorycrafting.ResearchTableTests;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -649,6 +659,80 @@ public class TestFunctionsPM {
 
     // Research system tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RESEARCH_GRANT_WORKS = Services.TEST_FUNCTIONS_REGISTRY.register("research_grant_works", () -> ResearchTests::research_grant_works);
+
+    // Infused stone tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INFUSED_STONE_DROPS_DUST_EARTH = Services.TEST_FUNCTIONS_REGISTRY.register("infused_stone_drops_dust_earth", () -> (helper) -> InfusedStoneTests.infused_stone_drops_essence_dust(helper, BlocksPM.INFUSED_STONE_EARTH.get(), ItemsPM.ESSENCE_DUST_EARTH.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INFUSED_STONE_DROPS_DUST_SEA = Services.TEST_FUNCTIONS_REGISTRY.register("infused_stone_drops_dust_sea", () -> (helper) -> InfusedStoneTests.infused_stone_drops_essence_dust(helper, BlocksPM.INFUSED_STONE_SEA.get(), ItemsPM.ESSENCE_DUST_SEA.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INFUSED_STONE_DROPS_DUST_SKY = Services.TEST_FUNCTIONS_REGISTRY.register("infused_stone_drops_dust_sky", () -> (helper) -> InfusedStoneTests.infused_stone_drops_essence_dust(helper, BlocksPM.INFUSED_STONE_SKY.get(), ItemsPM.ESSENCE_DUST_SKY.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INFUSED_STONE_DROPS_DUST_SUN = Services.TEST_FUNCTIONS_REGISTRY.register("infused_stone_drops_dust_sun", () -> (helper) -> InfusedStoneTests.infused_stone_drops_essence_dust(helper, BlocksPM.INFUSED_STONE_SUN.get(), ItemsPM.ESSENCE_DUST_SUN.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INFUSED_STONE_DROPS_DUST_MOON = Services.TEST_FUNCTIONS_REGISTRY.register("infused_stone_drops_dust_moon", () -> (helper) -> InfusedStoneTests.infused_stone_drops_essence_dust(helper, BlocksPM.INFUSED_STONE_MOON.get(), ItemsPM.ESSENCE_DUST_MOON.get()));
+
+    // First steps tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ARCANE_WORKBENCH_TRANSFORM_REQUIRES_FIRST_STEPS = Services.TEST_FUNCTIONS_REGISTRY.register("arcane_workbench_transform_requires_first_steps", () -> FirstStepsTests::arcane_workbench_transform_requires_first_steps);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ARCANE_WORKBENCH_TRANSFORM_SUCCEEDS_AFTER_FIRST_STEPS = Services.TEST_FUNCTIONS_REGISTRY.register("arcane_workbench_transform_succeeds_after_first_steps", () -> FirstStepsTests::arcane_workbench_transform_succeeds_after_first_steps);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> FIRST_STEPS_COMPLETES_WHEN_STAGE_REQUIREMENTS_ARE_MET = Services.TEST_FUNCTIONS_REGISTRY.register("first_steps_completes_when_stage_requirements_are_met", () -> FirstStepsTests::first_steps_completes_when_stage_requirements_are_met);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SHRINE_PROMPTS_MUNDANE_WAND_HOLDER_TO_SIPHON = Services.TEST_FUNCTIONS_REGISTRY.register("shrine_prompts_mundane_wand_holder_to_siphon", () -> (helper) -> FirstStepsTests.shrine_prompts_mundane_wand_holder_to_siphon(helper, BlocksPM.ANCIENT_FONT_EARTH.get()));
+
+    // Source discovery tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EATING_BLOODY_FLESH_UNLOCKS_BLOOD_SOURCE = Services.TEST_FUNCTIONS_REGISTRY.register("eating_bloody_flesh_unlocks_blood_source", () -> SourceDiscoveryTests::eating_bloody_flesh_unlocks_blood_source);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> READING_BLOOD_NOTES_UNLOCKS_BLOOD_SOURCE = Services.TEST_FUNCTIONS_REGISTRY.register("reading_blood_notes_unlocks_blood_source", () -> SourceDiscoveryTests::reading_blood_notes_unlocks_blood_source);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCANNING_HALLOWED_ORB_UNLOCKS_HALLOWED_SOURCE = Services.TEST_FUNCTIONS_REGISTRY.register("scanning_hallowed_orb_unlocks_hallowed_source", () -> SourceDiscoveryTests::scanning_hallowed_orb_unlocks_hallowed_source);
+
+    // Analysis table tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ANALYSIS_TABLE_CONSUMES_SCANNED_ITEM = Services.TEST_FUNCTIONS_REGISTRY.register("analysis_table_consumes_scanned_item", () -> AnalysisTableTests::analysis_table_consumes_scanned_item);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ANALYSIS_TABLE_SCAN_GRANTS_OBSERVATION_PROGRESS = Services.TEST_FUNCTIONS_REGISTRY.register("analysis_table_scan_grants_observation_progress", () -> AnalysisTableTests::analysis_table_scan_grants_observation_progress);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ANALYSIS_TABLE_REFUSES_HALLOWED_ORB = Services.TEST_FUNCTIONS_REGISTRY.register("analysis_table_refuses_hallowed_orb", () -> AnalysisTableTests::analysis_table_refuses_hallowed_orb);
+
+    // Research table tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RESEARCH_TABLE_REQUIRES_PAPER_AND_INK = Services.TEST_FUNCTIONS_REGISTRY.register("research_table_requires_paper_and_ink", () -> ResearchTableTests::research_table_requires_paper_and_ink);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RESEARCH_PROJECTS_GAIN_MATERIALS_AS_PROJECTS_ARE_COMPLETED = Services.TEST_FUNCTIONS_REGISTRY.register("research_projects_gain_materials_as_projects_are_completed", () -> ResearchTableTests::research_projects_gain_materials_as_projects_are_completed);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RESEARCH_PROJECTS_LOSE_BASE_SUCCESS_CHANCE_AS_PROJECTS_ARE_COMPLETED = Services.TEST_FUNCTIONS_REGISTRY.register("research_projects_lose_base_success_chance_as_projects_are_completed", () -> ResearchTableTests::research_projects_lose_base_success_chance_as_projects_are_completed);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RESEARCH_TABLE_CONSUMES_PAPER_AND_INK_ON_SUCCESS = Services.TEST_FUNCTIONS_REGISTRY.register("research_table_consumes_paper_and_ink_on_success", () -> ResearchTableTests::research_table_consumes_paper_and_ink_on_success);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RESEARCH_TABLE_CONSUMES_PAPER_AND_INK_ON_FAILURE = Services.TEST_FUNCTIONS_REGISTRY.register("research_table_consumes_paper_and_ink_on_failure", () -> ResearchTableTests::research_table_consumes_paper_and_ink_on_failure);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> RESEARCH_PROJECT_SUCCESS_GRANTS_LISTED_THEORY_PROGRESS = Services.TEST_FUNCTIONS_REGISTRY.register("research_project_success_grants_listed_theory_progress", () -> ResearchTableTests::research_project_success_grants_listed_theory_progress);
+
+    // Scribe table tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCRIBE_TABLE_REMEMBERS_LAST_MODE = Services.TEST_FUNCTIONS_REGISTRY.register("scribe_table_remembers_last_mode", () -> ScribeTableTests::scribe_table_remembers_last_mode);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SCRIBE_TABLE_RETAINS_INVENTORY_BETWEEN_OPENINGS_AND_MODES = Services.TEST_FUNCTIONS_REGISTRY.register("scribe_table_retains_inventory_between_openings_and_modes", () -> ScribeTableTests::scribe_table_retains_inventory_between_openings_and_modes);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> STUDY_VOCABULARY_REQUIRES_ANCIENT_BOOK = Services.TEST_FUNCTIONS_REGISTRY.register("study_vocabulary_requires_ancient_book", () -> ScribeTableTests::study_vocabulary_requires_ancient_book);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> STUDY_VOCABULARY_CHARGES_LISTED_COST = Services.TEST_FUNCTIONS_REGISTRY.register("study_vocabulary_charges_listed_cost", () -> ScribeTableTests::study_vocabulary_charges_listed_cost);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> STUDY_VOCABULARY_GRANTS_VOCABULARY_FOR_BOOK_LANGUAGE = Services.TEST_FUNCTIONS_REGISTRY.register("study_vocabulary_grants_vocabulary_for_book_language", () -> ScribeTableTests::study_vocabulary_grants_vocabulary_for_book_language);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> BOOK_CAN_BE_STUDIED_AT_MOST_THREE_TIMES = Services.TEST_FUNCTIONS_REGISTRY.register("book_can_be_studied_at_most_three_times", () -> ScribeTableTests::book_can_be_studied_at_most_three_times);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CLAIMING_NODE_REQUIRES_VOCABULARY_IN_GRID_LANGUAGE = Services.TEST_FUNCTIONS_REGISTRY.register("claiming_node_requires_vocabulary_in_grid_language", () -> ScribeTableTests::claiming_node_requires_vocabulary_in_grid_language);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> CLAIMING_NODE_GRANTS_LISTED_REWARD = Services.TEST_FUNCTIONS_REGISTRY.register("claiming_node_grants_listed_reward", () -> ScribeTableTests::claiming_node_grants_listed_reward);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> TRANSCRIBE_WORKS_REQUIRES_ANCIENT_BOOK_AND_WRITABLE_BOOK = Services.TEST_FUNCTIONS_REGISTRY.register("transcribe_works_requires_ancient_book_and_writable_book", () -> ScribeTableTests::transcribe_works_requires_ancient_book_and_writable_book);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> TRANSCRIBED_WORKS_KEEP_COMPREHENSION_AFTER_RESET = Services.TEST_FUNCTIONS_REGISTRY.register("transcribed_works_keep_comprehension_after_reset", () -> ScribeTableTests::transcribed_works_keep_comprehension_after_reset);
+
+    // Inner demon tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SIN_CRYSTALS_HEAL_INNER_DEMON_IN_RANGE = Services.TEST_FUNCTIONS_REGISTRY.register("sin_crystals_heal_inner_demon_in_range", () -> InnerDemonTests::sin_crystals_heal_inner_demon_in_range);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SIN_CRYSTALS_EXPLODE_WHEN_DAMAGED = Services.TEST_FUNCTIONS_REGISTRY.register("sin_crystals_explode_when_damaged", () -> InnerDemonTests::sin_crystals_explode_when_damaged);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> INNER_DEMON_DROPS_HALLOWED_ORB_WHEN_KILLED = Services.TEST_FUNCTIONS_REGISTRY.register("inner_demon_drops_hallowed_orb_when_killed", () -> InnerDemonTests::inner_demon_drops_hallowed_orb_when_killed);
+
+    // Golem tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> PRIMALITE_GOLEM_FORMS_FROM_T_PATTERN_AND_WAND = Services.TEST_FUNCTIONS_REGISTRY.register("primalite_golem_forms_from_t_pattern_and_wand", () -> GolemTests::primalite_golem_forms_from_t_pattern_and_wand);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> GOLEM_STAYS_AND_FOLLOWS_WHEN_RIGHT_CLICKED = Services.TEST_FUNCTIONS_REGISTRY.register("golem_stays_and_follows_when_right_clicked", () -> GolemTests::golem_stays_and_follows_when_right_clicked);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> GOLEM_IS_REPAIRED_WITH_PRIMALITE_INGOT = Services.TEST_FUNCTIONS_REGISTRY.register("golem_is_repaired_with_primalite_ingot", () -> GolemTests::golem_is_repaired_with_primalite_ingot);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ACTIVATING_SECOND_GOLEM_DESTROYS_FIRST = Services.TEST_FUNCTIONS_REGISTRY.register("activating_second_golem_destroys_first", () -> GolemTests::activating_second_golem_destroys_first);
+
+    // Entropy sink tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENTROPY_SINK_IS_SELECTED_AS_RITUAL_PROP = Services.TEST_FUNCTIONS_REGISTRY.register("entropy_sink_is_selected_as_ritual_prop", () -> EntropySinkTests::entropy_sink_is_selected_as_ritual_prop);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENTROPY_SINK_ACCEPTS_ESSENCE_DUST = Services.TEST_FUNCTIONS_REGISTRY.register("entropy_sink_accepts_essence_dust", () -> (helper) -> EntropySinkTests.entropy_sink_accepts_essence(helper, ItemsPM.ESSENCE_DUST_EARTH.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENTROPY_SINK_STABILITY_BONUS_DUST = Services.TEST_FUNCTIONS_REGISTRY.register("entropy_sink_stability_bonus_dust", () -> (helper) -> EntropySinkTests.entropy_sink_grants_stability_by_essence_grade(helper, ItemsPM.ESSENCE_DUST_EARTH.get(), 5));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENTROPY_SINK_ACCEPTS_ESSENCE_SHARD = Services.TEST_FUNCTIONS_REGISTRY.register("entropy_sink_accepts_essence_shard", () -> (helper) -> EntropySinkTests.entropy_sink_accepts_essence(helper, ItemsPM.ESSENCE_SHARD_EARTH.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENTROPY_SINK_STABILITY_BONUS_SHARD = Services.TEST_FUNCTIONS_REGISTRY.register("entropy_sink_stability_bonus_shard", () -> (helper) -> EntropySinkTests.entropy_sink_grants_stability_by_essence_grade(helper, ItemsPM.ESSENCE_SHARD_EARTH.get(), 20));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENTROPY_SINK_ACCEPTS_ESSENCE_CRYSTAL = Services.TEST_FUNCTIONS_REGISTRY.register("entropy_sink_accepts_essence_crystal", () -> (helper) -> EntropySinkTests.entropy_sink_accepts_essence(helper, ItemsPM.ESSENCE_CRYSTAL_EARTH.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENTROPY_SINK_STABILITY_BONUS_CRYSTAL = Services.TEST_FUNCTIONS_REGISTRY.register("entropy_sink_stability_bonus_crystal", () -> (helper) -> EntropySinkTests.entropy_sink_grants_stability_by_essence_grade(helper, ItemsPM.ESSENCE_CRYSTAL_EARTH.get(), 50));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENTROPY_SINK_ACCEPTS_ESSENCE_CLUSTER = Services.TEST_FUNCTIONS_REGISTRY.register("entropy_sink_accepts_essence_cluster", () -> (helper) -> EntropySinkTests.entropy_sink_accepts_essence(helper, ItemsPM.ESSENCE_CLUSTER_EARTH.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENTROPY_SINK_STABILITY_BONUS_CLUSTER = Services.TEST_FUNCTIONS_REGISTRY.register("entropy_sink_stability_bonus_cluster", () -> (helper) -> EntropySinkTests.entropy_sink_grants_stability_by_essence_grade(helper, ItemsPM.ESSENCE_CLUSTER_EARTH.get(), 100));
+
+    // Ward tests
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WARDING_MODULE_APPLIES_TO_PRIMALITE_CHEST = Services.TEST_FUNCTIONS_REGISTRY.register("warding_module_applies_to_primalite_chest", () -> (helper) -> WardTests.warding_module_applies_to_primal_metal_armor(helper, ItemsPM.PRIMALITE_CHEST.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WARDING_MODULE_APPLIES_TO_HEXIUM_CHEST = Services.TEST_FUNCTIONS_REGISTRY.register("warding_module_applies_to_hexium_chest", () -> (helper) -> WardTests.warding_module_applies_to_primal_metal_armor(helper, ItemsPM.HEXIUM_CHEST.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WARDING_MODULE_APPLIES_TO_HALLOWSTEEL_CHEST = Services.TEST_FUNCTIONS_REGISTRY.register("warding_module_applies_to_hallowsteel_chest", () -> (helper) -> WardTests.warding_module_applies_to_primal_metal_armor(helper, ItemsPM.HALLOWSTEEL_CHEST.get()));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WARDING_MODULE_REJECTS_IRON_CHESTPLATE = Services.TEST_FUNCTIONS_REGISTRY.register("warding_module_rejects_iron_chestplate", () -> (helper) -> WardTests.warding_module_rejects_other_armor(helper, Items.IRON_CHESTPLATE));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WARDING_MODULE_REJECTS_DIAMOND_CHESTPLATE = Services.TEST_FUNCTIONS_REGISTRY.register("warding_module_rejects_diamond_chestplate", () -> (helper) -> WardTests.warding_module_rejects_other_armor(helper, Items.DIAMOND_CHESTPLATE));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WARD_ABSORBS_DAMAGE_BEFORE_HEALTH = Services.TEST_FUNCTIONS_REGISTRY.register("ward_absorbs_damage_before_health", () -> WardTests::ward_absorbs_damage_before_health);
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> WARD_REGENERATION_PAUSES_AFTER_DAMAGE = Services.TEST_FUNCTIONS_REGISTRY.register("ward_regeneration_pauses_after_damage", () -> WardTests::ward_regeneration_pauses_after_damage);
 
     // Spell tests
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> DAMAGE_SPELLS_WORK_EARTH = Services.TEST_FUNCTIONS_REGISTRY.register("damage_spells_work_earth", () -> (helper) -> WandSpellcastTests.damage_spells_deduct_mana_from_wand_and_award_expertise(helper, SpellPayloadsPM.EARTH_DAMAGE.get()));

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "minecraft:default",
+  "function": "primalmagick:first_steps_completes_when_stage_requirements_are_met",
+  "max_attempts": 3,
+  "max_ticks": 400,
+  "setup_ticks": 50,
+  "structure": "primalmagick:test/empty3x3x3"
+}

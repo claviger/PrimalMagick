@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "minecraft:default",
+  "function": "primalmagick:scribe_table_retains_inventory_between_openings_and_modes",
+  "max_attempts": 3,
+  "max_ticks": 400,
+  "setup_ticks": 50,
+  "structure": "primalmagick:test/empty3x3x3"
+}

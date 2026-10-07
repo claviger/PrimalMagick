@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "minecraft:default",
+  "function": "primalmagick:transcribe_works_requires_ancient_book_and_writable_book",
+  "max_attempts": 3,
+  "max_ticks": 400,
+  "setup_ticks": 50,
+  "structure": "primalmagick:test/empty3x3x3"
+}
