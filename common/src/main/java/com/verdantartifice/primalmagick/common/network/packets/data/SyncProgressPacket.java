@@ -18,6 +18,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.VisibleForTesting;
 
 /**
  * Packet to progress a research entry to its next stage on the server.
@@ -78,7 +79,8 @@ public class SyncProgressPacket implements IMessageToServer {
         }
     }
     
-    protected static boolean checkAndConsumePrerequisites(Player player, ResearchEntryKey key) {
+    @VisibleForTesting
+    public static boolean checkAndConsumePrerequisites(Player player, ResearchEntryKey key) {
         RegistryAccess registryAccess = player.level().registryAccess();
         ResearchEntry entry = ResearchEntries.getEntry(registryAccess, key);
         if (entry == null || entry.stages().isEmpty()) {

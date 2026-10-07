@@ -274,6 +274,16 @@ public abstract class RitualAltarTileEntity extends AbstractTileSidedInventoryPM
         this.finishCraft();
     }
 
+    @VisibleForTesting
+    public float getStability() {
+        return this.stability;
+    }
+
+    @VisibleForTesting
+    public void setStability(float stability) {
+        this.stability = Mth.clamp(stability, MIN_STABILITY, MAX_STABILITY);
+    }
+
     protected void reset() {
         // If there's a prop being waited on, close it out
         if (this.level != null && this.awaitedPropPos != null) {

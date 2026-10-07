@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "minecraft:default",
+  "function": "primalmagick:ward_regeneration_pauses_after_damage",
+  "max_attempts": 3,
+  "max_ticks": 1200,
+  "setup_ticks": 50,
+  "structure": "primalmagick:test/empty3x3x3"
+}

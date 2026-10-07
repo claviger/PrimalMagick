@@ -396,6 +396,80 @@ public class TestInstancesPM {
     // Research system tests
     public static final ResourceKey<GameTestInstance> RESEARCH_GRANT_WORKS = createInstanceKey("research_grant_works");
 
+    // Infused stone tests
+    public static final ResourceKey<GameTestInstance> INFUSED_STONE_DROPS_DUST_EARTH = createInstanceKey("infused_stone_drops_dust_earth");
+    public static final ResourceKey<GameTestInstance> INFUSED_STONE_DROPS_DUST_SEA = createInstanceKey("infused_stone_drops_dust_sea");
+    public static final ResourceKey<GameTestInstance> INFUSED_STONE_DROPS_DUST_SKY = createInstanceKey("infused_stone_drops_dust_sky");
+    public static final ResourceKey<GameTestInstance> INFUSED_STONE_DROPS_DUST_SUN = createInstanceKey("infused_stone_drops_dust_sun");
+    public static final ResourceKey<GameTestInstance> INFUSED_STONE_DROPS_DUST_MOON = createInstanceKey("infused_stone_drops_dust_moon");
+
+    // First steps tests
+    public static final ResourceKey<GameTestInstance> ARCANE_WORKBENCH_TRANSFORM_REQUIRES_FIRST_STEPS = createInstanceKey("arcane_workbench_transform_requires_first_steps");
+    public static final ResourceKey<GameTestInstance> ARCANE_WORKBENCH_TRANSFORM_SUCCEEDS_AFTER_FIRST_STEPS = createInstanceKey("arcane_workbench_transform_succeeds_after_first_steps");
+    public static final ResourceKey<GameTestInstance> FIRST_STEPS_COMPLETES_WHEN_STAGE_REQUIREMENTS_ARE_MET = createInstanceKey("first_steps_completes_when_stage_requirements_are_met");
+    public static final ResourceKey<GameTestInstance> SHRINE_PROMPTS_MUNDANE_WAND_HOLDER_TO_SIPHON = createInstanceKey("shrine_prompts_mundane_wand_holder_to_siphon");
+
+    // Source discovery tests
+    public static final ResourceKey<GameTestInstance> EATING_BLOODY_FLESH_UNLOCKS_BLOOD_SOURCE = createInstanceKey("eating_bloody_flesh_unlocks_blood_source");
+    public static final ResourceKey<GameTestInstance> READING_BLOOD_NOTES_UNLOCKS_BLOOD_SOURCE = createInstanceKey("reading_blood_notes_unlocks_blood_source");
+    public static final ResourceKey<GameTestInstance> SCANNING_HALLOWED_ORB_UNLOCKS_HALLOWED_SOURCE = createInstanceKey("scanning_hallowed_orb_unlocks_hallowed_source");
+
+    // Analysis table tests
+    public static final ResourceKey<GameTestInstance> ANALYSIS_TABLE_CONSUMES_SCANNED_ITEM = createInstanceKey("analysis_table_consumes_scanned_item");
+    public static final ResourceKey<GameTestInstance> ANALYSIS_TABLE_SCAN_GRANTS_OBSERVATION_PROGRESS = createInstanceKey("analysis_table_scan_grants_observation_progress");
+    public static final ResourceKey<GameTestInstance> ANALYSIS_TABLE_REFUSES_HALLOWED_ORB = createInstanceKey("analysis_table_refuses_hallowed_orb");
+
+    // Research table tests
+    public static final ResourceKey<GameTestInstance> RESEARCH_TABLE_REQUIRES_PAPER_AND_INK = createInstanceKey("research_table_requires_paper_and_ink");
+    public static final ResourceKey<GameTestInstance> RESEARCH_PROJECTS_GAIN_MATERIALS_AS_PROJECTS_ARE_COMPLETED = createInstanceKey("research_projects_gain_materials_as_projects_are_completed");
+    public static final ResourceKey<GameTestInstance> RESEARCH_PROJECTS_LOSE_BASE_SUCCESS_CHANCE_AS_PROJECTS_ARE_COMPLETED = createInstanceKey("research_projects_lose_base_success_chance_as_projects_are_completed");
+    public static final ResourceKey<GameTestInstance> RESEARCH_TABLE_CONSUMES_PAPER_AND_INK_ON_SUCCESS = createInstanceKey("research_table_consumes_paper_and_ink_on_success");
+    public static final ResourceKey<GameTestInstance> RESEARCH_TABLE_CONSUMES_PAPER_AND_INK_ON_FAILURE = createInstanceKey("research_table_consumes_paper_and_ink_on_failure");
+    public static final ResourceKey<GameTestInstance> RESEARCH_PROJECT_SUCCESS_GRANTS_LISTED_THEORY_PROGRESS = createInstanceKey("research_project_success_grants_listed_theory_progress");
+
+    // Scribe table tests
+    public static final ResourceKey<GameTestInstance> SCRIBE_TABLE_REMEMBERS_LAST_MODE = createInstanceKey("scribe_table_remembers_last_mode");
+    public static final ResourceKey<GameTestInstance> SCRIBE_TABLE_RETAINS_INVENTORY_BETWEEN_OPENINGS_AND_MODES = createInstanceKey("scribe_table_retains_inventory_between_openings_and_modes");
+    public static final ResourceKey<GameTestInstance> STUDY_VOCABULARY_REQUIRES_ANCIENT_BOOK = createInstanceKey("study_vocabulary_requires_ancient_book");
+    public static final ResourceKey<GameTestInstance> STUDY_VOCABULARY_CHARGES_LISTED_COST = createInstanceKey("study_vocabulary_charges_listed_cost");
+    public static final ResourceKey<GameTestInstance> STUDY_VOCABULARY_GRANTS_VOCABULARY_FOR_BOOK_LANGUAGE = createInstanceKey("study_vocabulary_grants_vocabulary_for_book_language");
+    public static final ResourceKey<GameTestInstance> BOOK_CAN_BE_STUDIED_AT_MOST_THREE_TIMES = createInstanceKey("book_can_be_studied_at_most_three_times");
+    public static final ResourceKey<GameTestInstance> CLAIMING_NODE_REQUIRES_VOCABULARY_IN_GRID_LANGUAGE = createInstanceKey("claiming_node_requires_vocabulary_in_grid_language");
+    public static final ResourceKey<GameTestInstance> CLAIMING_NODE_GRANTS_LISTED_REWARD = createInstanceKey("claiming_node_grants_listed_reward");
+    public static final ResourceKey<GameTestInstance> TRANSCRIBE_WORKS_REQUIRES_ANCIENT_BOOK_AND_WRITABLE_BOOK = createInstanceKey("transcribe_works_requires_ancient_book_and_writable_book");
+    public static final ResourceKey<GameTestInstance> TRANSCRIBED_WORKS_KEEP_COMPREHENSION_AFTER_RESET = createInstanceKey("transcribed_works_keep_comprehension_after_reset");
+
+    // Inner demon tests
+    public static final ResourceKey<GameTestInstance> SIN_CRYSTALS_HEAL_INNER_DEMON_IN_RANGE = createInstanceKey("sin_crystals_heal_inner_demon_in_range");
+    public static final ResourceKey<GameTestInstance> SIN_CRYSTALS_EXPLODE_WHEN_DAMAGED = createInstanceKey("sin_crystals_explode_when_damaged");
+    public static final ResourceKey<GameTestInstance> INNER_DEMON_DROPS_HALLOWED_ORB_WHEN_KILLED = createInstanceKey("inner_demon_drops_hallowed_orb_when_killed");
+
+    // Golem tests
+    public static final ResourceKey<GameTestInstance> PRIMALITE_GOLEM_FORMS_FROM_T_PATTERN_AND_WAND = createInstanceKey("primalite_golem_forms_from_t_pattern_and_wand");
+    public static final ResourceKey<GameTestInstance> GOLEM_STAYS_AND_FOLLOWS_WHEN_RIGHT_CLICKED = createInstanceKey("golem_stays_and_follows_when_right_clicked");
+    public static final ResourceKey<GameTestInstance> GOLEM_IS_REPAIRED_WITH_PRIMALITE_INGOT = createInstanceKey("golem_is_repaired_with_primalite_ingot");
+    public static final ResourceKey<GameTestInstance> ACTIVATING_SECOND_GOLEM_DESTROYS_FIRST = createInstanceKey("activating_second_golem_destroys_first");
+
+    // Entropy sink tests
+    public static final ResourceKey<GameTestInstance> ENTROPY_SINK_IS_SELECTED_AS_RITUAL_PROP = createInstanceKey("entropy_sink_is_selected_as_ritual_prop");
+    public static final ResourceKey<GameTestInstance> ENTROPY_SINK_ACCEPTS_ESSENCE_DUST = createInstanceKey("entropy_sink_accepts_essence_dust");
+    public static final ResourceKey<GameTestInstance> ENTROPY_SINK_STABILITY_BONUS_DUST = createInstanceKey("entropy_sink_stability_bonus_dust");
+    public static final ResourceKey<GameTestInstance> ENTROPY_SINK_ACCEPTS_ESSENCE_SHARD = createInstanceKey("entropy_sink_accepts_essence_shard");
+    public static final ResourceKey<GameTestInstance> ENTROPY_SINK_STABILITY_BONUS_SHARD = createInstanceKey("entropy_sink_stability_bonus_shard");
+    public static final ResourceKey<GameTestInstance> ENTROPY_SINK_ACCEPTS_ESSENCE_CRYSTAL = createInstanceKey("entropy_sink_accepts_essence_crystal");
+    public static final ResourceKey<GameTestInstance> ENTROPY_SINK_STABILITY_BONUS_CRYSTAL = createInstanceKey("entropy_sink_stability_bonus_crystal");
+    public static final ResourceKey<GameTestInstance> ENTROPY_SINK_ACCEPTS_ESSENCE_CLUSTER = createInstanceKey("entropy_sink_accepts_essence_cluster");
+    public static final ResourceKey<GameTestInstance> ENTROPY_SINK_STABILITY_BONUS_CLUSTER = createInstanceKey("entropy_sink_stability_bonus_cluster");
+
+    // Ward tests
+    public static final ResourceKey<GameTestInstance> WARDING_MODULE_APPLIES_TO_PRIMALITE_CHEST = createInstanceKey("warding_module_applies_to_primalite_chest");
+    public static final ResourceKey<GameTestInstance> WARDING_MODULE_APPLIES_TO_HEXIUM_CHEST = createInstanceKey("warding_module_applies_to_hexium_chest");
+    public static final ResourceKey<GameTestInstance> WARDING_MODULE_APPLIES_TO_HALLOWSTEEL_CHEST = createInstanceKey("warding_module_applies_to_hallowsteel_chest");
+    public static final ResourceKey<GameTestInstance> WARDING_MODULE_REJECTS_IRON_CHESTPLATE = createInstanceKey("warding_module_rejects_iron_chestplate");
+    public static final ResourceKey<GameTestInstance> WARDING_MODULE_REJECTS_DIAMOND_CHESTPLATE = createInstanceKey("warding_module_rejects_diamond_chestplate");
+    public static final ResourceKey<GameTestInstance> WARD_ABSORBS_DAMAGE_BEFORE_HEALTH = createInstanceKey("ward_absorbs_damage_before_health");
+    public static final ResourceKey<GameTestInstance> WARD_REGENERATION_PAUSES_AFTER_DAMAGE = createInstanceKey("ward_regeneration_pauses_after_damage");
+
     // Spell tests
     public static final ResourceKey<GameTestInstance> DAMAGE_SPELLS_WORK_EARTH = createInstanceKey("damage_spells_work_earth");
     public static final ResourceKey<GameTestInstance> DAMAGE_SPELLS_WORK_SEA = createInstanceKey("damage_spells_work_sea");
@@ -650,6 +724,16 @@ public class TestInstancesPM {
         registerResearchKeyTests(context);
         registerResearchRequirementTests(context);
         registerResearchTests(context);
+        registerInfusedStoneTests(context);
+        registerFirstStepsTests(context);
+        registerSourceDiscoveryTests(context);
+        registerAnalysisTableTests(context);
+        registerResearchTableTests(context);
+        registerScribeTableTests(context);
+        registerInnerDemonTests(context);
+        registerGolemTests(context);
+        registerEntropySinkTests(context);
+        registerWardTests(context);
         registerSpellTests(context);
         registerAutoChargerTests(context);
         registerManaBatteryTests(context);
@@ -904,6 +988,90 @@ public class TestInstancesPM {
 
     public static void registerResearchTests(BootstrapContext<GameTestInstance> context) {
         registerFunction(context, RESEARCH_GRANT_WORKS, TestFunctionsPM.RESEARCH_GRANT_WORKS.getKey());
+    }
+
+    public static void registerInfusedStoneTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, INFUSED_STONE_DROPS_DUST_EARTH, TestFunctionsPM.INFUSED_STONE_DROPS_DUST_EARTH.getKey());
+        registerFunction(context, INFUSED_STONE_DROPS_DUST_SEA, TestFunctionsPM.INFUSED_STONE_DROPS_DUST_SEA.getKey());
+        registerFunction(context, INFUSED_STONE_DROPS_DUST_SKY, TestFunctionsPM.INFUSED_STONE_DROPS_DUST_SKY.getKey());
+        registerFunction(context, INFUSED_STONE_DROPS_DUST_SUN, TestFunctionsPM.INFUSED_STONE_DROPS_DUST_SUN.getKey());
+        registerFunction(context, INFUSED_STONE_DROPS_DUST_MOON, TestFunctionsPM.INFUSED_STONE_DROPS_DUST_MOON.getKey());
+    }
+
+    public static void registerFirstStepsTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ARCANE_WORKBENCH_TRANSFORM_REQUIRES_FIRST_STEPS, TestFunctionsPM.ARCANE_WORKBENCH_TRANSFORM_REQUIRES_FIRST_STEPS.getKey());
+        registerFunction(context, ARCANE_WORKBENCH_TRANSFORM_SUCCEEDS_AFTER_FIRST_STEPS, TestFunctionsPM.ARCANE_WORKBENCH_TRANSFORM_SUCCEEDS_AFTER_FIRST_STEPS.getKey());
+        registerFunction(context, FIRST_STEPS_COMPLETES_WHEN_STAGE_REQUIREMENTS_ARE_MET, TestFunctionsPM.FIRST_STEPS_COMPLETES_WHEN_STAGE_REQUIREMENTS_ARE_MET.getKey());
+        registerFunction(context, SHRINE_PROMPTS_MUNDANE_WAND_HOLDER_TO_SIPHON, TestFunctionsPM.SHRINE_PROMPTS_MUNDANE_WAND_HOLDER_TO_SIPHON.getKey());
+    }
+
+    public static void registerSourceDiscoveryTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, EATING_BLOODY_FLESH_UNLOCKS_BLOOD_SOURCE, TestFunctionsPM.EATING_BLOODY_FLESH_UNLOCKS_BLOOD_SOURCE.getKey());
+        registerFunction(context, READING_BLOOD_NOTES_UNLOCKS_BLOOD_SOURCE, TestFunctionsPM.READING_BLOOD_NOTES_UNLOCKS_BLOOD_SOURCE.getKey());
+        registerFunction(context, SCANNING_HALLOWED_ORB_UNLOCKS_HALLOWED_SOURCE, TestFunctionsPM.SCANNING_HALLOWED_ORB_UNLOCKS_HALLOWED_SOURCE.getKey());
+    }
+
+    public static void registerAnalysisTableTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ANALYSIS_TABLE_CONSUMES_SCANNED_ITEM, TestFunctionsPM.ANALYSIS_TABLE_CONSUMES_SCANNED_ITEM.getKey());
+        registerFunction(context, ANALYSIS_TABLE_SCAN_GRANTS_OBSERVATION_PROGRESS, TestFunctionsPM.ANALYSIS_TABLE_SCAN_GRANTS_OBSERVATION_PROGRESS.getKey());
+        registerFunction(context, ANALYSIS_TABLE_REFUSES_HALLOWED_ORB, TestFunctionsPM.ANALYSIS_TABLE_REFUSES_HALLOWED_ORB.getKey());
+    }
+
+    public static void registerResearchTableTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, RESEARCH_TABLE_REQUIRES_PAPER_AND_INK, TestFunctionsPM.RESEARCH_TABLE_REQUIRES_PAPER_AND_INK.getKey());
+        registerFunction(context, RESEARCH_PROJECTS_GAIN_MATERIALS_AS_PROJECTS_ARE_COMPLETED, TestFunctionsPM.RESEARCH_PROJECTS_GAIN_MATERIALS_AS_PROJECTS_ARE_COMPLETED.getKey());
+        registerFunction(context, RESEARCH_PROJECTS_LOSE_BASE_SUCCESS_CHANCE_AS_PROJECTS_ARE_COMPLETED, TestFunctionsPM.RESEARCH_PROJECTS_LOSE_BASE_SUCCESS_CHANCE_AS_PROJECTS_ARE_COMPLETED.getKey());
+        registerFunction(context, RESEARCH_TABLE_CONSUMES_PAPER_AND_INK_ON_SUCCESS, TestFunctionsPM.RESEARCH_TABLE_CONSUMES_PAPER_AND_INK_ON_SUCCESS.getKey());
+        registerFunction(context, RESEARCH_TABLE_CONSUMES_PAPER_AND_INK_ON_FAILURE, TestFunctionsPM.RESEARCH_TABLE_CONSUMES_PAPER_AND_INK_ON_FAILURE.getKey());
+        registerFunction(context, RESEARCH_PROJECT_SUCCESS_GRANTS_LISTED_THEORY_PROGRESS, TestFunctionsPM.RESEARCH_PROJECT_SUCCESS_GRANTS_LISTED_THEORY_PROGRESS.getKey());
+    }
+
+    public static void registerScribeTableTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SCRIBE_TABLE_REMEMBERS_LAST_MODE, TestFunctionsPM.SCRIBE_TABLE_REMEMBERS_LAST_MODE.getKey());
+        registerFunction(context, SCRIBE_TABLE_RETAINS_INVENTORY_BETWEEN_OPENINGS_AND_MODES, TestFunctionsPM.SCRIBE_TABLE_RETAINS_INVENTORY_BETWEEN_OPENINGS_AND_MODES.getKey());
+        registerFunction(context, STUDY_VOCABULARY_REQUIRES_ANCIENT_BOOK, TestFunctionsPM.STUDY_VOCABULARY_REQUIRES_ANCIENT_BOOK.getKey());
+        registerFunction(context, STUDY_VOCABULARY_CHARGES_LISTED_COST, TestFunctionsPM.STUDY_VOCABULARY_CHARGES_LISTED_COST.getKey());
+        registerFunction(context, STUDY_VOCABULARY_GRANTS_VOCABULARY_FOR_BOOK_LANGUAGE, TestFunctionsPM.STUDY_VOCABULARY_GRANTS_VOCABULARY_FOR_BOOK_LANGUAGE.getKey());
+        registerFunction(context, BOOK_CAN_BE_STUDIED_AT_MOST_THREE_TIMES, TestFunctionsPM.BOOK_CAN_BE_STUDIED_AT_MOST_THREE_TIMES.getKey());
+        registerFunction(context, CLAIMING_NODE_REQUIRES_VOCABULARY_IN_GRID_LANGUAGE, TestFunctionsPM.CLAIMING_NODE_REQUIRES_VOCABULARY_IN_GRID_LANGUAGE.getKey());
+        registerFunction(context, CLAIMING_NODE_GRANTS_LISTED_REWARD, TestFunctionsPM.CLAIMING_NODE_GRANTS_LISTED_REWARD.getKey());
+        registerFunction(context, TRANSCRIBE_WORKS_REQUIRES_ANCIENT_BOOK_AND_WRITABLE_BOOK, TestFunctionsPM.TRANSCRIBE_WORKS_REQUIRES_ANCIENT_BOOK_AND_WRITABLE_BOOK.getKey());
+        registerFunction(context, TRANSCRIBED_WORKS_KEEP_COMPREHENSION_AFTER_RESET, TestFunctionsPM.TRANSCRIBED_WORKS_KEEP_COMPREHENSION_AFTER_RESET.getKey());
+    }
+
+    public static void registerInnerDemonTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SIN_CRYSTALS_HEAL_INNER_DEMON_IN_RANGE, TestFunctionsPM.SIN_CRYSTALS_HEAL_INNER_DEMON_IN_RANGE.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+        registerFunction(context, SIN_CRYSTALS_EXPLODE_WHEN_DAMAGED, TestFunctionsPM.SIN_CRYSTALS_EXPLODE_WHEN_DAMAGED.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+        registerFunction(context, INNER_DEMON_DROPS_HALLOWED_ORB_WHEN_KILLED, TestFunctionsPM.INNER_DEMON_DROPS_HALLOWED_ORB_WHEN_KILLED.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+    }
+
+    public static void registerGolemTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, PRIMALITE_GOLEM_FORMS_FROM_T_PATTERN_AND_WAND, TestFunctionsPM.PRIMALITE_GOLEM_FORMS_FROM_T_PATTERN_AND_WAND.getKey());
+        registerFunction(context, GOLEM_STAYS_AND_FOLLOWS_WHEN_RIGHT_CLICKED, TestFunctionsPM.GOLEM_STAYS_AND_FOLLOWS_WHEN_RIGHT_CLICKED.getKey());
+        registerFunction(context, GOLEM_IS_REPAIRED_WITH_PRIMALITE_INGOT, TestFunctionsPM.GOLEM_IS_REPAIRED_WITH_PRIMALITE_INGOT.getKey());
+        registerFunction(context, ACTIVATING_SECOND_GOLEM_DESTROYS_FIRST, TestFunctionsPM.ACTIVATING_SECOND_GOLEM_DESTROYS_FIRST.getKey());
+    }
+
+    public static void registerEntropySinkTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, ENTROPY_SINK_IS_SELECTED_AS_RITUAL_PROP, TestFunctionsPM.ENTROPY_SINK_IS_SELECTED_AS_RITUAL_PROP.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENTROPY_SINK_ACCEPTS_ESSENCE_DUST, TestFunctionsPM.ENTROPY_SINK_ACCEPTS_ESSENCE_DUST.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENTROPY_SINK_STABILITY_BONUS_DUST, TestFunctionsPM.ENTROPY_SINK_STABILITY_BONUS_DUST.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENTROPY_SINK_ACCEPTS_ESSENCE_SHARD, TestFunctionsPM.ENTROPY_SINK_ACCEPTS_ESSENCE_SHARD.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENTROPY_SINK_STABILITY_BONUS_SHARD, TestFunctionsPM.ENTROPY_SINK_STABILITY_BONUS_SHARD.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENTROPY_SINK_ACCEPTS_ESSENCE_CRYSTAL, TestFunctionsPM.ENTROPY_SINK_ACCEPTS_ESSENCE_CRYSTAL.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENTROPY_SINK_STABILITY_BONUS_CRYSTAL, TestFunctionsPM.ENTROPY_SINK_STABILITY_BONUS_CRYSTAL.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENTROPY_SINK_ACCEPTS_ESSENCE_CLUSTER, TestFunctionsPM.ENTROPY_SINK_ACCEPTS_ESSENCE_CLUSTER.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, ENTROPY_SINK_STABILITY_BONUS_CLUSTER, TestFunctionsPM.ENTROPY_SINK_STABILITY_BONUS_CLUSTER.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+    }
+
+    public static void registerWardTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, WARDING_MODULE_APPLIES_TO_PRIMALITE_CHEST, TestFunctionsPM.WARDING_MODULE_APPLIES_TO_PRIMALITE_CHEST.getKey());
+        registerFunction(context, WARDING_MODULE_APPLIES_TO_HEXIUM_CHEST, TestFunctionsPM.WARDING_MODULE_APPLIES_TO_HEXIUM_CHEST.getKey());
+        registerFunction(context, WARDING_MODULE_APPLIES_TO_HALLOWSTEEL_CHEST, TestFunctionsPM.WARDING_MODULE_APPLIES_TO_HALLOWSTEEL_CHEST.getKey());
+        registerFunction(context, WARDING_MODULE_REJECTS_IRON_CHESTPLATE, TestFunctionsPM.WARDING_MODULE_REJECTS_IRON_CHESTPLATE.getKey());
+        registerFunction(context, WARDING_MODULE_REJECTS_DIAMOND_CHESTPLATE, TestFunctionsPM.WARDING_MODULE_REJECTS_DIAMOND_CHESTPLATE.getKey());
+        registerFunction(context, WARD_ABSORBS_DAMAGE_BEFORE_HEALTH, TestFunctionsPM.WARD_ABSORBS_DAMAGE_BEFORE_HEALTH.getKey());
+        registerFunction(context, WARD_REGENERATION_PAUSES_AFTER_DAMAGE, TestFunctionsPM.WARD_REGENERATION_PAUSES_AFTER_DAMAGE.getKey());
     }
 
     public static void registerResearchRequirementTests(BootstrapContext<GameTestInstance> context) {
