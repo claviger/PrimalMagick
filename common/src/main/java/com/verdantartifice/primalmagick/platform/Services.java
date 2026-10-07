@@ -40,6 +40,7 @@ import com.verdantartifice.primalmagick.platform.services.registries.ICriterionT
 import com.verdantartifice.primalmagick.platform.services.registries.IDataComponentTypeRegistryService;
 import com.verdantartifice.primalmagick.platform.services.registries.IEnchantmentEntityEffectTypeRegistryService;
 import com.verdantartifice.primalmagick.platform.services.registries.IEnchantmentLocationBasedEffectTypeRegistryService;
+import com.verdantartifice.primalmagick.platform.services.registries.IEntityDataSerializerRegistryService;
 import com.verdantartifice.primalmagick.platform.services.registries.IEntityTypeRegistryService;
 import com.verdantartifice.primalmagick.platform.services.registries.IGridRewardTypeRegistryService;
 import com.verdantartifice.primalmagick.platform.services.registries.IItemRegistryService;
@@ -120,6 +121,7 @@ public class Services {
     public static final ICreativeModeTabRegistryService CREATIVE_MODE_TABS_REGISTRY = load(ICreativeModeTabRegistryService.class);
     public static final IDataComponentTypeRegistryService DATA_COMPONENT_TYPES_REGISTRY = load(IDataComponentTypeRegistryService.class);
     public static final IEntityTypeRegistryService ENTITY_TYPES_REGISTRY = load(IEntityTypeRegistryService.class);
+    public static final IEntityDataSerializerRegistryService ENTITY_DATA_SERIALIZERS_REGISTRY = load(IEntityDataSerializerRegistryService.class);
     public static final IBlockEntityTypeRegistryService BLOCK_ENTITY_TYPES_REGISTRY = load(IBlockEntityTypeRegistryService.class);
     public static final IMenuTypeRegistryService MENU_TYPES_REGISTRY = load(IMenuTypeRegistryService.class);
     public static final IMobEffectRegistryService MOB_EFFECTS_REGISTRY = load(IMobEffectRegistryService.class);
