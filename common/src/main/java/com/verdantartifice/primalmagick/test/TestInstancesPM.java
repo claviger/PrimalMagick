@@ -541,6 +541,72 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> SPELL_IS_INVALID_NULL_VEHICLE = createInstanceKey("spell_is_invalid_null_vehicle");
     public static final ResourceKey<GameTestInstance> SPELL_IS_INVALID_NULL_PAYLOAD = createInstanceKey("spell_is_invalid_null_payload");
 
+    // Spellcrafting menu and scroll tests
+    public static final ResourceKey<GameTestInstance> SPELLCRAFTING_ALTAR_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("spellcrafting_altar_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> SPELLCRAFTING_ALTAR_OPTIONS_LIMITED_TO_UNLOCKED_RESEARCH = createInstanceKey("spellcrafting_altar_options_limited_to_unlocked_research");
+    public static final ResourceKey<GameTestInstance> SPELLCRAFTING_ALTAR_CREATES_SCROLL_AS_CONFIGURED = createInstanceKey("spellcrafting_altar_creates_scroll_as_configured");
+    public static final ResourceKey<GameTestInstance> WAND_INSCRIPTION_TABLE_CAN_HAVE_ITS_MENU_OPENED = createInstanceKey("wand_inscription_table_can_have_its_menu_opened");
+    public static final ResourceKey<GameTestInstance> SPELL_SCROLL_IS_CONSUMED_WHEN_USED_IN_SURVIVAL = createInstanceKey("spell_scroll_is_consumed_when_used_in_survival");
+    public static final ResourceKey<GameTestInstance> SPELL_SCROLL_IS_NOT_CONSUMED_WHEN_USED_IN_CREATIVE = createInstanceKey("spell_scroll_is_not_consumed_when_used_in_creative");
+
+    // Spell payload tests
+    public static final ResourceKey<GameTestInstance> EARTH_DAMAGE_KNOCKBACK_SCALES_WITH_POWER = createInstanceKey("earth_damage_knockback_scales_with_power");
+    public static final ResourceKey<GameTestInstance> FROST_DAMAGE_APPLIES_SLOWNESS_SCALED_BY_POWER_AND_DURATION = createInstanceKey("frost_damage_applies_slowness_scaled_by_power_and_duration");
+    public static final ResourceKey<GameTestInstance> SOLAR_DAMAGE_APPLIES_GLOWING_SCALED_BY_DURATION = createInstanceKey("solar_damage_applies_glowing_scaled_by_duration");
+    public static final ResourceKey<GameTestInstance> SOLAR_DAMAGE_IGNITES_UNDEAD_TARGETS_FOR_DURATION = createInstanceKey("solar_damage_ignites_undead_targets_for_duration");
+    public static final ResourceKey<GameTestInstance> LUNAR_DAMAGE_APPLIES_WEAKNESS_SCALED_BY_POWER_AND_DURATION = createInstanceKey("lunar_damage_applies_weakness_scaled_by_power_and_duration");
+    public static final ResourceKey<GameTestInstance> BLOOD_DAMAGE_IGNORES_ARMOR = createInstanceKey("blood_damage_ignores_armor");
+    public static final ResourceKey<GameTestInstance> FLAME_DAMAGE_IGNITES_TARGET_FOR_DURATION = createInstanceKey("flame_damage_ignites_target_for_duration");
+    public static final ResourceKey<GameTestInstance> VOID_DAMAGE_APPLIES_WITHER = createInstanceKey("void_damage_applies_wither");
+    public static final ResourceKey<GameTestInstance> HOLY_DAMAGE_DEALS_DOUBLE_DAMAGE_TO_UNDEAD = createInstanceKey("holy_damage_deals_double_damage_to_undead");
+    public static final ResourceKey<GameTestInstance> HEALING_RESTORES_HEALTH_TO_TARGET = createInstanceKey("healing_restores_health_to_target");
+    public static final ResourceKey<GameTestInstance> HEALING_OVERHEAL_GRANTS_ABSORPTION = createInstanceKey("healing_overheal_grants_absorption");
+    public static final ResourceKey<GameTestInstance> HEALING_SMALL_OVERHEAL_GRANTS_NO_ABSORPTION = createInstanceKey("healing_small_overheal_grants_no_absorption");
+    public static final ResourceKey<GameTestInstance> DRAIN_SOUL_APPLIES_DEBUFF = createInstanceKey("drain_soul_applies_debuff");
+    public static final ResourceKey<GameTestInstance> DRAIN_SOUL_KILL_DROPS_SOUL_GEMS_PROPORTIONAL_TO_MAX_HEALTH = createInstanceKey("drain_soul_kill_drops_soul_gems_proportional_to_max_health");
+    public static final ResourceKey<GameTestInstance> DRAIN_SOUL_PASSIVE_MOBS_DROP_FEWER_SOUL_GEMS = createInstanceKey("drain_soul_passive_mobs_drop_fewer_soul_gems");
+    public static final ResourceKey<GameTestInstance> BREAK_SPELL_SPEED_DEPENDS_ON_POWER = createInstanceKey("break_spell_speed_depends_on_power");
+    public static final ResourceKey<GameTestInstance> BREAK_SPELL_BREAKS_HARD_BLOCKS = createInstanceKey("break_spell_breaks_hard_blocks");
+    public static final ResourceKey<GameTestInstance> BREAK_SPELL_HAS_NO_EFFECT_ON_ENTITIES = createInstanceKey("break_spell_has_no_effect_on_entities");
+    public static final ResourceKey<GameTestInstance> BREAK_SPELL_RESPECTS_SILK_TOUCH = createInstanceKey("break_spell_respects_silk_touch");
+    public static final ResourceKey<GameTestInstance> CONJURE_STONE_PLACES_STONE_AT_TARGET = createInstanceKey("conjure_stone_places_stone_at_target");
+    public static final ResourceKey<GameTestInstance> CONJURE_WATER_PLACES_WATER_SOURCE = createInstanceKey("conjure_water_places_water_source");
+    public static final ResourceKey<GameTestInstance> CONJURE_LAVA_PLACES_LAVA_SOURCE = createInstanceKey("conjure_lava_places_lava_source");
+    public static final ResourceKey<GameTestInstance> CONJURE_LIGHT_PLACES_GLOW_FIELD = createInstanceKey("conjure_light_places_glow_field");
+    public static final ResourceKey<GameTestInstance> CONSECRATE_PLACES_TWO_CONSECRATION_FIELDS = createInstanceKey("consecrate_places_two_consecration_fields");
+    public static final ResourceKey<GameTestInstance> SHEAR_SPELL_BREAKS_LEAVES_AND_DROPS_THEM = createInstanceKey("shear_spell_breaks_leaves_and_drops_them");
+    public static final ResourceKey<GameTestInstance> SHEAR_SPELL_SHEARS_SHEEP_FOR_WOOL = createInstanceKey("shear_spell_shears_sheep_for_wool");
+    public static final ResourceKey<GameTestInstance> SHEAR_SPELL_DISARMS_TRIPWIRE_SAFELY = createInstanceKey("shear_spell_disarms_tripwire_safely");
+    public static final ResourceKey<GameTestInstance> POLYMORPH_TURNS_TARGET_INTO_WOLF = createInstanceKey("polymorph_turns_target_into_wolf");
+    public static final ResourceKey<GameTestInstance> POLYMORPH_REVERTS_TARGET_AFTER_DURATION = createInstanceKey("polymorph_reverts_target_after_duration");
+    public static final ResourceKey<GameTestInstance> POLYMORPH_IS_REFUSED_FOR_WOLVES_PLAYERS_AND_BOSSES = createInstanceKey("polymorph_is_refused_for_wolves_players_and_bosses");
+    public static final ResourceKey<GameTestInstance> CONJURE_ANIMAL_SUMMONS_LAND_ANIMALS_ABOVE_WATER = createInstanceKey("conjure_animal_summons_land_animals_above_water");
+    public static final ResourceKey<GameTestInstance> CONJURE_ANIMAL_SUMMONS_WATER_ANIMALS_BELOW_WATER = createInstanceKey("conjure_animal_summons_water_animals_below_water");
+    public static final ResourceKey<GameTestInstance> CONJURE_ANIMAL_FAILS_WHEN_COMBINED_WITH_BURST = createInstanceKey("conjure_animal_fails_when_combined_with_burst");
+    public static final ResourceKey<GameTestInstance> CONSECRATION_FIELD_CANNOT_BE_ENTERED_BY_NON_PLAYER_MOBS = createInstanceKey("consecration_field_cannot_be_entered_by_non_player_mobs");
+    public static final ResourceKey<GameTestInstance> CONSECRATION_FIELD_GRANTS_REGENERATION_AND_SATURATION_TO_PLAYERS = createInstanceKey("consecration_field_grants_regeneration_and_saturation_to_players");
+    public static final ResourceKey<GameTestInstance> TELEPORT_MOVES_CASTER_TO_TARGET_POINT = createInstanceKey("teleport_moves_caster_to_target_point");
+    public static final ResourceKey<GameTestInstance> TELEPORT_FAILS_WHEN_COMBINED_WITH_BURST = createInstanceKey("teleport_fails_when_combined_with_burst");
+
+    // Spell vehicle tests
+    public static final ResourceKey<GameTestInstance> PROJECTILE_SPELL_IS_SUBJECT_TO_GRAVITY = createInstanceKey("projectile_spell_is_subject_to_gravity");
+    public static final ResourceKey<GameTestInstance> BOLT_SPELL_HITS_ONLY_TARGETS_WITHIN_RANGE = createInstanceKey("bolt_spell_hits_only_targets_within_range");
+    public static final ResourceKey<GameTestInstance> BOLT_SPELL_IS_INSTANT_AND_UNAFFECTED_BY_GRAVITY = createInstanceKey("bolt_spell_is_instant_and_unaffected_by_gravity");
+    public static final ResourceKey<GameTestInstance> BURST_SPELL_AFFECTS_TARGETS_WITHIN_RADIUS_2 = createInstanceKey("burst_spell_affects_targets_within_radius_2");
+    public static final ResourceKey<GameTestInstance> BURST_SPELL_AFFECTS_TARGETS_WITHIN_RADIUS_4 = createInstanceKey("burst_spell_affects_targets_within_radius_4");
+    public static final ResourceKey<GameTestInstance> FORK_SPELL_CREATES_2_VEHICLES = createInstanceKey("fork_spell_creates_2_vehicles");
+    public static final ResourceKey<GameTestInstance> FORK_SPELL_CREATES_3_VEHICLES = createInstanceKey("fork_spell_creates_3_vehicles");
+    public static final ResourceKey<GameTestInstance> FORK_SPELL_CREATES_5_VEHICLES = createInstanceKey("fork_spell_creates_5_vehicles");
+    public static final ResourceKey<GameTestInstance> FORK_VEHICLES_SPREAD_WITHIN_PRECISION_0_ANGLE = createInstanceKey("fork_vehicles_spread_within_precision_0_angle");
+    public static final ResourceKey<GameTestInstance> FORK_VEHICLES_SPREAD_WITHIN_PRECISION_2_ANGLE = createInstanceKey("fork_vehicles_spread_within_precision_2_angle");
+    public static final ResourceKey<GameTestInstance> FORK_VEHICLES_SPREAD_WITHIN_PRECISION_5_ANGLE = createInstanceKey("fork_vehicles_spread_within_precision_5_angle");
+
+    // Spell mod tests
+    public static final ResourceKey<GameTestInstance> AMPLIFY_MOD_INCREASES_POWER_AND_DURATION = createInstanceKey("amplify_mod_increases_power_and_duration");
+    public static final ResourceKey<GameTestInstance> AMPLIFY_MOD_DOES_NOT_ADD_DURATION_TO_ZERO_DURATION = createInstanceKey("amplify_mod_does_not_add_duration_to_zero_duration");
+    public static final ResourceKey<GameTestInstance> AMPLIFY_MOD_DOES_NOT_AMPLIFY_ITSELF_OR_OTHER_AMPLIFY_MODS = createInstanceKey("amplify_mod_does_not_amplify_itself_or_other_amplify_mods");
+    public static final ResourceKey<GameTestInstance> MINE_MOD_CREATES_MINE_THAT_TRIGGERS_ONCE_ON_FIRST_CREATURE = createInstanceKey("mine_mod_creates_mine_that_triggers_once_on_first_creature");
+
     // Auto charger tests
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_ALLOWS_CHARGEABLE_ITEMS = createInstanceKey("auto_charger_output_allows_chargeable_items");
     public static final ResourceKey<GameTestInstance> AUTO_CHARGER_OUTPUT_DOES_NOT_ALLOW_UNCHARGEABLE_ITEMS = createInstanceKey("auto_charger_output_does_not_allow_unchargeable_items");
@@ -810,6 +876,10 @@ public class TestInstancesPM {
         registerResearchRequirementTests(context);
         registerResearchTests(context);
         registerSpellTests(context);
+        registerSpellcraftingMenuAndScrollTests(context);
+        registerSpellPayloadTests(context);
+        registerSpellVehicleTests(context);
+        registerSpellModTests(context);
         registerAutoChargerTests(context);
         registerManaBatteryTests(context);
         registerManaFontTests(context);
@@ -1144,6 +1214,76 @@ public class TestInstancesPM {
         registerFunction(context, SPELL_IS_INVALID_NULL_NAME, TestFunctionsPM.SPELL_IS_INVALID_NULL_NAME.getKey());
         registerFunction(context, SPELL_IS_INVALID_NULL_VEHICLE, TestFunctionsPM.SPELL_IS_INVALID_NULL_VEHICLE.getKey());
         registerFunction(context, SPELL_IS_INVALID_NULL_PAYLOAD, TestFunctionsPM.SPELL_IS_INVALID_NULL_PAYLOAD.getKey());
+    }
+
+    public static void registerSpellcraftingMenuAndScrollTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, SPELLCRAFTING_ALTAR_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.SPELLCRAFTING_ALTAR_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, SPELLCRAFTING_ALTAR_OPTIONS_LIMITED_TO_UNLOCKED_RESEARCH, TestFunctionsPM.SPELLCRAFTING_ALTAR_OPTIONS_LIMITED_TO_UNLOCKED_RESEARCH.getKey());
+        registerFunction(context, SPELLCRAFTING_ALTAR_CREATES_SCROLL_AS_CONFIGURED, TestFunctionsPM.SPELLCRAFTING_ALTAR_CREATES_SCROLL_AS_CONFIGURED.getKey());
+        registerFunction(context, WAND_INSCRIPTION_TABLE_CAN_HAVE_ITS_MENU_OPENED, TestFunctionsPM.WAND_INSCRIPTION_TABLE_CAN_HAVE_ITS_MENU_OPENED.getKey());
+        registerFunction(context, SPELL_SCROLL_IS_CONSUMED_WHEN_USED_IN_SURVIVAL, TestFunctionsPM.SPELL_SCROLL_IS_CONSUMED_WHEN_USED_IN_SURVIVAL.getKey());
+        registerFunction(context, SPELL_SCROLL_IS_NOT_CONSUMED_WHEN_USED_IN_CREATIVE, TestFunctionsPM.SPELL_SCROLL_IS_NOT_CONSUMED_WHEN_USED_IN_CREATIVE.getKey());
+    }
+
+    public static void registerSpellPayloadTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, EARTH_DAMAGE_KNOCKBACK_SCALES_WITH_POWER, TestFunctionsPM.EARTH_DAMAGE_KNOCKBACK_SCALES_WITH_POWER.getKey());
+        registerFunction(context, FROST_DAMAGE_APPLIES_SLOWNESS_SCALED_BY_POWER_AND_DURATION, TestFunctionsPM.FROST_DAMAGE_APPLIES_SLOWNESS_SCALED_BY_POWER_AND_DURATION.getKey());
+        registerFunction(context, SOLAR_DAMAGE_APPLIES_GLOWING_SCALED_BY_DURATION, TestFunctionsPM.SOLAR_DAMAGE_APPLIES_GLOWING_SCALED_BY_DURATION.getKey());
+        registerFunction(context, SOLAR_DAMAGE_IGNITES_UNDEAD_TARGETS_FOR_DURATION, TestFunctionsPM.SOLAR_DAMAGE_IGNITES_UNDEAD_TARGETS_FOR_DURATION.getKey(), TestEnvironmentsPM.NIGHTTIME_ENV);
+        registerFunction(context, LUNAR_DAMAGE_APPLIES_WEAKNESS_SCALED_BY_POWER_AND_DURATION, TestFunctionsPM.LUNAR_DAMAGE_APPLIES_WEAKNESS_SCALED_BY_POWER_AND_DURATION.getKey());
+        registerFunction(context, BLOOD_DAMAGE_IGNORES_ARMOR, TestFunctionsPM.BLOOD_DAMAGE_IGNORES_ARMOR.getKey());
+        registerFunction(context, FLAME_DAMAGE_IGNITES_TARGET_FOR_DURATION, TestFunctionsPM.FLAME_DAMAGE_IGNITES_TARGET_FOR_DURATION.getKey());
+        registerFunction(context, VOID_DAMAGE_APPLIES_WITHER, TestFunctionsPM.VOID_DAMAGE_APPLIES_WITHER.getKey());
+        registerFunction(context, HOLY_DAMAGE_DEALS_DOUBLE_DAMAGE_TO_UNDEAD, TestFunctionsPM.HOLY_DAMAGE_DEALS_DOUBLE_DAMAGE_TO_UNDEAD.getKey());
+        registerFunction(context, HEALING_RESTORES_HEALTH_TO_TARGET, TestFunctionsPM.HEALING_RESTORES_HEALTH_TO_TARGET.getKey());
+        registerFunction(context, HEALING_OVERHEAL_GRANTS_ABSORPTION, TestFunctionsPM.HEALING_OVERHEAL_GRANTS_ABSORPTION.getKey());
+        registerFunction(context, HEALING_SMALL_OVERHEAL_GRANTS_NO_ABSORPTION, TestFunctionsPM.HEALING_SMALL_OVERHEAL_GRANTS_NO_ABSORPTION.getKey());
+        registerFunction(context, DRAIN_SOUL_APPLIES_DEBUFF, TestFunctionsPM.DRAIN_SOUL_APPLIES_DEBUFF.getKey());
+        registerFunction(context, DRAIN_SOUL_KILL_DROPS_SOUL_GEMS_PROPORTIONAL_TO_MAX_HEALTH, TestFunctionsPM.DRAIN_SOUL_KILL_DROPS_SOUL_GEMS_PROPORTIONAL_TO_MAX_HEALTH.getKey());
+        registerFunction(context, DRAIN_SOUL_PASSIVE_MOBS_DROP_FEWER_SOUL_GEMS, TestFunctionsPM.DRAIN_SOUL_PASSIVE_MOBS_DROP_FEWER_SOUL_GEMS.getKey());
+        registerFunction(context, BREAK_SPELL_SPEED_DEPENDS_ON_POWER, TestFunctionsPM.BREAK_SPELL_SPEED_DEPENDS_ON_POWER.getKey());
+        registerFunction(context, BREAK_SPELL_BREAKS_HARD_BLOCKS, TestFunctionsPM.BREAK_SPELL_BREAKS_HARD_BLOCKS.getKey());
+        registerFunction(context, BREAK_SPELL_HAS_NO_EFFECT_ON_ENTITIES, TestFunctionsPM.BREAK_SPELL_HAS_NO_EFFECT_ON_ENTITIES.getKey());
+        registerFunction(context, BREAK_SPELL_RESPECTS_SILK_TOUCH, TestFunctionsPM.BREAK_SPELL_RESPECTS_SILK_TOUCH.getKey());
+        registerFunction(context, CONJURE_STONE_PLACES_STONE_AT_TARGET, TestFunctionsPM.CONJURE_STONE_PLACES_STONE_AT_TARGET.getKey());
+        registerFunction(context, CONJURE_WATER_PLACES_WATER_SOURCE, TestFunctionsPM.CONJURE_WATER_PLACES_WATER_SOURCE.getKey());
+        registerFunction(context, CONJURE_LAVA_PLACES_LAVA_SOURCE, TestFunctionsPM.CONJURE_LAVA_PLACES_LAVA_SOURCE.getKey());
+        registerFunction(context, CONJURE_LIGHT_PLACES_GLOW_FIELD, TestFunctionsPM.CONJURE_LIGHT_PLACES_GLOW_FIELD.getKey());
+        registerFunction(context, CONSECRATE_PLACES_TWO_CONSECRATION_FIELDS, TestFunctionsPM.CONSECRATE_PLACES_TWO_CONSECRATION_FIELDS.getKey());
+        registerFunction(context, SHEAR_SPELL_BREAKS_LEAVES_AND_DROPS_THEM, TestFunctionsPM.SHEAR_SPELL_BREAKS_LEAVES_AND_DROPS_THEM.getKey());
+        registerFunction(context, SHEAR_SPELL_SHEARS_SHEEP_FOR_WOOL, TestFunctionsPM.SHEAR_SPELL_SHEARS_SHEEP_FOR_WOOL.getKey());
+        registerFunction(context, SHEAR_SPELL_DISARMS_TRIPWIRE_SAFELY, TestFunctionsPM.SHEAR_SPELL_DISARMS_TRIPWIRE_SAFELY.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, POLYMORPH_TURNS_TARGET_INTO_WOLF, TestFunctionsPM.POLYMORPH_TURNS_TARGET_INTO_WOLF.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, POLYMORPH_REVERTS_TARGET_AFTER_DURATION, TestFunctionsPM.POLYMORPH_REVERTS_TARGET_AFTER_DURATION.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, POLYMORPH_IS_REFUSED_FOR_WOLVES_PLAYERS_AND_BOSSES, TestFunctionsPM.POLYMORPH_IS_REFUSED_FOR_WOLVES_PLAYERS_AND_BOSSES.getKey());
+        registerFunction(context, CONJURE_ANIMAL_SUMMONS_LAND_ANIMALS_ABOVE_WATER, TestFunctionsPM.CONJURE_ANIMAL_SUMMONS_LAND_ANIMALS_ABOVE_WATER.getKey());
+        registerFunction(context, CONJURE_ANIMAL_SUMMONS_WATER_ANIMALS_BELOW_WATER, TestFunctionsPM.CONJURE_ANIMAL_SUMMONS_WATER_ANIMALS_BELOW_WATER.getKey());
+        registerFunction(context, CONJURE_ANIMAL_FAILS_WHEN_COMBINED_WITH_BURST, TestFunctionsPM.CONJURE_ANIMAL_FAILS_WHEN_COMBINED_WITH_BURST.getKey());
+        registerFunction(context, CONSECRATION_FIELD_CANNOT_BE_ENTERED_BY_NON_PLAYER_MOBS, TestFunctionsPM.CONSECRATION_FIELD_CANNOT_BE_ENTERED_BY_NON_PLAYER_MOBS.getKey());
+        registerFunction(context, CONSECRATION_FIELD_GRANTS_REGENERATION_AND_SATURATION_TO_PLAYERS, TestFunctionsPM.CONSECRATION_FIELD_GRANTS_REGENERATION_AND_SATURATION_TO_PLAYERS.getKey());
+        registerFunction(context, TELEPORT_MOVES_CASTER_TO_TARGET_POINT, TestFunctionsPM.TELEPORT_MOVES_CASTER_TO_TARGET_POINT.getKey());
+        registerFunction(context, TELEPORT_FAILS_WHEN_COMBINED_WITH_BURST, TestFunctionsPM.TELEPORT_FAILS_WHEN_COMBINED_WITH_BURST.getKey());
+    }
+
+    public static void registerSpellVehicleTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, PROJECTILE_SPELL_IS_SUBJECT_TO_GRAVITY, TestFunctionsPM.PROJECTILE_SPELL_IS_SUBJECT_TO_GRAVITY.getKey(), ResourceUtils.loc("test/floor7x10x7"));
+        registerFunction(context, BOLT_SPELL_HITS_ONLY_TARGETS_WITHIN_RANGE, TestFunctionsPM.BOLT_SPELL_HITS_ONLY_TARGETS_WITHIN_RANGE.getKey());
+        registerFunction(context, BOLT_SPELL_IS_INSTANT_AND_UNAFFECTED_BY_GRAVITY, TestFunctionsPM.BOLT_SPELL_IS_INSTANT_AND_UNAFFECTED_BY_GRAVITY.getKey());
+        registerFunction(context, BURST_SPELL_AFFECTS_TARGETS_WITHIN_RADIUS_2, TestFunctionsPM.BURST_SPELL_AFFECTS_TARGETS_WITHIN_RADIUS_2.getKey());
+        registerFunction(context, BURST_SPELL_AFFECTS_TARGETS_WITHIN_RADIUS_4, TestFunctionsPM.BURST_SPELL_AFFECTS_TARGETS_WITHIN_RADIUS_4.getKey());
+        registerFunction(context, FORK_SPELL_CREATES_2_VEHICLES, TestFunctionsPM.FORK_SPELL_CREATES_2_VEHICLES.getKey());
+        registerFunction(context, FORK_SPELL_CREATES_3_VEHICLES, TestFunctionsPM.FORK_SPELL_CREATES_3_VEHICLES.getKey());
+        registerFunction(context, FORK_SPELL_CREATES_5_VEHICLES, TestFunctionsPM.FORK_SPELL_CREATES_5_VEHICLES.getKey());
+        registerFunction(context, FORK_VEHICLES_SPREAD_WITHIN_PRECISION_0_ANGLE, TestFunctionsPM.FORK_VEHICLES_SPREAD_WITHIN_PRECISION_0_ANGLE.getKey());
+        registerFunction(context, FORK_VEHICLES_SPREAD_WITHIN_PRECISION_2_ANGLE, TestFunctionsPM.FORK_VEHICLES_SPREAD_WITHIN_PRECISION_2_ANGLE.getKey());
+        registerFunction(context, FORK_VEHICLES_SPREAD_WITHIN_PRECISION_5_ANGLE, TestFunctionsPM.FORK_VEHICLES_SPREAD_WITHIN_PRECISION_5_ANGLE.getKey());
+    }
+
+    public static void registerSpellModTests(BootstrapContext<GameTestInstance> context) {
+        registerFunction(context, AMPLIFY_MOD_INCREASES_POWER_AND_DURATION, TestFunctionsPM.AMPLIFY_MOD_INCREASES_POWER_AND_DURATION.getKey());
+        registerFunction(context, AMPLIFY_MOD_DOES_NOT_ADD_DURATION_TO_ZERO_DURATION, TestFunctionsPM.AMPLIFY_MOD_DOES_NOT_ADD_DURATION_TO_ZERO_DURATION.getKey());
+        registerFunction(context, AMPLIFY_MOD_DOES_NOT_AMPLIFY_ITSELF_OR_OTHER_AMPLIFY_MODS, TestFunctionsPM.AMPLIFY_MOD_DOES_NOT_AMPLIFY_ITSELF_OR_OTHER_AMPLIFY_MODS.getKey());
+        registerFunction(context, MINE_MOD_CREATES_MINE_THAT_TRIGGERS_ONCE_ON_FIRST_CREATURE, TestFunctionsPM.MINE_MOD_CREATES_MINE_THAT_TRIGGERS_ONCE_ON_FIRST_CREATURE.getKey(), ResourceUtils.loc("test/floor5x5x5"));
     }
 
     public static void registerResearchTests(BootstrapContext<GameTestInstance> context) {
