@@ -330,6 +330,7 @@ public class TestInstancesPM {
     public static final ResourceKey<GameTestInstance> EARTH_PIXIE_ATTACK_KNOCKS_TARGET_BACK = createInstanceKey("earth_pixie_attack_knocks_target_back");
     public static final ResourceKey<GameTestInstance> SEA_PIXIE_ATTACK_INFLICTS_SLOWNESS = createInstanceKey("sea_pixie_attack_inflicts_slowness");
     public static final ResourceKey<GameTestInstance> MOON_PIXIE_ATTACK_INFLICTS_WEAKNESS = createInstanceKey("moon_pixie_attack_inflicts_weakness");
+    public static final ResourceKey<GameTestInstance> PIXIE_HOUSE_DOES_NOT_DESPAWN_FAR_FROM_PLAYERS = createInstanceKey("pixie_house_does_not_despawn_far_from_players");
     public static final ResourceKey<GameTestInstance> ENDERWARD_BLOCKS_ENDER_PEARL = createInstanceKey("enderward_blocks_ender_pearl");
     public static final ResourceKey<GameTestInstance> ENDERWARD_BLOCKS_CHORUS_FRUIT = createInstanceKey("enderward_blocks_chorus_fruit");
     public static final ResourceKey<GameTestInstance> ENDERWARD_BLOCKS_TELEPORT_SPELL = createInstanceKey("enderward_blocks_teleport_spell");
@@ -1806,6 +1807,7 @@ public class TestInstancesPM {
         registerFunction(context, EARTH_PIXIE_ATTACK_KNOCKS_TARGET_BACK, TestFunctionsPM.EARTH_PIXIE_ATTACK_KNOCKS_TARGET_BACK.getKey(), ResourceUtils.loc("test/floor5x5x5"));
         registerFunction(context, SEA_PIXIE_ATTACK_INFLICTS_SLOWNESS, TestFunctionsPM.SEA_PIXIE_ATTACK_INFLICTS_SLOWNESS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
         registerFunction(context, MOON_PIXIE_ATTACK_INFLICTS_WEAKNESS, TestFunctionsPM.MOON_PIXIE_ATTACK_INFLICTS_WEAKNESS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
+        registerFunction(context, PIXIE_HOUSE_DOES_NOT_DESPAWN_FAR_FROM_PLAYERS, TestFunctionsPM.PIXIE_HOUSE_DOES_NOT_DESPAWN_FAR_FROM_PLAYERS.getKey(), ResourceUtils.loc("test/floor5x5x5"));
         registerFunction(context, ENDERWARD_BLOCKS_ENDER_PEARL, TestFunctionsPM.ENDERWARD_BLOCKS_ENDER_PEARL.getKey(), ResourceUtils.loc("test/floor5x5x5"));
         registerFunction(context, ENDERWARD_BLOCKS_CHORUS_FRUIT, TestFunctionsPM.ENDERWARD_BLOCKS_CHORUS_FRUIT.getKey(), ResourceUtils.loc("test/floor5x5x5"));
         registerFunction(context, ENDERWARD_BLOCKS_TELEPORT_SPELL, TestFunctionsPM.ENDERWARD_BLOCKS_TELEPORT_SPELL.getKey(), ResourceUtils.loc("test/floor5x5x5"));
