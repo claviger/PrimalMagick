@@ -91,6 +91,7 @@ import com.verdantartifice.primalmagick.test.items.RecallStoneTests;
 import com.verdantartifice.primalmagick.test.enchantments.CombatEnchantmentTests;
 import com.verdantartifice.primalmagick.test.enchantments.ToolEnchantmentTests;
 import com.verdantartifice.primalmagick.test.entities.FlyingCarpetTests;
+import com.verdantartifice.primalmagick.test.entities.PixieHouseTests;
 import com.verdantartifice.primalmagick.test.entities.PixieTests;
 import com.verdantartifice.primalmagick.test.blocks.BloodRoseTests;
 import com.verdantartifice.primalmagick.test.blocks.HydromelonTests;
@@ -450,6 +451,7 @@ public class TestFunctionsPM {
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> EARTH_PIXIE_ATTACK_KNOCKS_TARGET_BACK = Services.TEST_FUNCTIONS_REGISTRY.register("earth_pixie_attack_knocks_target_back", () -> (helper) -> PixieTests.earth_pixie_attack_knocks_target_back(helper, EntityTypesPM.BASIC_EARTH_PIXIE.get()));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> SEA_PIXIE_ATTACK_INFLICTS_SLOWNESS = Services.TEST_FUNCTIONS_REGISTRY.register("sea_pixie_attack_inflicts_slowness", () -> (helper) -> PixieTests.pixie_attack_inflicts_effect(helper, EntityTypesPM.BASIC_SEA_PIXIE.get(), MobEffects.SLOWNESS));
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> MOON_PIXIE_ATTACK_INFLICTS_WEAKNESS = Services.TEST_FUNCTIONS_REGISTRY.register("moon_pixie_attack_inflicts_weakness", () -> (helper) -> PixieTests.pixie_attack_inflicts_effect(helper, EntityTypesPM.BASIC_MOON_PIXIE.get(), MobEffects.WEAKNESS));
+    public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> PIXIE_HOUSE_DOES_NOT_DESPAWN_FAR_FROM_PLAYERS = Services.TEST_FUNCTIONS_REGISTRY.register("pixie_house_does_not_despawn_far_from_players", () -> PixieHouseTests::pixie_house_does_not_despawn_far_from_players);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENDERWARD_BLOCKS_ENDER_PEARL = Services.TEST_FUNCTIONS_REGISTRY.register("enderward_blocks_ender_pearl", () -> EnderwardTests::enderward_blocks_ender_pearl);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENDERWARD_BLOCKS_CHORUS_FRUIT = Services.TEST_FUNCTIONS_REGISTRY.register("enderward_blocks_chorus_fruit", () -> EnderwardTests::enderward_blocks_chorus_fruit);
     public static final IRegistryItem<Consumer<GameTestHelper>, Consumer<GameTestHelper>> ENDERWARD_BLOCKS_TELEPORT_SPELL = Services.TEST_FUNCTIONS_REGISTRY.register("enderward_blocks_teleport_spell", () -> EnderwardTests::enderward_blocks_teleport_spell);
