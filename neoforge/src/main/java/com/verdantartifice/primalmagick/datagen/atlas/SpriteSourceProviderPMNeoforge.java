@@ -4,11 +4,9 @@ import com.google.common.collect.ImmutableMap;
 import com.mojang.logging.LogUtils;
 import com.verdantartifice.primalmagick.Constants;
 import com.verdantartifice.primalmagick.client.renderers.itemstack.SpelltomeSpecialRenderer;
-import com.verdantartifice.primalmagick.client.renderers.tile.ManaFontTER;
 import com.verdantartifice.primalmagick.client.renderers.tile.ManaInjectorTER;
 import com.verdantartifice.primalmagick.client.renderers.tile.ManaRelayTER;
 import com.verdantartifice.primalmagick.client.renderers.tile.RitualBellTER;
-import com.verdantartifice.primalmagick.client.renderers.tile.SpellcraftingAltarTER;
 import com.verdantartifice.primalmagick.common.items.tools.SacredShieldItem;
 import com.verdantartifice.primalmagick.common.menus.AbstractRunescribingAltarMenu;
 import com.verdantartifice.primalmagick.common.menus.DesalinatorMenu;
@@ -110,7 +108,7 @@ public class SpriteSourceProviderPMNeoforge extends SpriteSourceProvider {
         // Add block entity renderer textures to the block atlas
         this.addSingle(blockAtlas, ResourceUtils.loc("entity/mana_font_core"));
         this.addSingle(blockAtlas, RitualBellTER.TEXTURE);
-        this.addSingle(blockAtlas, SpellcraftingAltarTER.RING_TEXTURE);
+        this.addSingle(blockAtlas, ResourceUtils.loc("entity/spellcrafting_altar/spellcrafting_altar_ring"));
         this.addSingle(blockAtlas, ManaRelayTER.CORE_TEXTURE);
         this.addSingle(blockAtlas, ManaRelayTER.BASIC_FRAME_TEXTURE);
         this.addSingle(blockAtlas, ManaRelayTER.ENCHANTED_FRAME_TEXTURE);
