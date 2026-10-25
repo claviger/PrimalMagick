@@ -2,8 +2,6 @@ package com.verdantartifice.primalmagick.client.renderers.tile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.verdantartifice.primalmagick.client.renderers.tile.state.RitualLecternRenderState;
-import com.verdantartifice.primalmagick.common.blocks.rituals.RitualLecternBlock;
 import com.verdantartifice.primalmagick.common.tiles.rituals.RitualLecternTileEntity;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.object.book.BookModel;
@@ -11,25 +9,26 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.EnchantTableRenderer;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.sprite.SpriteGetter;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.LecternBlock;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * Custom tile entity renderer for ritual lectern blocks.
  * 
  * @author Daedalus4096
- * @see {@link com.verdantartifice.primalmagick.common.blocks.rituals.RitualLecternBlock}
+ * @see com.verdantartifice.primalmagick.common.blocks.rituals.RitualLecternBlock
  */
-public class RitualLecternTER implements BlockEntityRenderer<RitualLecternTileEntity, RitualLecternRenderState> {
-    private static final BookModel.State BOOK_STATE = BookModel.State.forAnimation(0.0F, 0.1F, 0.9F, 1.2F);
-
+public class RitualLecternTER implements BlockEntityRenderer<RitualLecternTileEntity, RitualLecternTER.RenderState> {
     private final SpriteGetter sprites;
-    protected final BookModel bookModel;
+    private final BookModel bookModel;
+    private static final BookModel.State BOOK_STATE = BookModel.State.forAnimation(0.0F, 0.1F, 0.9F, 1.2F);
 
     public RitualLecternTER(BlockEntityRendererProvider.Context context) {
         this.sprites = context.sprites();
@@ -37,30 +36,35 @@ public class RitualLecternTER implements BlockEntityRenderer<RitualLecternTileEn
     }
 
     @Override
-    public RitualLecternRenderState createRenderState() {
-        return new RitualLecternRenderState();
+    @NotNull
+    public RitualLecternTER.RenderState createRenderState() {
+        return new RitualLecternTER.RenderState();
     }
 
     @Override
-    public void extractRenderState(RitualLecternTileEntity tileEntityIn, RitualLecternRenderState state, float partialTicks, Vec3 cameraPosition,
-            ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
-        BlockEntityRenderer.super.extractRenderState(tileEntityIn, state, partialTicks, cameraPosition, breakProgress);
-        BlockState blockState = tileEntityIn.getBlockState();
-        state.hasBook = blockState.getValue(RitualLecternBlock.HAS_BOOK);
-        state.yRot = blockState.getValue(RitualLecternBlock.FACING).getClockWise().toYRot();
+    public void extractRenderState(@NotNull RitualLecternTileEntity blockEntity, @NotNull RitualLecternTER.RenderState state,
+                                   float partialTicks, @NotNull Vec3 cameraPosition, @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress) {
+        BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
+        state.hasBook = blockEntity.getBlockState().getValue(LecternBlock.HAS_BOOK);
+        state.yRot = blockEntity.getBlockState().getValue(LecternBlock.FACING).getClockWise().toYRot();
     }
 
     @Override
-    public void submit(RitualLecternRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
-        if (state.hasBook) {
+    public void submit(@NotNull RitualLecternTER.RenderState renderState, @NotNull PoseStack poseStack,
+                       @NotNull SubmitNodeCollector submitNodeCollector, @NotNull CameraRenderState cameraRenderState) {
+        if (renderState.hasBook) {
             poseStack.pushPose();
-            poseStack.translate(0.5D, 1.0625D, 0.5D);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-state.yRot));
+            poseStack.translate(0.5F, 1.0625F, 0.5F);
+            poseStack.mulPose(Axis.YP.rotationDegrees(-renderState.yRot));
             poseStack.mulPose(Axis.ZP.rotationDegrees(67.5F));
-            poseStack.translate(0.0D, -0.125D, 0.0D);
-            submitNodeCollector.submitModel(this.bookModel, BOOK_STATE, poseStack, state.lightCoords, OverlayTexture.NO_OVERLAY, -1,
-                    EnchantTableRenderer.BOOK_TEXTURE, this.sprites, 0, state.breakProgress);
+            poseStack.translate(0.0F, -0.125F, 0.0F);
+            submitNodeCollector.submitModel(this.bookModel, BOOK_STATE, poseStack, renderState.lightCoords, OverlayTexture.NO_OVERLAY, -1, EnchantTableRenderer.BOOK_TEXTURE, this.sprites, 0, renderState.breakProgress);
             poseStack.popPose();
         }
+    }
+
+    public static class RenderState extends BlockEntityRenderState {
+        public boolean hasBook;
+        public float yRot;
     }
 }
