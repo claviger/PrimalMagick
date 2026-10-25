@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class RitualBellTER implements BlockEntityRenderer<RitualBellTileEntity, RitualBellTER.RenderState> {
     public static final Identifier TEXTURE = ResourceUtils.loc("entity/ritual_bell_body");
-    private static final SpriteId BELL_TEXTURE = Sheets.BLOCK_ENTITIES_MAPPER.apply(TEXTURE);
+    private static final SpriteId BELL_TEXTURE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("ritual_bell_body"));
     private final SpriteGetter sprites;
     private final BellModel model;
 

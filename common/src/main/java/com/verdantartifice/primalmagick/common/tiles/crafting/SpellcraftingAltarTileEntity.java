@@ -136,7 +136,8 @@ public class SpellcraftingAltarTileEntity extends AbstractTilePM implements Menu
         } else if (this.currentRotation.isPause()) {
             return this.nextSource.getColor();
         } else {
-            float blend = (this.phaseTicks + partialTicks) / (float)this.nextUpdate;
+            // The client keeps counting phase ticks past the next update until the server's segment change arrives
+            float blend = Mth.clamp((this.phaseTicks + partialTicks) / (float)this.nextUpdate, 0F, 1F);
             return ARGB.linearLerp(blend, this.lastSource.getColor(), this.nextSource.getColor());
         }
     }
