@@ -37,7 +37,6 @@ public class WindGeneratorTER implements BlockEntityRenderer<WindGeneratorTileEn
                 .setColor(r, g, b, 1.0F)
                 .setOverlay(OverlayTexture.NO_OVERLAY)
                 .setUv(u, v)
-                .setOverlay(OverlayTexture.NO_OVERLAY)
                 .setUv2(240, 240)
                 .setNormal(1, 0, 0);
     }
