@@ -9,7 +9,6 @@ import com.verdantartifice.primalmagick.client.renderers.tile.model.ManaInjector
 import com.verdantartifice.primalmagick.client.renderers.tile.model.ManaInjectorFrameRingBottomModel;
 import com.verdantartifice.primalmagick.client.renderers.tile.model.ManaInjectorFrameRingTopMiddleModel;
 import com.verdantartifice.primalmagick.client.renderers.tile.model.ManaInjectorFrameRingTopModel;
-import com.verdantartifice.primalmagick.client.renderers.tile.state.ManaInjectorRenderState;
 import com.verdantartifice.primalmagick.common.misc.DeviceTier;
 import com.verdantartifice.primalmagick.common.tiles.mana.ManaInjectorTileEntity;
 import com.verdantartifice.primalmagick.common.util.ResourceUtils;
@@ -17,42 +16,41 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.sprite.SpriteGetter;
 import net.minecraft.client.resources.model.sprite.SpriteId;
-import net.minecraft.resources.Identifier;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Math;
 
-public class ManaInjectorTER implements BlockEntityRenderer<ManaInjectorTileEntity, ManaInjectorRenderState> {
-    public static final Identifier CORE_TEXTURE = ResourceUtils.loc("entity/mana_cube");
-    private static final SpriteId CORE_SPRITE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_cube"));
+/**
+ * Custom tile entity renderer for mana injector blocks.
+ *
+ * @author Daedalus4096
+ */
+public class ManaInjectorTER implements BlockEntityRenderer<ManaInjectorTileEntity, ManaInjectorTER.RenderState> {
+    public static final SpriteId BASIC_FRAME_TOP = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/basic_frame_top"));
+    public static final SpriteId ENCHANTED_FRAME_TOP = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/enchanted_frame_top"));
+    public static final SpriteId FORBIDDEN_FRAME_TOP = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/forbidden_frame_top"));
+    public static final SpriteId HEAVENLY_FRAME_TOP = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/heavenly_frame_top"));
+    public static final SpriteId FRAME_BOTTOM = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/frame_bottom"));
+    public static final SpriteId CORE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_cube"));
 
-    public static final Identifier BASIC_FRAME_TEXTURE = ResourceUtils.loc("entity/mana_injector/basic_frame_top");
-    public static final Identifier ENCHANTED_FRAME_TEXTURE = ResourceUtils.loc("entity/mana_injector/enchanted_frame_top");
-    public static final Identifier FORBIDDEN_FRAME_TEXTURE = ResourceUtils.loc("entity/mana_injector/forbidden_frame_top");
-    public static final Identifier HEAVENLY_FRAME_TEXTURE = ResourceUtils.loc("entity/mana_injector/heavenly_frame_top");
-    public static final Identifier BOTTOM_FRAME_TEXTURE = ResourceUtils.loc("entity/mana_injector/frame_bottom");
-
-    private static final SpriteId BASIC_FRAME_SPRITE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/basic_frame_top"));
-    private static final SpriteId ENCHANTED_FRAME_SPRITE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/enchanted_frame_top"));
-    private static final SpriteId FORBIDDEN_FRAME_SPRITE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/forbidden_frame_top"));
-    private static final SpriteId HEAVENLY_FRAME_SPRITE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/heavenly_frame_top"));
-    private static final SpriteId BOTTOM_FRAME_SPRITE = Sheets.BLOCK_ENTITIES_MAPPER.apply(ResourceUtils.loc("mana_injector/frame_bottom"));
-
-    private final SpriteGetter sprites;
     protected final ManaInjectorFrameRingTopModel ringTopModel;
     protected final ManaInjectorFrameRingTopMiddleModel ringTopMiddleModel;
     protected final ManaInjectorFrameRingBottomMiddleModel ringBottomMiddleModel;
     protected final ManaInjectorFrameRingBottomModel ringBottomModel;
     protected final ManaCubeModel manaCubeModel;
 
+    private final BlockEntityRendererProvider.Context context;
+
     public ManaInjectorTER(BlockEntityRendererProvider.Context context) {
-        this.sprites = context.sprites();
+        this.context = context;
         this.ringTopModel = new ManaInjectorFrameRingTopModel(context.bakeLayer(ModelLayersPM.MANA_INJECTOR_FRAME_TOP));
         this.ringTopMiddleModel = new ManaInjectorFrameRingTopMiddleModel(context.bakeLayer(ModelLayersPM.MANA_INJECTOR_FRAME_TOP_MIDDLE));
         this.ringBottomMiddleModel = new ManaInjectorFrameRingBottomMiddleModel(context.bakeLayer(ModelLayersPM.MANA_INJECTOR_FRAME_BOTTOM_MIDDLE));
@@ -64,73 +62,80 @@ public class ManaInjectorTER implements BlockEntityRenderer<ManaInjectorTileEnti
     protected static final int CYCLE_DURATION = 40;
 
     @Override
-    public ManaInjectorRenderState createRenderState() {
-        return new ManaInjectorRenderState();
+    @NotNull
+    public ManaInjectorTER.RenderState createRenderState() {
+        return new ManaInjectorTER.RenderState();
     }
 
     @Override
-    public void extractRenderState(ManaInjectorTileEntity manaInjectorTileEntity, ManaInjectorRenderState state, float partialTicks, Vec3 cameraPosition,
-            ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
-        BlockEntityRenderer.super.extractRenderState(manaInjectorTileEntity, state, partialTicks, cameraPosition, breakProgress);
-        long time = manaInjectorTileEntity.getLevel().getLevelData().getGameTime();
-        state.tier = manaInjectorTileEntity.getDeviceTier();
-        state.cycleTime = (time % CYCLE_DURATION) + (double)partialTicks;
-        state.rotation = 2 * (int)(time % 360);
-        state.coreColor = manaInjectorTileEntity.getCurrentColor(partialTicks);
-
-        // Draw a particle stream rising from the core
-        FxDispatcher.INSTANCE.spellcraftingGlow(manaInjectorTileEntity.getBlockPos(), 0.75D, state.coreColor);
+    public void extractRenderState(@NotNull ManaInjectorTileEntity blockEntity, @NotNull ManaInjectorTER.RenderState state,
+                                   float partialTicks, @NotNull Vec3 cameraPosition, @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress) {
+        BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
+        long time = blockEntity.getLevel().getLevelData().getGameTime();
+        state.tier = blockEntity.getDeviceTier();
+        state.topDip = this.getDipAmount(time, partialTicks, 0);
+        state.topMiddleDip = this.getDipAmount(time, partialTicks, 4);
+        state.bottomMiddleDip = this.getDipAmount(time, partialTicks, 8);
+        state.bottomDip = this.getDipAmount(time, partialTicks, 12);
+        state.coreRotation = 2F * ((time % 360) + partialTicks);
+        // Source colors carry no alpha, and the translucent core render type would draw them fully transparent
+        state.coreColor = ARGB.opaque(blockEntity.getCurrentColor(partialTicks));
     }
 
     @Override
-    public void submit(ManaInjectorRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
-        final float tilt = 45.0F;
-
+    public void submit(@NotNull ManaInjectorTER.RenderState renderState, @NotNull PoseStack poseStack,
+                       @NotNull SubmitNodeCollector submitNodeCollector, @NotNull CameraRenderState cameraRenderState) {
         // Render the injector's frame rings
-        SpriteId topFrameSprite = getTopFrameSprite(state.tier);
         poseStack.pushPose();
         poseStack.translate(0.5D, 0D, 0.5D);
 
         poseStack.pushPose();
-        poseStack.translate(0D, 1.875D + this.getDipAmount(state.cycleTime, 0), 0D);
-        submitNodeCollector.submitModelPart(this.ringTopModel.root(), poseStack, topFrameSprite.renderType(RenderTypes::entitySolid), state.lightCoords,
-                OverlayTexture.NO_OVERLAY, this.sprites.get(topFrameSprite), false, false, -1, state.breakProgress, 0);
+        poseStack.translate(0D, 1.875D + renderState.topDip, 0D);
+        SpriteId topSprite = this.getTopFrameSprite(renderState.tier);
+        submitNodeCollector.submitModelPart(this.ringTopModel.root(), poseStack, topSprite.renderType(RenderTypes::entitySolid),
+                renderState.lightCoords, OverlayTexture.NO_OVERLAY, this.context.sprites().get(topSprite));
         poseStack.popPose();
 
         poseStack.pushPose();
-        poseStack.translate(0D, 1.375D + this.getDipAmount(state.cycleTime, 4), 0D);
-        submitNodeCollector.submitModelPart(this.ringTopMiddleModel.root(), poseStack, BOTTOM_FRAME_SPRITE.renderType(RenderTypes::entitySolid),
-                state.lightCoords, OverlayTexture.NO_OVERLAY, this.sprites.get(BOTTOM_FRAME_SPRITE), false, false, -1, state.breakProgress, 0);
+        poseStack.translate(0D, 1.375D + renderState.topMiddleDip, 0D);
+        submitNodeCollector.submitModelPart(this.ringTopMiddleModel.root(), poseStack, FRAME_BOTTOM.renderType(RenderTypes::entitySolid),
+                renderState.lightCoords, OverlayTexture.NO_OVERLAY, this.context.sprites().get(FRAME_BOTTOM));
         poseStack.popPose();
 
         poseStack.pushPose();
-        poseStack.translate(0D, 0.875D + this.getDipAmount(state.cycleTime, 8), 0D);
-        submitNodeCollector.submitModelPart(this.ringBottomMiddleModel.root(), poseStack, BOTTOM_FRAME_SPRITE.renderType(RenderTypes::entitySolid),
-                state.lightCoords, OverlayTexture.NO_OVERLAY, this.sprites.get(BOTTOM_FRAME_SPRITE), false, false, -1, state.breakProgress, 0);
+        poseStack.translate(0D, 0.875D + renderState.bottomMiddleDip, 0D);
+        submitNodeCollector.submitModelPart(this.ringBottomMiddleModel.root(), poseStack, FRAME_BOTTOM.renderType(RenderTypes::entitySolid),
+                renderState.lightCoords, OverlayTexture.NO_OVERLAY, this.context.sprites().get(FRAME_BOTTOM));
         poseStack.popPose();
 
         poseStack.pushPose();
-        poseStack.translate(0D, 0.375D + this.getDipAmount(state.cycleTime, 12), 0D);
-        submitNodeCollector.submitModelPart(this.ringBottomModel.root(), poseStack, BOTTOM_FRAME_SPRITE.renderType(RenderTypes::entitySolid),
-                state.lightCoords, OverlayTexture.NO_OVERLAY, this.sprites.get(BOTTOM_FRAME_SPRITE), false, false, -1, state.breakProgress, 0);
+        poseStack.translate(0D, 0.375D + renderState.bottomDip, 0D);
+        submitNodeCollector.submitModelPart(this.ringBottomModel.root(), poseStack, FRAME_BOTTOM.renderType(RenderTypes::entitySolid),
+                renderState.lightCoords, OverlayTexture.NO_OVERLAY, this.context.sprites().get(FRAME_BOTTOM));
         poseStack.popPose();
 
         poseStack.popPose();
 
         // Render the relay's core
+        final float tilt = 45.0F;
         final float coreScale = 0.1875F;
         poseStack.pushPose();
         poseStack.translate(0.5D, 0.75D, 0.5D);
-        poseStack.mulPose(Axis.YP.rotationDegrees(state.rotation));    // Spin the core around its Y-axis
+        poseStack.mulPose(Axis.YP.rotationDegrees(renderState.coreRotation));    // Spin the core around its Y-axis
         poseStack.mulPose(Axis.ZP.rotationDegrees(tilt));   // Tilt the core onto its diagonal
         poseStack.mulPose(Axis.XP.rotationDegrees(tilt));   // Tilt the core onto its diagonal
         poseStack.scale(coreScale, coreScale, coreScale);
-        submitNodeCollector.submitModelPart(this.manaCubeModel.root(), poseStack, CORE_SPRITE.renderType(RenderTypes::entitySolid), state.lightCoords,
-                OverlayTexture.NO_OVERLAY, this.sprites.get(CORE_SPRITE), false, false, state.coreColor, state.breakProgress, 0);
+        submitNodeCollector.submitModelPart(this.manaCubeModel.root(), poseStack, CORE.renderType(RenderTypes::entityTranslucent),
+                renderState.lightCoords, OverlayTexture.NO_OVERLAY, this.context.sprites().get(CORE), renderState.coreColor,
+                renderState.breakProgress);
         poseStack.popPose();
+
+        // Draw a particle stream rising from the core
+        FxDispatcher.INSTANCE.spellcraftingGlow(renderState.blockPos, 0.75D, renderState.coreColor);
     }
 
-    protected double getDipAmount(double cycleTime, int dipStartTime) {
+    protected double getDipAmount(long gameTime, float partialTicks, int dipStartTime) {
+        double cycleTime = (gameTime % CYCLE_DURATION) + (double)partialTicks;
         if (cycleTime >= dipStartTime && cycleTime <= (dipStartTime + DIP_DURATION)) {
             return -0.125D * Math.sin((cycleTime - dipStartTime) * (Math.PI / (double)DIP_DURATION));
         } else {
@@ -138,12 +143,26 @@ public class ManaInjectorTER implements BlockEntityRenderer<ManaInjectorTileEnti
         }
     }
 
-    protected static SpriteId getTopFrameSprite(DeviceTier tier) {
+    protected SpriteId getTopFrameSprite(@Nullable DeviceTier tier) {
+        if (tier == null) {
+            return BASIC_FRAME_TOP;
+        }
         return switch (tier) {
-            case BASIC -> BASIC_FRAME_SPRITE;
-            case ENCHANTED -> ENCHANTED_FRAME_SPRITE;
-            case FORBIDDEN -> FORBIDDEN_FRAME_SPRITE;
-            case HEAVENLY, CREATIVE -> HEAVENLY_FRAME_SPRITE;
+            case BASIC -> BASIC_FRAME_TOP;
+            case ENCHANTED -> ENCHANTED_FRAME_TOP;
+            case FORBIDDEN -> FORBIDDEN_FRAME_TOP;
+            case HEAVENLY, CREATIVE -> HEAVENLY_FRAME_TOP;
         };
+    }
+
+    public static class RenderState extends BlockEntityRenderState {
+        @Nullable
+        public DeviceTier tier;
+        public double topDip;
+        public double topMiddleDip;
+        public double bottomMiddleDip;
+        public double bottomDip;
+        public float coreRotation;
+        public int coreColor;
     }
 }

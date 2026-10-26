@@ -35,6 +35,7 @@ public class WindGeneratorTER implements BlockEntityRenderer<WindGeneratorTileEn
     protected void addVertex(VertexConsumer renderer, PoseStack.Pose pose, float x, float y, float z, float r, float g, float b, float u, float v) {
         renderer.addVertex(pose, x, y, z)
                 .setColor(r, g, b, 1.0F)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
                 .setUv(u, v)
                 .setOverlay(OverlayTexture.NO_OVERLAY)
                 .setUv2(240, 240)
