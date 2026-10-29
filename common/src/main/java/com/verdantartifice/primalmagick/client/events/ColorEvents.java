@@ -36,5 +36,4 @@ public class ColorEvents {
     public static void onItemTintSourceInit(BiConsumer<Identifier, MapCodec<? extends ItemTintSource>> tintMapper) {
         tintMapper.accept(ResourceUtils.loc("source"), SourceTint.MAP_CODEC);
     }
-
 }

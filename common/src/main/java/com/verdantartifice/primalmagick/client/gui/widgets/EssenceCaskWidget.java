@@ -91,7 +91,7 @@ public class EssenceCaskWidget extends AbstractWidget {
 
     @Override
     public boolean mouseClicked(@NotNull MouseButtonEvent event, boolean doubleClick) {
-        if (this.isMouseOver(event.x(), event.y())) {
+        if (this.active && this.visible && this.isMouseOver(event.x(), event.y())) {
             this.onClick.accept(this, event.button());
             return true;
         } else {
@@ -100,6 +100,6 @@ public class EssenceCaskWidget extends AbstractWidget {
     }
 
     @Override
-    public void updateWidgetNarration(NarrationElementOutput output) {
+    public void updateWidgetNarration(@NotNull NarrationElementOutput output) {
     }
 }

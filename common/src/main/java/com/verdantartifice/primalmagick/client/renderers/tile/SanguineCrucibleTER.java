@@ -57,6 +57,9 @@ public class SanguineCrucibleTER implements BlockEntityRenderer<SanguineCrucible
         state.fluidHeight = tileEntityIn.getFluidHeight();
 
         Level world = tileEntityIn.getLevel();
+        if (world == null) {
+            return;
+        }
         RandomSource rand = world.getRandom();
         BlockPos pos = tileEntityIn.getBlockPos();
         if (tileEntityIn.showBubble(rand)) {

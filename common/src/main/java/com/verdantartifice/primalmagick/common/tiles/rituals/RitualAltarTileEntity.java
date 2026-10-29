@@ -189,7 +189,7 @@ public abstract class RitualAltarTileEntity extends AbstractTileSidedInventoryPM
         return inventoryIndex == OUTPUT_INV_INDEX ? ImmutableSet.of(0) : ImmutableSet.of();
     }
     
-    public Color getOrbColor() {
+    public int getOrbColor() {
         float hue, saturation;
         if (stability >= 0.0F) {
             hue = 120.0F / 360.0F;  // Green
@@ -198,7 +198,7 @@ public abstract class RitualAltarTileEntity extends AbstractTileSidedInventoryPM
             hue = 0.0F / 360.0F;    // Red
             saturation = Mth.clamp(this.stability / MIN_STABILITY, 0.0F, 1.0F);
         }
-        return Color.getHSBColor(hue, saturation, 1.0F);
+        return Color.getHSBColor(hue, saturation, 1.0F).getRGB();
     }
     
     @Override
@@ -957,7 +957,7 @@ public abstract class RitualAltarTileEntity extends AbstractTileSidedInventoryPM
     protected void doMishapEffects(BlockPos target, boolean playSound) {
         if (this.level instanceof ServerLevel serverLevel) {
             BlockPos source = this.worldPosition.above(2);
-            PacketHandler.sendToAllAround(new SpellBoltPacket(source, target, this.getOrbColor().getRGB()), serverLevel, source, 32.0D);
+            PacketHandler.sendToAllAround(new SpellBoltPacket(source, target, this.getOrbColor()), serverLevel, source, 32.0D);
             if (playSound) {
                 this.level.playSound(null, source, SoundsPM.ELECTRIC.get(), SoundSource.PLAYERS, 1.0F, 1.0F + (float)(level.getRandom().nextGaussian() * 0.05D));
             }

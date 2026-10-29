@@ -1,7 +1,7 @@
 {
   "model": {
     "type": "minecraft:special",
-    "base": "primalmagick:block/empty",
+    "base": "primalmagick:item/pixie_house",
     "model": {
       "type": "primalmagick:pixie_house"
     },

@@ -42,7 +42,7 @@ public class AutoChargerTER implements BlockEntityRenderer<AutoChargerTileEntity
         BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
         // The GUI display transform centers the item on the origin, so it spins in place about the charger's axis
         this.itemModelResolver.updateForTopItem(state.item, blockEntity.getSyncedStack().copyWithCount(1), ItemDisplayContext.GUI, blockEntity.getLevel(), null, 0);
-        state.stackRotation = (blockEntity.getLevel().getLevelData().getGameTime() % 360) + partialTicks;
+        state.stackRotation = blockEntity.getLevel() == null ? 0 : (blockEntity.getLevel().getLevelData().getGameTime() % 360) + partialTicks;
     }
 
     @Override
