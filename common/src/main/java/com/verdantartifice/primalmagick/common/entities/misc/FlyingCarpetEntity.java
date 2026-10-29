@@ -2,7 +2,6 @@ package com.verdantartifice.primalmagick.common.entities.misc;
 
 import com.verdantartifice.primalmagick.common.entities.EntityTypesPM;
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
-import com.verdantartifice.primalmagick.common.items.entities.FlyingCarpetItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;

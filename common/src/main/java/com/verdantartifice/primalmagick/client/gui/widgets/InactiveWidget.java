@@ -10,13 +10,10 @@ import org.jetbrains.annotations.NotNull;
  * 
  * @author Daedalus4096
  */
-public class InactiveWidget extends Button {
+public class InactiveWidget extends Button.Plain {
     public InactiveWidget(int x, int y, int width, int height, Component msg) {
-        super(x, y, width, height, msg, new Button.OnPress() {
-            @Override
-            public void onPress(Button pButton) {
-                // Do nothing
-            }
+        super(x, y, width, height, msg, _ -> {
+            // Do nothing on press
         }, Button.DEFAULT_NARRATION);
         this.active = false;
     }

@@ -61,13 +61,14 @@ public class DowsingRodItem extends Item {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
+    @NotNull
+    public InteractionResult useOn(@NotNull UseOnContext context) {
         Level level = context.getLevel();
         ItemStack stack = context.getItemInHand();
         Player player = context.getPlayer();
         BlockPos targetPos = context.getClickedPos();
         this.recordDowsingPosition(stack, player, targetPos);
-        if (!level.isClientSide()) {
+        if (player != null && !level.isClientSide()) {
             Block block = level.getBlockState(targetPos).getBlock();
             BlockEntity blockEntity = level.getBlockEntity(targetPos);
             if (blockEntity instanceof RitualAltarTileEntity altarEntity) {
@@ -97,7 +98,8 @@ public class DowsingRodItem extends Item {
     }
 
     @Override
-    public InteractionResult use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    @NotNull
+    public InteractionResult use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
         // If using the dowsing rod on empty air, then clear any recorded dowsing positions. The client also
         // calls this after any block click that useOn passes on, so skip it when a block is targeted;
         // otherwise a sneaking click on a block would record its position and immediately clear it again.
@@ -109,9 +111,9 @@ public class DowsingRodItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack pStack, ServerLevel pLevel, Entity pEntity, @Nullable EquipmentSlot pSlot) {
+    public void inventoryTick(@NotNull ItemStack pStack, @NotNull ServerLevel pLevel, @NotNull Entity pEntity, @Nullable EquipmentSlot pSlot) {
         super.inventoryTick(pStack, pLevel, pEntity, pSlot);
-        if (pSlot == EquipmentSlot.MAINHAND) {
+        if (pSlot == EquipmentSlot.MAINHAND || pSlot == EquipmentSlot.OFFHAND) {
             // Only show network route highlights if the dowsing rod is currently selected
             BlockPos primaryPos = pStack.has(DataComponentsPM.DOWSING_PRIMARY_POSITION.get()) ? pStack.get(DataComponentsPM.DOWSING_PRIMARY_POSITION.get()) : null;
             if (primaryPos != null && pLevel.getBlockEntity(primaryPos) instanceof IManaNetworkNode primaryNode) {
