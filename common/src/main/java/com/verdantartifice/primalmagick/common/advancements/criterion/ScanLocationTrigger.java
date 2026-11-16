@@ -64,9 +64,9 @@ public class ScanLocationTrigger extends SimpleCriterionTrigger<ScanLocationTrig
             return this.location.isEmpty() || this.location.get().matches(pContext);
         }
 
-        public void validate(@NotNull ValidationContextSource pValidator) {
-            SimpleCriterionTrigger.SimpleInstance.super.validate(pValidator);
-            Validatable.validate(pValidator.context(LootContextParamSets.ADVANCEMENT_LOCATION), "location", this.location);
+        public void validate(@NotNull ValidationContextSource contextSource) {
+            SimpleCriterionTrigger.SimpleInstance.super.validate(contextSource);
+            this.location.ifPresent(loc -> Validatable.validate(contextSource.context(LootContextParamSets.ADVANCEMENT_LOCATION), ".location", loc));
         }
 
         @NotNull

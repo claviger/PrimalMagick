@@ -4,6 +4,7 @@
   "function": "primalmagick:healing_restores_health_to_target",
   "max_attempts": 3,
   "max_ticks": 400,
+  "padding": 1,
   "setup_ticks": 50,
   "structure": "primalmagick:test/empty3x3x3"
 }

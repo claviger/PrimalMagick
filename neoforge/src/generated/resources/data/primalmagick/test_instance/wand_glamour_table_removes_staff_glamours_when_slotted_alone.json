@@ -4,6 +4,7 @@
   "function": "primalmagick:wand_glamour_table_removes_staff_glamours_when_slotted_alone",
   "max_attempts": 3,
   "max_ticks": 400,
+  "padding": 1,
   "setup_ticks": 50,
   "structure": "primalmagick:test/empty3x3x3"
 }

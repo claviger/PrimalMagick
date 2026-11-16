@@ -4,6 +4,7 @@
   "function": "primalmagick:spirit_lantern_removes_soul_glow_fields_within_radius_when_broken",
   "max_attempts": 3,
   "max_ticks": 400,
+  "padding": 1,
   "setup_ticks": 50,
   "structure": "primalmagick:test/empty3x3x3"
 }

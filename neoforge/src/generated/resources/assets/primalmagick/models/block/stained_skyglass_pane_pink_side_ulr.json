@@ -1,6 +1,10 @@
 {
   "parent": "primalmagick:block/stained_skyglass_pane_side_base",
   "textures": {
+    "edge": {
+      "force_translucent": true,
+      "sprite": "primalmagick:block/skyglass_pane_edge"
+    },
     "pane": {
       "force_translucent": true,
       "sprite": "primalmagick:block/stained_skyglass_ulr"

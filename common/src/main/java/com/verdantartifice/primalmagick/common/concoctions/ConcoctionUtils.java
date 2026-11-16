@@ -23,24 +23,26 @@ import java.util.Objects;
  */
 public class ConcoctionUtils {
     public static ItemStackTemplate newConcoction(Holder<Potion> potion, ConcoctionType type) {
-        return new ItemStackTemplate(ItemsPM.CONCOCTION.get(), DataComponentPatch.builder()
+        DataComponentPatch componentPatch = DataComponentPatch.builder()
                 .set(DataComponents.POTION_CONTENTS, new PotionContents(potion))
                 .set(DataComponentsPM.CONCOCTION_TYPE.get(), type)
                 .set(DataComponentsPM.CONCOCTION_DOSES.get(), type.getMaxDoses())
-                .build());
+                .build();
+        return new ItemStackTemplate(ItemsPM.CONCOCTION.get(), componentPatch);
     }
     
     public static ItemStackTemplate newBomb(Holder<Potion> potion) {
         return newBomb(potion, FuseType.MEDIUM);
     }
-    
+
     public static ItemStackTemplate newBomb(Holder<Potion> potion, FuseType fuse) {
-        return new ItemStackTemplate(ItemsPM.ALCHEMICAL_BOMB.get(), DataComponentPatch.builder()
+        DataComponentPatch componentPatch = DataComponentPatch.builder()
                 .set(DataComponents.POTION_CONTENTS, new PotionContents(potion))
                 .set(DataComponentsPM.CONCOCTION_TYPE.get(), ConcoctionType.BOMB)
                 .set(DataComponentsPM.CONCOCTION_DOSES.get(), ConcoctionType.BOMB.getMaxDoses())
                 .set(DataComponentsPM.FUSE_TYPE.get(), fuse)
-                .build());
+                .build();
+        return new ItemStackTemplate(ItemsPM.ALCHEMICAL_BOMB.get(), componentPatch);
     }
     
     @Nonnull
@@ -69,11 +71,11 @@ public class ConcoctionUtils {
     @Nonnull
     public static ItemStack setCurrentDoses(@Nonnull ItemStack stack, int doses) {
         ConcoctionType type = getConcoctionType(stack);
-        stack.set(DataComponentsPM.CONCOCTION_DOSES.get(), Math.min(type == null ? 1 : type.getMaxDoses(), doses));
+        stack.set(DataComponentsPM.CONCOCTION_DOSES.get(), Math.min(type.getMaxDoses(), doses));
         return stack;
     }
     
-    @Nullable
+    @Nonnull
     public static FuseType getFuseType(@Nonnull ItemStack stack) {
         return stack.getOrDefault(DataComponentsPM.FUSE_TYPE.get(), FuseType.MEDIUM);
     }

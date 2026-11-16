@@ -37,6 +37,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * Default implementation of the player knowledge capability.
@@ -51,11 +52,11 @@ public class PlayerKnowledge extends AbstractCapability<PlayerKnowledge> impleme
     public static final Codec<PlayerKnowledge> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 AbstractResearchKey.dispatchCodec().listOf().<Set<AbstractResearchKey<?>>>xmap(ImmutableSet::copyOf, ImmutableList::copyOf).fieldOf("research").forGetter(k -> k.research),
                 StageEntry.CODEC.listOf().<Map<AbstractResearchKey<?>, Integer>>xmap(
-                    entryList -> entryList.stream().collect(ImmutableMap.toImmutableMap(StageEntry::key, StageEntry::stage)),
+                    entryList -> entryList.stream().collect(Collectors.toMap(StageEntry::key, StageEntry::stage)),
                     entryMap -> entryMap.entrySet().stream().map(e -> new StageEntry(e.getKey(), e.getValue())).toList()
                 ).fieldOf("stages").forGetter(k -> k.stages),
                 FlagsEntry.CODEC.listOf().<Map<AbstractResearchKey<?>, Set<ResearchFlag>>>xmap(
-                    entryList -> entryList.stream().collect(ImmutableMap.toImmutableMap(FlagsEntry::key, FlagsEntry::flagSet)),
+                    entryList -> entryList.stream().collect(Collectors.toMap(FlagsEntry::key, FlagsEntry::flagSet)),
                     entryMap -> entryMap.entrySet().stream().map(e -> new FlagsEntry(e.getKey(), e.getValue())).toList()
                 ).fieldOf("flags").forGetter(k -> k.flags),
                 Codec.simpleMap(KnowledgeType.CODEC, Codec.INT, StringRepresentable.keys(KnowledgeType.values())).fieldOf("knowledge").forGetter(k -> k.knowledge),
@@ -67,13 +68,13 @@ public class PlayerKnowledge extends AbstractCapability<PlayerKnowledge> impleme
             ).apply(instance, PlayerKnowledge::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, PlayerKnowledge> STREAM_CODEC = StreamCodecUtils.composite(
-            AbstractResearchKey.dispatchStreamCodec().apply(ByteBufCodecs.list()).<Set<AbstractResearchKey<?>>>map(ImmutableSet::copyOf, ImmutableList::copyOf), k -> k.research,
+            AbstractResearchKey.dispatchStreamCodec().apply(ByteBufCodecs.list()).map(Set::copyOf, List::copyOf), k -> k.research,
             StageEntry.STREAM_CODEC.apply(ByteBufCodecs.list()).<Map<AbstractResearchKey<?>, Integer>>map(
-                entryList -> entryList.stream().collect(ImmutableMap.toImmutableMap(StageEntry::key, StageEntry::stage)),
+                entryList -> entryList.stream().collect(Collectors.toMap(StageEntry::key, StageEntry::stage)),
                 entryMap -> entryMap.entrySet().stream().map(e -> new StageEntry(e.getKey(), e.getValue())).toList()
             ), k -> k.stages,
             FlagsEntry.STREAM_CODEC.apply(ByteBufCodecs.list()).<Map<AbstractResearchKey<?>, Set<ResearchFlag>>>map(
-                entryList -> entryList.stream().collect(ImmutableMap.toImmutableMap(FlagsEntry::key, FlagsEntry::flagSet)),
+                entryList -> entryList.stream().collect(Collectors.toMap(FlagsEntry::key, FlagsEntry::flagSet)),
                 entryMap -> entryMap.entrySet().stream().map(e -> new FlagsEntry(e.getKey(), e.getValue())).toList()
             ), k -> k.flags,
             ByteBufCodecs.map(Object2IntOpenHashMap::new, KnowledgeType.STREAM_CODEC, ByteBufCodecs.VAR_INT), k -> k.knowledge,
@@ -105,7 +106,7 @@ public class PlayerKnowledge extends AbstractCapability<PlayerKnowledge> impleme
         super(syncTimestamp);
         this.research.addAll(research);
         this.stages.putAll(stages);
-        flags.forEach((key, flagSet) -> this.flags.put(key, copyFlags(flagSet)));
+        this.flags.putAll(flags);
         this.knowledge.putAll(knowledge);
         this.topicHistory.addAll(topicHistory);
         this.project = project;
@@ -132,20 +133,13 @@ public class PlayerKnowledge extends AbstractCapability<PlayerKnowledge> impleme
         return "knowledge";
     }
 
-    private static Set<ResearchFlag> copyFlags(Set<ResearchFlag> flagSet) {
-        // Flag sets arrive immutable from the codecs, so give each research key a mutable copy
-        Set<ResearchFlag> retVal = EnumSet.noneOf(ResearchFlag.class);
-        retVal.addAll(flagSet);
-        return retVal;
-    }
-
     @Override
     protected void copyFromInner(@NotNull PlayerKnowledge other) {
         this.clearResearch();
         this.clearKnowledge();
         this.research.addAll(other.research);
         this.stages.putAll(other.stages);
-        other.flags.forEach((key, flagSet) -> this.flags.put(key, copyFlags(flagSet)));
+        this.flags.putAll(other.flags);
         this.knowledge.putAll(other.knowledge);
         this.topicHistory.addAll(other.topicHistory);
         this.project = other.project;

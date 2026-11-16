@@ -13,11 +13,14 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
  * Entity model for a spell projectile.  Used by the entity renderer.
  * 
  * @author Daedalus4096
- * @see {@link com.verdantartifice.primalmagick.client.renderers.entity.SpellProjectileRenderer}
+ * @see com.verdantartifice.primalmagick.client.renderers.entity.SpellProjectileRenderer
  */
 public class SpellProjectileModel extends EntityModel<SpellProjectileRenderState> {
-    public SpellProjectileModel(ModelPart modelPart) {
-        super(modelPart);
+    protected final ModelPart body;
+    
+    public SpellProjectileModel(ModelPart root) {
+        super(root);
+        this.body = root.getChild("body");
     }
     
     public static LayerDefinition createBodyLayer() {
@@ -26,11 +29,10 @@ public class SpellProjectileModel extends EntityModel<SpellProjectileRenderState
         rootPart.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -8.0F, -8.0F, 16, 16, 16), PartPose.ZERO);
         return LayerDefinition.create(mesh, 64, 32);
     }
-
+    
     @Override
-    public void setupAnim(SpellProjectileRenderState renderState) {
-        super.setupAnim(renderState);
-        this.root().yRot = renderState.yRot * ((float)Math.PI / 180F);
-        this.root().xRot = renderState.xRot * ((float)Math.PI / 180F);
+    public void setupAnim(SpellProjectileRenderState state) {
+        this.root.yRot = state.yRot * ((float)Math.PI / 180F);
+        this.root.xRot = state.xRot * ((float)Math.PI / 180F);
     }
 }

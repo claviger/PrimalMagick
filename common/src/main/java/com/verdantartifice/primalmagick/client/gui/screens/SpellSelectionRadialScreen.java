@@ -21,6 +21,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,9 +129,9 @@ public class SpellSelectionRadialScreen extends Screen {
     }
 
     @Override
-    public boolean mouseReleased(MouseButtonEvent p_94722_) {
+    public boolean mouseReleased(@NotNull MouseButtonEvent event) {
         this.processClick(true);
-        return super.mouseReleased(p_94722_);
+        return super.mouseReleased(event);
     }
     
     protected void processClick(boolean triggeredByMouse) {

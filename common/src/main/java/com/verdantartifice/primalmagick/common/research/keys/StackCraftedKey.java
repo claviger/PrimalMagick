@@ -8,7 +8,6 @@ import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.level.ItemLike;
 
@@ -24,14 +23,10 @@ public class StackCraftedKey extends AbstractResearchKey<StackCraftedKey> {
     
     public StackCraftedKey(ItemStackTemplate stack) {
         if (stack == null) {
-            throw new IllegalArgumentException("Item stack may not be null or empty");
+            throw new IllegalArgumentException("Item stack template may not be null");
         }
-        this.stack = stack.withCount(1);    // Preserve the stack NBT but not its count
+        this.stack = stack.withCount(1);    // Preserve the stack components but not its count
         ResearchManager.addCraftingReference(this.hashCode());
-    }
-    
-    public StackCraftedKey(ItemStack stack) {
-        this(ItemStackTemplate.fromNonEmptyStack(stack));
     }
     
     public StackCraftedKey(ItemLike itemLike) {

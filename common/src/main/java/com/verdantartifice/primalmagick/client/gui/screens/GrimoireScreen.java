@@ -2,6 +2,7 @@ package com.verdantartifice.primalmagick.client.gui.screens;
 
 import com.verdantartifice.primalmagick.Constants;
 import com.verdantartifice.primalmagick.client.config.KeyBindings;
+import com.verdantartifice.primalmagick.client.crafting.ClientRecipes;
 import com.verdantartifice.primalmagick.client.gui.grimoire.AbstractPage;
 import com.verdantartifice.primalmagick.client.gui.grimoire.AbstractRecipePage;
 import com.verdantartifice.primalmagick.client.gui.grimoire.AffinityIndexPage;
@@ -32,7 +33,6 @@ import com.verdantartifice.primalmagick.client.gui.widgets.grimoire.BackButton;
 import com.verdantartifice.primalmagick.client.gui.widgets.grimoire.MainIndexButton;
 import com.verdantartifice.primalmagick.client.gui.widgets.grimoire.PageButton;
 import com.verdantartifice.primalmagick.client.gui.widgets.grimoire.TopicLinkButton;
-import com.verdantartifice.primalmagick.client.recipes.ClientRecipeCache;
 import com.verdantartifice.primalmagick.common.affinities.AffinityIndexEntry;
 import com.verdantartifice.primalmagick.common.books.BookLanguage;
 import com.verdantartifice.primalmagick.common.books.BookLanguagesPM;
@@ -101,6 +101,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.display.SlotDisplayContext;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -557,6 +558,7 @@ public class GrimoireScreen extends Screen {
         }
         
         Player player = this.minecraft.player;
+        Level level = this.minecraft.level;
         
         // Determine current research stage
         boolean complete = false;
@@ -698,7 +700,7 @@ public class GrimoireScreen extends Screen {
             }
         }
         for (ResourceKey<Recipe<?>> recipeKey : locList) {
-            Optional<RecipeHolder<?>> opt = ClientRecipeCache.getInstance().byKey(recipeKey);
+            Optional<RecipeHolder<?>> opt = ClientRecipes.byKey(recipeKey);
             opt.ifPresent(recipe -> {
                 AbstractRecipePage<?> page = RecipePageFactory.createPage(recipe);
                 this.pages.add(page);
@@ -1081,15 +1083,14 @@ public class GrimoireScreen extends Screen {
     }
     
     protected void generateIndexMap() {
-        Minecraft mc = this.minecraft;
-        ContextMap contextMap = SlotDisplayContext.fromLevel(Objects.requireNonNull(mc.level));
+        ContextMap contextMap = SlotDisplayContext.fromLevel(Objects.requireNonNull(this.minecraft.level));
         Comparator<RecipeHolder<?>> displayNameComparator = Comparator.comparing(r -> {
             ItemStack resultStack = r.value().display().getFirst().result().resolveForFirstStack(contextMap);
             return resultStack.getHoverName().getString();
         });
         Comparator<RecipeHolder<?>> recipeIdComparator = Comparator.comparing(r -> r.id().identifier());
-        List<RecipeHolder<?>> processedRecipes = ClientRecipeCache.getInstance().getRecipes().stream().filter(GrimoireScreen::isValidRecipeIndexEntry)
-                .sorted(displayNameComparator.thenComparing(recipeIdComparator)).collect(Collectors.toList());
+        List<RecipeHolder<?>> processedRecipes = ClientRecipes.getAll().stream().filter(GrimoireScreen::isValidRecipeIndexEntry)
+                .sorted(displayNameComparator.thenComparing(recipeIdComparator)).toList();
 
         this.indexMap = new TreeMap<>();
         for (RecipeHolder<?> recipe : processedRecipes) {

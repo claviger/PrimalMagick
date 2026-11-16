@@ -7,6 +7,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Definition of a 3D model for a treefolk entity.
@@ -24,17 +25,18 @@ public class TreefolkModel extends HumanoidModel<TreefolkRenderState> {
     }
 
     @Override
-    public void setupAnim(TreefolkRenderState pRenderState) {
+    public void setupAnim(@NotNull TreefolkRenderState state) {
         this.body.loadPose(this.bodyDefault);
         this.head.loadPose(this.headDefault);
         this.leftArm.loadPose(this.leftArmDefault);
         this.rightArm.loadPose(this.rightArmDefault);
-        super.setupAnim(pRenderState);
-        TreefolkArmPose armPose = pRenderState.armPose;
+        super.setupAnim(state);
+
+        TreefolkArmPose armPose = state.armPose;
         if (armPose == TreefolkArmPose.ADMIRING_ITEM) {
             this.head.xRot = 0.5F;
             this.head.yRot = 0.0F;
-            if (pRenderState.mainArm == HumanoidArm.LEFT) {
+            if (state.mainArm == HumanoidArm.LEFT) {
                 this.rightArm.yRot = -0.5F;
                 this.rightArm.xRot = -0.9F;
             } else {
@@ -42,7 +44,7 @@ public class TreefolkModel extends HumanoidModel<TreefolkRenderState> {
                 this.leftArm.xRot = -0.9F;
             }
         } else if (armPose == TreefolkArmPose.DANCING) {
-            float ageModVal = pRenderState.ageInTicks / 60.0F;
+            float ageModVal = state.ageInTicks / 60.0F;
             this.head.x = Mth.sin(ageModVal * 10.0F);
             this.head.y = Mth.sin(ageModVal * 40.0F) + 0.4F;
             this.rightArm.xRot = ((float)Math.PI / 180F) * (Mth.sin(ageModVal * 40.0F) * 30.0F);

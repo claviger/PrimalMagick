@@ -4,6 +4,7 @@
   "function": "primalmagick:sin_crystals_heal_inner_demon_in_range",
   "max_attempts": 3,
   "max_ticks": 400,
+  "padding": 1,
   "setup_ticks": 50,
   "structure": "primalmagick:test/floor7x10x7"
 }

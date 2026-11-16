@@ -10,13 +10,13 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.renderer.block.dispatch.VariantMutator;
 import net.minecraft.core.Direction;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.block.state.properties.StairsShape;
 
 import java.util.Arrays;
@@ -40,101 +40,97 @@ public class PhasingBlockFamilyProvider {
     }
 
     public PhasingBlockFamilyProvider fullBlock(Block block, ModelTemplate modelTemplate) {
+        var propertyDispatch = PropertyDispatch.initial(IPhasingBlock.PHASE);
         Arrays.stream(TimePhase.values()).forEach(phase -> {
             Identifier modelId = this.createExtendedModel(block, modelTemplate, phase);
-            this.fullBlockVariants.put(phase, BlockModelGenerators.plainVariant(modelId));
+            MultiVariant multiVariant = BlockModelGenerators.plainVariant(modelId);
+            this.fullBlockVariants.put(phase, multiVariant);
+            propertyDispatch.select(phase, multiVariant);
             if (phase == TimePhase.FULL) {
                 this.blockModelGenerators.registerSimpleItemModel(block, modelId);
             }
         });
-        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
-                .with(PropertyDispatch.initial(IPhasingBlock.PHASE).generate(this.fullBlockVariants::get)));
+        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(propertyDispatch));
         return this;
     }
 
     public PhasingBlockFamilyProvider slab(Block block) {
-        Map<TimePhase, MultiVariant> bottomVariants = new HashMap<>();
-        Map<TimePhase, MultiVariant> topVariants = new HashMap<>();
+        var propertyDispatch = PropertyDispatch.initial(BlockStateProperties.SLAB_TYPE, IPhasingBlock.PHASE);
         Arrays.stream(TimePhase.values()).forEach(phase -> {
             if (!this.fullBlockVariants.containsKey(phase)) {
                 throw new IllegalStateException("Full block not generated for phase: " + phase);
             } else {
                 Identifier bottomModelId = this.createExtendedModel(block, ModelTemplates.SLAB_BOTTOM, phase);
                 Identifier topModelId = this.createExtendedModel(block, ModelTemplates.SLAB_TOP, phase);
-                bottomVariants.put(phase, BlockModelGenerators.plainVariant(bottomModelId));
-                topVariants.put(phase, BlockModelGenerators.plainVariant(topModelId));
+                propertyDispatch
+                        .select(SlabType.BOTTOM, phase, BlockModelGenerators.plainVariant(bottomModelId))
+                        .select(SlabType.TOP, phase, BlockModelGenerators.plainVariant(topModelId))
+                        .select(SlabType.DOUBLE, phase, this.fullBlockVariants.get(phase));
                 if (phase == TimePhase.FULL) {
                     this.blockModelGenerators.registerSimpleItemModel(block, bottomModelId);
                 }
             }
         });
-        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
-                .with(PropertyDispatch.initial(IPhasingBlock.PHASE, BlockStateProperties.SLAB_TYPE).generate((phase, type) -> switch (type) {
-                    case BOTTOM -> bottomVariants.get(phase);
-                    case TOP -> topVariants.get(phase);
-                    case DOUBLE -> this.fullBlockVariants.get(phase);
-                })));
+        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(propertyDispatch));
         return this;
     }
 
     public PhasingBlockFamilyProvider stairs(Block block) {
-        Map<TimePhase, MultiVariant> innerVariants = new HashMap<>();
-        Map<TimePhase, MultiVariant> straightVariants = new HashMap<>();
-        Map<TimePhase, MultiVariant> outerVariants = new HashMap<>();
+        var propertyDispatch = PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, BlockStateProperties.HALF, BlockStateProperties.STAIRS_SHAPE, IPhasingBlock.PHASE);
         Arrays.stream(TimePhase.values()).forEach(phase -> {
             Identifier innerModelId = this.createExtendedModel(block, ModelTemplates.STAIRS_INNER, phase);
             Identifier straightModelId = this.createExtendedModel(block, ModelTemplates.STAIRS_STRAIGHT, phase);
             Identifier outerModelId = this.createExtendedModel(block, ModelTemplates.STAIRS_OUTER, phase);
-            innerVariants.put(phase, BlockModelGenerators.plainVariant(innerModelId));
-            straightVariants.put(phase, BlockModelGenerators.plainVariant(straightModelId));
-            outerVariants.put(phase, BlockModelGenerators.plainVariant(outerModelId));
+            MultiVariant inner = BlockModelGenerators.plainVariant(innerModelId);
+            MultiVariant straight = BlockModelGenerators.plainVariant(straightModelId);
+            MultiVariant outer = BlockModelGenerators.plainVariant(outerModelId);
+            propertyDispatch
+                    .select(Direction.EAST, Half.BOTTOM, StairsShape.STRAIGHT, phase, straight)
+                    .select(Direction.WEST, Half.BOTTOM, StairsShape.STRAIGHT, phase, straight.with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.BOTTOM, StairsShape.STRAIGHT, phase, straight.with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.NORTH, Half.BOTTOM, StairsShape.STRAIGHT, phase, straight.with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.EAST, Half.BOTTOM, StairsShape.OUTER_RIGHT, phase, outer)
+                    .select(Direction.WEST, Half.BOTTOM, StairsShape.OUTER_RIGHT, phase, outer.with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.BOTTOM, StairsShape.OUTER_RIGHT, phase, outer.with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.NORTH, Half.BOTTOM, StairsShape.OUTER_RIGHT, phase, outer.with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.EAST, Half.BOTTOM, StairsShape.OUTER_LEFT, phase, outer.with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.WEST, Half.BOTTOM, StairsShape.OUTER_LEFT, phase, outer.with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.BOTTOM, StairsShape.OUTER_LEFT, phase, outer)
+                    .select(Direction.NORTH, Half.BOTTOM, StairsShape.OUTER_LEFT, phase, outer.with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.EAST, Half.BOTTOM, StairsShape.INNER_RIGHT, phase, inner)
+                    .select(Direction.WEST, Half.BOTTOM, StairsShape.INNER_RIGHT, phase, inner.with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.BOTTOM, StairsShape.INNER_RIGHT, phase, inner.with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.NORTH, Half.BOTTOM, StairsShape.INNER_RIGHT, phase, inner.with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.EAST, Half.BOTTOM, StairsShape.INNER_LEFT, phase, inner.with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.WEST, Half.BOTTOM, StairsShape.INNER_LEFT, phase, inner.with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.BOTTOM, StairsShape.INNER_LEFT, phase, inner)
+                    .select(Direction.NORTH, Half.BOTTOM, StairsShape.INNER_LEFT, phase, inner.with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.EAST, Half.TOP, StairsShape.STRAIGHT, phase, straight.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.WEST, Half.TOP, StairsShape.STRAIGHT, phase, straight.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.TOP, StairsShape.STRAIGHT, phase, straight.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.NORTH, Half.TOP, StairsShape.STRAIGHT, phase, straight.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.EAST, Half.TOP, StairsShape.OUTER_RIGHT, phase, outer.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.WEST, Half.TOP, StairsShape.OUTER_RIGHT, phase, outer.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.TOP, StairsShape.OUTER_RIGHT, phase, outer.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.NORTH, Half.TOP, StairsShape.OUTER_RIGHT, phase, outer.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.EAST, Half.TOP, StairsShape.OUTER_LEFT, phase, outer.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.WEST, Half.TOP, StairsShape.OUTER_LEFT, phase, outer.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.TOP, StairsShape.OUTER_LEFT, phase, outer.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.NORTH, Half.TOP, StairsShape.OUTER_LEFT, phase, outer.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.EAST, Half.TOP, StairsShape.INNER_RIGHT, phase, inner.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.WEST, Half.TOP, StairsShape.INNER_RIGHT, phase, inner.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.TOP, StairsShape.INNER_RIGHT, phase, inner.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.NORTH, Half.TOP, StairsShape.INNER_RIGHT, phase, inner.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.EAST, Half.TOP, StairsShape.INNER_LEFT, phase, inner.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.WEST, Half.TOP, StairsShape.INNER_LEFT, phase, inner.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_180).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.SOUTH, Half.TOP, StairsShape.INNER_LEFT, phase, inner.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_90).with(BlockModelGenerators.UV_LOCK))
+                    .select(Direction.NORTH, Half.TOP, StairsShape.INNER_LEFT, phase, inner.with(BlockModelGenerators.X_ROT_180).with(BlockModelGenerators.Y_ROT_270).with(BlockModelGenerators.UV_LOCK));
             if (phase == TimePhase.FULL) {
                 this.blockModelGenerators.registerSimpleItemModel(block, straightModelId);
             }
         });
-        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
-                .with(PropertyDispatch.initial(IPhasingBlock.PHASE, BlockStateProperties.HORIZONTAL_FACING, BlockStateProperties.HALF, BlockStateProperties.STAIRS_SHAPE).generate((phase, facing, half, shape) -> {
-                    MultiVariant variant = switch (shape) {
-                        case STRAIGHT -> straightVariants.get(phase);
-                        case INNER_LEFT, INNER_RIGHT -> innerVariants.get(phase);
-                        case OUTER_LEFT, OUTER_RIGHT -> outerVariants.get(phase);
-                    };
-                    return variant.with(getStairsRotation(facing, half, shape));
-                })));
+        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(propertyDispatch));
         return this;
-    }
-
-    /**
-     * Produces the same rotations as {@link BlockModelGenerators#createStairs} for the given block state values.
-     */
-    private static VariantMutator getStairsRotation(Direction facing, Half half, StairsShape shape) {
-        boolean leftShape = shape == StairsShape.INNER_LEFT || shape == StairsShape.OUTER_LEFT;
-        boolean rightShape = shape == StairsShape.INNER_RIGHT || shape == StairsShape.OUTER_RIGHT;
-        int quarterTurns = switch (facing) {
-            case EAST -> 0;
-            case SOUTH -> 1;
-            case WEST -> 2;
-            case NORTH -> 3;
-            default -> throw new IllegalArgumentException("Invalid stairs facing: " + facing);
-        };
-        if (half == Half.BOTTOM && leftShape) {
-            quarterTurns += 3;
-        } else if (half == Half.TOP && rightShape) {
-            quarterTurns += 1;
-        }
-        VariantMutator yRotation = switch (quarterTurns % 4) {
-            case 1 -> BlockModelGenerators.Y_ROT_90;
-            case 2 -> BlockModelGenerators.Y_ROT_180;
-            case 3 -> BlockModelGenerators.Y_ROT_270;
-            default -> BlockModelGenerators.NOP;
-        };
-        if (half == Half.TOP) {
-            return BlockModelGenerators.X_ROT_180.then(yRotation).then(BlockModelGenerators.UV_LOCK);
-        } else if (quarterTurns % 4 == 0) {
-            return BlockModelGenerators.NOP;
-        } else {
-            return yRotation.then(BlockModelGenerators.UV_LOCK);
-        }
     }
 
     private Identifier createExtendedModel(Block block, ModelTemplate modelTemplate, TimePhase phase) {

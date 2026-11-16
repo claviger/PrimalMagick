@@ -4,6 +4,7 @@
   "function": "primalmagick:recall_stone_teleports_player_to_respawn_point",
   "max_attempts": 3,
   "max_ticks": 400,
+  "padding": 1,
   "setup_ticks": 50,
   "structure": "primalmagick:test/floor5x5x5"
 }

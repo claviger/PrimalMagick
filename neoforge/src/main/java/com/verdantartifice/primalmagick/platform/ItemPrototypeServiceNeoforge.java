@@ -51,121 +51,122 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Block;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ItemPrototypeServiceNeoforge implements IItemPrototypeService {
     @Override
-    public <T extends Block> Supplier<BurnableBlockItem> burnable(Supplier<T> blockSupplier, int burnTicks, Item.Properties properties) {
-        return () -> new BurnableBlockItemNeoforge(blockSupplier.get(), burnTicks, properties);
+    public <T extends Block> Function<Item.Properties, BurnableBlockItem> burnable(Supplier<T> blockSupplier, int burnTicks) {
+        return props -> new BurnableBlockItemNeoforge(blockSupplier.get(), burnTicks, props);
     }
 
     @Override
-    public Supplier<ArcanometerItem> arcanometer() {
+    public Function<Item.Properties, ArcanometerItem> arcanometer() {
         return ArcanometerItemNeoforge::new;
     }
 
     @Override
-    public Supplier<Item> earthshatterHammer() {
+    public Function<Item.Properties, Item> earthshatterHammer() {
         return EarthshatterHammerItemNeoforge::new;
     }
 
     @Override
-    public Supplier<IgnyxItem> ignyx(Item.Properties properties) {
-        return () -> new IgnyxItemNeoforge(properties);
+    public Function<Item.Properties, IgnyxItem> ignyx() {
+        return IgnyxItemNeoforge::new;
     }
 
     @Override
-    public <T extends Block> Supplier<ManaFontBlockItem> manaFont(Supplier<T> blockSupplier, Item.Properties properties) {
-        return () -> new ManaFontBlockItemNeoforge(blockSupplier.get(), properties);
+    public <T extends Block> Function<Item.Properties, ManaFontBlockItem> manaFont(Supplier<T> blockSupplier) {
+        return props -> new ManaFontBlockItemNeoforge(blockSupplier.get(), props);
     }
 
     @Override
-    public <T extends Block> Supplier<SpellcraftingAltarBlockItem> spellcraftingAltar(Supplier<T> blockSupplier, Item.Properties properties) {
-        return () -> new SpellcraftingAltarBlockItemNeoforge(blockSupplier.get(), properties);
+    public <T extends Block> Function<Item.Properties, SpellcraftingAltarBlockItem> spellcraftingAltar(Supplier<T> blockSupplier) {
+        return properties -> new SpellcraftingAltarBlockItemNeoforge(blockSupplier.get(), properties);
     }
 
     @Override
-    public <T extends Block> Supplier<ManaRelayBlockItem> manaRelay(Supplier<T> blockSupplier, Item.Properties properties) {
-        return () -> new ManaRelayBlockItemNeoforge(blockSupplier.get(), properties);
+    public <T extends Block> Function<Item.Properties, ManaRelayBlockItem> manaRelay(Supplier<T> blockSupplier) {
+        return properties -> new ManaRelayBlockItemNeoforge(blockSupplier.get(), properties);
     }
 
     @Override
-    public <T extends Block> Supplier<ManaInjectorBlockItem> manaInjector(Supplier<T> blockSupplier, Item.Properties properties) {
-        return () -> new ManaInjectorBlockItemNeoforge(blockSupplier.get(), properties);
+    public <T extends Block> Function<Item.Properties, ManaInjectorBlockItem> manaInjector(Supplier<T> blockSupplier) {
+        return properties -> new ManaInjectorBlockItemNeoforge(blockSupplier.get(), properties);
     }
 
     @Override
-    public Supplier<PixieHouseItem> pixieHouse(Item.Properties properties) {
-        return () -> new PixieHouseItemNeoforge(properties);
+    public Function<Item.Properties, PixieHouseItem> pixieHouse() {
+        return PixieHouseItemNeoforge::new;
     }
 
     @Override
-    public Supplier<PrimaliteShieldItem> primaliteShield(Item.Properties properties) {
-        return () -> new PrimaliteShieldItemNeoforge(properties);
+    public Function<Item.Properties, PrimaliteShieldItem> primaliteShield() {
+        return PrimaliteShieldItemNeoforge::new;
     }
 
     @Override
-    public Supplier<HexiumShieldItem> hexiumShield(Item.Properties properties) {
-        return () -> new HexiumShieldItemNeoforge(properties);
+    public Function<Item.Properties, HexiumShieldItem> hexiumShield() {
+        return HexiumShieldItemNeoforge::new;
     }
 
     @Override
-    public Supplier<HallowsteelShieldItem> hallowsteelShield(Item.Properties properties) {
-        return () -> new HallowsteelShieldItemNeoforge(properties);
+    public Function<Item.Properties, HallowsteelShieldItem> hallowsteelShield() {
+        return HallowsteelShieldItemNeoforge::new;
     }
 
     @Override
-    public Supplier<PrimaliteTridentItem> primaliteTrident(Item.Properties properties) {
-        return () -> new PrimaliteTridentItemNeoforge(properties);
+    public Function<Item.Properties, PrimaliteTridentItem> primaliteTrident() {
+        return PrimaliteTridentItemNeoforge::new;
     }
 
     @Override
-    public Supplier<HexiumTridentItem> hexiumTrident(Item.Properties properties) {
-        return () -> new HexiumTridentItemNeoforge(properties);
+    public Function<Item.Properties, HexiumTridentItem> hexiumTrident() {
+        return HexiumTridentItemNeoforge::new;
     }
 
     @Override
-    public Supplier<HallowsteelTridentItem> hallowsteelTrident(Item.Properties properties) {
-        return () -> new HallowsteelTridentItemNeoforge(properties);
+    public Function<Item.Properties, HallowsteelTridentItem> hallowsteelTrident() {
+        return HallowsteelTridentItemNeoforge::new;
     }
 
     @Override
-    public Supplier<ForbiddenTridentItem> forbiddenTrident(Item.Properties properties) {
-        return () -> new ForbiddenTridentItemNeoforge(properties);
+    public Function<Item.Properties, ForbiddenTridentItem> forbiddenTrident() {
+        return ForbiddenTridentItemNeoforge::new;
     }
 
     @Override
-    public Supplier<AbstractTieredBowItem> tieredBow(ToolMaterial material, Item.Properties properties) {
-        return () -> new TieredBowItemNeoforge(material, properties);
+    public Function<Item.Properties, AbstractTieredBowItem> tieredBow(ToolMaterial material) {
+        return properties -> new TieredBowItemNeoforge(material, properties);
     }
 
     @Override
-    public Supplier<ForbiddenBowItem> forbiddenBow(Item.Properties properties) {
-        return () -> new ForbiddenBowItemNeoforge(properties);
+    public Function<Item.Properties, ForbiddenBowItem> forbiddenBow() {
+        return ForbiddenBowItemNeoforge::new;
     }
 
     @Override
-    public Supplier<SpelltomeItem> spelltome(DeviceTier tier, Item.Properties properties) {
-        return () -> new SpelltomeItemNeoforge(tier, properties);
+    public Function<Item.Properties, SpelltomeItem> spelltome(DeviceTier tier) {
+        return properties -> new SpelltomeItemNeoforge(tier, properties);
     }
 
     @Override
-    public Supplier<ManaOrbItem> manaOrb(DeviceTier tier, Item.Properties properties) {
-        return () -> new ManaOrbItemNeoforge(tier, properties);
+    public Function<Item.Properties, ManaOrbItem> manaOrb(DeviceTier tier) {
+        return properties -> new ManaOrbItemNeoforge(tier, properties);
     }
 
     @Override
-    public Supplier<MundaneWandItem> mundaneWand() {
+    public Function<Item.Properties, MundaneWandItem> mundaneWand() {
         return MundaneWandItemNeoforge::new;
     }
 
     @Override
-    public Supplier<ModularWandItem> modularWand(Item.Properties properties) {
-        return () -> new ModularWandItemNeoforge(properties);
+    public Function<Item.Properties, ModularWandItem> modularWand() {
+        return ModularWandItemNeoforge::new;
     }
 
     @Override
-    public Supplier<ModularStaffItem> modularStaff(Item.Properties properties) {
-        return () -> new ModularStaffItemNeoforge(properties);
+    public Function<Item.Properties, ModularStaffItem> modularStaff() {
+        return ModularStaffItemNeoforge::new;
     }
 }

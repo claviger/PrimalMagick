@@ -4,6 +4,7 @@
   "function": "primalmagick:void_arrow_inflicts_wither",
   "max_attempts": 3,
   "max_ticks": 400,
+  "padding": 1,
   "setup_ticks": 50,
   "structure": "primalmagick:test/floor5x5x5"
 }

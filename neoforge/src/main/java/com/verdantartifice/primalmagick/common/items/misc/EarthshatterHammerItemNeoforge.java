@@ -4,7 +4,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
-import net.minecraft.world.item.Rarity;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -12,8 +11,8 @@ import org.jetbrains.annotations.Nullable;
  * ore doubling.  The hammer has no durability and is returned unchanged to the crafting grid.
  */
 public class EarthshatterHammerItemNeoforge extends Item {
-    public EarthshatterHammerItemNeoforge() {
-        super(new Item.Properties().rarity(Rarity.UNCOMMON));
+    public EarthshatterHammerItemNeoforge(Item.Properties properties) {
+        super(properties);
     }
 
     @Override

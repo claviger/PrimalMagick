@@ -2,6 +2,7 @@ package com.verdantartifice.primalmagick.datagen.recipes;
 
 import com.verdantartifice.primalmagick.common.concoctions.ConcoctionType;
 import com.verdantartifice.primalmagick.common.concoctions.ConcoctionUtils;
+import com.verdantartifice.primalmagick.common.concoctions.FuseType;
 import com.verdantartifice.primalmagick.common.crafting.ConcoctingRecipe;
 import com.verdantartifice.primalmagick.common.crafting.IConcoctingRecipe;
 import com.verdantartifice.primalmagick.common.crafting.recipe_book.ConcoctingBookCategory;
@@ -17,8 +18,6 @@ import com.verdantartifice.primalmagick.common.util.ResourceUtils;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.component.DataComponentMap;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -27,7 +26,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
-import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
@@ -45,6 +44,8 @@ import java.util.Optional;
 public class ConcoctingRecipeBuilder {
     protected final HolderGetter<Item> itemGetter;
     protected final ItemStackTemplate result;
+    protected final Holder<Potion> potionHolder;
+    protected final ConcoctionType concoctionType;
     protected final NonNullList<Ingredient> ingredients = NonNullList.create();
     protected boolean showNotification = true;
     protected ConcoctingBookCategory category = ConcoctingBookCategory.DRINKABLE;
@@ -53,13 +54,15 @@ public class ConcoctingRecipeBuilder {
     protected final List<AbstractRequirement<?>> requirements = new ArrayList<>();
     protected SourceList manaCosts;
 
-    protected ConcoctingRecipeBuilder(HolderGetter<Item> itemGetter, ItemStackTemplate result) {
+    protected ConcoctingRecipeBuilder(HolderGetter<Item> itemGetter, Holder<Potion> potion, ConcoctionType concoctionType) {
         this.itemGetter = itemGetter;
-        this.result = result;
+        this.potionHolder = potion;
+        this.concoctionType = concoctionType;
+        this.result = concoctionType == ConcoctionType.BOMB ? ConcoctionUtils.newBomb(potion, FuseType.MEDIUM) : ConcoctionUtils.newConcoction(potion, concoctionType);
     }
     
-    public static ConcoctingRecipeBuilder concoctingRecipe(HolderGetter<Item> itemGetter, ItemStackTemplate result) {
-        return new ConcoctingRecipeBuilder(itemGetter, result);
+    public static ConcoctingRecipeBuilder concoctingRecipe(HolderGetter<Item> itemGetter, Holder<Potion> potion, ConcoctionType concoctionType) {
+        return new ConcoctingRecipeBuilder(itemGetter, potion, concoctionType);
     }
     
     public ConcoctingRecipeBuilder addIngredient(Ingredient ingredient, int quantity) {
@@ -142,9 +145,8 @@ public class ConcoctingRecipeBuilder {
     }
     
     protected void validate(ResourceKey<Recipe<?>> id) {
-        PotionContents contents = this.result.components().get(DataComponentMap.EMPTY, DataComponents.POTION_CONTENTS);
-        if (contents == null || contents.potion().isEmpty()) {
-            throw new IllegalStateException("No potion effect defined for result of concocting recipe with output " + this.result.item().getRegisteredName());
+        if (this.potionHolder == null) {
+            throw new IllegalStateException("No potion effect defined for concocting recipe " + id + "!");
         }
         if (this.category == null) {
             throw new IllegalStateException("Null category specified for concocting recipe " + id + "!");
@@ -159,12 +161,12 @@ public class ConcoctingRecipeBuilder {
     
     public void build(RecipeOutput output, ResourceKey<Recipe<?>> id) {
         this.validate(id);
-        String groupStr = this.getResultPotionKey().map(Identifier::getPath).orElse(this.group);
+        String groupStr = this.getResultPotionKey().getPath();
         ConcoctingRecipe recipe = new ConcoctingRecipe(
                 new Recipe.CommonInfo(this.showNotification),
                 new IConcoctingRecipe.ConcoctingCraftingBookInfo(
                         Objects.requireNonNullElse(this.category, ConcoctingBookCategory.DRINKABLE),
-                        Objects.requireNonNullElse(groupStr, "")),
+                        groupStr),
                 this.result,
                 this.ingredients,
                 this.getFinalRequirement(),
@@ -173,17 +175,11 @@ public class ConcoctingRecipeBuilder {
     }
     
     public void build(RecipeOutput output) {
-        ConcoctionType type = ConcoctionUtils.getConcoctionType(this.result);
-        Identifier recipeId = this.getResultPotionKey().map(id -> ResourceUtils.loc(id.getPath() + "_" + type.getSerializedName())).orElseThrow(() -> new IllegalStateException("Cannot determine concoction ID in recipe builder!"));
+        Identifier recipeId = ResourceUtils.loc(this.getResultPotionKey().getPath() + "_" + this.concoctionType.getSerializedName());
         this.build(output, ResourceKey.create(Registries.RECIPE, recipeId));
     }
 
-    private Optional<Identifier> getResultPotionKey() {
-        PotionContents contents = this.result.components().get(DataComponentMap.EMPTY, DataComponents.POTION_CONTENTS);
-        if (contents == null) {
-            return Optional.empty();
-        } else {
-            return contents.potion().map(Holder::value).map(BuiltInRegistries.POTION::getKey);
-        }
+    private Identifier getResultPotionKey() {
+        return BuiltInRegistries.POTION.getKey(this.potionHolder.value());
     }
 }

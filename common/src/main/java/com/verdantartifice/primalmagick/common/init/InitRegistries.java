@@ -75,9 +75,9 @@ public class InitRegistries {
         GridRewardTypesPM.init();
         ResearchTopicTypesPM.init();
         RitualStepTypesPM.init();
-        AffinityTypesPM.init();
         TestFunctionsPM.init();
         RecipeDisplayTypesPM.init();
         RecipeBookCategoriesPM.init();
+        AffinityTypesPM.init();
     }
 }
