@@ -239,7 +239,7 @@ public class ResearchTableScreen extends AbstractContainerScreenPM<ResearchTable
      * 
      * @author Daedalus4096
      */
-    protected static class StartProjectButton extends Button {
+    protected static class StartProjectButton extends Button.Plain {
         protected ResearchTableScreen screen;
         
         public StartProjectButton(int xIn, int yIn, Component text, ResearchTableScreen screen) {
@@ -249,12 +249,6 @@ public class ResearchTableScreen extends AbstractContainerScreenPM<ResearchTable
         
         public ResearchTableScreen getScreen() {
             return this.screen;
-        }
-        
-        @Override
-        public void extractContents(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-            this.extractDefaultSprite(guiGraphics);
-            this.extractDefaultLabel(guiGraphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE));
         }
         
         private static class Handler implements OnPress {
@@ -274,7 +268,7 @@ public class ResearchTableScreen extends AbstractContainerScreenPM<ResearchTable
      * 
      * @author Daedalus4096
      */
-    protected static class CompleteProjectButton extends Button {
+    protected static class CompleteProjectButton extends Button.Plain {
         protected ResearchTableScreen screen;
         
         public CompleteProjectButton(int xIn, int yIn, Component text, ResearchTableScreen screen) {
@@ -284,12 +278,6 @@ public class ResearchTableScreen extends AbstractContainerScreenPM<ResearchTable
         
         public ResearchTableScreen getScreen() {
             return this.screen;
-        }
-        
-        @Override
-        public void extractContents(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-            this.extractDefaultSprite(guiGraphics);
-            this.extractDefaultLabel(guiGraphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE));
         }
         
         private static class Handler implements OnPress {

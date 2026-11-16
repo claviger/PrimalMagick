@@ -4,6 +4,7 @@
   "function": "primalmagick:recall_stone_fails_when_respawn_is_in_another_dimension",
   "max_attempts": 3,
   "max_ticks": 400,
+  "padding": 1,
   "setup_ticks": 50,
   "structure": "primalmagick:test/floor5x5x5"
 }

@@ -28,6 +28,7 @@ import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -620,7 +621,7 @@ public class ResearchManager {
                 // If the given itemstack has no affinities, consider it already scanned
                 return true;
             }
-            return new ItemScanKey(stack).isKnownBy(player);
+            return new ItemScanKey(ItemStackTemplate.fromNonEmptyStack(stack)).isKnownBy(player);
         } else {
             // If the affinities for the item are not ready yet, temporarily consider the item scanned
             return true;
@@ -637,7 +638,7 @@ public class ResearchManager {
                 // If the given itemstack has no affinities, consider it already scanned
                 return true;
             }
-            return new ItemScanKey(stack).isKnownBy(player);
+            return new ItemScanKey(ItemStackTemplate.fromNonEmptyStack(stack)).isKnownBy(player);
         });
     }
     
@@ -651,7 +652,7 @@ public class ResearchManager {
             return false;
         }
 
-        Optional<SourceList> affinitiesOpt = AffinityManager.getInstance().getAffinityValues(entity.getType(), player.registryAccess());
+        Optional<SourceList> affinitiesOpt = AffinityManager.getInstance().getAffinityValues(entity.getType(), player.level());
         if (affinitiesOpt.isPresent()) {
             SourceList affinities = affinitiesOpt.get();
             if (affinities.isEmpty() && (!(player instanceof ServerPlayer serverPlayer) || !hasScanTriggers(serverPlayer, entityReference))) {
@@ -675,7 +676,7 @@ public class ResearchManager {
             return CompletableFuture.completedFuture(Boolean.FALSE);
         }
         
-        return AffinityManager.getInstance().getAffinityValuesAsync(entity.getType(), player.registryAccess()).thenApply(affinities -> {
+        return AffinityManager.getInstance().getAffinityValuesAsync(entity.getType(), player.level()).thenApply(affinities -> {
             if ((affinities == null || affinities.isEmpty()) && (!(player instanceof ServerPlayer serverPlayer) || !hasScanTriggers(serverPlayer, entityReference))) {
                 // If the given entity has no affinities, consider it already scanned
                 return true;
@@ -702,7 +703,7 @@ public class ResearchManager {
         checkScanTriggers(player, stack.getItem());
         
         // Generate a research key for the itemstack and add that research to the player
-        ItemScanKey key = new ItemScanKey(stack);
+        ItemScanKey key = new ItemScanKey(ItemStackTemplate.fromNonEmptyStack(stack));
         if (knowledge.addResearch(key)) {
             // Determine how many observation points the itemstack is worth and add those to the player's knowledge
             getObservationPointsAsync(stack, player.level()).thenAccept(obsPoints -> {
@@ -789,7 +790,7 @@ public class ResearchManager {
             // Generate a research key for the itemstack and add that research to the player
             stack = new ItemStack(item);
             if (!stack.isEmpty()) { // Skip over air
-                key = new ItemScanKey(stack);
+                key = new ItemScanKey(ItemStackTemplate.fromNonEmptyStack(stack));
                 if (knowledge.addResearch(key)) {
                     count++;
         
@@ -834,7 +835,7 @@ public class ResearchManager {
         }
 
         // Get affinities from affinity manager for entity type
-        return AffinityManager.getInstance().getAffinityValuesAsync(entity.getType(), level.registryAccess()).thenApply(ResearchManager::getObservationPoints);
+        return AffinityManager.getInstance().getAffinityValuesAsync(entity.getType(), level).thenApply(ResearchManager::getObservationPoints);
     }
     
     private static int getObservationPoints(@Nullable SourceList affinities) {
@@ -863,7 +864,7 @@ public class ResearchManager {
         return Services.CAPABILITIES.knowledge(player).map(knowledge -> knowledge.getResearchSet().stream()
                 .map(k -> k instanceof ItemScanKey scanKey ? scanKey : null)
                 .filter(Objects::nonNull)
-                .map(k -> new AffinityIndexEntry(k.getStack(), AffinityManager.getInstance().getAffinityValuesAsync(k.getStack(), level)))
+                .map(k -> new AffinityIndexEntry(k.getStack().create(), AffinityManager.getInstance().getAffinityValuesAsync(k.getStack().create(), level)))
                 .toList())
             .orElseGet(List::of);
     }

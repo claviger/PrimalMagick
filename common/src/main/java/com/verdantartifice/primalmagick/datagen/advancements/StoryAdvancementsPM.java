@@ -112,7 +112,7 @@ public abstract class StoryAdvancementsPM {
                 .rewards(AdvancementRewards.Builder.experience(100))
                 .addCriterion("completed_many_projects", StatValueTrigger.TriggerInstance.atLeast(StatsPM.RESEARCH_PROJECTS_COMPLETED, 250))
                 .save(saver, ResourceUtils.loc("story/many_theorycrafts").toString());
-        ItemStackTemplate apprenticeWand = new ItemStackTemplate(ItemsPM.MODULAR_WAND.get(), IHasWandComponents.getWandComponents(WandCore.HEARTWOOD, WandCap.IRON, WandGem.APPRENTICE));
+        ItemStackTemplate apprenticeWand = IHasWandComponents.createTemplate(ItemsPM.MODULAR_WAND.get(), WandCore.HEARTWOOD, WandCap.IRON, WandGem.APPRENTICE);
         Advancement.Builder.advancement().display(DisplayInfoBuilder.id("craft_modular_wand").icon(apprenticeWand).build())
                 .parent(craftArcaneWorkbench)
                 .addCriterion("has_wand", InventoryChangeTrigger.TriggerInstance.hasItems(ItemsPM.MODULAR_WAND.get()))

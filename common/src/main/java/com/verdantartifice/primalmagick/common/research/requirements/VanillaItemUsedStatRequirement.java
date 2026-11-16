@@ -75,7 +75,7 @@ public class VanillaItemUsedStatRequirement extends AbstractRequirement<VanillaI
     @Override
     public Component getStatDescription() {
         Component baseLabel = this.stat.getType().getDisplayName();
-        Component itemLabel = new ItemStack(this.stat.getValue()).getItemName();
+        Component itemLabel = this.stat.getValue().getName(new ItemStack(this.stat.getValue()));
         return Component.translatable("tooltip.primalmagick.stat_description.vanilla", baseLabel, itemLabel);
     }
 

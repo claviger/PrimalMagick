@@ -34,7 +34,34 @@ public class SpellMineRenderer extends EntityRenderer<SpellMineEntity, SpellMine
         super(context);
         this.model = new SpellMineModel(context.bakeLayer(ModelLayersPM.SPELL_MINE));
     }
-    
+
+    @Override
+    public void submit(@NotNull SpellMineRenderState state, @NotNull PoseStack poseStack,
+                       @NotNull SubmitNodeCollector submitNodeCollector, @NotNull CameraRenderState camera) {
+        float ticks = state.ageInTicks;
+        float alphaFactor = state.armed ? 0.25F : 1.0F;    // Fade out the mine if it's armed
+        int coreColor = ARGB.color(ARGB.as8BitChannel(1.0F * alphaFactor), state.color);
+        int glowColor = ARGB.color(ARGB.as8BitChannel(0.5F * alphaFactor), state.color);
+        double bob = 0.25D * Mth.sin(ticks * 0.1F);      // Calculate a vertical bobbing displacement
+        poseStack.pushPose();
+        poseStack.translate(0.0D, 0.5D + bob, 0.0D);
+        poseStack.mulPose(Axis.YP.rotationDegrees(Mth.sin(ticks * 0.1F) * 180.0F)); // Spin the mine like a shulker bullet
+        poseStack.mulPose(Axis.XP.rotationDegrees(Mth.cos(ticks * 0.1F) * 180.0F));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(Mth.sin(ticks * 0.15F) * 360.0F));
+        poseStack.scale(-0.5F, -0.5F, 0.5F);
+        this.model.setupAnim(state);
+
+        // Render the core of the mine
+        submitNodeCollector.submitModel(this.model, state, poseStack, this.model.renderType(TEXTURE), state.lightCoords, OverlayTexture.NO_OVERLAY, coreColor, null, state.outlineColor, null);
+
+        // Render the transparent glow of the mine
+        poseStack.scale(1.5F, 1.5F, 1.5F);
+        submitNodeCollector.submitModel(this.model, state, poseStack, TRANSLUCENT_TYPE, state.lightCoords, OverlayTexture.NO_OVERLAY, glowColor, null, state.outlineColor, null);
+
+        poseStack.popPose();
+        super.submit(state, poseStack, submitNodeCollector, camera);
+    }
+
     @Override
     @NotNull
     public SpellMineRenderState createRenderState() {
@@ -42,33 +69,11 @@ public class SpellMineRenderer extends EntityRenderer<SpellMineEntity, SpellMine
     }
 
     @Override
-    public void extractRenderState(@NotNull SpellMineEntity entity, @NotNull SpellMineRenderState renderState, float partialTicks) {
-        super.extractRenderState(entity, renderState, partialTicks);
-        renderState.yRot = entity.getYRot(partialTicks);
-        renderState.xRot = entity.getXRot(partialTicks);
-        renderState.color = entity.getColor();
-        renderState.armed = entity.isArmed();
-    }
-
-    @Override
-    public void submit(@NotNull SpellMineRenderState renderState, @NotNull PoseStack matrixStack, @NotNull SubmitNodeCollector collector, @NotNull CameraRenderState cameraRenderState) {
-        float ticks = renderState.ageInTicks;
-        float alphaFactor = renderState.armed ? 0.25F : 1.0F;    // Fade out the mine if it's armed
-        int coreColor = ARGB.color(ARGB.as8BitChannel(1.0F * alphaFactor), renderState.color);
-        int glowColor = ARGB.color(ARGB.as8BitChannel(0.5F * alphaFactor), renderState.color);
-        double bob = 0.25D * Mth.sin(ticks * 0.1F);      // Calculate a vertical bobbing displacement
-        matrixStack.pushPose();
-        matrixStack.translate(0.0D, 0.5D + bob, 0.0D);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.sin(ticks * 0.1F) * 180.0F)); // Spin the mine like a shulker bullet
-        matrixStack.mulPose(Axis.XP.rotationDegrees(Mth.cos(ticks * 0.1F) * 180.0F));
-        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.sin(ticks * 0.15F) * 360.0F));
-        matrixStack.scale(-0.5F, -0.5F, 0.5F);
-        // Render the core of the mine
-        collector.order(0).submitModel(this.model, renderState, matrixStack, this.model.renderType(TEXTURE), renderState.lightCoords, OverlayTexture.NO_OVERLAY, coreColor, null, renderState.outlineColor, null);
-        matrixStack.scale(1.5F, 1.5F, 1.5F);
-        // Render the transparent glow of the mine
-        collector.order(1).submitModel(this.model, renderState, matrixStack, TRANSLUCENT_TYPE, renderState.lightCoords, OverlayTexture.NO_OVERLAY, glowColor, null, renderState.outlineColor, null);
-        matrixStack.popPose();
-        super.submit(renderState, matrixStack, collector, cameraRenderState);
+    public void extractRenderState(@NotNull SpellMineEntity entity, @NotNull SpellMineRenderState state, float partialTicks) {
+        super.extractRenderState(entity, state, partialTicks);
+        state.yRot = entity.getYRot(partialTicks);
+        state.xRot = entity.getXRot(partialTicks);
+        state.color = entity.getColor();
+        state.armed = entity.isArmed();
     }
 }

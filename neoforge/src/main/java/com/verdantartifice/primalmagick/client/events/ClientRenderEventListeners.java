@@ -1,8 +1,6 @@
 package com.verdantartifice.primalmagick.client.events;
 
 import com.verdantartifice.primalmagick.Constants;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.phys.EntityHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -29,9 +27,6 @@ public class ClientRenderEventListeners {
     
     @SubscribeEvent
     public static void onSubmitCustomGeometry(SubmitCustomGeometryEvent event) {
-        Minecraft mc = Minecraft.getInstance();
-        if (mc.hitResult instanceof EntityHitResult entityHitResult) {
-            ClientRenderEvents.onHighlightEntity(entityHitResult, event.getPoseStack(), event.getSubmitNodeCollector(), mc.getDeltaTracker().getGameTimeDeltaPartialTick(true));
-        }
+        ClientRenderEvents.onSubmitCustomGeometry(event.getLevelRenderState(), event.getSubmitNodeCollector(), event.getPoseStack());
     }
 }

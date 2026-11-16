@@ -27,38 +27,39 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Block;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public interface IItemPrototypeService {
-    <T extends Block> Supplier<BurnableBlockItem> burnable(Supplier<T> block, int burnTicks, Item.Properties properties);
+    <T extends Block> Function<Item.Properties, BurnableBlockItem> burnable(Supplier<T> block, int burnTicks);
 
-    Supplier<ArcanometerItem> arcanometer();
-    Supplier<Item> earthshatterHammer();
-    Supplier<IgnyxItem> ignyx(Item.Properties properties);
+    Function<Item.Properties, ArcanometerItem> arcanometer();
+    Function<Item.Properties, Item> earthshatterHammer();
+    Function<Item.Properties, IgnyxItem> ignyx();
 
-    <T extends Block> Supplier<ManaFontBlockItem> manaFont(Supplier<T> blockSupplier, Item.Properties properties);
-    <T extends Block> Supplier<SpellcraftingAltarBlockItem> spellcraftingAltar(Supplier<T> blockSupplier, Item.Properties properties);
-    <T extends Block> Supplier<ManaRelayBlockItem> manaRelay(Supplier<T> blockSupplier, Item.Properties properties);
-    <T extends Block> Supplier<ManaInjectorBlockItem> manaInjector(Supplier<T> blockSupplier, Item.Properties properties);
+    <T extends Block> Function<Item.Properties, ManaFontBlockItem> manaFont(Supplier<T> blockSupplier);
+    <T extends Block> Function<Item.Properties, SpellcraftingAltarBlockItem> spellcraftingAltar(Supplier<T> blockSupplier);
+    <T extends Block> Function<Item.Properties, ManaRelayBlockItem> manaRelay(Supplier<T> blockSupplier);
+    <T extends Block> Function<Item.Properties, ManaInjectorBlockItem> manaInjector(Supplier<T> blockSupplier);
 
-    Supplier<PixieHouseItem> pixieHouse(Item.Properties properties);
+    Function<Item.Properties, PixieHouseItem> pixieHouse();
 
-    Supplier<PrimaliteShieldItem> primaliteShield(Item.Properties properties);
-    Supplier<HexiumShieldItem> hexiumShield(Item.Properties properties);
-    Supplier<HallowsteelShieldItem> hallowsteelShield(Item.Properties properties);
+    Function<Item.Properties, PrimaliteShieldItem> primaliteShield();
+    Function<Item.Properties, HexiumShieldItem> hexiumShield();
+    Function<Item.Properties, HallowsteelShieldItem> hallowsteelShield();
 
-    Supplier<PrimaliteTridentItem> primaliteTrident(Item.Properties properties);
-    Supplier<HexiumTridentItem> hexiumTrident(Item.Properties properties);
-    Supplier<HallowsteelTridentItem> hallowsteelTrident(Item.Properties properties);
-    Supplier<ForbiddenTridentItem> forbiddenTrident(Item.Properties properties);
+    Function<Item.Properties, PrimaliteTridentItem> primaliteTrident();
+    Function<Item.Properties, HexiumTridentItem> hexiumTrident();
+    Function<Item.Properties, HallowsteelTridentItem> hallowsteelTrident();
+    Function<Item.Properties, ForbiddenTridentItem> forbiddenTrident();
 
-    Supplier<AbstractTieredBowItem> tieredBow(ToolMaterial material, Item.Properties properties);
-    Supplier<ForbiddenBowItem> forbiddenBow(Item.Properties properties);
+    Function<Item.Properties, AbstractTieredBowItem> tieredBow(ToolMaterial material);
+    Function<Item.Properties, ForbiddenBowItem> forbiddenBow();
 
-    Supplier<SpelltomeItem> spelltome(DeviceTier tier, Item.Properties properties);
-    Supplier<ManaOrbItem> manaOrb(DeviceTier tier, Item.Properties properties);
+    Function<Item.Properties, SpelltomeItem> spelltome(DeviceTier tier);
+    Function<Item.Properties, ManaOrbItem> manaOrb(DeviceTier tier);
 
-    Supplier<MundaneWandItem> mundaneWand();
-    Supplier<ModularWandItem> modularWand(Item.Properties properties);
-    Supplier<ModularStaffItem> modularStaff(Item.Properties properties);
+    Function<Item.Properties, MundaneWandItem> mundaneWand();
+    Function<Item.Properties, ModularWandItem> modularWand();
+    Function<Item.Properties, ModularStaffItem> modularStaff();
 }

@@ -1,7 +1,6 @@
 package com.verdantartifice.primalmagick.common.init;
 
 import com.verdantartifice.primalmagick.common.blocks.BlocksPM;
-import com.verdantartifice.primalmagick.common.crafting.WandTransformBlock;
 import com.verdantartifice.primalmagick.common.crafting.WandTransformBlockTag;
 import com.verdantartifice.primalmagick.common.crafting.WandTransforms;
 import com.verdantartifice.primalmagick.common.items.ItemsPM;
@@ -10,12 +9,10 @@ import com.verdantartifice.primalmagick.common.research.keys.ResearchEntryKey;
 import com.verdantartifice.primalmagick.common.research.keys.ResearchStageKey;
 import com.verdantartifice.primalmagick.common.research.requirements.OrRequirement;
 import com.verdantartifice.primalmagick.common.research.requirements.ResearchRequirement;
-import com.verdantartifice.primalmagick.common.tags.BlockExtensionTags;
 import com.verdantartifice.primalmagick.common.tags.BlockTagsPM;
 import com.verdantartifice.primalmagick.common.tags.CommonTags;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStackTemplate;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 
 /**

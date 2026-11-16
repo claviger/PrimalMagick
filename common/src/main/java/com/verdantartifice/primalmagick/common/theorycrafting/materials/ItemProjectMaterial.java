@@ -15,7 +15,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -34,7 +33,7 @@ import java.util.Set;
 public class ItemProjectMaterial extends AbstractProjectMaterial<ItemProjectMaterial> {
     public static MapCodec<ItemProjectMaterial> codec() { 
         return RecordCodecBuilder.mapCodec(instance -> instance.group(
-                ItemStackTemplate.CODEC.fieldOf("stack").forGetter(ItemProjectMaterial::getStackTemplate),
+                ItemStackTemplate.CODEC.fieldOf("stack").forGetter(ItemProjectMaterial::getItemStack),
                 Codec.BOOL.fieldOf("consumed").forGetter(ItemProjectMaterial::isConsumed),
                 Codec.BOOL.fieldOf("matchNBT").forGetter(material -> material.matchNBT),
                 ExtraCodecs.NON_NEGATIVE_INT.fieldOf("afterCrafting").forGetter(ItemProjectMaterial::getAfterCrafting),
@@ -47,7 +46,7 @@ public class ItemProjectMaterial extends AbstractProjectMaterial<ItemProjectMate
     public static StreamCodec<RegistryFriendlyByteBuf, ItemProjectMaterial> streamCodec() {
         return StreamCodecUtils.composite(
                 ItemStackTemplate.STREAM_CODEC,
-                ItemProjectMaterial::getStackTemplate,
+                ItemProjectMaterial::getItemStack,
                 ByteBufCodecs.BOOL,
                 ItemProjectMaterial::isConsumed,
                 ByteBufCodecs.BOOL,
@@ -83,7 +82,7 @@ public class ItemProjectMaterial extends AbstractProjectMaterial<ItemProjectMate
 
     @Override
     public boolean isSatisfied(Player player, Set<Block> surroundings) {
-        if (InventoryUtils.isPlayerCarrying(player, this.getItemStack(), this.matchNBT)) {
+        if (InventoryUtils.isPlayerCarrying(player, this.stack.create(), this.matchNBT)) {
             return true;
         } else if (!this.consumed && this.stack.count() == 1 && surroundings != null && this.stack.item().value() instanceof BlockItem blockItem && surroundings.contains(blockItem.getBlock())) {
             // Only allow satisfaction from surroundings if not consuming the material and only one item is required
@@ -96,20 +95,15 @@ public class ItemProjectMaterial extends AbstractProjectMaterial<ItemProjectMate
     public boolean consume(Player player) {
         // Remove this material's item from the player's inventory if it's supposed to be consumed
         if (this.consumed) {
-            return InventoryUtils.consumeItem(player, this.getItemStack(), this.matchNBT);
+            return InventoryUtils.consumeItem(player, this.stack.create(), this.matchNBT);
         } else {
             return true;
         }
     }
     
     @Nonnull
-    public ItemStackTemplate getStackTemplate() {
+    public ItemStackTemplate getItemStack() {
         return this.stack;
-    }
-    
-    @Nonnull
-    public ItemStack getItemStack() {
-        return this.stack.create();
     }
     
     @Override
@@ -123,7 +117,7 @@ public class ItemProjectMaterial extends AbstractProjectMaterial<ItemProjectMate
     
     @Override
     public boolean isAllowedInProject(ServerPlayer player) {
-        return super.isAllowedInProject(player) && player.getStats().getValue(Stats.ITEM_CRAFTED.get(this.stack.item().value())) >= this.getAfterCrafting();
+        return super.isAllowedInProject(player) && player.getStats().getValue(Stats.ITEM_CRAFTED.get(this.getItemStack().item().value())) >= this.getAfterCrafting();
     }
 
     @Override

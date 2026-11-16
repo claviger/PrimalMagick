@@ -18,6 +18,7 @@
     },
     "icon": {
       "components": {
+        "minecraft:rarity": "common",
         "primalmagick:capability_mana_storage": {
           "allowedSources": [
             "primalmagick:hallowed",

@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.world.level.ItemLike;
 
 import java.util.Map;
 
@@ -20,8 +21,7 @@ import java.util.Map;
  * 
  * @author Daedalus4096
  */
-public interface IEnchantedByDefault {
-    Item asItem();
+public interface IEnchantedByDefault extends ItemLike {
     ItemStack getDefaultInstance();
     Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments();
     
@@ -36,14 +36,18 @@ public interface IEnchantedByDefault {
         EnchantmentHelper.setEnchantments(stack, enchants.toImmutable());
         return stack;
     }
-    
+
     default ItemStackTemplate getDefaultEnchantedTemplate(HolderLookup.Provider registries) {
+        Item item = this.asItem();
         ItemEnchantments.Mutable enchants = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
         this.getDefaultEnchantments().forEach((enchKey, level) -> {
             registries.lookupOrThrow(Registries.ENCHANTMENT).get(enchKey).ifPresent(ench -> {
                 enchants.upgrade(ench, level);
             });
         });
-        return new ItemStackTemplate(this.asItem(), DataComponentPatch.builder().set(DataComponents.ENCHANTMENTS, enchants.toImmutable()).build());
+        DataComponentPatch componentPatch = DataComponentPatch.builder()
+                .set(DataComponents.ENCHANTMENTS, enchants.toImmutable())
+                .build();
+        return new ItemStackTemplate(item, componentPatch);
     }
 }

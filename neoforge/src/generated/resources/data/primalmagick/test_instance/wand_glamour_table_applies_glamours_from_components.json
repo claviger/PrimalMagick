@@ -4,6 +4,7 @@
   "function": "primalmagick:wand_glamour_table_applies_glamours_from_components",
   "max_attempts": 3,
   "max_ticks": 400,
+  "padding": 1,
   "setup_ticks": 50,
   "structure": "primalmagick:test/empty3x3x3"
 }

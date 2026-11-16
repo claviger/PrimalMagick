@@ -246,7 +246,7 @@ public class RunecarvingRecipeBuilder {
      * @param id the ID of the recipe
      */
     protected void validate(ResourceKey<Recipe<?>> id) {
-        if (this.baseIngredient == null || this.etchingIngredient == null) {
+        if ( this.baseIngredient == null || this.etchingIngredient == null ) {
             throw new IllegalStateException("Missing ingredient for runecarving recipe " + id + "!");
         }
         if (this.requirements.isEmpty()) {

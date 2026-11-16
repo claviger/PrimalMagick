@@ -3,15 +3,12 @@ package com.verdantartifice.primalmagick.common.affinities;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.verdantartifice.primalmagick.common.sources.SourceList;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -40,7 +37,7 @@ public class EnchantmentBonusAffinity extends AbstractAffinity<EnchantmentBonusA
     }
 
     @Override
-    protected CompletableFuture<SourceList> calculateTotalAsync(@Nullable Collection<RecipeHolder<?>> recipes, @NotNull RegistryAccess registryAccess, @NotNull List<Identifier> history) {
+    protected CompletableFuture<SourceList> calculateTotalAsync(@NotNull Level level, @NotNull List<Identifier> history) {
         return CompletableFuture.completedFuture(this.multiplierValues);
     }
 }

@@ -1,9 +1,9 @@
 package com.verdantartifice.primalmagick.platform;
 
-import com.verdantartifice.primalmagick.common.capabilities.EmptyItemHandlerPMNeoforge;
 import com.verdantartifice.primalmagick.common.capabilities.IItemHandlerPM;
 import com.verdantartifice.primalmagick.common.capabilities.ItemStackHandlerPMNeoforge;
 import com.verdantartifice.primalmagick.common.tiles.base.AbstractTilePM;
+import com.verdantartifice.primalmagick.common.util.EmptyInvHandlerPMNeoforge;
 import com.verdantartifice.primalmagick.common.util.InvWrapperPMNeoforge;
 import com.verdantartifice.primalmagick.common.util.SidedInvWrapperPMNeoforge;
 import com.verdantartifice.primalmagick.platform.services.IItemHandlerService;
@@ -34,7 +34,7 @@ public class ItemHandlerServiceNeoforge implements IItemHandlerService {
 
     @Override
     public IItemHandlerPM empty() {
-        return EmptyItemHandlerPMNeoforge.INSTANCE;
+        return EmptyInvHandlerPMNeoforge.INSTANCE;
     }
 
     @Override

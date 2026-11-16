@@ -30,15 +30,15 @@ public class TreefolkRenderer extends HumanoidMobRenderer<TreefolkEntity, Treefo
     }
 
     @Override
-    public void extractRenderState(@NotNull TreefolkEntity entity, @NotNull TreefolkRenderState renderState, float partialTicks) {
-        super.extractRenderState(entity, renderState, partialTicks);
-        renderState.angry = entity.isAngry();
-        renderState.armPose = entity.getArmPose();
+    public void extractRenderState(@NotNull TreefolkEntity entity, @NotNull TreefolkRenderState state, float partialTicks) {
+        super.extractRenderState(entity, state, partialTicks);
+        state.isAngry = entity.isAngry();
+        state.armPose = entity.getArmPose();
     }
 
     @Override
     @NotNull
-    public Identifier getTextureLocation(@NotNull TreefolkRenderState renderState) {
-        return renderState.angry ? ANGRY_TEXTURE : TEXTURE;
+    public Identifier getTextureLocation(@NotNull TreefolkRenderState state) {
+        return state.isAngry ? ANGRY_TEXTURE : TEXTURE;
     }
 }

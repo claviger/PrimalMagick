@@ -1,7 +1,6 @@
 package com.verdantartifice.primalmagick.client.util;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Either;
 import com.mojang.math.Axis;
 import com.verdantartifice.primalmagick.common.misc.IconDefinition;
@@ -12,23 +11,23 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.SpriteId;
+import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.LightCoordsUtil;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nonnull;
@@ -45,25 +44,9 @@ import java.util.Optional;
  */
 public class GuiUtils {
     public static boolean renderItemStack(GuiGraphicsExtractor guiGraphics, ItemStack stack, int x, int y, String text, boolean hideStackOverlay) {
-        boolean retVal = false;
-        if (stack != null && !stack.isEmpty()) {
-            Minecraft mc = Minecraft.getInstance();
-            
-            guiGraphics.pose().pushMatrix();
-
-            // Render the item stack into the GUI and, if applicable, its stack size and/or damage bar
-            guiGraphics.item(stack, x, y);
-            if (!hideStackOverlay) {
-                guiGraphics.itemDecorations(mc.font, stack, x, y, text);
-            }
-            
-            guiGraphics.pose().popMatrix();
-            
-            retVal = true;
-        }
-        return retVal;
+        return renderItemStack(guiGraphics, stack, x, y, text, hideStackOverlay, Optional.empty());
     }
-    
+
     public static boolean renderItemStack(GuiGraphicsExtractor guiGraphics, ItemStack stack, int x, int y, String text, boolean hideStackOverlay, Optional<Vec3> scaleOpt) {
         boolean retVal = false;
         if (stack != null && !stack.isEmpty()) {
@@ -71,20 +54,17 @@ public class GuiUtils {
             
             guiGraphics.pose().pushMatrix();
 
-            guiGraphics.pose().pushMatrix();
-
             // Apply the requested scale around the center point of the item stack
-            guiGraphics.pose().translate(x + 8, y + 8);
+            guiGraphics.pose().pushMatrix();
             scaleOpt.ifPresent(scale -> {
+                guiGraphics.pose().translate(x + 8, y + 8);
                 guiGraphics.pose().scale((float)scale.x, (float)scale.y);
+                guiGraphics.pose().translate(-x - 8, -y - 8);
             });
-            guiGraphics.pose().translate(-x - 8, -y - 8);
 
-            // Render the item stack into the GUI
+            // Render the item stack into the GUI and, if applicable, its stack size and/or damage bar
             guiGraphics.item(stack, x, y);
-
             guiGraphics.pose().popMatrix();
-
             if (!hideStackOverlay) {
                 guiGraphics.itemDecorations(mc.font, stack, x, y, text);
             }
@@ -94,12 +74,6 @@ public class GuiUtils {
             retVal = true;
         }
         return retVal;
-    }
-    
-    public static void renderItemTooltip(GuiGraphicsExtractor guiGraphics, ItemStack stack, int x, int y) {
-        Minecraft mc = Minecraft.getInstance();
-        List<Component> lines = stack.getTooltipLines(Item.TooltipContext.of(mc.level), mc.player, mc.options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : TooltipFlag.Default.NORMAL);
-        Services.GUI_GRAPHICS.renderComponentTooltip(guiGraphics, mc.font, lines, x, y, stack);
     }
     
     public static void renderCustomTooltip(GuiGraphicsExtractor guiGraphics, List<Component> textList, int x, int y) {
@@ -127,9 +101,9 @@ public class GuiUtils {
                 
                 // If the source hasn't been discovered by the player, render an unknown icon instead
                 if (source.isDiscovered(player)) {
-                    GuiUtils.renderSourceIcon(guiGraphics, x, startY, source, sources.getAmount(source));
+                    GuiUtils.renderSourceIcon(guiGraphics, x, startY, source, sources.getAmount(source), 998);
                 } else {
-                    GuiUtils.renderUnknownSourceIcon(guiGraphics, x, startY, sources.getAmount(source));
+                    GuiUtils.renderUnknownSourceIcon(guiGraphics, x, startY, sources.getAmount(source), 998);
                 }
                 index++;
             }
@@ -137,22 +111,22 @@ public class GuiUtils {
         guiGraphics.pose().popMatrix();
     }
     
-    public static void renderSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, @Nullable Source source, int amount) {
+    public static void renderSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, @Nullable Source source, int amount, double z) {
         if (source != null) {
-            renderSourceIcon(guiGraphics, x, y, source.getImage(), amount);
+            renderSourceIcon(guiGraphics, x, y, source.getImage(), amount, z);
         }
     }
     
-    public static void renderUnknownSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, int amount) {
-        renderSourceIcon(guiGraphics, x, y, Source.getUnknownImage(), amount);
+    public static void renderUnknownSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, int amount, double z) {
+        renderSourceIcon(guiGraphics, x, y, Source.getUnknownImage(), amount, z);
     }
     
-    protected static void renderSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, @Nonnull Identifier imageLoc, int amount) {
+    protected static void renderSourceIcon(GuiGraphicsExtractor guiGraphics, int x, int y, @Nonnull Identifier imageLoc, int amount, double z) {
         Minecraft mc = Minecraft.getInstance();
         
         guiGraphics.pose().pushMatrix();
 
-        // Render the source's icon
+        // Render the source's icon from the GUI sprite atlas
         guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, imageLoc, x, y, 16, 16);
 
         // Render an amount string for the source, if an amount has been given
@@ -168,22 +142,11 @@ public class GuiUtils {
         guiGraphics.pose().popMatrix();
     }
     
-    protected static SpriteId getSourceSpriteId(@Nonnull Identifier imageLoc) {
-        // Source icons are also stitched onto the block atlas for world-space rendering, under a separate name from their GUI sprites
-        return new SpriteId(TextureAtlas.LOCATION_BLOCKS, imageLoc.withPrefix("world/"));
-    }
-
-    private static void addBillboardVertex(VertexConsumer consumer, PoseStack.Pose pose, float x, float y, float u, float v) {
-        consumer.addVertex(pose.pose(), x, y, 0.0F)
-                .setColor(1.0F, 1.0F, 1.0F, 1.0F)
-                .setUv(u, v)
-                .setOverlay(OverlayTexture.NO_OVERLAY)
-                .setLight(LightCoordsUtil.FULL_BRIGHT)  // Source icons always glow, regardless of ambient light
-                .setNormal(pose, 1, 0, 0);
-    }
-
-    public static void renderSourcesBillboard(PoseStack poseStack, SubmitNodeCollector collector, double x, double y, double z, SourceList sources, float partialTicks) {
+    public static void renderSourcesBillboard(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, double x, double y, double z, SourceList sources, float partialTicks) {
         Minecraft mc = Minecraft.getInstance();
+        if (mc.player == null) {
+            return;
+        }
         
         double interpolatedPlayerX = mc.player.xo + (partialTicks * (mc.player.getX() - mc.player.xo));
         double interpolatedPlayerY = mc.player.yo + (partialTicks * (mc.player.getY() - mc.player.yo));
@@ -206,12 +169,14 @@ public class GuiUtils {
                 poseStack.scale(scale, scale, scale);
 
                 Identifier texLoc = source.isDiscovered(mc.player) ? source.getImage() : Source.getUnknownImage();
-                TextureAtlasSprite sprite = mc.getAtlasManager().get(getSourceSpriteId(texLoc));
-                collector.submitCustomGeometry(poseStack, Sheets.cutoutBlockSheet(), (pose, consumer) -> {
-                    addBillboardVertex(consumer, pose, 0.0F, 16.0F, sprite.getU0(), sprite.getV1());
-                    addBillboardVertex(consumer, pose, 16.0F, 16.0F, sprite.getU1(), sprite.getV1());
-                    addBillboardVertex(consumer, pose, 16.0F, 0.0F, sprite.getU1(), sprite.getV0());
-                    addBillboardVertex(consumer, pose, 0.0F, 0.0F, sprite.getU0(), sprite.getV0());
+                Identifier guiAtlas = AtlasIds.GUI;
+                SpriteId texSprite = new SpriteId(guiAtlas, texLoc);
+                TextureAtlasSprite sprite = mc.getAtlasManager().get(texSprite);
+                submitNodeCollector.submitCustomGeometry(poseStack, RenderTypes.entityCutout(sprite.atlasLocation()), (pose, vertexConsumer) -> {
+                    vertexConsumer.addVertex(pose, 0.0F, 16.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setUv(sprite.getU0(), sprite.getV1()).setUv2(240, 240).setNormal(1, 0, 0);
+                    vertexConsumer.addVertex(pose, 16.0F, 16.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setUv(sprite.getU1(), sprite.getV1()).setUv2(240, 240).setNormal(1, 0, 0);
+                    vertexConsumer.addVertex(pose, 16.0F, 0.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setUv(sprite.getU1(), sprite.getV0()).setUv2(240, 240).setNormal(1, 0, 0);
+                    vertexConsumer.addVertex(pose, 0.0F, 0.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setUv(sprite.getU0(), sprite.getV0()).setUv2(240, 240).setNormal(1, 0, 0);
                 });
 
                 String amountStr = Integer.toString(amount);
@@ -219,7 +184,7 @@ public class GuiUtils {
                 poseStack.pushPose();
                 poseStack.scale(0.5F, 0.5F, -0.5F);
                 poseStack.translate(32.0D - amountWidth, 32.0D - mc.font.lineHeight, 0.0D);
-                collector.submitText(poseStack, 0F, 0F, Component.literal(amountStr).getVisualOrderText(), true, Font.DisplayMode.NORMAL, LightCoordsUtil.FULL_BRIGHT, Color.WHITE.getRGB(), 0, 0);
+                submitNodeCollector.submitText(poseStack, 0F, 0F, FormattedCharSequence.forward(amountStr, Style.EMPTY), true, Font.DisplayMode.NORMAL, 15728880, -1, 0, 0);
                 poseStack.popPose();
 
                 poseStack.popPose();

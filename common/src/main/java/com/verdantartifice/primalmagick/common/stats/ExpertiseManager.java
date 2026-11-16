@@ -1,6 +1,6 @@
 package com.verdantartifice.primalmagick.common.stats;
 
-import com.verdantartifice.primalmagick.client.recipes.ClientRecipeCache;
+import com.verdantartifice.primalmagick.client.crafting.ClientRecipes;
 import com.verdantartifice.primalmagick.common.crafting.IHasExpertise;
 import com.verdantartifice.primalmagick.common.research.ResearchDiscipline;
 import com.verdantartifice.primalmagick.common.research.ResearchDisciplines;
@@ -15,8 +15,8 @@ import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.crafting.Recipe;
@@ -58,7 +58,7 @@ public class ExpertiseManager {
             return Optional.of(getThresholdBySpellsCast(tier));
         } else {
             // All other disciplines calculate thresholds based solely on traditional and/or ritual crafting
-            return Optional.of(getThresholdByDisciplineRecipes(level.registryAccess(), getRecipes(level), disciplineKey, tier));
+            return Optional.of(getThresholdByDisciplineRecipes(level, disciplineKey, tier));
         }
     }
     
@@ -74,22 +74,12 @@ public class ExpertiseManager {
         }
     }
     
-    /**
-     * Gets the recipes to be scanned when computing expertise thresholds in the given level. The server has the full
-     * recipe list, while the client only has those recipes which the server sent it.
-     *
-     * @param level the level in which thresholds are being computed
-     * @return the recipes to be scanned
-     */
-    @NotNull
-    protected static Collection<RecipeHolder<?>> getRecipes(@NotNull Level level) {
-        return level instanceof ServerLevel serverLevel ? serverLevel.recipeAccess().getRecipes() : ClientRecipeCache.getInstance().getRecipes();
-    }
-
-    protected static int getThresholdByDisciplineRecipes(RegistryAccess registryAccess, Collection<RecipeHolder<?>> recipes, ResearchDisciplineKey discKey, ResearchTier tier) {
+    protected static int getThresholdByDisciplineRecipes(Level level, ResearchDisciplineKey discKey, ResearchTier tier) {
         Set<Identifier> foundGroups = new HashSet<>();
         MutableInt retVal = new MutableInt(0);
-        for (RecipeHolder<?> recipeHolder : recipes) {
+        RegistryAccess registryAccess = level.registryAccess();
+        Collection<RecipeHolder<?>> allRecipes = level instanceof ServerLevel serverLevel ? serverLevel.recipeAccess().getRecipes() : ClientRecipes.getAll();
+        for (RecipeHolder<?> recipeHolder : allRecipes) {
             if (recipeHolder.value() instanceof IHasExpertise expRecipe) {
                 // Only consider recipes with a discipline that matches the given one
                 expRecipe.getResearchDiscipline(registryAccess, recipeHolder.id()).filter(recipeDisc -> recipeDisc.equals(discKey)).ifPresent(recipeDisc -> {
@@ -193,10 +183,10 @@ public class ExpertiseManager {
         }
     }
     
-    public static Optional<ResearchTier> getRuneEnchantmentTier(RegistryAccess registryAccess, RuneEnchantmentDefinition runeEnchDef) {
+    public static Optional<ResearchTier> getRuneEnchantmentTier(RegistryAccess registryAccess, RuneEnchantmentDefinition runeEnchantDef) {
         // Determine the highest research tier represented by any of the runes in this enchantment's definition
         Optional<ResearchTier> maxTierOpt = Optional.empty();
-        for (AbstractRequirement<?> req : runeEnchDef.getRunes().stream().map(Rune::getRequirement).toList()) {
+        for (AbstractRequirement<?> req : runeEnchantDef.getRunes().stream().map(Rune::getRequirement).toList()) {
             Optional<ResearchTier> tierOpt = req.getResearchTier(registryAccess);
             if (maxTierOpt.isEmpty() || (tierOpt.isPresent() && tierOpt.get().compareTo(maxTierOpt.get()) > 0)) {
                 maxTierOpt = tierOpt;
@@ -209,8 +199,8 @@ public class ExpertiseManager {
         if (player == null) {
             return false;
         } else {
-            Identifier enchKey = player.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getKey(enchantment.value());
-            return enchKey != null && Services.CAPABILITIES.stats(player).map(stats -> !stats.isRuneEnchantmentCrafted(enchKey)).orElse(false);
+            Identifier enchantKey = player.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getKey(enchantment.value());
+            return enchantKey != null && Services.CAPABILITIES.stats(player).map(stats -> !stats.isRuneEnchantmentCrafted(enchantKey)).orElse(false);
         }
     }
     

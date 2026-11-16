@@ -4,8 +4,8 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.gametest.framework.TestData;
 import net.minecraft.gametest.framework.TestEnvironmentDefinition;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Rotation;
 
 public class TestDataBuilder {
@@ -19,7 +19,7 @@ public class TestDataBuilder {
     private int maxAttempts = 3;
     private int requiredSuccesses = 1;
     private boolean skyAccess = false;
-    private int padding = 0;
+    private int padding = 1;
 
     private TestDataBuilder(ResourceKey<TestEnvironmentDefinition<?>> envKey, HolderGetter<TestEnvironmentDefinition<?>> holderGetter) {
         this.envHolder = holderGetter.getOrThrow(envKey);

@@ -56,9 +56,9 @@ public class ItemReward extends AbstractReward<ItemReward> {
 
     @Override
     public void grant(ServerPlayer player) {
-        ItemStack stack = this.stack.create();
-        if (!player.addItem(stack)) {
-            ItemEntity entity = player.drop(stack, false);
+        ItemStack toGrant = this.stack.create();
+        if (!player.addItem(toGrant)) {
+            ItemEntity entity = player.drop(toGrant, false);
             if (entity != null) {
                 entity.setNoPickUpDelay();
                 entity.setTarget(player.getUUID());
@@ -70,12 +70,12 @@ public class ItemReward extends AbstractReward<ItemReward> {
 
     @Override
     public Component getDescription(Player player) {
-        ItemStack stack = this.stack.create();
-        MutableComponent itemName = Component.empty().append(stack.getHoverName()).withStyle(stack.getRarity().color());
-        if (stack.has(DataComponents.CUSTOM_NAME)) {
+        ItemStack descStack = this.stack.create();
+        MutableComponent itemName = Component.empty().append(descStack.getHoverName()).withStyle(descStack.getRarity().color());
+        if (descStack.has(DataComponents.CUSTOM_NAME)) {
             itemName.withStyle(ChatFormatting.ITALIC);
         }
-        return Component.translatable("label.primalmagick.research_table.reward", stack.getCount(), itemName);
+        return Component.translatable("label.primalmagick.research_table.reward", descStack.getCount(), itemName);
     }
 
     @Override

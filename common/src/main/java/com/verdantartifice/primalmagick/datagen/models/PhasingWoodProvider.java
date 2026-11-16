@@ -15,8 +15,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class PhasingWoodProvider {
     private final PhasingTextureMapping logMapping;
@@ -28,45 +26,42 @@ public class PhasingWoodProvider {
     }
 
     public PhasingWoodProvider wood(Block logBlock) {
+        var propertyDispatch = PropertyDispatch.initial(BlockStateProperties.AXIS, IPhasingBlock.PHASE);
         PhasingTextureMapping woodMapping = this.logMapping.copyAndUpdate(TextureSlot.SIDE, TextureSlot.END);
-        Map<TimePhase, MultiVariant> variants = new HashMap<>();
         Arrays.stream(TimePhase.values()).forEach(phase -> {
             Identifier modelId = Services.MODEL_TEMPLATES.extend(ModelTemplates.CUBE_COLUMN)
                     .createWithSuffix(logBlock, "_" + phase, woodMapping.resolve(phase), this.blockModelGenerators.modelOutput);
-            variants.put(phase, BlockModelGenerators.plainVariant(modelId));
+            MultiVariant variant = BlockModelGenerators.plainVariant(modelId);
+            propertyDispatch
+                    .select(Direction.Axis.Y, phase, variant)
+                    .select(Direction.Axis.Z, phase, variant.with(BlockModelGenerators.X_ROT_90))
+                    .select(Direction.Axis.X, phase, variant.with(BlockModelGenerators.X_ROT_90).with(BlockModelGenerators.Y_ROT_90));
             if (phase == TimePhase.FULL) {
                 this.blockModelGenerators.registerSimpleItemModel(logBlock, modelId);
             }
         });
-        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(logBlock)
-                .with(PropertyDispatch.initial(IPhasingBlock.PHASE).generate(variants::get))
-                .with(PropertyDispatch.modify(BlockStateProperties.AXIS)
-                        .select(Direction.Axis.Y, BlockModelGenerators.NOP)
-                        .select(Direction.Axis.Z, BlockModelGenerators.X_ROT_90)
-                        .select(Direction.Axis.X, BlockModelGenerators.X_ROT_90.then(BlockModelGenerators.Y_ROT_90))));
+        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(logBlock).with(propertyDispatch));
         return this;
     }
 
     public PhasingWoodProvider logWithHorizontal(Block logBlock) {
-        Map<TimePhase, MultiVariant> verticalVariants = new HashMap<>();
-        Map<TimePhase, MultiVariant> horizontalVariants = new HashMap<>();
+        var propertyDispatch = PropertyDispatch.initial(BlockStateProperties.AXIS, IPhasingBlock.PHASE);
         Arrays.stream(TimePhase.values()).forEach(phase -> {
             Identifier verticalModelId = Services.MODEL_TEMPLATES.extend(ModelTemplates.CUBE_COLUMN)
                     .createWithSuffix(logBlock, "_" + phase, this.logMapping.resolve(phase), this.blockModelGenerators.modelOutput);
             Identifier horizontalModelId = Services.MODEL_TEMPLATES.extend(ModelTemplates.CUBE_COLUMN_HORIZONTAL)
                     .createWithSuffix(logBlock, "_" + phase, this.logMapping.resolve(phase), this.blockModelGenerators.modelOutput);
-            verticalVariants.put(phase, BlockModelGenerators.plainVariant(verticalModelId));
-            horizontalVariants.put(phase, BlockModelGenerators.plainVariant(horizontalModelId));
+            MultiVariant verticalVariant = BlockModelGenerators.plainVariant(verticalModelId);
+            MultiVariant horizontalVariant = BlockModelGenerators.plainVariant(horizontalModelId);
+            propertyDispatch
+                    .select(Direction.Axis.Y, phase, verticalVariant)
+                    .select(Direction.Axis.Z, phase, horizontalVariant.with(BlockModelGenerators.X_ROT_90))
+                    .select(Direction.Axis.X, phase, horizontalVariant.with(BlockModelGenerators.X_ROT_90).with(BlockModelGenerators.Y_ROT_90));
             if (phase == TimePhase.FULL) {
                 this.blockModelGenerators.registerSimpleItemModel(logBlock, verticalModelId);
             }
         });
-        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(logBlock)
-                .with(PropertyDispatch.initial(IPhasingBlock.PHASE, BlockStateProperties.AXIS).generate((phase, axis) -> switch (axis) {
-                    case Y -> verticalVariants.get(phase);
-                    case Z -> horizontalVariants.get(phase).with(BlockModelGenerators.X_ROT_90);
-                    case X -> horizontalVariants.get(phase).with(BlockModelGenerators.X_ROT_90).with(BlockModelGenerators.Y_ROT_90);
-                })));
+        this.blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.dispatch(logBlock).with(propertyDispatch));
         return this;
     }
 }

@@ -4,6 +4,7 @@
   "function": "primalmagick:mine_mod_creates_mine_that_triggers_once_on_first_creature",
   "max_attempts": 3,
   "max_ticks": 400,
+  "padding": 1,
   "setup_ticks": 50,
   "structure": "primalmagick:test/floor5x5x5"
 }

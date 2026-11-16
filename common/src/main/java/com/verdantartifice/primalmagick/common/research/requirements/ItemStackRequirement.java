@@ -5,7 +5,6 @@ import com.verdantartifice.primalmagick.common.util.InventoryUtils;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 
 import java.util.stream.Stream;
@@ -29,19 +28,19 @@ public class ItemStackRequirement extends AbstractRequirement<ItemStackRequireme
         this.stack = stack;
     }
     
-    public ItemStack getStack() {
-        return this.stack.create();
+    public ItemStackTemplate getStack() {
+        return this.stack;
     }
 
     @Override
     public boolean isMetBy(Player player) {
-        return player != null && InventoryUtils.isPlayerCarrying(player, this.getStack());
+        return player != null && InventoryUtils.isPlayerCarrying(player, this.stack.create());
     }
 
     @Override
     public void consumeComponents(Player player) {
         if (player != null && this.isMetBy(player)) {
-            InventoryUtils.consumeItem(player, this.getStack());
+            InventoryUtils.consumeItem(player, this.stack.create());
         }
     }
 

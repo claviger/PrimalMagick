@@ -310,7 +310,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         this.createEmptyBlock(BlocksPM.CONSECRATION_FIELD.get(), blockModels);
         this.createEmptyBlock(BlocksPM.GLOW_FIELD.get(), blockModels);
         this.createEmptyBlock(BlocksPM.SOUL_GLOW_FIELD.get(), blockModels);
-        this.createSaltTrailBlock(BlocksPM.SALT_TRAIL.get(), blockModels);
+        this.createSaltWireBlock(BlocksPM.SALT_TRAIL.get(), blockModels, ItemsPM.REFINED_SALT.get());
         blockModels.createTrivialCube(BlocksPM.ROCK_SALT_ORE.get());
         blockModels.createTrivialCube(BlocksPM.QUARTZ_ORE.get());
         blockModels.createTrivialCube(BlocksPM.PRIMALITE_BLOCK.get());
@@ -676,7 +676,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         }
         itemModels.itemModelOutput.accept(item, new SelectItemModel.Unbaked(
                 Optional.empty(),
-                new SelectItemModel.UnbakedSwitch<>(new StackDyeColor(), cases.values().stream().toList()),
+                new SelectItemModel.UnbakedSwitch<>(new StackDyeColor(), cases.entrySet().stream().sorted(Map.Entry.comparingByKey()).map(Map.Entry::getValue).toList()),
                 Optional.ofNullable(defaultModel)));
     }
 
@@ -802,8 +802,8 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
 
     private void generatePillarBlock(Block block, BlockModelGenerators blockModels) {
         MultiVariant baseMultiVariant = BlockModelGenerators.plainVariant(TexturedModelsPM.PILLAR.create(block, blockModels.modelOutput));
-        MultiVariant bottomMultiVariant = BlockModelGenerators.plainVariant(TexturedModelsPM.PILLAR_BOTTOM.create(block, blockModels.modelOutput));
-        MultiVariant topMultiVariant = BlockModelGenerators.plainVariant(TexturedModelsPM.PILLAR_TOP.create(block, blockModels.modelOutput));
+        MultiVariant bottomMultiVariant = BlockModelGenerators.plainVariant(TexturedModelsPM.PILLAR_BOTTOM.createWithSuffix(block, "_bottom", blockModels.modelOutput));
+        MultiVariant topMultiVariant = BlockModelGenerators.plainVariant(TexturedModelsPM.PILLAR_TOP.createWithSuffix(block, "_top", blockModels.modelOutput));
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(PillarBlock.PROPERTY_TYPE)
                         .select(PillarBlock.Type.BASE, baseMultiVariant)
@@ -849,21 +849,21 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
     }
 
     private PhasingBlockFamilyProvider phasingFamily(Block block, Function<Block, PhasingTextureMapping> textureMapping, BlockModelGenerators blockModels) {
-        return new PhasingBlockFamilyProvider(textureMapping.apply(block), blockModels).fullBlock(block, ModelTemplates.CUBE_ALL);
+        return new PhasingBlockFamilyProvider(textureMapping.apply(block), blockModels).fullBlock(block, ModelTemplates.CUBE_COLUMN);
     }
 
     private void createPhasingLeaves(Block block, BlockModelGenerators blockModels) {
+        var propertyDispatch = PropertyDispatch.initial(IPhasingBlock.PHASE);
         PhasingTextureMapping leavesMapping = PhasingTextureMapping.leaves(block);
-        Map<TimePhase, MultiVariant> variants = new HashMap<>();
         Arrays.stream(TimePhase.values()).forEach(phase -> {
             Identifier modelId = Services.MODEL_TEMPLATES.extend(ModelTemplates.LEAVES)
                     .createWithSuffix(block, "_" + phase, leavesMapping.resolve(phase), blockModels.modelOutput);
-            variants.put(phase, BlockModelGenerators.plainVariant(modelId));
+            propertyDispatch.select(phase, BlockModelGenerators.plainVariant(modelId));
             if (phase == TimePhase.FULL) {
                 blockModels.registerSimpleItemModel(block, modelId);
             }
         });
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(PropertyDispatch.initial(IPhasingBlock.PHASE).generate(variants::get)));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(propertyDispatch));
     }
 
     private void createPhasingPillarBlock(Block block, BlockModelGenerators blockModels) {
@@ -872,7 +872,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
             Arrays.stream(PillarBlock.Type.values()).forEach(type -> {
                 PhasingTextureMapping pillarMapping = PhasingTextureMapping.pillar(block, type);
                 Identifier modelId = Services.MODEL_TEMPLATES.extend(this.getPillarModelTemplate(type))
-                        .createWithSuffix(block, "_" + phase, pillarMapping.resolve(phase), blockModels.modelOutput);
+                        .createWithSuffix(block, "_" + (type == PillarBlock.Type.BASE ? "" : (type + "_")) + phase, pillarMapping.resolve(phase), blockModels.modelOutput);
                 dispatch.select(phase, type, BlockModelGenerators.plainVariant(modelId));
                 if (phase == TimePhase.FULL && type == PillarBlock.Type.BASE) {
                     blockModels.registerSimpleItemModel(block, modelId);
@@ -904,7 +904,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         Map<ModelConnection, MultiVariant> glassVariants = ModelConnectionSets.CUBE.modelConnections().stream().collect(Collectors.toMap(
                 modelConnection -> modelConnection,
                 modelConnection -> BlockModelGenerators.plainVariant(
-                        modelConnection.extendModel(ModelTemplates.CUBE_DIRECTIONAL, ResourceUtils.loc("block/skyglass"))
+                        modelConnection.extendModel(ResourceUtils.loc("block/skyglass"))
                             .createWithSuffix(glassBlock, modelConnection.suffix(), TextureMappingsPM.connected(glassBlock, modelConnection).forceAllTranslucent(), blockModels.modelOutput))));
         blockModels.blockStateOutput.accept(ModelConnectionSets.CUBE.generatorFactory().apply(glassBlock, glassVariants));
         blockModels.registerSimpleItemModel(glassBlock, ModelLocationUtils.getModelLocation(glassBlock, ModelConnections.ZERO.suffix()));
@@ -921,7 +921,7 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         // Define block models and states for full glass block
         Map<ModelConnection, Identifier> glassModelIds = ModelConnectionSets.CUBE.modelConnections().stream().collect(Collectors.toMap(
                 modelConnection -> modelConnection,
-                modelConnection -> modelConnection.extendModel(ModelTemplates.CUBE_DIRECTIONAL, ResourceUtils.loc("block/stained_skyglass"))
+                modelConnection -> modelConnection.extendModel(ResourceUtils.loc("block/stained_skyglass"))
                         .createWithSuffix(glassBlock, modelConnection.suffix(), TextureMappingsPM.connected(ResourceUtils.loc("stained_skyglass"), modelConnection).forceAllTranslucent(), blockModels.modelOutput)));
         Identifier variantZeroLoc = glassModelIds.get(ModelConnections.ZERO);
         Map<ModelConnection, MultiVariant> glassVariants = glassModelIds.entrySet().stream().collect(Collectors.toMap(
@@ -946,9 +946,13 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
             // Connections without a base model, such as the pane post, use the existing hand-written model for that connection
             return BlockModelGenerators.plainVariant(modelPrefix.withSuffix(modelConnection.suffix()));
         } else {
-            // The suffix of the pane template is not wanted, as the parent model is overridden by the connection
-            return BlockModelGenerators.plainVariant(modelConnection.extendModel(ModelTemplates.STAINED_GLASS_PANE_NOSIDE, modelPrefix)
-                    .createWithOverride(paneBlock, modelConnection.suffix(), TextureMappingsPM.connected(textureId, modelConnection).forceAllTranslucent(), blockModels.modelOutput));
+            // Pane faces use the connected textures of the matching glass block, and all panes share a single edge texture
+            TextureMapping textureMapping = TextureMappingsPM.connected(textureId, modelConnection);
+            if (modelConnection.textureConnections().containsKey(TextureSlot.EDGE)) {
+                textureMapping.put(TextureSlot.EDGE, new Material(ResourceUtils.loc("block/skyglass_pane_edge")));
+            }
+            return BlockModelGenerators.plainVariant(modelConnection.extendModel(modelPrefix)
+                    .createWithSuffix(paneBlock, modelConnection.suffix(), textureMapping.forceAllTranslucent(), blockModels.modelOutput));
         }
     }
 
@@ -987,43 +991,6 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
                 .create(block, TextureMappingsPM::empty, blockModels.modelOutput);
         MultiVariant variant = BlockModelGenerators.plainVariant(modelLoc);
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block, variant).with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING));
-    }
-
-    private void createSaltTrailBlock(Block block, BlockModelGenerators blockModels) {
-        // Mirrors the vanilla redstone wire block state definition, using the hand-written salt trail models
-        blockModels.registerSimpleFlatItemModel(block.asItem());
-        Identifier modelLoc = ModelLocationUtils.getModelLocation(block);
-        MultiVariant dotVariant = BlockModelGenerators.plainVariant(modelLoc.withSuffix("_dot"));
-        MultiVariant upVariant = BlockModelGenerators.plainVariant(modelLoc.withSuffix("_up"));
-        blockModels.blockStateOutput.accept(MultiPartGenerator.multiPart(block)
-                .with(BlockModelGenerators.or(
-                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.NONE).term(SaltTrailBlock.EAST, SaltSide.NONE).term(SaltTrailBlock.SOUTH, SaltSide.NONE).term(SaltTrailBlock.WEST, SaltSide.NONE),
-                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP),
-                        BlockModelGenerators.condition().term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP),
-                        BlockModelGenerators.condition().term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP),
-                        BlockModelGenerators.condition().term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP)
-                ), dotVariant)
-                .with(BlockModelGenerators.or(
-                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP),
-                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.NONE).term(SaltTrailBlock.EAST, SaltSide.NONE).term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.WEST, SaltSide.NONE)
-                ), BlockModelGenerators.plainVariant(modelLoc.withSuffix("_side0")))
-                .with(BlockModelGenerators.or(
-                        BlockModelGenerators.condition().term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP),
-                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.EAST, SaltSide.NONE).term(SaltTrailBlock.SOUTH, SaltSide.NONE).term(SaltTrailBlock.WEST, SaltSide.NONE)
-                ), BlockModelGenerators.plainVariant(modelLoc.withSuffix("_side_alt0")))
-                .with(BlockModelGenerators.or(
-                        BlockModelGenerators.condition().term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP),
-                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.NONE).term(SaltTrailBlock.EAST, SaltSide.NONE).term(SaltTrailBlock.SOUTH, SaltSide.NONE).term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP)
-                ), BlockModelGenerators.plainVariant(modelLoc.withSuffix("_side_alt1")).with(BlockModelGenerators.Y_ROT_270))
-                .with(BlockModelGenerators.or(
-                        BlockModelGenerators.condition().term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP),
-                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.NONE).term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP).term(SaltTrailBlock.SOUTH, SaltSide.NONE).term(SaltTrailBlock.WEST, SaltSide.NONE)
-                ), BlockModelGenerators.plainVariant(modelLoc.withSuffix("_side1")).with(BlockModelGenerators.Y_ROT_270))
-                .with(BlockModelGenerators.condition(SaltTrailBlock.NORTH, SaltSide.UP), upVariant)
-                .with(BlockModelGenerators.condition(SaltTrailBlock.EAST, SaltSide.UP), upVariant.with(BlockModelGenerators.Y_ROT_90))
-                .with(BlockModelGenerators.condition(SaltTrailBlock.SOUTH, SaltSide.UP), upVariant.with(BlockModelGenerators.Y_ROT_180))
-                .with(BlockModelGenerators.condition(SaltTrailBlock.WEST, SaltSide.UP), upVariant.with(BlockModelGenerators.Y_ROT_270))
-        );
     }
 
     private void createLanternBlock(Block block, BlockModelGenerators blockModels) {
@@ -1227,5 +1194,95 @@ public abstract class AbstractModelProviderPM extends ModelProvider {
         TextureMapping textures = plantType.getTextureMapping(cropBlock);
         MultiVariant model = BlockModelGenerators.plainVariant(plantType.getCross().create(cropBlock, textures, blockModels.modelOutput));
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(cropBlock, model));
+    }
+
+    private void createSaltWireBlock(Block wireBlock, BlockModelGenerators blockModels, Item wireItem) {
+        blockModels.registerSimpleFlatItemModel(wireItem);
+        blockModels.blockStateOutput
+                .accept(
+                        MultiPartGenerator.multiPart(wireBlock)
+                                .with(
+                                        BlockModelGenerators.or(
+                                                BlockModelGenerators.condition()
+                                                        .term(SaltTrailBlock.NORTH, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.EAST, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.SOUTH, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.WEST, SaltSide.NONE),
+                                                BlockModelGenerators.condition()
+                                                        .term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP)
+                                                        .term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP),
+                                                BlockModelGenerators.condition()
+                                                        .term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP)
+                                                        .term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP),
+                                                BlockModelGenerators.condition()
+                                                        .term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP)
+                                                        .term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP),
+                                                BlockModelGenerators.condition()
+                                                        .term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP)
+                                                        .term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP)
+                                        ),
+                                        BlockModelGenerators.plainVariant(ResourceUtils.loc("salt_trail_dot").withPrefix("block/"))
+                                )
+                                .with(
+                                        BlockModelGenerators.or(
+                                                BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP),
+                                                BlockModelGenerators.condition()
+                                                        .term(SaltTrailBlock.NORTH, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.EAST, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP)
+                                                        .term(SaltTrailBlock.WEST, SaltSide.NONE)
+                                        ),
+                                        BlockModelGenerators.plainVariant(ResourceUtils.loc("salt_trail_side0").withPrefix("block/"))
+                                )
+                                .with(
+                                        BlockModelGenerators.or(
+                                                BlockModelGenerators.condition().term(SaltTrailBlock.SOUTH, SaltSide.SIDE, SaltSide.UP),
+                                                BlockModelGenerators.condition()
+                                                        .term(SaltTrailBlock.NORTH, SaltSide.SIDE, SaltSide.UP)
+                                                        .term(SaltTrailBlock.EAST, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.SOUTH, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.WEST, SaltSide.NONE)
+                                        ),
+                                        BlockModelGenerators.plainVariant(ResourceUtils.loc("salt_trail_side_alt0").withPrefix("block/"))
+                                )
+                                .with(
+                                        BlockModelGenerators.or(
+                                                BlockModelGenerators.condition().term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP),
+                                                BlockModelGenerators.condition()
+                                                        .term(SaltTrailBlock.NORTH, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.EAST, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.SOUTH, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP)
+                                        ),
+                                        BlockModelGenerators.plainVariant(ResourceUtils.loc("salt_trail_side_alt1").withPrefix("block/")).with(BlockModelGenerators.Y_ROT_270)
+                                )
+                                .with(
+                                        BlockModelGenerators.or(
+                                                BlockModelGenerators.condition().term(SaltTrailBlock.WEST, SaltSide.SIDE, SaltSide.UP),
+                                                BlockModelGenerators.condition()
+                                                        .term(SaltTrailBlock.NORTH, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.EAST, SaltSide.SIDE, SaltSide.UP)
+                                                        .term(SaltTrailBlock.SOUTH, SaltSide.NONE)
+                                                        .term(SaltTrailBlock.WEST, SaltSide.NONE)
+                                        ),
+                                        BlockModelGenerators.plainVariant(ResourceUtils.loc("salt_trail_side1").withPrefix("block/")).with(BlockModelGenerators.Y_ROT_270)
+                                )
+                                .with(
+                                        BlockModelGenerators.condition().term(SaltTrailBlock.NORTH, SaltSide.UP),
+                                        BlockModelGenerators.plainVariant(ResourceUtils.loc("salt_trail_up").withPrefix("block/"))
+                                )
+                                .with(
+                                        BlockModelGenerators.condition().term(SaltTrailBlock.EAST, SaltSide.UP),
+                                        BlockModelGenerators.plainVariant(ResourceUtils.loc("salt_trail_up").withPrefix("block/")).with(BlockModelGenerators.Y_ROT_90)
+                                )
+                                .with(
+                                        BlockModelGenerators.condition().term(SaltTrailBlock.SOUTH, SaltSide.UP),
+                                        BlockModelGenerators.plainVariant(ResourceUtils.loc("salt_trail_up").withPrefix("block/")).with(BlockModelGenerators.Y_ROT_180)
+                                )
+                                .with(
+                                        BlockModelGenerators.condition().term(SaltTrailBlock.WEST, SaltSide.UP),
+                                        BlockModelGenerators.plainVariant(ResourceUtils.loc("salt_trail_up").withPrefix("block/")).with(BlockModelGenerators.Y_ROT_270)
+                                )
+                );
     }
 }

@@ -7,7 +7,6 @@ import com.verdantartifice.primalmagick.platform.Services;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.level.ItemLike;
 
@@ -27,17 +26,13 @@ public class ItemScanKey extends AbstractResearchKey<ItemScanKey> {
         }
         this.stack = stack;
     }
-    
-    public ItemScanKey(ItemStack stack) {
-        this(ItemStackTemplate.fromNonEmptyStack(stack));
-    }
 
     public ItemScanKey(ItemLike itemLike) {
         this(new ItemStackTemplate(itemLike.asItem()));
     }
 
-    public ItemStack getStack() {
-        return this.stack.create();
+    public ItemStackTemplate getStack() {
+        return this.stack;
     }
     
     @Override

@@ -73,8 +73,9 @@ public abstract class AbstractWandTransform implements IWandTransform {
     @Override
     public void execute(Level world, Player player, BlockPos pos) {
         // Enqueue a block swapper to be executed on the world next tick
-        Services.EVENTS.firePlayerCraftingEvent(player, this.result.create(), new FakeInventory(1));
+        ItemStack resultStack = this.result.create();
+        Services.EVENTS.firePlayerCraftingEvent(player, resultStack, new FakeInventory(1));
         BlockState state = world.getBlockState(pos);
-        BlockSwapper.enqueue(world, new BlockSwapper(pos, state, this.result.create(), player));
+        BlockSwapper.enqueue(world, new BlockSwapper(pos, state, resultStack, player));
     }
 }

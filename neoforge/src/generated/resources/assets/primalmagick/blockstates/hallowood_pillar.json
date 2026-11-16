@@ -4,10 +4,10 @@
       "model": "primalmagick:block/hallowood_pillar"
     },
     "type=bottom": {
-      "model": "primalmagick:block/hallowood_pillar_bottom"
+      "model": "primalmagick:block/hallowood_pillar_bottom_bottom"
     },
     "type=top": {
-      "model": "primalmagick:block/hallowood_pillar_top"
+      "model": "primalmagick:block/hallowood_pillar_top_top"
     }
   }
 }
