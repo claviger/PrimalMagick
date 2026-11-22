@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -169,9 +168,7 @@ public class GuiUtils {
                 poseStack.scale(scale, scale, scale);
 
                 Identifier texLoc = source.isDiscovered(mc.player) ? source.getImage() : Source.getUnknownImage();
-                Identifier guiAtlas = AtlasIds.GUI;
-                SpriteId texSprite = new SpriteId(guiAtlas, texLoc);
-                TextureAtlasSprite sprite = mc.getAtlasManager().get(texSprite);
+                TextureAtlasSprite sprite = mc.getAtlasManager().getAtlasOrThrow(AtlasIds.GUI).getSprite(texLoc);
                 submitNodeCollector.submitCustomGeometry(poseStack, RenderTypes.entityCutout(sprite.atlasLocation()), (pose, vertexConsumer) -> {
                     vertexConsumer.addVertex(pose, 0.0F, 16.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setUv(sprite.getU0(), sprite.getV1()).setUv2(240, 240).setNormal(1, 0, 0);
                     vertexConsumer.addVertex(pose, 16.0F, 16.0F, 0.0F).setColor(1.0F, 1.0F, 1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setUv(sprite.getU1(), sprite.getV1()).setUv2(240, 240).setNormal(1, 0, 0);
