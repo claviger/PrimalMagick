@@ -1,3 +1,7 @@
+This is my own internal work tree. Don't download this one; if you want Primal Magick, get it from the actual maintainer at https://github.com/daedalus4096/PrimalMagick.
+
+
+
 <p align="center"><img src="https://i.imgur.com/hA5Yl2j.png" alt="Primal Magick Logo" width="600"></p>
 <h2 align="center">Harness the magick of the primal sources of the land</br>
     <a title="CurseForge" target="_blank" href="https://www.curseforge.com/minecraft/mc-mods/primal-magick"><img src="http://cf.way2muchnoise.eu/full_primal-magick_downloads.svg" alt="CurseForge"></a>
